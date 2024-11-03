@@ -16,7 +16,7 @@ const HomeScreen = ({ route }) => {
                 style={styles.backgroundImage} 
             />
             <View style={styles.textContainer}>
-                <Text style={styles.greetingText}>¡HOLA, {nombreMayusculas}! 🎉</Text>
+                <Text style={styles.greetingText}>¡HOOLA, {nombreMayusculas}! 🎉</Text>
                 <Text style={styles.welcomeText}>
                     {isFeminine ? '¡BIENVENIDA A QUINCHAO SUSTENTABLE!' : '¡BIENVENIDO A QUINCHAO SUSTENTABLE!'}
                 </Text>
