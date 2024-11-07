@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import HomeScreen from './Home'; // Importa el nuevo componente
 
-const Stack = createNativeStackNavigator();jmyjm
+const Stack = createNativeStackNavigator();
 
 function StartScreen({ navigation }) {
     const [nombre, setNombre] = useState('');
