@@ -109,4 +109,3 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
 });
-jkdkajsdas
