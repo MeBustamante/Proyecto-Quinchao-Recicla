@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { db } from './firebaseConfig'; // Importa tu configuración de Firebase
@@ -29,7 +29,9 @@ export default function SolicitudRetiro() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <Image source={require('./assets/logo_muni.png')} style={styles.logo} />
         <Text style={styles.title}>SOLICITUD PARA RETIRO DE RESIDUOS</Text>
+        <Image source={require('./assets/logo_oficina.png')} style={styles.logo} />
       </View>
 
       <View style={styles.form}>
@@ -86,8 +88,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 20,
+  },
+  logo: {
+    width: 50,
+    height: 50,
   },
   title: {
     fontSize: 18,
