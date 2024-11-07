@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import HomeScreen from './Home'; // Importa el nuevo componente
-import Programas1 from './Programas1'; // Importa la pantalla Programas1
 
 const Stack = createNativeStackNavigator();
 
@@ -40,12 +39,6 @@ function StartScreen({ navigation }) {
             <TouchableOpacity style={styles.button} onPress={handleReciclar} disabled={loading}>
                 {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Reciclar</Text>}
             </TouchableOpacity>
-            <TouchableOpacity 
-                style={[styles.button, { marginTop: 20 }]} 
-                onPress={() => navigation.navigate('Programas')}
-            >
-                <Text style={styles.buttonText}>Programas</Text>
-            </TouchableOpacity>
         </LinearGradient>
     );
 }
@@ -54,22 +47,8 @@ export default function App() {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Start">
-                {/* Asegúrate de usar 'component' para cada pantalla */}
-                <Stack.Screen 
-                    name="Start" 
-                    component={StartScreen} 
-                    options={{ headerShown: false }} 
-                />
-                <Stack.Screen 
-                    name="Home" 
-                    component={HomeScreen} 
-                    options={{ headerShown: false }} 
-                />
-                <Stack.Screen 
-                    name="Programas" 
-                    component={Programas1} 
-                    options={{ headerShown: false }} 
-                /> 
+                <Stack.Screen name="Start" component={StartScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
