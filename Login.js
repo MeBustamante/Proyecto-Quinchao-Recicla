@@ -29,7 +29,7 @@ const LoginScreen = ({ navigation }) => {
                 onChangeText={setNombre}
             />
             <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loading}>
-                {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Iniciar sesión</Text>}
+                {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Comenzar a Reciclar</Text>}
             </TouchableOpacity>
         </View>
     );
