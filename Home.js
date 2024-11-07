@@ -16,7 +16,7 @@ const HomeScreen = ({ route }) => {
                 style={styles.backgroundImage} 
             />
             <View style={styles.textContainer}>
-                <Text style={styles.greetingText}>¡HOOLA, {nombreMayusculas}! 🎉</Text>
+                <Text style={styles.greetingText}>¡HOLA, {nombreMayusculas}! 🎉</Text>
                 <Text style={styles.welcomeText}>
                     {isFeminine ? '¡BIENVENIDA A QUINCHAO SUSTENTABLE!' : '¡BIENVENIDO A QUINCHAO SUSTENTABLE!'}
                 </Text>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     greetingText: {
-        fontSize: 28, // Tamaño de fuente más pequeño
+        fontSize: 25, // Tamaño de fuente más pequeño
         color: '#4CAF50', // Cambia el color a un verde llamativo
         fontWeight: 'bold',
         textAlign: 'left', // Alineación a la izquierda
