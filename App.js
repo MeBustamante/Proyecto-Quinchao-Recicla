@@ -4,7 +4,7 @@ import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ActivityInd
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
-import HomeScreen from './Home'; // Importa el nuevo componente
+import HomeScreen from './Login'; // Importa el nuevo componente
 import Programas1 from './Programas1'; // Importa la pantalla Programas1
 
 const Stack = createNativeStackNavigator();

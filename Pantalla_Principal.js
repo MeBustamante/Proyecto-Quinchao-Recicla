@@ -1,8 +1,8 @@
-// Home.js
+// Pantalla_Principal.js
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const HomeScreen = ({ route }) => {
+const PantallaPrincipalScreen = ({ route }) => {
     const { nombre } = route.params; // Obtiene el nombre desde los parámetros de la ruta
     const isFeminine = nombre.endsWith('a'); // Determina si el nombre es femenino
 
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen;
+export default PantallaPrincipalScreen;
