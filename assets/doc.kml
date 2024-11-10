@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document id="1VdPm412SdQvmjmzstAviPD2kHPyBB_7i">
+	<name>puntos verdes Quinchao</name>
+	<open>1</open>
+	<description>Actualizados en octubre 2022</description>
+	<gx:CascadingStyle kml:id="__managed_style_2B93B4AC38254A1AC4EE">
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2<![CDATA[&]]>id=2000<![CDATA[&]]>scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"></hotSpot>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>6</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle><gx:CascadingStyle kml:id="__managed_style_20EADF3853254A19E954">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2<![CDATA[&]]>id=2000<![CDATA[&]]>scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"></hotSpot>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>6</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle><gx:CascadingStyle kml:id="__managed_style_189D7CB6A2254A1AC4EE">
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2<![CDATA[&]]>id=2000<![CDATA[&]]>scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"></hotSpot>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle><gx:CascadingStyle kml:id="__managed_style_131E5FC33D254A19E954">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2<![CDATA[&]]>id=2000<![CDATA[&]]>scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"></hotSpot>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle><gx:CascadingStyle kml:id="__managed_style_0A16C6C87B254A19E947">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2<![CDATA[&]]>id=2000<![CDATA[&]]>scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"></hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<color>ff9a9aef</color>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>6</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle><gx:CascadingStyle kml:id="__managed_style_1B7CB3E357254A19E945">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.0.23.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/rpc/cc/icon?color=1976d2<![CDATA[&]]>id=2000<![CDATA[&]]>scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"></hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<color>ff9a9aef</color>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_016469BBE6254A1AC4EE">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_189D7CB6A2254A1AC4EE</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_2B93B4AC38254A1AC4EE</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="__managed_style_0720C0AE6A254A19E954">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_131E5FC33D254A19E954</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_20EADF3853254A19E954</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="__managed_style_0B00889608254A19E945">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_1B7CB3E357254A19E945</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_0A16C6C87B254A19E947</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin100">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin20</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl1</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin5">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin7</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl7</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="m_ylw-pushpin6">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin6</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl6</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin20">
+		<IconStyle>
+			<scale>0.6</scale>
+			<Icon>
+				<href>files/reciclaje.jpg</href>
+			</Icon>
+			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin6">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin7">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl1">
+		<IconStyle>
+			<scale>0.709091</scale>
+			<Icon>
+				<href>files/reciclaje.jpg</href>
+			</Icon>
+			<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl6">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl7">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Placemark>
+		<name>Punto verde mirador</name>
+		<LookAt>
+			<longitude>-73.5035538030231</longitude>
+			<latitude>-42.46760121985447</latitude>
+			<altitude>0</altitude>
+			<heading>-3.541404154057367</heading>
+			<tilt>27.39373682861441</tilt>
+			<range>573.8201642500198</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#m_ylw-pushpin100</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>-73.50664240045771,-42.46629212016157,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="07F5C99F38251BE8F0E6">
+		<name>Nº3 Punto Verde Predio municipal</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>latas de aluminio<br></div><div><br></div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.48694387339174,-42.47235549438761,8.306273459183128</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5bVV5SEFzeENKWTlGRTFSYklEODlra3k0dnhOWnF6ajN0OVkvM3YzSXBSenB0dEZaZVpYTTdFNnArNnpiMDB0V3hlSWRBdGdQdFprU3lrRHNHMGNzRXVOQkp5Q2JqQllwd3dEc09qMWxKQkZDSU9OWWRXZGM5SjRpd2x3VWN0TTlzZTVpU3NwVEkvVHFZdzlCa2dScGp0S0g4MTlZZU03Wkl2UUMvcU1lb2ZaNzkzRy9sWkJyZTlTVDN6eVRKRFk3VzZaT05QblIvQWtwdnA1azMzbmVDZUVsQ2V5ekRzYkZlaHI5SVUvU21ZU1RIUjNBPT0">
+				<gx:ImageUrl>https://doc-00-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/ta05549r1rfeiea2o8emrbssag/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9ntLZfhfskBtxbkuKs5fHzarI9D6bbuvQ1gs5VY2ZXa7Gq6WIFhA8idxokKJT7Ro98R_UBFXeWpSeVeBNLfK2pMezMlsmPumBPsf-YidzAZtPIjD7xEfX7eDtDeinG0BoAiOxWk-lNFoA5qK1_0xVHb_roVQJstoGn0AL62eloi6kAR0YOK-QORQ6ST-VxkiRc?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="0AAF6A2EB5251BF3CC42">
+		<name>Nº 1 punto verde VBV</name>
+		<description><![CDATA[<div>Botellas plásticas&nbsp;<br></div><div>vidrio<br></div><div>latas de aluminio</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.4904525773141,-42.47602406060232,20.38461363838142</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5bFIybWRWTEhvc2ExMWZFNnhJMGUrZXNJSkhra2l5c09aYkxxNlFqR0lQbUl5TlFHUWZ1TWR1OXdJcWFxSTMwYXVuajYvRzlqOFd3UXhOaEVTOExKYmk4Ylc4VlhMM1c5bnp2NThKdVdlcnM4eGZEWkFERmVxdW8rVm1RZHhxamsrMUdveXIya1FoNEJaaVVtejVyZVNsTXIvVG9oaXQ1OFQ4YVBGZkNhR2tWMTdaUzhiRFdaczJqMFZwMVBRMFI3UE9TT3BlR3AzQWpQcVB6ZlV3MWswM0tYd05BY0w4LzBiMExWNHYrMng3dmtyejdRPT0">
+				<gx:ImageUrl>https://doc-0c-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/m6b94be1ljf9ivprcdmr1uhg4o/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9kTKAuP2-r1TQv2TFjUs8UXeqT1qF24p_WjuPuPFgQWlaQgvRADg4-iZkD7As4PGZ0XiBVGelXgggvbOz-1o1jXiLVR-T9jwc43XxTkDLxMuFVMp3VrNnCdo-JQty1yLK4Cc4MBrT6weYbqWzvFi4Oo5yb603KhoZVirSS8xiISsy7zFvkzDIsMNvmJf4XcGRU?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="046028B7EC251BF55AEB">
+		<name>Nº2 Punto Verde VBV</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.49182877027903,-42.47586428171888,25.37565069946893</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5a012cjlQWXk5UkRHUlRncnJrWHpZazc4dXRuNStGM1lFSDNQcEVPRzlYV3ZzTnpYbkhjODZub0tvcnlrNUhhbWgxMWcvUDVBU3l6OEV0b0R3cTAxTGtWRlhUcU14WklMQjlNRU5XRGxrTzRmeEE1UnkxWVlhQ0gzdjlzUmZLYkhJT3lkbm5SclhmQkx4eWV6cFpleDZ4K3R3eGJMRHdPTk1KdjBPZWFMd1BJa2dUTTA4V3ZBZm40cVR4bW41elliWkdaR2R0b3dRc05JL2lQb3ozZVhBY0k2TjlCT0JIcUJ6Ym1ZRk9QeFBXeHJTUUp3PT0">
+				<gx:ImageUrl>https://doc-0k-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/ujt565mll8a8334ihvcfjgftj0/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9lkn7UeNf5KH18oJZkTHKm4nFEXYQ3p4doADpXqv09zorDXRP3KEFMPDvXKKo6jZAwoRmld88sUdWifok1Xp6IGOzWBKYRwjc0ShzCoVDtW0EMKdTdDVqZ7IziZHnmMjmI79ZdjrRfYUW_fUaPZa50rYHfxnvOdM3ohA9Cz65145ddKY2quTKYihHBegexmiOA?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="05B57B239F251BF6E118">
+		<name>Nº4 Punto verde LRF</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.48817343078497,-42.47197081842707,9.712661927234223</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5bkxFR3BlaTg0aG5HaHUxRHZpWncrUm5QTFRtSXJvbUI1eVE2eHdZM3NtNWFSZHlVNXVwVnM5Q0lJZVNNK0lHVjhnY3hNN0VzSnJuRU9abmo0VUNWNXBLRHRMdkhSaWlwdFBoVzJrdm4xaW1aQ2pvU2dsUk5GdXMvSDFWRE9hN21hK29tQWhFRkpEZ2t1a0lDOE1zNXlreTBtSVFHSlJsUzNaLytyMmZTbmZTMHljQUN6UzVxelNIWm9vTnU5WUo5djZpUytrUjQvZ1U5Rk9YeE1BYWxxbG9YMElzSFpWckNlUENBNGxhektkbTZpNVdnPT0">
+				<gx:ImageUrl>https://doc-08-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/tste1b826s9sp7gfianenvgh1s/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9mCqpRKzYAXb5Pxjmo0bQvpe5LEMY3zj3nwQTUehAxB4WXQ7GAMozK-9XnS8KcKr4g03NoIjZ6rZLLO7YdpWUOSEaymFu485Ia6NB3Sf-U_W2BlI7P-L8OZId6WCGHBLxJYyowv7aC1Mmm70lclXNnnMQB0evZsSE4LdbGfv15n4xmFL-sXYOqI-_OrHf27srA?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="0F58D42FC2251BF889C7">
+		<name>Nº5 Punto Verde Mini mercado TAMY</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>Latas de aluminio<br></div><div>vidrio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.49024328582763,-42.47259203400853,10.00300405071732</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5bEpvR21INTNRZmFqaGFmYm8yL2k0TmJheVdySDlRb2RSd2FsMGo0N3hYMk1HMVhTUnFEdE9kOVUrSGtUdG1KRnlWY3NIeVMxeVFvNU9VU1ZFdEFYQ3BwdThVVzFuV2taQlhaaFBYUGlnVlh5UjFpT2lOMERVRUZqRUlsQy82Q2JDQzYxSXZmZW9sZXhra2xJSlVsT08zYjl5a3VFRW0xMWpSWmtUcldsUnQyZkxaOTRWZEZUZjQvQS9nL1Q2a0pvR2M4bUdiMGs2dkw1QjhLYzI3bDQzVFNpbkxIV0poQmllWDUvS1gwT203SXBlNlR3PT0">
+				<gx:ImageUrl>https://doc-0g-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/ck82cl73e8vemtdfkvuaetljfs/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9lUkdslRyFhSy3uvNUV97Vfw9CG0IkH3Ur0xiwWxvi9wNSKsCtOYQi58_vmeZvqg_SbG2_pkLyEYeuxoPYCNqx6e7xWiKLfqRraVbcZNPZgOkVqiuPzNUpZ4vvle7ySbZcGLRrpbh1HzmF0sPLVkLsNQxZGZ1Bt9tEXvEkoEjN8cjWkFQETNoLo3OMVN66NUlY?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="0468D89DAC251BFA6E2D">
+		<name>Nº6 Punto verde C.E.A.C</name>
+		<description><![CDATA[<div>cartón<br></div><div>papel<br></div><div>vidrios<br></div><div>botellas plásticas<br></div><div>latas de aluminio</div><div><br></div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.48950428671127,-42.4715333540243,9.594853406176552</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="081138A6C5251BFBDB4D">
+		<name>Nº7 Punto Verde L.B.I</name>
+		<description><![CDATA[<div>Cartòn&nbsp;<br></div><div>botellas plàsticas<br></div><div>vidrio<br></div><div>papel<br></div><div><br></div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.48950428671127,-42.4715333540243,9.491496459385543</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5bllGcTFKSnFnNnU2RXFPTnlaN1RRMWVraThtcU1WdHZGdVVyY2h1TDRTRzM1akcyUnhXcWd3dVpVMjNqei92MVN1Mzh1cmZHcjcydDcvRFdNSlVNbXlTUlF5T05WSWNxUjhBUklRdk02Y1BqdmV4U29tMmlpU1RFNlAwT0c2c1JCeWYzM1BTNXlpMC9XL0JKMHl0L2lma3l5czYvaEZlRURiMFNPdnRtcTRIRFRGRjJhMDdFdjhweWNjeEp4OVNGeW0vZytQWnZqcldHOGdhVXBrbXJ3Sjc5TGlnZ29sNVRPc2FFQWJCUnhpU2MzQzhBPT0">
+				<gx:ImageUrl>https://doc-0c-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/nednfeloupnm141srue9qsf5r8/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9m9SWPOAtSsbBuQmG_wSgx55KynSODEXS8l-fEl7aO9vn3cuicXzfygLZsJC4rK9aKKuRlklmMMa5sTuEtA2lYhnQBHDefUaqc4lVmfqHGbMGRZCNm4XVCOqGiXfjMu4LDRameOWBixxXqGs6ztOa30SVaU97v4QTqWIKxdYmgvB9VE3c49GOL2o8SytE6dlEw?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="0AF1AAFC95251C084EBC">
+		<name>Nº8 Punto verde Municipal</name>
+		<description><![CDATA[<div>cartón,<br></div><div>papel<br></div><div>botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.48745033726482,-42.47047033444055,7.842700929255731</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5bHBqRFVYQVFTUjVQTmpvVWdwTXdZcUhPWXJKeVBDWUJxNTEvMjhoVTdzRENYTHJuQlBFWjVndEhVRzY1cFhpRi9sa1ROdW9pdmFsZFFTL2J2NG9OVnR2QThJcXlMRVRZNXZsc1R3Rlovc2Y5NHVJeEJuT0RHQ0UxZmwzbDNCcFFTa0t2dmh2U1FRdkRkdjZkWjh1alREREttUGZ4NEM2UE13ZktKR0VWZ0dFckl2Wkk1UHpMdlBjNTdxWDViaDJrY3JleGlrOUovZTZkcVRVdmVjTnZYeUhwNGp4ZmQyTHFUc2VBWUJxRlA0aGNoL093PT0">
+				<gx:ImageUrl>https://doc-08-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/to2tmd25k3sbcg8nv6vho2por0/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9nP4uQ14cgghohpBR0uxElCATpLB7Tu1Cw2qs9xFLzRC-mi0pxo8N0nqai55sl4WCBySI2dA-53pyk0g_ZYmmQwzR4KJYIEnCDUJcjS8xg13BSC6DSYMnsdg3ZIAjmuY6Z93ZhGn-RjTgOnPsz_wMuWBOF8eWBSydbEV4BnwA-EmArdfmajVhAjxikJwdEP_so?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="0A84119810251C09C460">
+		<name>Nº9 Punto Verde Municipalidad</name>
+		<description><![CDATA[<div>Cartón&nbsp;<br></div><div>papel<br></div><div>botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.48841772700221,-42.47097338988036,9.712531017930026</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0C56730017251C0E6689">
+		<name>Nº10 punto verde gimnasio fiscal</name>
+		<description><![CDATA[<div>botellas plásticas&nbsp;<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.4882137007064,-42.47257262305635,9.093601312191254</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5ays3Ync1K0JwbkFXd041cW5MU0VzN3dHTGg4aTdwNUhkVzIrMXBJdkRPRDNTUVpHZ2ZJT1dvaDFIdHRBdUJ4U0cyYUl2enJKSVpJSmxrMGZXeGRCeHVLVDhndE16QlNEU0ZpSGhmdHRRK2dudERSTGFJaGk2MW9jN1gxN1YveVlqMDlzZTlqU3REbzVFWVVsOUl3LzNrcjBWeFp4T01JWHJJdXd3ajlLUERTL2g5MVEyeU1PTWQ4Y2szQVY3TUlRSHFUVUgyMmZVdUMraFNzWUpwWGthNGE2V1pyc1FTUFBVa2VLVnZ4TEpJNkpNb2tnPT0">
+				<gx:ImageUrl>https://doc-14-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/o7g1lec0aun9tn47isgpjtcr2k/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9m5-Hhe5cC3BmO3BY9j2TBPt-tDd35h7NgXs3-1wYfS2K1ARCZCYUdtUDKzKYq-WUWIaMa0kZpzWEaepl-b4r9duVNoMQOaycb11xA6JGYEnJpBQx7Ep-HbDc0KbIR4ua84f2AGu1BF3U3yxtNDIJ9DsiakQpNbLcKQm1Qoqo4nbwnWN6mdFh3M6RWOj33n-wA?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="04EB250A03251C10D169">
+		<name>Nº11 Punto Verde Biblioteca</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.49205399581089,-42.47138696932142,9.068368735352767</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0F4A4F274F251C122E05">
+		<name>Nº12 punto verde L.B.I.M</name>
+		<description><![CDATA[<div>botellas plàsticas<br></div><div>carton<br></div><div>papel<br></div><div>vidrio<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.49527070419532,-42.47019023342935,8.959870834951513</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0DF8B20F9A251C138502">
+		<name>Nº13 Punto verde Minimercado el rinconcito</name>
+		<description><![CDATA[<div>cartón<br></div><div>botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio</div><div><br></div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.49835147087632,-42.46937827750848,13.4364295564356</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5bUNjU0ZscEF5em9aQ3l0WndlSzBwd2FlRExwQmlBcmhLV0RWQzJrRjhpVlFnaktKZ3ZBRXFZZDhQNWVWWmpsSllzcHQ3ZHMzM1JsVnlOU3dQV2s3NGZBZmRvekxaY0FuRkI2QWUvWHAyVTlkSG04SlZlcnhxUTlENVg1bnZhaWNiTFZRZUZZaDQ5UEt5b0U3RlZQVjNaa0NBelk2akNXMC9aWEVQUzhMblNteERmaTlGZEJoK1pONWFvZkxUNXJZa1hvZmpvY2paZWpBb3EwbEZJRG1TRGExck0reExaU0UvcjVSdDA2b2I4TmZuZGdBPT0">
+				<gx:ImageUrl>https://doc-0o-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/f8cvq5vcrhihi468ac2cn6u528/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9mdzgg0Y-fUEKiHyLJ-tzPEpTdpHJXa2DQVo7zxjTp04CbtMXhjfLUP9d6dFtn9NjVD0aLWDNGRiF9WmmNdgE8bttoeiJK8xpXs6WSmG_342pl-xqk6yiOlwQANtg0ybqxTtUe6E11-CHfuZinGaztXDkBUvFuBlt1wDHaTFhTYiHWip2HHR6_qZs7JQdiyzoY?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="06F31BA754251C150845">
+		<name>Nº14 Punto verde minimercado</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>latas de aluminio<br></div><div>vidrio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.49487701914816,-42.47114511442044,10.63539702106313</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5bWtlL2tmZHVYLzFnN3ZmUk5UQ1ozelMyZmVMYS9mM3ZzTGhQWjVDY2dEOVJxVFpkV21KNm4wYjlNemxqaFFGeUhsRUMrdTdvR2pocE5FMGFyWnRBcDVueEpzRWlXWlJic2N0THdjbFVGYWwzcmVZUk4rLzJnMDcrSkJzcFBEc2NGQW9QdjQvUit1VkppbVd1UGxYV0V4a0xrR2NCdy9VQTFxeDg0d0JjeHN6a1FhUWU5Y3FwSGc5L1ZRY0hRRFBIbFpTWG80NW1pWEVUV2k3TUJ0TUR5dnA0UXhWMVdOYWduY2VOTTA2bnp2ZVlCS3NBPT0">
+				<gx:ImageUrl>https://doc-00-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/qf19dudg8051dl2sj4rb1c3924/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9mYqXzjyFUSjtV_hFAiLav9hND4WuXeJxt4h4yKyTneYPZMg7opxv-ecP6Y3q5HpeAs-MLZ8TfOTkA0mD6oqL7C7dRRQ4wkjU07HNjLbO0kydrENlktvs9fd1B8oluj2bN4X7u3Z3eOr3Wq6ouIY781oNqtJdVgH8JDRXbZYo10R9iLNZ5DJVu7nZ66Cztk6JM?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="0E5F1DE195251C1651BD">
+		<name>Nº15 Punto Verde JJVV Esfuerzo unido</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>latas de aluminio</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.49659711168103,-42.47151433011673,18.80987597791486</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0E87BDE166251C194A3B">
+		<name>Nº16 Punto verde Familia Aguila Levicoy</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>latas de aluminio<br></div><div>vidrio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.49560611829516,-42.46840848691163,4.676701773830867</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5a3hsZWZTQS9ScWtNbU04ZGtFNTNtTFRnaWVNTk4yQUJhRlJTQ1c5dW5SRWQvRDdxN3BvU0xCZ1o2MVlIVE1rV29FMmZpRGZaK2ZYQkgxYWxQSkhHLzA1OWRjWXFwQTlHRCtlNlpXUFVGZExTTWlwVlVYUTdLd1JaRFZuT1RxQ2RuTU05QXpNTkF5ZVVqUDhuTXhjeVJUYmxsdnhZd1JRR2tRekhHZ05IbEdyRFJ1a0t6Nm41QnlNRkxSamZJVnVNYU4vVzJKL2NUNkJoa2M1SW5hNElaK0NPNkUzbmJaQjMya3YxLzk4VGdpVXIrUWF3PT0">
+				<gx:ImageUrl>https://doc-0k-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/nttsc29djbn3jge9hicnk2pl6s/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9ltUYz3EtgWhzQl9Frh4HHS0vl1D3Gn60aurAsxFpz8P8ev1uheeFP7exfUT0oX6deUQ__qLxuMGILXys17xLNKTfR_mD1CPojBxmiGgq_uNpc0E-03ZBIri_Q5V7Qxefi0ivd92R9zrc9U_HtfSLoGf9hYjeRKrL_p-oZ86hu_JGtYjvC06OKf0vVSqAc5Znw?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="0E0B62A501251C7062FB">
+		<name>Nº17 Punto Verde Glorieta</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio<br></div><div>cartòn</div><div><br></div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.4937199840372,-42.46877030988346,3.841479727593745</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5bjdScFVOVWRPbzhCeGM1TUo5V0J0RHJua3JqZGMyMDFjWlpMM0hlK0lzL2x4SXpFc3FPRG5JeERGU0QwZ1gxSWpEYTkrek9QMjZyTG5qUStvelZTZERiVVQ1QjZuc1pSSGx5U0RRQkczazhPdjFzUUdBTXZQVDB3ZHNRUk5aaWZGRCtQWHF2OXp5aVRzNFJaNTlYM1ozcFRzRzRtMEpCNFowemw1bDN0SXJ6TTZrUk5ibWF4VWd3ZEpSa3JxSTAxZ3ROWVRrdUhIdW8yMEdQQ01tTlFZb3B5MmpVQjRsbDVKSHhIZ1NNQnJ4bTFYVE1RPT0">
+				<gx:ImageUrl>https://doc-0s-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/1ekevo6gt63t1ogoo0up9nnpqg/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9kdxTdbfVzssrQizHUy1ScbSfNJ5lknUygvLsYAf8-1femiGDEoem8xsYZTnDa0Nn6DpXIedw391MlOIbszInlEl4Chmrm2YkVoZOF3L5Ed6QaF9dd-EWriwtRLVFoxTBWpy2t9u7QWg-wGaU2ZXbiFYLTjDiCscS8CPcXJByyeCusBlHhNOjo8GNbAvFd5hPA?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="05ACFF9221251C723F1B">
+		<name>Nº18 Punto verde J.Mercado</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.47943330653931,-42.47675811521712,93.71219414003262</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5bTZnYXozY3ZmODd2NnArYUJKRGlpSWtEMGRoK1JPQVh5aHI3UzVacUFHUktHN0JqYUxyWFk1TTAwYlBTRXBwN3BKeEVkMXN3ZWQ5V05BT2R2d1VYY3AyREU2bWdLMTU3MFBKRlBnQ3ErdEhGQ2ZQSmQvV3pxWk5zWDZpUFg5NTl3cUQwWHZtYkh6TlpOdWVORzhoQVZBQlNmcWMwZTJkZ3B2am1UcWluZWpBcElNQ2M2d2Z1SUJTd2hBcHUwR2lLS3phT2VTdU9XOVEvTGJXT1hja0RSS0E4TTJ4aTl1N2FpR2FUM21IVzNJL011LzJ3PT0">
+				<gx:ImageUrl>https://doc-00-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/oh25qp2olmudq91oeigjutgkgc/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9m3XTEW9LJKSEOibi_r2MYieZYtJYPmHXi8a0J9b2gSrYY0kfdcncnu0JKcMRrp_tt497lKf6DsxRnvyKhwGf1foRjaSRXIN2FKMy8yX0bG9lMkHNDm8DfwLY9IQCoqzzeuO1GcUCef62Hy5yOxjva1-mj2ZhXtAaNuPv8A14DFjgpcQfBvlP55T0XbkKEZCmw?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="05909D3253251C74F563">
+		<name>Nº20 Punto Verde P. Nazareno</name>
+		<description><![CDATA[<div>Cartòn<br></div><div>papel<br></div><div>vidrio<br></div><div>botellas plàsticas<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.49670632192934,-42.47472005626975,30.92420400502406</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5bk94Qy9nMnhVKzl2TDdEaVBjbVJuUXk4VTJZZFNJTDNZcDVpZXgyZFRlcTl5c2ZjcWM0OWEwNExaNnNXSUhMMGQ4a2VyNllCdDZaeHJRTElRUy83OGYrKzF3eGNEQ2NMbitjN0FkdFB1T1ZCdDdxOWFua0NlQjR3OTFWN3RsV2RTYlhiL2Zicis2TUpTNW5QWlppWmhrTDhKaHpkOUg3M2RxZWwzK29kRStocGc3TVB1eDlvZHh2Wjgxa2hoK3p2UUpQQWJQOUxQa2h5SmF3L05TU2IzQTl4WGhyZnVtRnBWNmRLdXA3ZXpQbi9QZUJRPT0">
+				<gx:ImageUrl>https://doc-14-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/81ok8gsm78a2riangckujh30dg/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9kqtFgy0OvwkIbw5rL55cPcsbeweV6U95dbghdEDMkOhDDiRKlC_SMdGCN1DtPxNOP4CdO9cf1l77IFJLT-wRddDL7ZHv3A1QKTrLwbREZWCbqYtpedtdcAr-2FlI9HtFNkHs5HL03DKpVNznMGK7SFUQnDSBYqdtYB_9Zbn5rEiRURxAtLA9f-mn5tJzj5xzE?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="06BDF46449251C76762C">
+		<name>Nº20 Punto verde Andrea Levicoy</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>vidrio&nbsp;<br></div><div>cartón<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.49670159612776,-42.47386132573948,25.79791629151882</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5blFYQkFyaklMS3c3eGVjMlZ4YWhORzRlY2hIQmdWWDZpbW1XaFEvVCtjdjM5Zi80OW1JdHJ3eVNOdDBFQmVhTTlaSHl4Vk1CSkMxU3FyRGtiaVQ1UHEwVkJkWk1iSW53ZzYxWHF2OCt1aXgyR1BBSU1ya0xaUzFFcFpuSHF6UDYvN2tRa0l2NCtzYXdTc2RMK0RNb0VuOHdGblR2aThNeFFvcit0RTdNTEhBTFQ2Q3NVdEFSVWRYM1g0b2lFZzBKZXFKMXFsWUcrVkk4OGZXcjlPVnFYTHVOMVlEQm11L0JhQ0lqNVlncmswc2RWc3RRPT0">
+				<gx:ImageUrl>https://doc-0o-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/84f69idaa5pdmv655ka3mu89l0/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9mNQiNLu3itxw-KXf2eX4_396od8_2L7Jgh-ahEM-De6a8G61OsyejjWdg2iZ9UN4JYES558CqzGXrbW3nFZ88pXX3V-LltRXJX4hUmjwlgiOnbajGUbvrBVzdAUhcPbVlfozwz1CBwH1pQTc1imtq6Llbn3CtttRTe5Cm6yuzoiyqahTZo80hjveuxHMSzsms?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="07E67E61A5251C78067E">
+		<name>Nº21 Punto Verde Barrio Alto</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>latas de aluminio<br></div><div>vidrio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0B00889608254A19E945</styleUrl>
+		<Point>
+			<coordinates>-73.49707276639137,-42.47318671040322,25.77543944369402</coordinates>
+		</Point>
+		<gx:Carousel>
+			<gx:Image kml:id="hosted_image_QUtnQis5bU82cCtiU0wyYlBaZVIzSEJQUVpyVnM0SnFlaysxN01XYkphdXZ4NEVlWEg2aTlVZy9DakhOZCtDVUdSZ1dkemJXN2E2K0h4NjhIU3FuZHdycy9UL3BLRzRlbjNNTDRJMWRncHdpZi95ZjBURkdXQVJiUVlQTVFVMFhBazdsTXBBS2QrTHIvSUtZWUxHWjB6TnRLbWxibDJrWm5rTzNURmZCd2xQWXJ1SVVGY2VldE5lMkdwZXlSajdnc2RjRmpZRkFRa2JWaVFFOW9VUHN4cHFXbDl6OUpvVzRFOXJlc1h3N1JtUCtWL1ZsSndPMWZRPT0">
+				<gx:ImageUrl>https://doc-0g-38-mymaps.googleusercontent.com/untrusted/hostedimage/ve6mlj2eup5ug838phmihj2jr0/mhh4h744071icpb455bvktrk1k/1666794411750/WBvyXFgDYgV-FebXXjqxvxivufR6fCDB/12409087959697930623/5AKgB-9k9wmJPwMzfIV2I8mU7R3Wwr8cmcig0mmR_djD0EWhzyGfvR7_H9rQdQgNybgtYNAex5TIVl2le6RE90DPcBgpW83ncycoznI-B6u1OxvcP80q-SBuPFtPTHUWzZKYqSHxX4RG4DpWCkKMqC1YztLAtn0I12AEIOu-jUYcgUmI2JMrfiTkr_7SBST8GJ7WmK0E?session=0<![CDATA[&]]>fife=s{size}</gx:ImageUrl>
+			</gx:Image>
+		</gx:Carousel>
+	</Placemark>
+	<Placemark id="0687A7414B2521DF3427">
+		<name>Nº22 Punto Verde DESAM</name>
+		<description><![CDATA[<div>Papel<br></div><div>cartón</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.48743573615698,-42.47341623601878,10.93183183931775</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="014FD6BE432521E15D1E">
+		<name>Nº23 Punto verde PRODESAL</name>
+		<description><![CDATA[<div>PAPEL<br></div><div>CARTÒN</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.48740759256542,-42.47306309246951,10.91275778932842</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0363CED95C2521E56B30">
+		<name>Nº24 Punto verde Escuela</name>
+		<description><![CDATA[<div>botellas plásticas&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.45305846343959,-42.43304459370386,12.55100462690755</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0DFC1B7DE22521E6617A">
+		<name>Nº25 Punto verde Vecinal</name>
+		<description><![CDATA[<div>latas de aluminio<br></div><div>botellas plástico<br></div><div>vidrio<br></div><div><br></div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.45286317412368,-42.43312855215416,11.12998640857897</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="060A307E6E2521E7EE6A">
+		<name>Nº26 Punto verde posta</name>
+		<description><![CDATA[<div>botellas plásticas&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.45275085051686,-42.43267408061066,18.38438403198993</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="04506D6C5F2521EBCD0C">
+		<name>Nº27 Punto Verde Mauten</name>
+		<description><![CDATA[<div>botellas plàsticas</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.43284070386702,-42.4334579320778,8.467879575441208</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0BA07AEDD525258C8FCF">
+		<name>Nº28 Punto verde comunitario</name>
+		<description><![CDATA[Latas de aluminio<br><div>botellas plásticas<br></div><div>vidrio</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.44941191707468,-42.38653990185841,6.298884539288538</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="00244E313F2525B24B26">
+		<name>Nº29 Punto verde escuela Los Pinos</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.43276966613996,-42.38811564921988,128.5584954080708</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0F4687C27B2525B40B64">
+		<name>Nº30 Punto verde Punta Tane</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>latas de aluminio</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.43683341083619,-42.40650393438203,8.85517441696552</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="01322228BF2525B65907">
+		<name>Nº31 Punto verde Cescof</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.29963708795466,-42.41619819162252,32.17232999302249</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="05E5C378F32525B72F44">
+		<name>Nº32 Punto verde Escuela San Francisco</name>
+		<description><![CDATA[<div>latas de aluminio<br></div><div>botellas plásticas<br></div><div>Vidrio<br></div><div>Orgánico<br></div><div>papel y cartón&nbsp;</div><div><br></div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.30539492921402,-42.42035610515078,6.57021742092499</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="07C5E1E9AE2525B8AF9B">
+		<name>Nº33 Punto verde comunitario</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.30585490464163,-42.42088625092509,5.300406632065595</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0166F3888A2525B99594">
+		<name>Nº34 Punto Verde comunitario</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.30787202973063,-42.41627763034336,7.572751152888607</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0714AFE95C2525BBAE05">
+		<name>Nº35 Punto verde comunitario</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.33038406025301,-42.45714612030203,6.005523682798088</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="08FE3DB0532525BCF22D">
+		<name>Nº36 Punto Verde posta</name>
+		<description><![CDATA[<div>latas de aluminio<br></div><div>botellas plàsticas</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.33117523096995,-42.45812320028529,9.845867093272243</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0A009E4A072525BE10D5">
+		<name>Nº37 Punto verde  Escuela</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.32768310380675,-42.45771052728855,8.710418730793164</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0C9EE4CA042525C015AE">
+		<name>Nº38 Punto verde comunitario</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.26625720779937,-42.51075003344328,7.419275237320575</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="01481571D92525C0E199">
+		<name>Nº39 Punto verde Posta</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.26625769716425,-42.50982835399567,14.80810336674794</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="079BBA61272525C1C053">
+		<name>Nº41 Punto Verde Escuela</name>
+		<description><![CDATA[<div>latas de aluminio<br></div><div>botellas plásticas<br></div><div>vidrio&nbsp;<br></div><div>papel<br></div><div>cartòn&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.26309108612061,-42.51202837179366,9.45881625275524</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0FC2EA9B3B2525C3230B">
+		<name>Nº40 Punto verde delegación municipal</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.26509850826776,-42.51066549120326,9.985877323894604</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0539583B772525C49B51">
+		<name>Nº42 Punto verde escuela</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio<br></div><div>cartón<br></div><div>papel&nbsp;<br></div><div>orgánico</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.29921594453134,-42.60066443574595,14.74535416321778</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0D71A3E6442525C5E48D">
+		<name>Nº43 Punto verde Posta</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>latas de aluminio&nbsp;</div><div><br></div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.29890778294549,-42.60092775939373,10.87263988634991</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="021B654F212525C6BF39">
+		<name>Nº44 Punto Verde comunitario</name>
+		<description><![CDATA[<div>Latas de aluminio<br></div><div>vidrio<br></div><div>botellas plásticas</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.29837321773141,-42.60066299187004,8.539502042030517</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0C685CC00F2525C8A4EC">
+		<name>Nº45 Punto Verde Apao</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.26896320193804,-42.60871216083516,8.63871371068786</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="073A1757D12525CA077F">
+		<name>Nº46 Punto Verde escuela</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>latas de aluminio&nbsp;</div><div><br></div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.20967655391483,-42.60229927080605,36.49143188573186</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="01ECC137982525CB34A0">
+		<name>Nº47 Punto verde escuela</name>
+		<description><![CDATA[<div>botellas plásticas&nbsp;<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.22350968202156,-42.59671564995541,12.13857789548132</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0AAF90E4B82525CC6673">
+		<name>Nº48 Punto verde comunitario</name>
+		<description><![CDATA[<div>latas de aluminio<br></div><div>botellas plásticas<br></div><div>vidrio<br></div><div><br></div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.2257451233167,-42.59112341042114,4.415506968419882</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0151A0CE5E2525CF58C1">
+		<name>Nº49 Punto Verde comunitario</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.29868861962994,-42.626355257841,5.094999841721105</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="03B88B9E5B2526330F06">
+		<name>Nº50 Punto Verde Chequian</name>
+		<description><![CDATA[<div>Botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio&nbsp;</div><div><br></div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.40284209047394,-42.57780277581839,12.41644363787246</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="086AEFB3E02526342ABB">
+		<name>Nº51 Punto verde escuela Eliana Triviño</name>
+		<description><![CDATA[<div>botellas plásticas<br></div><div>latas de aluminio<br></div><div>papel<br></div><div>cartón</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.41772325550839,-42.56949328876112,87.09828135878418</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0BD732F74A252635CF34">
+		<name>Nº52 Punto verde escuela</name>
+		<description><![CDATA[<div>papel<br></div><div>cartón<br></div><div>botellas plásticas<br></div><div>vidrio<br></div><div>latas de aluminio</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.42437587906564,-42.53912339990514,6.443008769168678</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="0382D431EC253F99A344">
+		<name>Nº53 Punto Verde el Trànsito</name>
+		<description><![CDATA[<div>latas de aluminio<br></div><div>vidrio<br></div><div>botellas plàsticas&nbsp;</div>]]></description>
+		<styleUrl>#__managed_style_0720C0AE6A254A19E954</styleUrl>
+		<Point>
+			<coordinates>-73.34103866558407,-42.42708438950142,4.626817708193784</coordinates>
+		</Point>
+	</Placemark>
+	<Folder id="02345306B0254A1AC4EA">
+		<name>Carpeta sin nombre</name>
+		<styleUrl>#__managed_style_016469BBE6254A1AC4EE</styleUrl>
+	</Folder>
+	<Folder id="0E8890A678254A1C8994">
+		<name>Carpeta sin nombre</name>
+		<styleUrl>#__managed_style_016469BBE6254A1AC4EE</styleUrl>
+	</Folder>
+	<Placemark>
+		<name>Zona de Lavado</name>
+		<LookAt>
+			<longitude>-73.47135253424955</longitude>
+			<latitude>-42.49350778361031</latitude>
+			<altitude>0</altitude>
+			<heading>-3.560609617972955</heading>
+			<tilt>30.00109269852987</tilt>
+			<range>243.2831385679056</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#m_ylw-pushpin6</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>-73.47156533504001,-42.49345328500863,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>propuesta salmones aysen</name>
+		<styleUrl>#m_ylw-pushpin5</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-73.51278104091404,-42.49391537753699,0 -73.51278104091404,-42.49391537753699,0 -73.51219406669244,-42.49402453930619,0 -73.51228870138553,-42.49354212032647,0 -73.51287469491928,-42.49341210894445,0 -73.51278104091404,-42.49391537753699,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>
