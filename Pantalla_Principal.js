@@ -18,8 +18,9 @@ const PantallaPrincipalScreen = ({ route, navigation }) => {
 
     const handleBoton3Press = () => {
         console.log("Botón 3 presionado");
+        navigation.navigate('PuntosReciclaje'); // Navegar a la pantalla Puntos de Reciclaje
     };
-
+        
     return (
         <View style={styles.container}>
             {/* Marco verde con flecha */}
