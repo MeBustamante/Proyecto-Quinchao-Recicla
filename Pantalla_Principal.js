@@ -7,10 +7,11 @@ const PantallaPrincipalScreen = ({ route, navigation }) => {
     const { nombre } = route.params;
     const nombreMayusculas = nombre.toUpperCase();
 
-    const handleReciclajeButtonPress = () => {
-        navigation.navigate('Reciclaje');
-        navigation.navigate('Programas1');
-    };
+    // Elimina la navegación a 'Reciclaje' y deja solo la navegación a 'Programas1'
+// PantallaPrincipal.js
+const handleReciclajeButtonPress = () => {
+    navigation.navigate('MenuReciclaje'); // Cambié de 'Programas1' a 'MenuReciclaje'
+};
 
     const handleBoton2Press = () => {
         console.log("Botón 2 presionado");
@@ -21,7 +22,7 @@ const PantallaPrincipalScreen = ({ route, navigation }) => {
         console.log("Botón 3 presionado");
         navigation.navigate('PuntosReciclaje'); // Navegar a la pantalla Puntos de Reciclaje
     };
-        
+
     return (
         <View style={styles.container}>
             {/* Marco verde con flecha */}
