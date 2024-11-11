@@ -1,10 +1,10 @@
-// DiseñoBase.js
+// Programas1.js
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Animated, Easing } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from './MenuInferior';
 
-const DiseñoBase = () => {
+const Programas1Screen = () => {
     const [scale1, setScale1] = useState(new Animated.Value(1));
     const [scale2, setScale2] = useState(new Animated.Value(1));
     const [showImage1, setShowImage1] = useState(false);
@@ -44,7 +44,6 @@ const DiseñoBase = () => {
     return (
         <View style={styles.container}>
             <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
-                
                 {/* Logo en la esquina superior izquierda */}
                 <View style={styles.logoContainerLeft}>
                     <Image 
@@ -105,20 +104,21 @@ const DiseñoBase = () => {
                 )}
 
                 {/* Botones de Regresar y Ir */}
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.backButton} onPress={handleBackButton}>
-                        <Text style={styles.backButtonText}>Regresar</Text>
-                    </TouchableOpacity>
+                {selectedOption && (
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.backButton} onPress={handleBackButton}>
+                            <Text style={styles.backButtonText}>Regresar</Text>
+                        </TouchableOpacity>
 
-                    {/* El botón "Ir" no hace nada al presionarlo */}
-                    <TouchableOpacity style={styles.goButton}>
-                        <Text style={styles.goButtonText}>Ir</Text>
-                    </TouchableOpacity>
-                </View>
-
+                        {/* El botón "Ir" no hace nada al presionarlo */}
+                        <TouchableOpacity style={styles.goButton}>
+                            <Text style={styles.goButtonText}>Ir</Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
             </LinearGradient>
 
-            {/* Menú inferior */}
+            {/* Menú Inferior */}
             <MenuInferior />
         </View>
     );
@@ -198,4 +198,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default DiseñoBase;
+export default Programas1Screen;
