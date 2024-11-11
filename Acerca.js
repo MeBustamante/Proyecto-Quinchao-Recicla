@@ -2,40 +2,34 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { Ionicons } from '@expo/vector-icons';  // Para el ícono de Instagram
-import { FontAwesome } from '@expo/vector-icons';  // Para el ícono de Facebook
+import { Ionicons } from '@expo/vector-icons';  
+import { FontAwesome } from '@expo/vector-icons';  
+import MenuInferior from './MenuInferior'; 
 
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* Contenedor para las imágenes en la parte superior */}
       <View style={styles.imageContainer}>
-        {/* Imagen izquierda */}
         <Image 
-          source={require('./assets/LOGO ORIGINAL TRANSPARENCIA.png')}  // Ruta de la imagen izquierda
+          source={require('./assets/LOGO ORIGINAL TRANSPARENCIA.png')}  
           style={styles.leftImage}
         />
-        
-        {/* Imagen derecha */}
         <Image 
-          source={require('./assets/LOG_AMBIENTE.jpg')}  // Ruta de la imagen derecha
+          source={require('./assets/LOG_AMBIENTE.jpg')}  
           style={styles.rightImage}
         />
       </View>
 
-      {/* Título en verde */}
       <Text style={styles.title}>ACERCA DE</Text>
 
-      {/* Cuadro gris con los textos principales */}
       <View style={styles.infoContainer}>
         <Text style={styles.infoText}>
-          Bienvenido a la aplicación de Quinchao Recicla...{'\n'}
-          Descripción de la aplicación y quienes formaron parte de la APP...{'\n\n'}
+          ¡Bienvenido a la aplicación de Quinchao Recicla!{'\n'}
+          Equipo desarrollador esta conformado por Kathya Mansilla, Marcelo Bustamante, Yeremi Aburto, Matias Llaipen y Manuel Sanhueza.{'\n\n'}
           ¡Gracias por elegir nuestra aplicación sobre reciclaje, esperemos que la disfrutes!
         </Text>
       </View>
 
-      {/* Información adicional fuera del cuadro gris */}
       <View style={styles.footerContainer}>
         <View style={styles.instagramContainer}>
           <Ionicons name="logo-instagram" size={24} color="#833AB4" style={styles.instagramIcon} />
@@ -47,6 +41,8 @@ export default function App() {
         </View>
       </View>
 
+      <MenuInferior />  
+
       <StatusBar style="auto" />
     </View>
   );
@@ -55,61 +51,61 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF', // Fondo blanco para toda la pantalla
+    backgroundColor: '#FFFFFF', 
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
   },
   title: {
     fontSize: 24,
-    color: '#28a745', // Color verde para el título
+    color: '#28a745', 
     fontWeight: 'bold',
-    marginBottom: 20, // Espacio debajo del título
+    marginBottom: 20, 
   },
   imageContainer: {
     width: '100%',
-    flexDirection: 'row', // Para alinear las imágenes a la izquierda y derecha
-    justifyContent: 'space-between', // Espacio entre las dos imágenes
-    marginBottom: 20, // Espacio entre las imágenes y el contenido posterior
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    marginBottom: 20, 
   },
   leftImage: {
-    width: 90, // Ajusta el tamaño de la imagen izquierda
+    width: 90, 
     height: 100,
   },
   rightImage: {
-    width: 90, // Ajusta el tamaño de la imagen derecha
+    width: 90, 
     height: 90,
   },
   infoContainer: {
     width: '90%',
     padding: 20,
-    backgroundColor: '#D3D3D3',  // Color gris claro para el fondo del cuadro
+    backgroundColor: '#D3D3D3',  
     borderRadius: 10,
-    marginBottom: 20, // Espacio debajo del cuadro gris
+    marginBottom: 20, 
   },
   infoText: {
-    fontSize: 18,
+    fontSize: 15,
     color: '#333',
-    textAlign: 'center',  // Alineación centrada para el texto
+    textAlign: 'center',  
   },
   footerContainer: {
     width: '90%',
-    alignItems: 'center',  // Alineación centrada de los elementos en el pie de página
+    alignItems: 'center',  
   },
   instagramContainer: {
-    flexDirection: 'row',  // Alinea el ícono y el texto en fila
-    alignItems: 'center',  // Centra verticalmente el ícono y el texto
-    marginBottom: 10,  // Espacio entre el ícono de Instagram y el siguiente texto
+    flexDirection: 'row',  
+    alignItems: 'center',  
+    marginBottom: 10,  
   },
   instagramIcon: {
-    marginRight: 10,  // Espacio entre el ícono y el texto
+    marginRight: 10,  
   },
   facebookContainer: {
-    flexDirection: 'row',  // Alinea el ícono y el texto en fila
-    alignItems: 'center',  // Centra verticalmente el ícono y el texto
+    flexDirection: 'row',  
+    alignItems: 'center',  
   },
   facebookIcon: {
-    marginRight: 10,  // Espacio entre el ícono y el texto
+    marginRight: 10,  
   },
   footerText: {
     fontSize: 16,

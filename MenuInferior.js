@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Si quieres usar iconos
+import { Ionicons } from '@expo/vector-icons'; // Para los íconos de Ionicons
 
-const MenuInferior = () => {
+const MenuInferior = ({ navigation }) => {
   return (
     <View style={styles.menuContainer}>
       {/* Botón de Configuración (izquierda) */}
@@ -14,7 +14,7 @@ const MenuInferior = () => {
       </TouchableOpacity>
       
       {/* Botón de Inicio (centro) */}
-      <TouchableOpacity style={styles.menuButtonCenter}>
+      <TouchableOpacity style={styles.menuButton}>
         <Ionicons name="home-outline" size={24} color="white" />
         <Text style={styles.menuText}>Inicio</Text>
       </TouchableOpacity>
@@ -24,6 +24,15 @@ const MenuInferior = () => {
         <Ionicons name="help-circle-outline" size={24} color="white" />
         <Text style={styles.menuText}>Ayuda</Text>
       </TouchableOpacity>
+
+      {/* Botón de Acerca de (nuevo) */}
+      <TouchableOpacity 
+        style={styles.menuButton} 
+        onPress={() => navigation.navigate('Acerca')}  // Navega a App.js
+      >
+        <Ionicons name="information-circle-outline" size={24} color="white" />
+        <Text style={styles.menuText}>Acerca de</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -31,7 +40,7 @@ const MenuInferior = () => {
 const styles = StyleSheet.create({
   menuContainer: {
     flexDirection: 'row', // Alinear los botones en una fila
-    justifyContent: 'space-between', // Mantener espacio entre los botones
+    justifyContent: 'space-evenly', // Distribuir los botones de manera uniforme
     padding: 10,
     backgroundColor: '#4CAF50', // Fondo verde, puedes cambiarlo
     position: 'absolute',
@@ -44,12 +53,7 @@ const styles = StyleSheet.create({
   },
   menuButton: {
     alignItems: 'center',
-  },
-  menuButtonCenter: {
-    alignItems: 'center',
-    flex: 1, // Ocupa el espacio disponible para centrar
     justifyContent: 'center',
-    marginRight: 20, // Mueve el botón de inicio más a la izquierda
   },
   menuText: {
     color: 'white',
