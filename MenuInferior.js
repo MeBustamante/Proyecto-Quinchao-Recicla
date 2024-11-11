@@ -1,10 +1,16 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // Para los íconos de Ionicons
 
 const MenuInferior = ({ navigation }) => {
   return (
     <View style={styles.menuContainer}>
+      {/* Mascota posicionada encima del menú inferior */}
+      <Image 
+        source={require('./assets/mascota.png')} // Asegúrate de que esta sea la ruta correcta
+        style={styles.mascotaImage}
+      />
+
       {/* Botón de Configuración (izquierda) */}
       <TouchableOpacity style={styles.menuButton}>
         <Ionicons name="settings-outline" size={24} color="white" />
@@ -57,6 +63,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 12,
     marginTop: 5,
+  },
+  mascotaImage: {
+    position: 'absolute',
+    right: 20, // Ajusta la distancia a la derecha
+    bottom: 50, // Ajusta la distancia desde el fondo del menú inferior
+    width: 60,  // Ajusta el tamaño de la imagen
+    height: 60, // Ajusta el tamaño de la imagen
+    zIndex: 1,  // Asegura que esté encima de los botones
   },
 });
 

@@ -174,10 +174,10 @@ const styles = StyleSheet.create({
     backButton: { 
         backgroundColor: '#FF0000', 
         paddingVertical: 10, 
-        paddingHorizontal: 20, 
+        paddingHorizontal: 30, 
         borderRadius: 10,
-        borderWidth: 1,       
-        borderColor: '#000',  
+        borderWidth: 2,       
+        borderColor: '#000',  // Border black for both buttons
         flex: 1, marginRight: 10,
     },
     backButtonText: { 
@@ -188,10 +188,10 @@ const styles = StyleSheet.create({
     goButton: { 
         backgroundColor: '#4CAF50', 
         paddingVertical: 10, 
-        paddingHorizontal: 20, 
+        paddingHorizontal: 30, 
         borderRadius: 10,
-        borderWidth: 1,       
-        borderColor: '#000',  
+        borderWidth: 2,       
+        borderColor: '#000',  // Border black for both buttons
         flex: 1,
     },
     goButtonText: { 
