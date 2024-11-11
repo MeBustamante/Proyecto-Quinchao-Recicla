@@ -1,4 +1,3 @@
-// Programas1.js
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Animated, Easing } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -10,6 +9,7 @@ const Programas1Screen = () => {
     const [showImage1, setShowImage1] = useState(false);
     const [showImage2, setShowImage2] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
+    const [showButtons, setShowButtons] = useState(false);  // Nuevo estado para mostrar los botones
 
     const handlePress1 = () => {
         setSelectedOption('option1');
@@ -21,6 +21,7 @@ const Programas1Screen = () => {
             easing: Easing.ease,
             useNativeDriver: true,
         }).start();
+        setShowButtons(true);  // Mostrar los botones al presionar
     };
 
     const handlePress2 = () => {
@@ -33,12 +34,14 @@ const Programas1Screen = () => {
             easing: Easing.ease,
             useNativeDriver: true,
         }).start();
+        setShowButtons(true);  // Mostrar los botones al presionar
     };
 
     const handleBackButton = () => {
         setSelectedOption(null);
         setShowImage1(false);
         setShowImage2(false);
+        setShowButtons(false);  // Ocultar los botones cuando se regresa
     };
 
     return (
@@ -103,22 +106,22 @@ const Programas1Screen = () => {
                     </View>
                 )}
 
-                {/* Botones de Regresar y Ir */}
-                {selectedOption && (
+                {/* Botones de Regresar y Ir, solo aparecen si showButtons es true */}
+                {showButtons && (
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.backButton} onPress={handleBackButton}>
                             <Text style={styles.backButtonText}>Regresar</Text>
                         </TouchableOpacity>
 
-                        {/* El botón "Ir" no hace nada al presionarlo */}
                         <TouchableOpacity style={styles.goButton}>
                             <Text style={styles.goButtonText}>Ir</Text>
                         </TouchableOpacity>
                     </View>
                 )}
+
             </LinearGradient>
 
-            {/* Menú Inferior */}
+            {/* Menú inferior */}
             <MenuInferior />
         </View>
     );
