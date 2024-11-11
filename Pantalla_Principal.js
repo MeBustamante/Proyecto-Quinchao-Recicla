@@ -9,6 +9,7 @@ const PantallaPrincipalScreen = ({ route, navigation }) => {
 
     const handleReciclajeButtonPress = () => {
         navigation.navigate('Reciclaje');
+        navigation.navigate('Programas1');
     };
 
     const handleBoton2Press = () => {
