@@ -3,6 +3,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Alert } from 'react-native';
 import { Calendar } from 'react-native-calendars';
+import MenuInferior from './MenuInferior'; // Importa el componente MenuInferior
 
 export default function App() {
   // Función que se ejecuta al presionar un día del calendario
@@ -76,6 +77,9 @@ export default function App() {
         />
       </View>
 
+      {/* Menú inferior */}
+      <MenuInferior />  {/* Aquí es donde agregamos el menú inferior */}
+
       <StatusBar style="auto" />
     </View>
   );
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   referenceText: {
-    fontSize: 17, // Tamaño de fuente más grande
+    fontSize: 13, // Tamaño de fuente más grande
     fontWeight: 'bold', // Texto en negrita
     color: '#333',
     textAlign: 'center',
