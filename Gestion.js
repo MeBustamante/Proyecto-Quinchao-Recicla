@@ -14,6 +14,36 @@ export default function App() {
     }
   };
 
+  // Función para generar los viernes del mes
+  const generateFridays = (year, month) => {
+    const fridays = {};
+    // Vamos a crear la fecha de inicio del mes (1ro de mes)
+    const startDate = new Date(year, month - 1, 1);
+    // Obtenemos el día de la semana del primer día del mes
+    const firstDay = startDate.getDay();
+
+    // Ajustamos el primer viernes (si el primer día del mes no es viernes)
+    let firstFriday = 1 + (5 - firstDay + 7) % 7; // 5 es el valor para viernes
+    for (let i = firstFriday; i <= 31; i += 7) {
+      const dayString = `${year}-${month < 10 ? '0' + month : month}-${i < 10 ? '0' + i : i}`;
+      fridays[dayString] = {
+        selected: true,
+        selectedColor: 'red',
+        selectedTextColor: 'white',
+        customStyles: {
+          container: {
+            backgroundColor: 'lightblue',
+          },
+        },
+      };
+    }
+    return fridays;
+  };
+
+  const month = 11; // Noviembre
+  const year = 2024; // Año
+  const fridays = generateFridays(year, month); // Obtener todos los viernes
+
   return (
     <View style={styles.container}>
       {/* Título de la aplicación */}
@@ -28,22 +58,11 @@ export default function App() {
         </Text>
       </View>
       
-      {/* Calendario con la fecha de recolección destacada */}
+      {/* Calendario con todos los viernes resaltados en rojo */}
       <View style={styles.thirdContainer}>
         <Calendar
-          // Establece una fecha marcada para la recolección
-          markedDates={{
-            '2024-11-25': {
-              selected: true,
-              selectedColor: 'red', // Color para la fecha seleccionada (indicando recolección)
-              selectedTextColor: 'white', // Color del texto en la fecha seleccionada
-              customStyles: {
-                container: {
-                  backgroundColor: 'lightblue',
-                },
-              },
-            },
-          }}
+          // Agregamos los viernes al calendario
+          markedDates={fridays}
           // Propiedades del calendario
           monthFormat={'yyyy MM'}
           theme={{
