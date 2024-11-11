@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './Login';
 import PantallaPrincipalScreen from './Pantalla_Principal';
-import ReciclajeScreen from './Reciclaje';
+import ReciclajeScreen from './Programas1';
 import ServiciosScreen from './Servicios';
 import PuntosReciclajeScreen from './Puntos_Reciclaje'; // Importa la nueva pantalla
 
