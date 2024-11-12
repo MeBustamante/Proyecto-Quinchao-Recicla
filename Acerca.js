@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF', 
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',  // Cambiar de 'center' a 'flex-start'
     padding: 20,
   },
   title: {
@@ -113,3 +113,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
