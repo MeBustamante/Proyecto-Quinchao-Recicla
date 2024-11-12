@@ -1,12 +1,22 @@
 // Acerca de ...
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';  
 import { FontAwesome } from '@expo/vector-icons';  
-import MenuInferior from './MenuInferior'; 
+import MenuInferior from './MenuInferior';
+import { Linking } from 'react-native'; // Importar Linking
 
 export default function App() {
+  // Funciones para abrir los enlaces
+  const openInstagram = () => {
+    Linking.openURL('https://www.instagram.com/muniquinchao/');
+  };
+
+  const openFacebook = () => {
+    Linking.openURL('https://www.facebook.com/MuniQuinchao');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -31,14 +41,17 @@ export default function App() {
       </View>
 
       <View style={styles.footerContainer}>
-        <View style={styles.instagramContainer}>
+        {/* Enlace a Instagram */}
+        <TouchableOpacity onPress={openInstagram} style={styles.instagramContainer}>
           <Ionicons name="logo-instagram" size={24} color="#833AB4" style={styles.instagramIcon} />
-          <Text style={styles.footerText}>@instagrammuni</Text>
-        </View>
-        <View style={styles.facebookContainer}>
+          <Text style={styles.footerText}>@muniquinchao</Text>
+        </TouchableOpacity>
+
+        {/* Enlace a Facebook */}
+        <TouchableOpacity onPress={openFacebook} style={styles.facebookContainer}>
           <FontAwesome name="facebook" size={24} color="#3b5998" style={styles.facebookIcon} />
           <Text style={styles.footerText}>Municipalidad Quinchao</Text>
-        </View>
+        </TouchableOpacity>
       </View>
 
       <MenuInferior />  
@@ -53,7 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF', 
     alignItems: 'center',
-    justifyContent: 'flex-start',  // Cambiar de 'center' a 'flex-start'
+    justifyContent: 'flex-start',
     padding: 20,
   },
   title: {
@@ -113,4 +126,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
