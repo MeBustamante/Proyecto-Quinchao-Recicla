@@ -9,7 +9,7 @@ import PuntosReciclajeScreen from './Puntos_Reciclaje';  // Pantalla Puntos de R
 import Campañas1Screen from './Campañas1'; // Nueva pantalla Campañas1
 import MenuReciclajeScreen from './MenuReciclaje'; // Nueva pantalla MenuReciclaje
 import SolicitudRetiroResiduos from './SolicitudRetiroResiduos';
-import DenunciaMicrobasural from '../DenunciaMicrobasural';
+import DenunciaMicrobasural from './DenunciaMicrobasural';
 
 const Stack = createNativeStackNavigator();
 
