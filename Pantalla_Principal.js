@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         borderColor: '#4CAF50', 
         borderRadius: 20,
         overflow: 'hidden',
-        marginTop: -55,
+        marginTop: -75,
     },
     backgroundImage: {
         width: '100%',
