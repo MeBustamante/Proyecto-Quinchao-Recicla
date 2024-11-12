@@ -12,6 +12,11 @@ import SolicitudRetiroResiduos from './SolicitudRetiroResiduos';
 import DenunciaMicrobasural from './DenunciaMicrobasural';
 import Gestion from './Gestion';
 import AcercaScreen from './Acerca';
+import CompostajeCasa from './CompostajeCasa';
+import CompostajeComunidad from './CompostajeComunidad'; // Importa la pantalla CompostajeComunidad
+import HuertosUrbanosScreen from './HuertosUrbanos';  // Nueva pantalla de Huertos Urbanos
+import ReforestacionUrbanaScreen from './ReforestacionUrbana';  // Nueva pantalla de Reforestación Urbana
+
 
 const Stack = createNativeStackNavigator();
 
@@ -39,7 +44,16 @@ export default function App() {
           component={Programas1Screen} 
           options={{ title: 'Programas' }} 
         />
-        
+                <Stack.Screen 
+          name="CompostajeCasa" 
+          component={CompostajeCasa} 
+          options={{ title: 'Compostaje en casa' }} 
+        />
+                        <Stack.Screen 
+          name="CompostajeComunidad" 
+          component={CompostajeComunidad} 
+          options={{ title: 'Compostaje en Comunidad' }} 
+        />
         {/* Nueva pantalla MenuReciclaje */}
         <Stack.Screen 
           name="MenuReciclaje" 
@@ -59,6 +73,20 @@ export default function App() {
           name="Servicios" 
           component={ServiciosScreen} 
           options={{ title: 'Servicios' }} 
+        />
+
+        {/* Pantalla HuertosUrbanos */}
+        <Stack.Screen 
+          name="HuertosUrbanos" 
+          component={HuertosUrbanosScreen} 
+          options={{ title: 'Huertos Urbanos' }} 
+        />
+
+        {/* Pantalla ReforestacionUrbana */}
+        <Stack.Screen 
+          name="ReforestacionUrbana" 
+          component={ReforestacionUrbanaScreen} 
+          options={{ title: 'Reforestación Urbana' }} 
         />
         {/* Pantalla para Solicitar Retiro de Residuos */}
         <Stack.Screen 
