@@ -14,7 +14,7 @@ const ServiciosScreen = () => {
     >
       <View style={styles.container}>
         <Text style={styles.title}>Servicios</Text>
-        <Text>Acá podrás </Text>
+        <Text style={styles.subtitulo}>Acá podrás pedir el retiro de distintos tipos de residuos que hayan en tu domicilio y también denunciar microbasurales que veas en distintos lugares</Text>
 
         <Pressable
           style={styles.button}
@@ -56,6 +56,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#ffffff',
+  },
+  subtitulo: {
+    textAlign: 'justify',
+    paddingHorizontal: 40,
   },
   button: {
     backgroundColor: 'white',
