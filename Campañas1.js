@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'; // Importamos LinearGradient
 import MenuInferior from './MenuInferior'; // Importa el archivo del menú inferior
 
-const Campañas1Screen = () => {
+const Campañas1Screen = ({ navigation }) => {
     const [showButtons, setShowButtons] = useState(false); // Estado para controlar la visibilidad de los botones
     const [showImage1, setShowImage1] = useState(false); // Estado para mostrar la imagen de "Huertos urbanos"
     const [showImage2, setShowImage2] = useState(false); // Estado para mostrar la imagen de "Reforestación urbana"
@@ -24,6 +24,17 @@ const Campañas1Screen = () => {
         setShowButtons(false); // Oculta los botones "Regresar" e "Ir"
         setShowImage1(false); // Oculta la imagen de "Huertos urbanos"
         setShowImage2(false); // Oculta la imagen de "Reforestación urbana"
+    };
+
+    const handleGoButton = () => {
+        if (showImage1) {
+            // Navegar a HuertosUrbanos.js si se seleccionó "Huertos urbanos"
+            navigation.navigate('HuertosUrbanos');
+        }
+        else if (showImage2) {
+            // Navegar a ReforestacionUrbana.js si se seleccionó "Reforestación urbana"
+            navigation.navigate('ReforestacionUrbana');
+        }
     };
 
     return (
@@ -95,7 +106,7 @@ const Campañas1Screen = () => {
                             <Text style={styles.backButtonText}>Regresar</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.goButton}>
+                        <TouchableOpacity style={styles.goButton} onPress={handleGoButton}>
                             <Text style={styles.goButtonText}>Ir</Text>
                         </TouchableOpacity>
                     </View>
