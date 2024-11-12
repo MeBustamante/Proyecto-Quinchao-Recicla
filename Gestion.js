@@ -3,21 +3,24 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Alert } from 'react-native';
 import { Calendar } from 'react-native-calendars';
-import MenuInferior from './MenuInferior'; 
+import MenuInferior from './MenuInferior'; // Importa el menú inferior
 
-export default function App() {
+const Gestion = () => {
+
+  // Función que maneja cuando se selecciona un día
   const handleDayPress = (day) => {
     if (day.dateString === '2024-11-22') {
       Alert.alert('Recolección de residuos', 'Hoy es el día de recolección de residuos en tu área.');
     }
   };
 
+  // Función para generar las fechas de los viernes de un mes
   const generateFridays = (year, month) => {
     const fridays = {};
     const startDate = new Date(year, month - 1, 1);
     const firstDay = startDate.getDay();
 
-    let firstFriday = 1 + (5 - firstDay + 7) % 7; 
+    let firstFriday = 1 + (5 - firstDay + 7) % 7;  // Encuentra el primer viernes del mes
     for (let i = firstFriday; i <= 31; i += 7) {
       const dayString = `${year}-${month < 10 ? '0' + month : month}-${i < 10 ? '0' + i : i}`;
       fridays[dayString] = {
@@ -34,6 +37,7 @@ export default function App() {
     return fridays;
   };
 
+  // Mes y año para el calendario
   const month = 11; 
   const year = 2024; 
   const fridays = generateFridays(year, month); 
@@ -41,7 +45,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.titleText}>Gestión Residuos</Text>
+        <Text style={styles.titleText}>Gestión de Residuos</Text>
       </View>
       
       <View style={styles.secondContainer}>
@@ -50,12 +54,9 @@ export default function App() {
         </Text>
       </View>
       
-
       <View style={styles.thirdContainer}>
         <Calendar
-
           markedDates={fridays}
-
           monthFormat={'yyyy MM'}
           theme={{
             selectedDayBackgroundColor: 'red', 
@@ -67,12 +68,13 @@ export default function App() {
         />
       </View>
 
+      {/* Menú Inferior */}
       <MenuInferior />  
 
       <StatusBar style="auto" />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -118,3 +120,5 @@ const styles = StyleSheet.create({
     height: 350, 
   },
 });
+
+export default Gestion;
