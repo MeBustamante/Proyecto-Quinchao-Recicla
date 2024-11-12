@@ -1,39 +1,41 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Para los íconos de Ionicons
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'; // Importa useNavigation
 
-const MenuInferior = ({ navigation }) => {
+const MenuInferior = () => {
+  const navigation = useNavigation(); // Usa useNavigation para obtener el objeto de navegación
+
+  const goToHome = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Home' }], // Asegúrate de que 'Home' sea el nombre correcto en tu navigator
+    });
+  };
+
   return (
     <View style={styles.menuContainer}>
-      {/* Mascota posicionada encima del menú inferior */}
       <Image 
-        source={require('./assets/mascota.png')} // Asegúrate de que esta sea la ruta correcta
+        source={require('./assets/mascota.png')}
         style={styles.mascotaImage}
       />
 
-      {/* Botón de Configuración (izquierda) */}
       <TouchableOpacity style={styles.menuButton}>
         <Ionicons name="settings-outline" size={24} color="white" />
         <Text style={styles.menuText}>Configuración</Text>
       </TouchableOpacity>
       
-      {/* Botón de Inicio (centro) */}
-      <TouchableOpacity style={styles.menuButton}>
+      <TouchableOpacity style={styles.menuButton} onPress={goToHome}>
         <Ionicons name="home-outline" size={24} color="white" />
         <Text style={styles.menuText}>Inicio</Text>
       </TouchableOpacity>
       
-      {/* Botón de Ayuda (derecha) */}
       <TouchableOpacity style={styles.menuButton}>
         <Ionicons name="help-circle-outline" size={24} color="white" />
         <Text style={styles.menuText}>Ayuda</Text>
       </TouchableOpacity>
 
-      {/* Botón de Acerca de (nuevo) */}
-      <TouchableOpacity 
-        style={styles.menuButton} 
-        onPress={() => navigation.navigate('Acerca')}  // Navega a App.js
-      >
+      <TouchableOpacity style={styles.menuButton} onPress={() => navigation.navigate('Acerca')}>
         <Ionicons name="information-circle-outline" size={24} color="white" />
         <Text style={styles.menuText}>Acerca de</Text>
       </TouchableOpacity>
@@ -43,17 +45,17 @@ const MenuInferior = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   menuContainer: {
-    flexDirection: 'row', // Alinear los botones en una fila
-    justifyContent: 'space-evenly', // Distribuir los botones de manera uniforme
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     padding: 10,
-    backgroundColor: '#4CAF50', // Fondo verde, puedes cambiarlo
+    backgroundColor: '#4CAF50',
     position: 'absolute',
     bottom: 0,
     width: '100%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    borderWidth: 2, // Agregar el contorno
-    borderColor: 'white', // Establecer el color del contorno como blanco
+    borderWidth: 2,
+    borderColor: 'white',
   },
   menuButton: {
     alignItems: 'center',
@@ -66,12 +68,12 @@ const styles = StyleSheet.create({
   },
   mascotaImage: {
     position: 'absolute',
-    right: 20, // Ajusta la distancia a la derecha
-    bottom: 50, // Ajusta la distancia desde el fondo del menú inferior
-    width: 60,  // Ajusta el tamaño de la imagen
-    height: 60, // Ajusta el tamaño de la imagen
-    zIndex: 1,  // Asegura que esté encima de los botones
+    right: 20,
+    bottom: 50,
+    width: 60,
+    height: 60,
+    zIndex: 1,
   },
 });
 
-export default MenuInferior; // El export default permanece intacto
+export default MenuInferior;
