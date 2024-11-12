@@ -6,11 +6,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from './MenuInferior'; // Importa el menú inferior
 
 const Gestion = () => {
-
   // Función que maneja cuando se selecciona un día
   const handleDayPress = (day) => {
-    if (day.dateString === '2024-11-22') {
-      Alert.alert('Recolección de residuos', 'Hoy es el día de recolección de residuos en tu área.');
+    // Comprobamos si el día presionado está marcado en 'fridays' y tiene el color rojo
+    if (fridays[day.dateString] && fridays[day.dateString].selectedColor === 'red') {
+      Alert.alert('Recolección de residuos', 'Hoy es el día que pasamos a recolectar los residuos en tu área.');
     }
   };
 
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   gradientBackground: {
     flex: 1, // Asegura que LinearGradient ocupe toda la pantalla
     width: '100%',
-    justifyContent: 'center', // Centra los elementos dentro del LinearGradient
+    justifyContent: 'flex-start', // Cambiado para alinear el contenido hacia la parte superior
     alignItems: 'center',  // Centra los elementos horizontalmente dentro del LinearGradient
     paddingTop: 10,  // Añade un pequeño padding en la parte superior, si es necesario
   },
@@ -129,12 +129,12 @@ const styles = StyleSheet.create({
     resizeMode: 'contain', // Asegura que la imagen se ajuste sin distorsionar
   },
   titleContainer: {
-    marginBottom: 10,  // Reducido para acercar el título hacia arriba
+    marginBottom: 15,  // Reducido para acercar el título hacia arriba
     padding: 10,
     alignItems: 'center',  // Centra el texto en el contenedor
   },
   titleText: {
-    fontSize: 28, // Título reducido
+    fontSize: 30, // Título reducido
     fontWeight: 'bold', 
     color: '#FFFFFF',  // Cambié el color del texto a blanco
   },
@@ -152,11 +152,11 @@ const styles = StyleSheet.create({
   },
   thirdContainer: {
     width: '90%',
-    padding: 10,  // Reducido para acercar más el calendario al texto
+    padding: 15,  // Reducido para acercar más el calendario al texto
     borderWidth: 2,
     borderColor: '#000',
     borderRadius: 10,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#fff',
     height: 350, 
     alignItems: 'center',  // Centra los elementos dentro de este contenedor
   },
