@@ -10,6 +10,8 @@ import Campañas1Screen from './Campañas1'; // Nueva pantalla Campañas1
 import MenuReciclajeScreen from './MenuReciclaje'; // Nueva pantalla MenuReciclaje
 import SolicitudRetiroResiduos from './SolicitudRetiroResiduos';
 import DenunciaMicrobasural from './DenunciaMicrobasural';
+import Gestion from './Gestion';
+import AcercaScreen from './Acerca';
 
 const Stack = createNativeStackNavigator();
 
@@ -73,6 +75,14 @@ export default function App() {
           component={PuntosReciclajeScreen} 
           options={{ title: 'Puntos de Reciclaje' }} 
         />
+        <Stack.Screen 
+          name="Gestion" 
+          component={Gestion} 
+          />
+          <Stack.Screen 
+            name="Acerca" 
+            component={AcercaScreen} 
+          />
       </Stack.Navigator>
     </NavigationContainer>
   );
