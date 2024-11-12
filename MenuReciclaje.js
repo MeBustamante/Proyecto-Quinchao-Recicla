@@ -44,6 +44,16 @@ const MenuReciclaje = ({ navigation }) => {
           >
             <Text style={styles.buttonText}>Campañas de Reciclaje</Text>
           </TouchableOpacity>
+
+          {/* Tercer botón - Gestión Residuos */}
+          <TouchableOpacity
+            style={styles.programBox}
+            onPress={() => navigation.navigate('Gestion')}  // Navegar a Gestión Residuos
+          >
+            <Text style={styles.buttonText}>Gestión de Residuos</Text>
+          </TouchableOpacity>
+
+          
         </View>
       </LinearGradient>
 
