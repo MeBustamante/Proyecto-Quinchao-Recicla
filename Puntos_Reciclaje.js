@@ -13,14 +13,14 @@ const PuntosReciclaje = ({ navigation }) => {
 
     useEffect(() => {
         (async () => {
-            // Solicitar permisos de ubicación
+            // solicitar permisos de ubicación del usuario, movil
             let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
                 alert('Permiso de ubicación denegado');
                 return;
             }
 
-            // Obtener ubicación actual
+            // bbtener ubicación actual del usuairo
             let userLocation = await Location.getCurrentPositionAsync({});
             setLocation({
                 latitude: userLocation.coords.latitude,
@@ -29,25 +29,25 @@ const PuntosReciclaje = ({ navigation }) => {
                 longitudeDelta: 0.05,
             });
 
-            // Descargar el archivo GeoJSON desde Google Drive
+            // descargar el archivo GeoJSON desde Google Drive, problemas al leerlo de manera local
             const geojsonUri = `${FileSystem.documentDirectory}Puntos_Verdes.geojson`;
             await FileSystem.downloadAsync(
                 'https://drive.google.com/uc?export=download&id=1hBLoji4cVxiqbK-JZBSaUXmwRyIZDzgA',
                 geojsonUri
             );
 
-            // Leer y analizar el archivo GeoJSON
+            // Leer archivo GeoJSON
             const geojsonContent = await FileSystem.readAsStringAsync(geojsonUri);
             const geojsonData = JSON.parse(geojsonContent);
 
-            // Lista de materiales permitidos
+            // Filtrado de lista de materiales permitidos
             const materialesPermitidos = ["Botellas Plásticas", "Latas de Aluminio", "Vidrio", "Cartón", "Papel", "Orgánico"];
 
-            // Extraer puntos de coordenadas, nombres (sin "N°" y número) y descripciones filtradas de los puntos
+            // eliminar N de los nombre(NO FUNCIONA)
             const points = geojsonData.features.map(feature => {
                 const descripcionCompleta = feature.properties.description || "Sin descripción";
 
-                // Filtrar la descripción para incluir solo los materiales permitidos
+                // filtrar la descripción para incluir solo los materiales permitidos
                 const descripcionFiltrada = materialesPermitidos
                     .filter(material => new RegExp(material, 'i').test(descripcionCompleta));
 
@@ -122,7 +122,7 @@ const PuntosReciclaje = ({ navigation }) => {
                 </View>
             </Modal>
 
-            {/* Agregar el menú inferior */}
+            {/* agregar el menú inferior */}
             <MenuInferior navigation={navigation} />
         </View>
     );

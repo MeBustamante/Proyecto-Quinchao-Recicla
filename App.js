@@ -17,7 +17,6 @@ import CompostajeComunidad from './CompostajeComunidad'; // Importa la pantalla 
 import HuertosUrbanosScreen from './HuertosUrbanos';  // Nueva pantalla de Huertos Urbanos
 import ReforestacionUrbanaScreen from './ReforestacionUrbana';  // Nueva pantalla de Reforestación Urbana
 
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -54,7 +53,7 @@ export default function App() {
           component={CompostajeComunidad} 
           options={{ title: 'Compostaje en Comunidad' }} 
         />
-        {/* Nueva pantalla MenuReciclaje */}
+        {/* pantalla MenuReciclaje */}
         <Stack.Screen 
           name="MenuReciclaje" 
           component={MenuReciclajeScreen} 

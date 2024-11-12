@@ -10,8 +10,8 @@ const LoginScreen = ({ navigation }) => {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-            navigation.navigate('Home', { nombre }); // Navega a la pantalla principal
-        }, 2000); // Simula un tiempo de carga de 2 segundos
+            navigation.navigate('Home', { nombre }); // navega a la pantalla principal
+        }, 2000); // simula un tiempo de carga de 2 segundos
     };
 
     return (
@@ -38,8 +38,8 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center', // Centra los elementos horizontalmente
-        justifyContent: 'center', // Centra los elementos verticalmente
+        alignItems: 'center', // centrae horizontalmente
+        justifyContent: 'center', // centrar verticalmente
     },
     logo: {
         width: 150,

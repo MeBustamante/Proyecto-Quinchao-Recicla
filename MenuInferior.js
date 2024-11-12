@@ -4,12 +4,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'; // Importa useNavigation
 
 const MenuInferior = () => {
-  const navigation = useNavigation(); // Usa useNavigation para obtener el objeto de navegación
+  const navigation = useNavigation(); // se cambia a useNavigation para no estar declarando en todas las ventanas
 
   const goToHome = () => {
     navigation.reset({
       index: 0,
-      routes: [{ name: 'Home' }], // Asegúrate de que 'Home' sea el nombre correcto en tu navigator
+      routes: [{ name: 'Home' }], 
     });
   };
 

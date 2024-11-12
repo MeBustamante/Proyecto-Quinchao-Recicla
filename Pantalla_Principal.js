@@ -8,9 +8,9 @@ const PantallaPrincipalScreen = ({ route, navigation }) => {
     const nombreMayusculas = nombre.toUpperCase();
 
 
-    // Elimina la navegación a 'Reciclaje' y deja solo la navegación a 'Programas1'
+    // navegación a 'Programas1'
 const handleReciclajeButtonPress = () => {
-    navigation.navigate('MenuReciclaje'); // Cambié de 'Programas1' a 'MenuReciclaje'
+    navigation.navigate('MenuReciclaje'); // Cambie de Programas1 a MenuReciclaje
 };
 
     const handleBoton2Press = () => {
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         paddingTop: 20, // Aumenta el espacio superior para que se vea bien
-        paddingBottom: 100, // Añade espacio inferior
+        paddingBottom: 100, // añade espacio inferior, problemas con espacio en blanco solucioado
     },
     buttonsContainer: {
         width: '80%',
