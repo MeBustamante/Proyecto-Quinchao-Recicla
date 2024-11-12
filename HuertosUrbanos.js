@@ -23,7 +23,7 @@ const HuertosUrbanos = ({ navigation }) => {
                     </Text>
                     <Image source={require('./assets/Huertosurbanos.png')} style={styles.image} />
                     <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                        <Text style={styles.backButtonText}>Volver al inicio</Text>
+                        <Text style={styles.backButtonText}>Volver</Text>
                     </TouchableOpacity>
                 </View>
             </LinearGradient>
