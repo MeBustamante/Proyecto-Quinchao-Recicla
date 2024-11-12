@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, Animated, Easing } fro
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from './MenuInferior';
 
-const Programas1Screen = () => {
+const Programas1Screen = ({ navigation }) => {
     const [scale1, setScale1] = useState(new Animated.Value(1));
     const [scale2, setScale2] = useState(new Animated.Value(1));
     const [showImage1, setShowImage1] = useState(false);
@@ -42,6 +42,15 @@ const Programas1Screen = () => {
         setShowImage1(false);
         setShowImage2(false);
         setShowButtons(false);  // Ocultar los botones cuando se regresa
+    };
+
+    const handleGoButton = () => {
+        // Navegar al destino adecuado dependiendo de la opción seleccionada
+        if (selectedOption === 'option1') {
+            navigation.navigate('CompostajeCasa');
+        } else if (selectedOption === 'option2') {
+            navigation.navigate('CompostajeComunidad');
+        }
     };
 
     return (
@@ -113,7 +122,8 @@ const Programas1Screen = () => {
                             <Text style={styles.backButtonText}>Regresar</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.goButton}>
+                        {/* El botón "Ir" que lleva al destino correcto según la opción seleccionada */}
+                        <TouchableOpacity style={styles.goButton} onPress={handleGoButton}>
                             <Text style={styles.goButtonText}>Ir</Text>
                         </TouchableOpacity>
                     </View>
