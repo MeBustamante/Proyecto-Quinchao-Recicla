@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, Modal, TouchableOpacity, Image, Linking } from 
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import * as FileSystem from 'expo-file-system';
+import MenuInferior from './MenuInferior'; // Importa el menú inferior
 
-const PuntosReciclaje = () => {
+const PuntosReciclaje = ({ navigation }) => {
     const [location, setLocation] = useState(null);
     const [recyclingPoints, setRecyclingPoints] = useState([]);
     const [selectedPoint, setSelectedPoint] = useState(null);
@@ -53,7 +54,7 @@ const PuntosReciclaje = () => {
                 return {
                     latitude: feature.geometry.coordinates[1],
                     longitude: feature.geometry.coordinates[0],
-                    name: feature.properties.name.replace(/N°?\s*\d+\s*/gi, '').trim() || "Punto Verde", // Eliminar "N°" y número al inicio del nombre
+                    name: feature.properties.name.replace(/N°?\s*\d+\s*/gi, '').trim() || "Punto Verde",
                     description: descripcionFiltrada.length > 0 ? descripcionFiltrada : ["Materiales no especificados"]
                 };
             });
@@ -120,6 +121,9 @@ const PuntosReciclaje = () => {
                     </View>
                 </View>
             </Modal>
+
+            {/* Agregar el menú inferior */}
+            <MenuInferior navigation={navigation} />
         </View>
     );
 };
@@ -129,8 +133,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     map: {
-        width: '100%',
-        height: '100%',
+        flex: 1, // Cambia a flex para que el mapa ocupe el espacio restante
     },
     modalContainer: {
         flex: 1,
@@ -148,26 +151,26 @@ const styles = StyleSheet.create({
     },
     logo: {
         width: 90,
-        height:90,
+        height: 90,
         marginBottom: 20,
     },
     closeButton: {
         position: 'absolute',
         top: 10,
         right: 10,
-        backgroundColor: '#000000', // Fondo negro para el botón de cierre
+        backgroundColor: '#000000',
         borderRadius: 15,
         width: 30,
         height: 30,
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: '#4CAF50', // Borde verde para resaltar
+        borderColor: '#4CAF50',
     },
     closeButtonText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#FFFFFF', // Color blanco para la "X"
+        color: '#FFFFFF',
     },
     modalTitle: {
         fontSize: 18,
@@ -178,13 +181,13 @@ const styles = StyleSheet.create({
     subtitle: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#4CAF50', // Color verde
+        color: '#4CAF50',
         textAlign: 'center',
         marginBottom: 10,
     },
     listContainer: {
-        alignSelf: 'flex-start', // Alinea el contenedor de la lista a la izquierda
-        marginLeft: 20, // Opcional: agregar margen izquierdo
+        alignSelf: 'flex-start',
+        marginLeft: 20,
     },
     listItem: {
         fontSize: 16,
@@ -195,8 +198,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
         paddingVertical: 10,
         paddingHorizontal: 20,
-        backgroundColor: '#4CAF50', // Color verde para el botón
-        borderRadius: 20, // Bordes redondeados
+        backgroundColor: '#4CAF50',
+        borderRadius: 20,
         alignItems: 'center',
     },
     directionsButtonText: {

@@ -4,11 +4,11 @@ import { LinearGradient } from 'expo-linear-gradient'; // Importamos LinearGradi
 import MenuInferior from './MenuInferior'; // Importa el archivo del menú inferior
 
 const PantallaPrincipalScreen = ({ route, navigation }) => {
-    const { nombre } = route.params;
+    const nombre = route?.params?.nombre || 'Usuario';
     const nombreMayusculas = nombre.toUpperCase();
 
+
     // Elimina la navegación a 'Reciclaje' y deja solo la navegación a 'Programas1'
-// PantallaPrincipal.js
 const handleReciclajeButtonPress = () => {
     navigation.navigate('MenuReciclaje'); // Cambié de 'Programas1' a 'MenuReciclaje'
 };
@@ -40,7 +40,7 @@ const handleReciclajeButtonPress = () => {
                 <View style={styles.textWithLogo}>
                     <View style={styles.textContent}>
                         <Text style={styles.greetingText}>HOLA, {nombreMayusculas}</Text>
-                        <Text style={styles.welcomeText}>BIENVENIDO A</Text>
+                        <Text style={styles.welcomeText}>TE DAMOS LA BIENVENIDA A</Text>
                     </View>
                     <Image 
                         source={require('./assets/LOG_AMBIENTE.jpg')}
@@ -102,9 +102,12 @@ const handleReciclajeButtonPress = () => {
 
             {/* Menú Inferior */}
             <MenuInferior />
+          
         </View>
     );
 };
+
+
 
 const styles = StyleSheet.create({
     container: {
@@ -120,7 +123,7 @@ const styles = StyleSheet.create({
         borderColor: '#4CAF50', 
         borderRadius: 20,
         overflow: 'hidden',
-        marginTop: -55,
+        marginTop: -75,
     },
     backgroundImage: {
         width: '100%',
@@ -182,13 +185,13 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
     },
     appName: {
-        fontSize: 23,
-        color: '#4CAF50',
+        fontSize: 25,
+        color: '#76FF03',
         fontWeight: 'bold',
         textAlign: 'left',
         textShadowColor: 'rgba(0, 0, 0, 0.7)',
         textShadowOffset: { width: 2, height: 2 },
-        textShadowRadius: 15,
+        textShadowRadius: 55,
         textTransform: 'uppercase',
         marginTop: -10,
     },
