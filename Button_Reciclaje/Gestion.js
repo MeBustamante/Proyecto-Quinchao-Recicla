@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 30, // Título reducido
     fontWeight: 'bold', 
-    color: '#FFFFFF',  // Cambié el color del texto a blanco
+    color: '#000000',  // Cambié el color del texto a negro
   },
   secondContainer: {
     marginBottom: 10,  // Reducido para disminuir el espacio entre el texto y el calendario
@@ -145,10 +145,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',  // Centra el texto dentro de este contenedor
   },
   referenceText: {
-    fontSize: 14, 
-    fontWeight: 'bold', 
-    color: '#fff',  // Cambié el color del texto a blanco
-    textAlign: 'center',  // Centra el texto dentro del contenedor
+    fontSize: 15, 
+    fontWeight: 'normal', 
+    color: '#000000',  // Cambié el color del texto a negro
+    textAlign: 'justify',  // Centra el texto dentro del contenedor
   },
   thirdContainer: {
     width: '90%',
