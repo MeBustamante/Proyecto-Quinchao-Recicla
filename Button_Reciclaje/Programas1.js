@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Animated, Easing } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import MenuInferior from './MenuInferior';
+import MenuInferior from '../Menu_Inferior/MenuInferior';
 
 const Programas1Screen = ({ navigation }) => {
     const [scale1, setScale1] = useState(new Animated.Value(1));
@@ -59,7 +59,7 @@ const Programas1Screen = ({ navigation }) => {
                 {/* Logo en la esquina superior izquierda */}
                 <View style={styles.logoContainerLeft}>
                     <Image 
-                        source={require('./assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
+                        source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
                         style={styles.logo} 
                     />
                 </View>
@@ -67,7 +67,7 @@ const Programas1Screen = ({ navigation }) => {
                 {/* Logo en la esquina superior derecha */}
                 <View style={styles.logoContainerRight}>
                     <Image 
-                        source={require('./assets/LOG_AMBIENTE.jpg')} 
+                        source={require('../assets/LOG_AMBIENTE.jpg')} 
                         style={styles.logo} 
                     />
                 </View>
@@ -97,7 +97,7 @@ const Programas1Screen = ({ navigation }) => {
                 {showImage1 && (
                     <View style={styles.imageContainer}>
                         <Image 
-                            source={require('./assets/Compostaje.png')} 
+                            source={require('../assets/Compostaje.png')} 
                             style={styles.largeImage}
                         />
                         <Text style={styles.infoText}>¿Quieres aprender sobre el compostaje en casa?</Text>
@@ -108,7 +108,7 @@ const Programas1Screen = ({ navigation }) => {
                 {showImage2 && (
                     <View style={styles.imageContainer}>
                         <Image 
-                            source={require('./assets/Compostaje2.png')} 
+                            source={require('../assets/Compostaje2.png')} 
                             style={styles.largeImage}
                         />
                         <Text style={styles.infoText}>¿Quieres aprender sobre el compostaje en comunidad?</Text>

@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Alert, Image } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { LinearGradient } from 'expo-linear-gradient';
-import MenuInferior from './MenuInferior'; // Importa el menú inferior
+import MenuInferior from '../Menu_Inferior/MenuInferior'; // Importa el menú inferior
 
 const Gestion = () => {
   // Función que maneja cuando se selecciona un día
@@ -48,7 +48,7 @@ const Gestion = () => {
         {/* Logo en la esquina superior izquierda */}
         <View style={styles.logoContainerLeft}>
           <Image 
-            source={require('./assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
+            source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
             style={styles.logo} 
           />
         </View>
@@ -56,7 +56,7 @@ const Gestion = () => {
         {/* Logo en la esquina superior derecha */}
         <View style={styles.logoContainerRight}>
           <Image 
-            source={require('./assets/LOG_AMBIENTE.jpg')} 
+            source={require('../assets/LOG_AMBIENTE.jpg')} 
             style={styles.logo} 
           />
         </View>

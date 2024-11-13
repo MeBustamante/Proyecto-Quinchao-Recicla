@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import MenuInferior from './MenuInferior';
+import MenuInferior from '../Menu_Inferior/MenuInferior';
 
 const CompostajeCasa = ({ navigation }) => {
     return (
@@ -21,7 +21,7 @@ const CompostajeCasa = ({ navigation }) => {
                     <Text style={styles.motivationalText}>
                         ¡Empieza a compostar hoy y marca la diferencia!
                     </Text>
-                    <Image source={require('./assets/Compostaje.png')} style={styles.image} />
+                    <Image source={require('../assets/Compostaje.png')} style={styles.image} />
                     <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                         <Text style={styles.backButtonText}>Volver</Text>
                     </TouchableOpacity>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as ImagePicker from 'expo-image-picker'; // Importamos ImagePicker
-import MenuInferior from './MenuInferior';
+import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { useNavigation } from '@react-navigation/native';
 
 const DenunciaMicrobasural = () => {
@@ -65,10 +65,10 @@ const DenunciaMicrobasural = () => {
     <LinearGradient colors={['#81C784', '#388E3C']} style={styles.background}>
       {/* Logos en la parte superior */}
       <View style={styles.logoContainerLeft}>
-        <Image source={require('./assets/LOGO ORIGINAL TRANSPARENCIA.png')} style={styles.logo} />
+        <Image source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')} style={styles.logo} />
       </View>
       <View style={styles.logoContainerRight}>
-        <Image source={require('./assets/LOG_AMBIENTE.jpg')} style={styles.logo} />
+        <Image source={require('../assets/LOG_AMBIENTE.jpg')} style={styles.logo} />
       </View>
 
       <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>

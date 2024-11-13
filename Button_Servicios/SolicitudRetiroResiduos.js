@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
-import MenuInferior from './MenuInferior';
+import MenuInferior from '../Menu_Inferior/MenuInferior';
 
 const SolicitudRetiroResiduos = () => {
   const [nombre, setNombre] = useState('');
@@ -22,10 +22,10 @@ const SolicitudRetiroResiduos = () => {
     <LinearGradient colors={['#81C784', '#388E3C']} style={styles.background}>
       {/* Logos en la parte superior */}
       <View style={styles.logoContainerLeft}>
-        <Image source={require('./assets/LOGO ORIGINAL TRANSPARENCIA.png')} style={styles.logo} />
+        <Image source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')} style={styles.logo} />
       </View>
       <View style={styles.logoContainerRight}>
-        <Image source={require('./assets/LOG_AMBIENTE.jpg')} style={styles.logo} />
+        <Image source={require('../assets/LOG_AMBIENTE.jpg')} style={styles.logo} />
       </View>
 
       <View style={styles.container}>

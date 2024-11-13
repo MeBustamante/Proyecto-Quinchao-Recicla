@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'; // Importamos LinearGradient
-import MenuInferior from './MenuInferior'; // Importa el archivo del menú inferior
+import MenuInferior from '../Menu_Inferior/MenuInferior'; // Importa el archivo del menú inferior
 
 const Campañas1Screen = ({ navigation }) => {
     const [showButtons, setShowButtons] = useState(false); // Estado para controlar la visibilidad de los botones
@@ -44,7 +44,7 @@ const Campañas1Screen = ({ navigation }) => {
                 {/* Logo en la esquina superior izquierda */}
                 <View style={styles.logoContainerLeft}>
                     <Image 
-                        source={require('./assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
+                        source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
                         style={styles.logo} 
                     />
                 </View>
@@ -52,7 +52,7 @@ const Campañas1Screen = ({ navigation }) => {
                 {/* Logo en la esquina superior derecha */}
                 <View style={styles.logoContainerRight}>
                     <Image 
-                        source={require('./assets/LOG_AMBIENTE.jpg')} 
+                        source={require('../assets/LOG_AMBIENTE.jpg')} 
                         style={styles.logo} 
                     />
                 </View>
@@ -82,7 +82,7 @@ const Campañas1Screen = ({ navigation }) => {
                 {showImage1 && (
                     <View style={styles.imageContainer}>
                         <Image 
-                            source={require('./assets/huerto.png')} 
+                            source={require('../assets/huerto.png')} 
                             style={styles.largeImage}
                         />
                         <Text style={styles.infoText}>¿Quieres aprender sobre huertos urbanos?</Text>
@@ -92,7 +92,7 @@ const Campañas1Screen = ({ navigation }) => {
                 {showImage2 && (
                     <View style={styles.imageContainer}>
                         <Image 
-                            source={require('./assets/refo.png')} 
+                            source={require('../assets/refo.png')} 
                             style={styles.largeImage}
                         />
                         <Text style={styles.infoText}>¿Quieres aprender sobre reforestación urbana?</Text>

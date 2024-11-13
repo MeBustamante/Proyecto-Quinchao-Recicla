@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'; // Importamos LinearGradient
-import MenuInferior from './MenuInferior'; // Importa el archivo del menú inferior
+import MenuInferior from '../Menu_Inferior/MenuInferior'; // Importa el archivo del menú inferior
 
 const MenuReciclaje = ({ navigation }) => {
   return (
@@ -11,7 +11,7 @@ const MenuReciclaje = ({ navigation }) => {
         {/* Logo en la esquina superior izquierda */}
         <View style={styles.logoContainerLeft}>
           <Image 
-            source={require('./assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
+            source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
             style={styles.logo} 
           />
         </View>
@@ -19,7 +19,7 @@ const MenuReciclaje = ({ navigation }) => {
         {/* Logo en la esquina superior derecha */}
         <View style={styles.logoContainerRight}>
           <Image 
-            source={require('./assets/LOG_AMBIENTE.jpg')} 
+            source={require('../assets/LOG_AMBIENTE.jpg')} 
             style={styles.logo} 
           />
         </View>

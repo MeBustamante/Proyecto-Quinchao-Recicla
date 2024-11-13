@@ -16,7 +16,7 @@ const MenuInferior = () => {
   return (
     <View style={styles.menuContainer}>
       <Image 
-        source={require('./assets/mascota.png')}
+        source={require('../assets/mascota.png')}
         style={styles.mascotaImage}
       />
 

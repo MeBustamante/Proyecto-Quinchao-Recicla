@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import MenuInferior from './MenuInferior';
+import MenuInferior from '../Menu_Inferior/MenuInferior';
 
 const ReforestacionUrbana = ({ navigation }) => {
     return (
@@ -21,7 +21,7 @@ const ReforestacionUrbana = ({ navigation }) => {
                     <Text style={styles.motivationalText}>
                         "¡Planta un árbol, cambia el futuro!"
                     </Text>
-                    <Image source={require('./assets/ReforestacionUrbana.png')} style={styles.image} />
+                    <Image source={require('../assets/ReforestacionUrbana.png')} style={styles.image} />
                     <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                         <Text style={styles.backButtonText}>Volver</Text>
                     </TouchableOpacity>

@@ -1,21 +1,21 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from './Login';  // Pantalla de login
-import PantallaPrincipalScreen from './Pantalla_Principal';  // Pantalla principal
-import Programas1Screen from './Programas1';  // Pantalla Programas1
-import ServiciosScreen from './Servicios';  // Pantalla Servicios
-import PuntosReciclajeScreen from './Puntos_Reciclaje';  // Pantalla Puntos de Reciclaje
-import Campañas1Screen from './Campañas1'; // Nueva pantalla Campañas1
-import MenuReciclajeScreen from './MenuReciclaje'; // Nueva pantalla MenuReciclaje
-import SolicitudRetiroResiduos from './SolicitudRetiroResiduos';
-import DenunciaMicrobasural from './DenunciaMicrobasural';
-import Gestion from './Gestion';
-import AcercaScreen from './Acerca';
-import CompostajeCasa from './CompostajeCasa';
-import CompostajeComunidad from './CompostajeComunidad'; // Importa la pantalla CompostajeComunidad
-import HuertosUrbanosScreen from './HuertosUrbanos';  // Nueva pantalla de Huertos Urbanos
-import ReforestacionUrbanaScreen from './ReforestacionUrbana';  // Nueva pantalla de Reforestación Urbana
+import LoginScreen from './Login/Login';  // Pantalla de login
+import PantallaPrincipalScreen from './Pagina_Principal/Pantalla_Principal';  // Pantalla principal
+import Programas1Screen from './Button_Reciclaje/Programas1';  // Pantalla Programas1
+import ServiciosScreen from './Button_Servicios/Servicios';  // Pantalla Servicios
+import PuntosReciclajeScreen from './Button_PuntosReciclaje/Puntos_Reciclaje';  // Pantalla Puntos de Reciclaje
+import Campañas1Screen from './Button_Reciclaje/Campañas1'; // Nueva pantalla Campañas1
+import MenuReciclajeScreen from './Button_Reciclaje/MenuReciclaje'; // Nueva pantalla MenuReciclaje
+import SolicitudRetiroResiduos from './Button_Servicios/SolicitudRetiroResiduos';
+import DenunciaMicrobasural from './Button_Servicios/DenunciaMicrobasural';
+import Gestion from './Button_Reciclaje/Gestion';
+import AcercaScreen from './Menu_Inferior/Acerca';
+import CompostajeCasa from './Button_Reciclaje/CompostajeCasa';
+import CompostajeComunidad from './Button_Reciclaje/CompostajeComunidad'; // Importa la pantalla CompostajeComunidad
+import HuertosUrbanosScreen from './Button_Reciclaje/HuertosUrbanos';  // Nueva pantalla de Huertos Urbanos
+import ReforestacionUrbanaScreen from './Button_Reciclaje/ReforestacionUrbana';  // Nueva pantalla de Reforestación Urbana
 
 const Stack = createNativeStackNavigator();
 

@@ -17,7 +17,7 @@ const LoginScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Image 
-                source={require('./assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
+                source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
                 style={styles.logo} 
             />
             <Text style={styles.text}>DEPARTAMENTO DE MEDIO AMBIENTE</Text>

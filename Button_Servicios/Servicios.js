@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import MenuInferior from './MenuInferior'; // Importa el menú inferior
+import MenuInferior from '../Menu_Inferior/MenuInferior';
 
 
 const ServiciosScreen = () => {
@@ -17,7 +17,7 @@ const ServiciosScreen = () => {
       {/* Logo en la esquina superior izquierda */}
       <View style={styles.logoContainerLeft}>
         <Image 
-          source={require('./assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
+          source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
           style={styles.logo} 
         />
       </View>
@@ -25,7 +25,7 @@ const ServiciosScreen = () => {
       {/* Logo en la esquina superior derecha */}
       <View style={styles.logoContainerRight}>
         <Image 
-          source={require('./assets/LOG_AMBIENTE.jpg')} 
+          source={require('../assets/LOG_AMBIENTE.jpg')} 
           style={styles.logo} 
         />
       </View>
@@ -43,7 +43,7 @@ const ServiciosScreen = () => {
         >
           <Text style={styles.buttonText}>Solicitud Retiro Residuos</Text>
           <Image 
-            source={require('./assets/solicitudretiro.png')} 
+            source={require('../assets/solicitudretiro.png')} 
             style={styles.botonimagen} 
           />
         </Pressable>
@@ -54,7 +54,7 @@ const ServiciosScreen = () => {
         >
           <Text style={styles.buttonText}>Denuncia Microbasural</Text>
           <Image 
-            source={require('./assets/MICROBASURAL.png')} 
+            source={require('../assets/MICROBASURAL.png')} 
             style={styles.botonimagen} 
           />
         </Pressable>

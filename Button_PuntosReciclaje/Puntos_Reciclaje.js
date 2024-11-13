@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Modal, TouchableOpacity, Image, Linking } from 
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import * as FileSystem from 'expo-file-system';
-import MenuInferior from './MenuInferior'; // Importa el menú inferior
+import MenuInferior from '../Menu_Inferior/MenuInferior'; // Importa el menú inferior
 
 const PuntosReciclaje = ({ navigation }) => {
     const [location, setLocation] = useState(null);
@@ -105,7 +105,7 @@ const PuntosReciclaje = ({ navigation }) => {
                             <Text style={styles.closeButtonText}>×</Text>
                         </TouchableOpacity>
                         <Image 
-                            source={require('./assets/LOG_AMBIENTE.jpg')} 
+                            source={require('../assets/LOG_AMBIENTE.jpg')} 
                             style={styles.logo}
                         />
                         <Text style={styles.modalTitle}>{selectedPoint?.name}</Text>

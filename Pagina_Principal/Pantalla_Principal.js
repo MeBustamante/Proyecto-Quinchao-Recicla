@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'; // Importamos LinearGradient
-import MenuInferior from './MenuInferior'; // Importa el archivo del menú inferior
+import MenuInferior from '../Menu_Inferior/MenuInferior'; // Importa el archivo del menú inferior
 
 const PantallaPrincipalScreen = ({ route, navigation }) => {
     const nombre = route?.params?.nombre || 'Usuario';
@@ -28,7 +28,7 @@ const handleReciclajeButtonPress = () => {
             {/* Marco verde con flecha */}
             <View style={styles.imageContainer}>
                 <Image 
-                    source={require('./assets/p3.jpg')} 
+                    source={require('../assets/p3.jpg')} 
                     style={styles.backgroundImage} 
                 />
                 <View style={styles.arrowContainer}>
@@ -43,7 +43,7 @@ const handleReciclajeButtonPress = () => {
                         <Text style={styles.welcomeText}>TE DAMOS LA BIENVENIDA A</Text>
                     </View>
                     <Image 
-                        source={require('./assets/LOG_AMBIENTE.jpg')}
+                        source={require('../assets/LOG_AMBIENTE.jpg')}
                         style={styles.logo}
                     />
                 </View>
@@ -65,7 +65,7 @@ const handleReciclajeButtonPress = () => {
                         <Text style={styles.infoSubtitle}>
                             Gestiona tus residuos y únete a la campaña de reciclaje.
                         </Text>
-                        <Image source={require('./assets/RG.jpg')} style={styles.buttonImage1} />
+                        <Image source={require('../assets/RG.jpg')} style={styles.buttonImage1} />
                     </TouchableOpacity>
 
                     {/* Segundo botón */}
@@ -78,7 +78,7 @@ const handleReciclajeButtonPress = () => {
                             Solicita retiro de residuos y reporta microbasurales en tu comunidad.
                         </Text>
                         <Image 
-                            source={require('./assets/servicio.jpg')} 
+                            source={require('../assets/servicio.jpg')} 
                             style={styles.buttonImage2}  
                         />
                     </TouchableOpacity>
@@ -93,7 +93,7 @@ const handleReciclajeButtonPress = () => {
                             Ubica puntos verdes cercanos para reciclar de manera fácil y responsable.
                         </Text>
                         <Image 
-                            source={require('./assets/puntos2.jpg')} 
+                            source={require('../assets/puntos2.jpg')} 
                             style={styles.buttonImage3} 
                         />
                     </TouchableOpacity>

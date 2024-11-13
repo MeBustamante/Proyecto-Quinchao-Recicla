@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';  
 import { FontAwesome } from '@expo/vector-icons';  
-import MenuInferior from './MenuInferior';
+import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { Linking } from 'react-native'; // Importar Linking
 
 export default function App() {
@@ -21,11 +21,11 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image 
-          source={require('./assets/LOGO ORIGINAL TRANSPARENCIA.png')}  
+          source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')}  
           style={styles.leftImage}
         />
         <Image 
-          source={require('./assets/LOG_AMBIENTE.jpg')}  
+          source={require('../assets/LOG_AMBIENTE.jpg')}  
           style={styles.rightImage}
         />
       </View>
