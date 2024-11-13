@@ -3,19 +3,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './Login/Login';  // Pantalla de login
 import PantallaPrincipalScreen from './Pagina_Principal/Pantalla_Principal';  // Pantalla principal
-import Programas1Screen from './Button_Reciclaje/Programas1';  // Pantalla Programas1
 import ServiciosScreen from './Button_Servicios/Servicios';  // Pantalla Servicios
 import PuntosReciclajeScreen from './Button_PuntosReciclaje/Puntos_Reciclaje';  // Pantalla Puntos de Reciclaje
-import Campañas1Screen from './Button_Reciclaje/Campañas1'; // Nueva pantalla Campañas1
 import MenuReciclajeScreen from './Button_Reciclaje/MenuReciclaje'; // Nueva pantalla MenuReciclaje
 import SolicitudRetiroResiduos from './Button_Servicios/SolicitudRetiroResiduos';
 import DenunciaMicrobasural from './Button_Servicios/DenunciaMicrobasural';
 import Gestion from './Button_Reciclaje/Gestion';
 import AcercaScreen from './Menu_Inferior/Acerca';
 import CompostajeCasa from './Button_Reciclaje/CompostajeCasa';
-import CompostajeComunidad from './Button_Reciclaje/CompostajeComunidad'; // Importa la pantalla CompostajeComunidad
-import HuertosUrbanosScreen from './Button_Reciclaje/HuertosUrbanos';  // Nueva pantalla de Huertos Urbanos
-import ReforestacionUrbanaScreen from './Button_Reciclaje/ReforestacionUrbana';  // Nueva pantalla de Reforestación Urbana
+import CompostajeComunidad from './Button_Reciclaje/CompostajeComunidad';
+import HuertosUrbanosScreen from './Button_Reciclaje/HuertosUrbanos';
+import ReforestacionUrbanaScreen from './Button_Reciclaje/ReforestacionUrbana';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,22 +35,6 @@ export default function App() {
           options={{ headerShown: false }} 
         />
 
-        {/* Pantalla Programas1Screen */}
-        <Stack.Screen 
-          name="Programas1" 
-          component={Programas1Screen} 
-          options={{ title: 'Programas' }} 
-        />
-                <Stack.Screen 
-          name="CompostajeCasa" 
-          component={CompostajeCasa} 
-          options={{ title: 'Compostaje en casa' }} 
-        />
-                        <Stack.Screen 
-          name="CompostajeComunidad" 
-          component={CompostajeComunidad} 
-          options={{ title: 'Compostaje en Comunidad' }} 
-        />
         {/* pantalla MenuReciclaje */}
         <Stack.Screen 
           name="MenuReciclaje" 
@@ -60,11 +42,18 @@ export default function App() {
           options={{ title: 'Menú Reciclaje' }} 
         />
 
-        {/* Pantalla Campañas1 */}
+        {/* Pantalla CompostajeCasa */}
         <Stack.Screen 
-          name="Campañas1" 
-          component={Campañas1Screen} 
-          options={{ title: 'Campañas' }} 
+          name="CompostajeCasa" 
+          component={CompostajeCasa} 
+          options={{ title: 'Compostaje en Casa' }} 
+        />
+
+        {/* Pantalla CompostajeComunidad */}
+        <Stack.Screen 
+          name="CompostajeComunidad" 
+          component={CompostajeComunidad} 
+          options={{ title: 'Compostaje en Comunidad' }} 
         />
 
         {/* Pantalla Servicios */}
@@ -87,29 +76,37 @@ export default function App() {
           component={ReforestacionUrbanaScreen} 
           options={{ title: 'Reforestación Urbana' }} 
         />
+
         {/* Pantalla para Solicitar Retiro de Residuos */}
         <Stack.Screen 
-        name="SolicitudRetiroResiduos" 
-        component={SolicitudRetiroResiduos} 
+          name="SolicitudRetiroResiduos" 
+          component={SolicitudRetiroResiduos} 
         />
-       <Stack.Screen 
+
+        {/* Pantalla DenunciaMicrobasural */}
+        <Stack.Screen 
           name="DenunciaMicrobasural" 
           component={DenunciaMicrobasural} 
         />
+
         {/* Pantalla PuntosReciclaje */}
         <Stack.Screen 
           name="PuntosReciclaje" 
           component={PuntosReciclajeScreen} 
           options={{ title: 'Puntos de Reciclaje' }} 
         />
+
+        {/* Pantalla Gestión */}
         <Stack.Screen 
           name="Gestion" 
           component={Gestion} 
-          />
-          <Stack.Screen 
-            name="Acerca" 
-            component={AcercaScreen} 
-          />
+        />
+
+        {/* Pantalla Acerca */}
+        <Stack.Screen 
+          name="Acerca" 
+          component={AcercaScreen} 
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
