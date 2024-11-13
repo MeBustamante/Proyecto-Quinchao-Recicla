@@ -3,10 +3,10 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
-import { useUser } from '../Login/UserContext'; // Importa el contexto de usuario
+import { useUser } from '../Login/UserContext';
 
 const PantallaPrincipalScreen = ({ navigation }) => {
-    const { nombre } = useUser(); // Obtén el nombre desde el contexto
+    const { nombre } = useUser();
     const nombreMayusculas = nombre.toUpperCase();
 
     const handleReciclajeButtonPress = () => {
@@ -60,7 +60,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                         <Text style={styles.infoSubtitle}>
                             Gestiona tus residuos y únete a la campaña de reciclaje.
                         </Text>
-                        <Image source={require('../assets/RG.jpg')} style={styles.buttonImage1} />
+                        <Image source={require('../assets/RG.jpg')} style={styles.buttonImage} />
                     </TouchableOpacity>
 
                     <TouchableOpacity 
@@ -73,7 +73,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                         </Text>
                         <Image 
                             source={require('../assets/servicio.jpg')} 
-                            style={styles.buttonImage2}  
+                            style={styles.buttonImage}  
                         />
                     </TouchableOpacity>
 
@@ -87,7 +87,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                         </Text>
                         <Image 
                             source={require('../assets/mapa6.png')} 
-                            style={styles.buttonImage3} 
+                            style={styles.buttonImage} 
                         />
                     </TouchableOpacity>
                 </View>
@@ -194,16 +194,15 @@ const styles = StyleSheet.create({
     gradientBackground: {
         width: '100%',
         alignItems: 'center',
-        paddingTop: 20,
-        paddingBottom: 80,
+        paddingTop: 20, 
     },
     buttonsContainer: {
         width: '80%',
         alignItems: 'center',
-        marginTop: -40, // Mueve los botones aún más arriba
+        marginTop: -20, // Sube los botones aún más
     },
     button: {
-        marginTop: 20, 
+        marginVertical: 15, 
         width: '100%',
         padding: 0,
         borderWidth: 2,
@@ -211,7 +210,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.2,
         shadowRadius: 6,
         alignItems: 'center',
         height: 180,
@@ -238,19 +237,9 @@ const styles = StyleSheet.create({
         marginTop: 5,
         width: '90%',
     },
-    buttonImage1: {
+    buttonImage: {
         width: '80%',
         height: 110,
-        borderRadius: 10,
-    },
-    buttonImage2: {
-        width: '80%',
-        height: 110,
-        borderRadius: 10,
-    },
-    buttonImage3: {
-        width: '80%',
-        height: 117,
         borderRadius: 10,
     },
     menuInferiorContainer: {
