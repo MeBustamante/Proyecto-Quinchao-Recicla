@@ -1,4 +1,4 @@
-// UserContext.js
+// Este codigo se encarga de almacenar el nombre de usuario agregado en el login
 import React, { createContext, useContext, useState } from 'react';
 
 const UserContext = createContext();
