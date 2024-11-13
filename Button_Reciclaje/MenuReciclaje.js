@@ -1,3 +1,4 @@
+// MenuReciclaje.js
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Animated, Easing } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -41,7 +42,7 @@ const MenuReciclaje = ({ navigation }) => {
         <View style={styles.buttonsContainer}>
           {/* Botón para Programas de Compostaje */}
           <TouchableOpacity
-            style={styles.programBox}
+            style={[styles.programBox, styles.compostajeBorder]}
             onPress={toggleCompostajeOptions}
             activeOpacity={0.8}
           >
@@ -77,7 +78,7 @@ const MenuReciclaje = ({ navigation }) => {
 
           {/* Botón para Campañas de Reciclaje */}
           <TouchableOpacity
-            style={styles.programBox}
+            style={[styles.programBox, styles.campanasBorder]}
             onPress={toggleCampanasOptions}
             activeOpacity={0.8}
           >
@@ -113,7 +114,7 @@ const MenuReciclaje = ({ navigation }) => {
 
           {/* Tercer botón - Gestión Residuos */}
           <TouchableOpacity
-            style={styles.programBox}
+            style={[styles.programBox, styles.gestionBorder]}
             onPress={() => navigation.navigate('Gestion')}
             activeOpacity={0.8}
           >
@@ -133,9 +134,17 @@ const MenuReciclaje = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: { flex: 1, alignItems: 'center' },
   gradientBackground: { flex: 1, width: '100%', alignItems: 'center', paddingVertical: 20 },
-  headerImage: { width: '100%', height: 150, resizeMode: 'cover', marginBottom: 10 },
-  header: { fontSize: 30, fontWeight: 'bold', color: '#fff', marginTop: 20, marginBottom: 20 },
+  headerImage: { 
+    width: '100%', 
+    height: 150, 
+    resizeMode: 'cover', 
+    marginBottom: 10,
+    position: 'absolute',
+    top: 0,
+  },
+  header: { fontSize: 30, fontWeight: 'bold', color: '#fff', marginTop: 160, marginBottom: 20 },
   buttonsContainer: { width: '80%', marginTop: 40 },
+
   programBox: {
     borderRadius: 25,
     marginBottom: 15,
@@ -146,6 +155,21 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 5,
   },
+
+  // Estilos de bordes personalizados
+  compostajeBorder: {
+    borderWidth: 2,
+    borderColor: '#FFEB3B', // Amarillo
+  },
+  campanasBorder: {
+    borderWidth: 2,
+    borderColor: '#FF9800', // Naranja
+  },
+  gestionBorder: {
+    borderWidth: 2,
+    borderColor: '#4CAF50', // Verde
+  },
+
   buttonGradient: {
     paddingVertical: 20,
     paddingHorizontal: 30,
@@ -155,7 +179,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   subOptionBox: {
-    width: '90%', // Asegura que los botones estén centrados
+    width: '90%',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,
