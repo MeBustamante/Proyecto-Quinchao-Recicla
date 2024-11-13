@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient'; // Importamos LinearGradi
 import MenuInferior from '../Menu_Inferior/MenuInferior'; // Importa el archivo del menú inferior
 
 const PantallaPrincipalScreen = ({ route, navigation }) => {
-    const nombre = route?.params?.nombre || 'Usuario';
+    const nombre = route?.params?.nombre || 'qué tal!';
     const nombreMayusculas = nombre.toUpperCase();
 
 
