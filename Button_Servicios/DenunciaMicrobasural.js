@@ -74,9 +74,7 @@ const DenunciaMicrobasural = () => {
       <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         {/* Título y subtítulo */}
         <Text style={styles.title}>Denuncia {"\n"}Microbasural</Text>
-        <Text style={styles.description}>
-          Aquí puedes realizar la denuncia de microbasurales que veas por la comuna.
-        </Text>
+        <Text style={styles.description}>Por favor, rellena los datos y adjunta imagen del microbasural que encontraste</Text>
 
         {/* Formulario enmarcado */}
         <View style={styles.formContainer}>

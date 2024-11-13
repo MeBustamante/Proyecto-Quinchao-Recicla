@@ -31,8 +31,7 @@ const SolicitudRetiroResiduos = () => {
       <View style={styles.container}>
         {/* Título y descripción */}
         <Text style={styles.title}>Solicitud de {"\n"}Retiro de Residuos</Text>
-        <Text style={styles.description}>
-          Aquí puedes solicitar el retiro de residuos de acuerdo a tus necesidades. Por favor, llena los detalles en el formulario.
+        <Text style={styles.description}>Por favor, rellena los datos solicitados en el siguiente formulario.
         </Text>
 
         {/* Formulario enmarcado */}
