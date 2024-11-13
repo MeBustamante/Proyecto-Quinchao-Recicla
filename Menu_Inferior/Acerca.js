@@ -79,20 +79,20 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    color: '#000',  // Cambiar el color del título a negro
+    color: '#000',  
     fontWeight: 'bold',
     marginBottom: 30, 
   },
   imageContainer: {
     width: '100%',
     flexDirection: 'row', 
-    justifyContent: 'flex-start',  // Alineamos los logos a la izquierda
+    justifyContent: 'flex-start',  
     marginBottom: -25, 
   },
   leftImage: {
     width: 80, 
     height: 90,
-    marginRight: 10,  // Espacio entre los dos logos
+    marginRight: 10,  
   },
   rightImage: {
     width: 80, 
@@ -111,22 +111,22 @@ const styles = StyleSheet.create({
     textAlign: 'justify',  
   },
   footerContainer: {
-    width: '100%',  // Asegura que los íconos ocupen todo el ancho disponible
-    flexDirection: 'column',  // Organiza los íconos de forma vertical
-    alignItems: 'flex-start',  // Alinea los elementos a la izquierda
-    marginTop: 20,  // Margen superior para separar de los textos anteriores
+    width: '100%',  
+    flexDirection: 'column',  
+    alignItems: 'flex-start',  
+    marginTop: 20,  
   },
   socialIconContainer: {
-    flexDirection: 'row',  // Alinea los íconos con el texto en una fila
-    alignItems: 'center',  // Alinea verticalmente los íconos y el texto
-    marginBottom: 15,  // Espaciado entre los enlaces
+    flexDirection: 'row',  
+    alignItems: 'center',  
+    marginBottom: 15,  
   },
   icon: {
-    marginRight: 10,  // Espacio entre el ícono y el texto
+    marginRight: 10,  
   },
   footerText: {
     fontSize: 16,
     color: '#333',
-    textAlign: 'left',  // Asegura que el texto se alinee a la izquierda
+    textAlign: 'left',  
   },
 });
