@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Alert, Image } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { LinearGradient } from 'expo-linear-gradient';
-import MenuInferior from '../Menu_Inferior/MenuInferior'; 
+import MenuInferior from '../Menu_Inferior/MenuInferior';
 
 const Gestion = () => {
 
@@ -18,7 +18,7 @@ const Gestion = () => {
     const startDate = new Date(year, month - 1, 1);
     const firstDay = startDate.getDay();
 
-    let firstFriday = 1 + (5 - firstDay + 7) % 7;  
+    let firstFriday = 1 + (5 - firstDay + 7) % 7;
     for (let i = firstFriday; i <= 31; i += 7) {
       const dayString = `${year}-${month < 10 ? '0' + month : month}-${i < 10 ? '0' + i : i}`;
       fridays[dayString] = {
@@ -35,10 +35,9 @@ const Gestion = () => {
     return fridays;
   };
 
-
   const month = 11; 
   const year = 2024; 
-  const fridays = generateFridays(year, month); 
+  const fridays = generateFridays(year, month);
 
   return (
     <View style={styles.container}>
@@ -51,7 +50,6 @@ const Gestion = () => {
           />
         </View>
 
-
         <View style={styles.logoContainerRight}>
           <Image 
             source={require('../assets/LOG_AMBIENTE.jpg')} 
@@ -59,13 +57,11 @@ const Gestion = () => {
           />
         </View>
 
-
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>Gestión</Text>
           <Text style={styles.titleText}>de</Text>
           <Text style={styles.titleText}>Residuos</Text>
         </View>
-
 
         <View style={styles.secondContainer}>
           <Text style={styles.referenceText}>
@@ -73,11 +69,10 @@ const Gestion = () => {
           </Text>
         </View>
 
-
         <View style={styles.thirdContainer}>
           <Calendar
             markedDates={fridays}
-            monthFormat={'yyyy MM'}
+            monthFormat={'MMMM yyyy'} 
             theme={{
               selectedDayBackgroundColor: 'red', 
               todayTextColor: 'black', 
@@ -85,6 +80,7 @@ const Gestion = () => {
               dayTextColor: '#000', 
             }}
             onDayPress={handleDayPress}
+            locale={'es'} 
           />
         </View>
       </LinearGradient>
