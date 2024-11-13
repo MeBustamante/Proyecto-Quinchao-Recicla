@@ -34,7 +34,6 @@ const MenuReciclaje = ({ navigation }) => {
     <View style={styles.container}>
       <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
         
-        {/* Encabezado con imagen */}
         <Image source={require('../assets/reciclaje_encabezado.png')} style={styles.headerImage} />
 
         <Text style={styles.header}>Menu de Reciclaje</Text>
@@ -46,29 +45,31 @@ const MenuReciclaje = ({ navigation }) => {
             onPress={toggleCompostajeOptions}
             activeOpacity={0.8}
           >
-            <Ionicons name="leaf-outline" size={24} color="green" />
-            <Text style={styles.buttonText}>Programas de Compostaje</Text>
+            <LinearGradient colors={['#6DD5FA', '#2980B9']} style={styles.buttonGradient}>
+              <Ionicons name="leaf-outline" size={24} color="white" />
+              <Text style={styles.buttonText}>Programas de Compostaje</Text>
+            </LinearGradient>
           </TouchableOpacity>
 
           {showCompostajeOptions && (
-            <Animated.View style={{ opacity: compostajeOpacity }}>
+            <Animated.View style={{ opacity: compostajeOpacity, alignItems: 'center' }}>
               <TouchableOpacity
-                style={[styles.subOptionBox, { marginLeft: 20 }]}
+                style={styles.subOptionBox}
                 onPress={() => navigation.navigate('CompostajeCasa')}
               >
-                <LinearGradient colors={['#A5D6A7', '#66BB6A']} style={styles.gradientButton}>
-                  <Ionicons name="home-outline" size={20} color="green" />
-                  <Text style={styles.buttonText}>Compostaje en Casa</Text>
+                <LinearGradient colors={['#FF8C00', '#FFA500']} style={styles.innerButtonGradient}>
+                  <Ionicons name="home-outline" size={20} color="white" />
+                  <Text style={styles.subButtonText}>Compostaje en Casa</Text>
                 </LinearGradient>
               </TouchableOpacity>
               
               <TouchableOpacity
-                style={[styles.subOptionBox, { marginLeft: 20 }]}
+                style={styles.subOptionBox}
                 onPress={() => navigation.navigate('CompostajeComunidad')}
               >
-                <LinearGradient colors={['#A5D6A7', '#66BB6A']} style={styles.gradientButton}>
-                  <Ionicons name="people-outline" size={20} color="green" />
-                  <Text style={styles.buttonText}>Compostaje en Comunidad</Text>
+                <LinearGradient colors={['#FF8C00', '#FFA500']} style={styles.innerButtonGradient}>
+                  <Ionicons name="people-outline" size={20} color="white" />
+                  <Text style={styles.subButtonText}>Compostaje en Comunidad</Text>
                 </LinearGradient>
               </TouchableOpacity>
             </Animated.View>
@@ -80,29 +81,31 @@ const MenuReciclaje = ({ navigation }) => {
             onPress={toggleCampanasOptions}
             activeOpacity={0.8}
           >
-            <Ionicons name="megaphone-outline" size={24} color="green" />
-            <Text style={styles.buttonText}>Campañas de Reciclaje</Text>
+            <LinearGradient colors={['#6DD5FA', '#2980B9']} style={styles.buttonGradient}>
+              <Ionicons name="megaphone-outline" size={24} color="white" />
+              <Text style={styles.buttonText}>Campañas de Reciclaje</Text>
+            </LinearGradient>
           </TouchableOpacity>
 
           {showCampanasOptions && (
-            <Animated.View style={{ opacity: campanasOpacity }}>
+            <Animated.View style={{ opacity: campanasOpacity, alignItems: 'center' }}>
               <TouchableOpacity
-                style={[styles.subOptionBox, { marginLeft: 20 }]}
+                style={styles.subOptionBox}
                 onPress={() => navigation.navigate('HuertosUrbanos')}
               >
-                <LinearGradient colors={['#A5D6A7', '#66BB6A']} style={styles.gradientButton}>
-                  <Ionicons name="flower-outline" size={20} color="green" />
-                  <Text style={styles.buttonText}>Huertos Urbanos</Text>
+                <LinearGradient colors={['#FF8C00', '#FFA500']} style={styles.innerButtonGradient}>
+                  <Ionicons name="flower-outline" size={20} color="white" />
+                  <Text style={styles.subButtonText}>Huertos Urbanos</Text>
                 </LinearGradient>
               </TouchableOpacity>
               
               <TouchableOpacity
-                style={[styles.subOptionBox, { marginLeft: 20 }]}
+                style={styles.subOptionBox}
                 onPress={() => navigation.navigate('ReforestacionUrbana')}
               >
-                <LinearGradient colors={['#A5D6A7', '#66BB6A']} style={styles.gradientButton}>
-                <Ionicons name="leaf-outline" size={20} color="green" />
-                  <Text style={styles.buttonText}>Reforestación Urbana</Text>
+                <LinearGradient colors={['#FF8C00', '#FFA500']} style={styles.innerButtonGradient}>
+                  <Ionicons name="leaf-outline" size={20} color="white" />
+                  <Text style={styles.subButtonText}>Reforestación Urbana</Text>
                 </LinearGradient>
               </TouchableOpacity>
             </Animated.View>
@@ -114,8 +117,10 @@ const MenuReciclaje = ({ navigation }) => {
             onPress={() => navigation.navigate('Gestion')}
             activeOpacity={0.8}
           >
-            <Ionicons name="trash-bin-outline" size={24} color="green" />
-            <Text style={styles.buttonText}>Gestión de Residuos</Text>
+            <LinearGradient colors={['#6DD5FA', '#2980B9']} style={styles.buttonGradient}>
+              <Ionicons name="trash-bin-outline" size={24} color="white" />
+              <Text style={styles.buttonText}>Gestión de Residuos</Text>
+            </LinearGradient>
           </TouchableOpacity>
         </View>
       </LinearGradient>
@@ -129,50 +134,49 @@ const styles = StyleSheet.create({
   container: { flex: 1, alignItems: 'center' },
   gradientBackground: { flex: 1, width: '100%', alignItems: 'center', paddingVertical: 20 },
   headerImage: { width: '100%', height: 150, resizeMode: 'cover', marginBottom: 10 },
-  logoContainerLeft: { position: 'absolute', top: 30, left: 10, zIndex: 1 },
-  logoContainerRight: { position: 'absolute', top: 30, right: 10, zIndex: 1 },
-  logo: { width: 80, height: 80, resizeMode: 'contain' },
   header: { fontSize: 30, fontWeight: 'bold', color: '#fff', marginTop: 20, marginBottom: 20 },
   buttonsContainer: { width: '80%', marginTop: 40 },
   programBox: {
-    backgroundColor: '#ffffff',
     borderRadius: 25,
-    paddingVertical: 20,
-    paddingHorizontal: 40,
     marginBottom: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
     width: '100%',
-    flexDirection: 'row',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
-    shadowRadius: 5,
+    shadowRadius: 6,
     elevation: 5,
+  },
+  buttonGradient: {
+    paddingVertical: 20,
+    paddingHorizontal: 30,
+    borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
   subOptionBox: {
-    backgroundColor: '#e0e0e0',
-    borderRadius: 20,
-    marginBottom: 10,
+    width: '90%', // Asegura que los botones estén centrados
     alignItems: 'center',
     justifyContent: 'center',
-    width: '90%',
+    borderRadius: 20,
+    marginBottom: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
     elevation: 5,
   },
-  gradientButton: {
+  innerButtonGradient: {
     paddingVertical: 15,
-    paddingHorizontal: 30,
+    paddingHorizontal: 25,
     borderRadius: 20,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
   },
-  buttonText: { fontSize: 18, color: '#000', fontWeight: 'bold', marginLeft: 10 },
+  buttonText: { fontSize: 18, color: 'white', fontWeight: 'bold', marginLeft: 10 },
+  subButtonText: { fontSize: 16, color: 'white', fontWeight: 'bold', marginLeft: 10 },
 });
 
 export default MenuReciclaje;
