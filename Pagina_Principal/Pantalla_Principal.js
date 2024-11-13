@@ -1,31 +1,26 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient'; // Importamos LinearGradient
-import MenuInferior from '../Menu_Inferior/MenuInferior'; // Importa el archivo del menú inferior
+import { LinearGradient } from 'expo-linear-gradient';
+import MenuInferior from '../Menu_Inferior/MenuInferior';
 
 const PantallaPrincipalScreen = ({ route, navigation }) => {
     const nombre = route?.params?.nombre || 'qué tal!';
     const nombreMayusculas = nombre.toUpperCase();
 
-
-    // navegación a 'Programas1'
-const handleReciclajeButtonPress = () => {
-    navigation.navigate('MenuReciclaje'); // Cambie de Programas1 a MenuReciclaje
-};
+    const handleReciclajeButtonPress = () => {
+        navigation.navigate('MenuReciclaje');
+    };
 
     const handleBoton2Press = () => {
-        console.log("Botón 2 presionado");
-        navigation.navigate('Servicios'); // Navegar a la pantalla Servicios
+        navigation.navigate('Servicios');
     };
 
     const handleBoton3Press = () => {
-        console.log("Botón 3 presionado");
-        navigation.navigate('PuntosReciclaje'); // Navegar a la pantalla Puntos de Reciclaje
+        navigation.navigate('PuntosReciclaje');
     };
 
     return (
         <View style={styles.container}>
-            {/* Marco verde con flecha */}
             <View style={styles.imageContainer}>
                 <Image 
                     source={require('../assets/p3.jpg')} 
@@ -50,13 +45,11 @@ const handleReciclajeButtonPress = () => {
                 <Text style={styles.appName}>QUINCHAO RECICLA</Text>
             </View>
 
-            {/* Contenedor para los tres botones */}
             <LinearGradient 
-                colors={['#81C784', '#388E3C']}  // Gradiente verde
+                colors={['#81C784', '#388E3C']}
                 style={styles.gradientBackground}
             >
                 <View style={styles.buttonsContainer}>
-                    {/* Primer botón */}
                     <TouchableOpacity 
                         style={[styles.button, styles.buttonYellowBorder]} 
                         onPress={handleReciclajeButtonPress}
@@ -68,7 +61,6 @@ const handleReciclajeButtonPress = () => {
                         <Image source={require('../assets/RG.jpg')} style={styles.buttonImage1} />
                     </TouchableOpacity>
 
-                    {/* Segundo botón */}
                     <TouchableOpacity 
                         style={[styles.button, styles.buttonOrangeBorder]} 
                         onPress={handleBoton2Press}
@@ -83,7 +75,6 @@ const handleReciclajeButtonPress = () => {
                         />
                     </TouchableOpacity>
 
-                    {/* Tercer botón */}
                     <TouchableOpacity 
                         style={[styles.button, styles.buttonGreenBorder]} 
                         onPress={handleBoton3Press}
@@ -100,19 +91,17 @@ const handleReciclajeButtonPress = () => {
                 </View>
             </LinearGradient>
 
-            {/* Menú Inferior */}
-            <MenuInferior />
-          
+            <View style={styles.menuInferiorContainer}>
+                <MenuInferior />
+            </View>
         </View>
     );
 };
 
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 50, 
+        paddingTop: 40, 
         alignItems: 'center',
     },
     imageContainer: {
@@ -123,7 +112,7 @@ const styles = StyleSheet.create({
         borderColor: '#4CAF50', 
         borderRadius: 20,
         overflow: 'hidden',
-        marginTop: -75,
+        marginTop: -65,
     },
     backgroundImage: {
         width: '100%',
@@ -151,7 +140,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         position: 'absolute',
-        top: 40,
+        top: 30,
         left: 10,
         padding: 10,
         width: '100%',
@@ -203,12 +192,13 @@ const styles = StyleSheet.create({
     gradientBackground: {
         width: '100%',
         alignItems: 'center',
-        paddingTop: 20, // Aumenta el espacio superior para que se vea bien
-        paddingBottom: 100, // añade espacio inferior, problemas con espacio en blanco solucioado
+        paddingTop: 20,
+        paddingBottom: 80,
     },
     buttonsContainer: {
         width: '80%',
         alignItems: 'center',
+        marginTop: -40, // Mueve los botones aún más arriba
     },
     button: {
         marginTop: 20, 
@@ -260,6 +250,11 @@ const styles = StyleSheet.create({
         width: '80%',
         height: 117,
         borderRadius: 10,
+    },
+    menuInferiorContainer: {
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
     },
 });
 
