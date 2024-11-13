@@ -1,10 +1,12 @@
+// Pantalla_Principal.js
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
+import { useUser } from '../Login/UserContext'; // Importa el contexto de usuario
 
-const PantallaPrincipalScreen = ({ route, navigation }) => {
-    const nombre = route?.params?.nombre || 'qué tal!';
+const PantallaPrincipalScreen = ({ navigation }) => {
+    const { nombre } = useUser(); // Obtén el nombre desde el contexto
     const nombreMayusculas = nombre.toUpperCase();
 
     const handleReciclajeButtonPress = () => {
