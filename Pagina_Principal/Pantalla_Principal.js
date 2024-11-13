@@ -90,10 +90,10 @@ const handleReciclajeButtonPress = () => {
                     >
                         <Text style={[styles.infoTitle, { color: '#4CAF50' }]}>PUNTOS DE RECICLAJE</Text>
                         <Text style={styles.infoSubtitle}>
-                            Ubica puntos verdes cercanos para reciclar de manera fácil y responsable.
+                            Ubica en el mapa los Puntos Verdes cercanos para reciclar de manera fácil y responsable.
                         </Text>
                         <Image 
-                            source={require('../assets/puntos2.jpg')} 
+                            source={require('../assets/mapa6.png')} 
                             style={styles.buttonImage3} 
                         />
                     </TouchableOpacity>
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
     },
     buttonImage3: {
         width: '80%',
-        height: 110,
+        height: 117,
         borderRadius: 10,
     },
 });
