@@ -46,7 +46,7 @@ const Gestion = () => {
 
         <View style={styles.logoContainerLeft}>
           <Image 
-            source={require('../assets/LOGO NEUTRO (1).png')} 
+            source={require('../assets/LOGONEGRO.png')} 
             style={styles.logo} 
           />
         </View>
