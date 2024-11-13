@@ -17,7 +17,7 @@ const ServiciosScreen = () => {
       {/* Logo en la esquina superior izquierda */}
       <View style={styles.logoContainerLeft}>
         <Image 
-          source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
+          source={require('../assets/LOGONEGRO.png')} 
           style={styles.logo} 
         />
       </View>
@@ -33,15 +33,13 @@ const ServiciosScreen = () => {
       {/* Contenido principal */}
       <View style={styles.contentContainer}>
         <Text style={styles.title}>Servicios</Text>
-        <Text style={styles.subtitulo}>
-          Acá podrás pedir el retiro de distintos tipos de residuos que hayan en tu domicilio y también denunciar microbasurales que veas en distintos lugares de la comuna.
-        </Text>
 
         <Pressable
           style={styles.button}
           onPress={() => navigation.navigate('SolicitudRetiroResiduos')}
         >
           <Text style={styles.buttonText}>Solicitud Retiro Residuos</Text>
+          <Text style={styles.subtitulo}>Acá podrás solicitar el retiro de residuos de tu domicilio</Text>
           <Image 
             source={require('../assets/solicitudretiro.png')} 
             style={styles.botonimagen} 
@@ -53,6 +51,7 @@ const ServiciosScreen = () => {
           onPress={() => navigation.navigate('DenunciaMicrobasural')}
         >
           <Text style={styles.buttonText}>Denuncia Microbasural</Text>
+          <Text style={styles.subtitulo}>Acá podrás denunciar microbasurales ilegales que veas en la comuna</Text>
           <Image 
             source={require('../assets/MICROBASURAL.png')} 
             style={styles.botonimagen} 
@@ -72,7 +71,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 80, 
     height: 80, 
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   logoContainerLeft: { 
     position: 'absolute', 
@@ -94,15 +93,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
     marginBottom: 15,
     color: 'black',
     textAlign: 'center',
   },
   subtitulo: {
-    textAlign: 'justify',
-    paddingHorizontal: 20,
+    textAlign: 'center',
+    paddingHorizontal: 10,
     marginBottom: 20,
   },
   button: {
