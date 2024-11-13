@@ -194,15 +194,15 @@ const styles = StyleSheet.create({
     gradientBackground: {
         width: '100%',
         alignItems: 'center',
-        paddingTop: 20, 
+        paddingTop: 10, 
     },
     buttonsContainer: {
         width: '80%',
         alignItems: 'center',
-        marginTop: -20, // Sube los botones aún más
+        marginTop: -15, // Ajuste fino para subir los botones sin que toquen la imagen
     },
     button: {
-        marginVertical: 15, 
+        marginVertical: 10, 
         width: '100%',
         padding: 0,
         borderWidth: 2,
