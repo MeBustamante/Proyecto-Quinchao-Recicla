@@ -7,11 +7,11 @@ import MenuInferior from '../Menu_Inferior/MenuInferior';
 
 const SolicitudRetiroResiduos = () => {
   const [nombre, setNombre] = useState('');
+  const [telefono, setTelefono] = useState(''); // Nuevo campo de teléfono
   const [email, setEmail] = useState('');
   const [direccion, setDireccion] = useState('');
   const [residuo, setResiduo] = useState('');
 
-  // Agregar useNavigation aquí
   const navigation = useNavigation();
 
   const handleSubmit = () => {
@@ -22,7 +22,7 @@ const SolicitudRetiroResiduos = () => {
     <LinearGradient colors={['#81C784', '#388E3C']} style={styles.background}>
       {/* Logos en la parte superior */}
       <View style={styles.logoContainerLeft}>
-        <Image source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')} style={styles.logo} />
+        <Image source={require('../assets/LOGONEGRO.png')} style={styles.logo} />
       </View>
       <View style={styles.logoContainerRight}>
         <Image source={require('../assets/LOG_AMBIENTE.jpg')} style={styles.logo} />
@@ -31,8 +31,7 @@ const SolicitudRetiroResiduos = () => {
       <View style={styles.container}>
         {/* Título y descripción */}
         <Text style={styles.title}>Solicitud de {"\n"}Retiro de Residuos</Text>
-        <Text style={styles.description}>Por favor, rellena los datos solicitados en el siguiente formulario.
-        </Text>
+        <Text style={styles.description}>Por favor, rellena los datos solicitados en el siguiente formulario para ir por los residuos.</Text>
 
         {/* Formulario enmarcado */}
         <View style={styles.formContainer}>
@@ -44,12 +43,22 @@ const SolicitudRetiroResiduos = () => {
             onChangeText={setNombre}
           />
 
+          <Text style={styles.label}>Teléfono</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Ingrese su número de teléfono"
+            value={telefono}
+            onChangeText={setTelefono}
+            keyboardType="phone-pad" // Opcional: tipo de teclado para números de teléfono
+          />
+
           <Text style={styles.label}>Correo Electrónico</Text>
           <TextInput
             style={styles.input}
             placeholder="Ingrese su correo electrónico"
             value={email}
             onChangeText={setEmail}
+            keyboardType="email-address" // Opcional: tipo de teclado para email
           />
 
           <Text style={styles.label}>Dirección</Text>
@@ -121,7 +130,7 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     color: 'black',
     paddingHorizontal: 15,
-    marginBottom: 20,
+    marginBottom: 12,
   },
   formContainer: {
     backgroundColor: 'white',

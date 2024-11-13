@@ -65,7 +65,7 @@ const DenunciaMicrobasural = () => {
     <LinearGradient colors={['#81C784', '#388E3C']} style={styles.background}>
       {/* Logos en la parte superior */}
       <View style={styles.logoContainerLeft}>
-        <Image source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')} style={styles.logo} />
+        <Image source={require('../assets/LOGONEGRO.png')} style={styles.logo} />
       </View>
       <View style={styles.logoContainerRight}>
         <Image source={require('../assets/LOG_AMBIENTE.jpg')} style={styles.logo} />

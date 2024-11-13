@@ -112,6 +112,12 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     width: '90%',
     alignItems: 'center',
+    // Sombra para resaltar el botón
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 8
   },
   buttonText: {
     color: 'black',
