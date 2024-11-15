@@ -10,55 +10,66 @@ const PuntosReciclaje = ({ navigation }) => {
     const [recyclingPoints, setRecyclingPoints] = useState([]);
     const [selectedPoint, setSelectedPoint] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
+    const [isLoading, setIsLoading] = useState(true); // Estado de carga
 
     useEffect(() => {
         (async () => {
-            // solicitar permisos de ubicación del usuario, movil
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                alert('Permiso de ubicación denegado');
-                return;
+            // Navega a la pantalla de animación mientras carga
+            navigation.navigate('Animacion');
+
+            try {
+                // Solicitar permisos de ubicación del usuario
+                let { status } = await Location.requestForegroundPermissionsAsync();
+                if (status !== 'granted') {
+                    alert('Permiso de ubicación denegado');
+                    return;
+                }
+
+                // Obtener ubicación actual del usuario
+                let userLocation = await Location.getCurrentPositionAsync({});
+                setLocation({
+                    latitude: userLocation.coords.latitude,
+                    longitude: userLocation.coords.longitude,
+                    latitudeDelta: 0.05,
+                    longitudeDelta: 0.05,
+                });
+
+                // Descargar el archivo GeoJSON desde Google Drive
+                const geojsonUri = `${FileSystem.documentDirectory}Puntos_Verdes.geojson`;
+                await FileSystem.downloadAsync(
+                    'https://drive.google.com/uc?export=download&id=1hBLoji4cVxiqbK-JZBSaUXmwRyIZDzgA',
+                    geojsonUri
+                );
+
+                // Leer archivo GeoJSON
+                const geojsonContent = await FileSystem.readAsStringAsync(geojsonUri);
+                const geojsonData = JSON.parse(geojsonContent);
+
+                // Filtrado de lista de materiales permitidos
+                const materialesPermitidos = ["Botellas Plásticas", "Latas de Aluminio", "Vidrio", "Cartón", "Papel", "Orgánico"];
+
+                // Procesar los puntos
+                const points = geojsonData.features.map(feature => {
+                    const descripcionCompleta = feature.properties.description || "Sin descripción";
+
+                    // Filtrar la descripción para incluir solo los materiales permitidos
+                    const descripcionFiltrada = materialesPermitidos
+                        .filter(material => new RegExp(material, 'i').test(descripcionCompleta));
+
+                    return {
+                        latitude: feature.geometry.coordinates[1],
+                        longitude: feature.geometry.coordinates[0],
+                        name: feature.properties.name.replace(/N°?\s*\d+\s*/gi, '').trim() || "Punto Verde",
+                        description: descripcionFiltrada.length > 0 ? descripcionFiltrada : ["Materiales no especificados"]
+                    };
+                });
+                setRecyclingPoints(points);
+            } catch (error) {
+                console.error('Error al cargar los puntos de reciclaje:', error);
+            } finally {
+                setIsLoading(false); // Finaliza la carga
+                navigation.navigate('PuntosReciclaje'); // Regresa a la pantalla cuando termina de cargar
             }
-
-            // bbtener ubicación actual del usuairo
-            let userLocation = await Location.getCurrentPositionAsync({});
-            setLocation({
-                latitude: userLocation.coords.latitude,
-                longitude: userLocation.coords.longitude,
-                latitudeDelta: 0.05,
-                longitudeDelta: 0.05,
-            });
-
-            // descargar el archivo GeoJSON desde Google Drive, problemas al leerlo de manera local
-            const geojsonUri = `${FileSystem.documentDirectory}Puntos_Verdes.geojson`;
-            await FileSystem.downloadAsync(
-                'https://drive.google.com/uc?export=download&id=1hBLoji4cVxiqbK-JZBSaUXmwRyIZDzgA',
-                geojsonUri
-            );
-
-            // Leer archivo GeoJSON
-            const geojsonContent = await FileSystem.readAsStringAsync(geojsonUri);
-            const geojsonData = JSON.parse(geojsonContent);
-
-            // Filtrado de lista de materiales permitidos
-            const materialesPermitidos = ["Botellas Plásticas", "Latas de Aluminio", "Vidrio", "Cartón", "Papel", "Orgánico"];
-
-            // eliminar N de los nombre(NO FUNCIONA)
-            const points = geojsonData.features.map(feature => {
-                const descripcionCompleta = feature.properties.description || "Sin descripción";
-
-                // filtrar la descripción para incluir solo los materiales permitidos
-                const descripcionFiltrada = materialesPermitidos
-                    .filter(material => new RegExp(material, 'i').test(descripcionCompleta));
-
-                return {
-                    latitude: feature.geometry.coordinates[1],
-                    longitude: feature.geometry.coordinates[0],
-                    name: feature.properties.name.replace(/N°?\s*\d+\s*/gi, '').trim() || "Punto Verde",
-                    description: descripcionFiltrada.length > 0 ? descripcionFiltrada : ["Materiales no especificados"]
-                };
-            });
-            setRecyclingPoints(points);
         })();
     }, []);
 
@@ -74,8 +85,8 @@ const PuntosReciclaje = ({ navigation }) => {
         }
     };
 
-    if (!location) {
-        return <Text>Cargando ubicación...</Text>;
+    if (isLoading || !location) {
+        return null; // Evita que se renderice el mapa mientras carga
     }
 
     return (
@@ -133,7 +144,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     map: {
-        flex: 1, // Cambia a flex para que el mapa ocupe el espacio restante
+        flex: 1,
     },
     modalContainer: {
         flex: 1,
