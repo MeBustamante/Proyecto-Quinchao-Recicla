@@ -36,7 +36,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
             <View style={styles.textContainer}>
                 <View style={styles.textWithLogo}>
                     <View style={styles.textContent}>
-                        <Text style={styles.greetingText}>HOLA, {nombreMayusculas}</Text>
+                        <Text style={styles.greetingText}>HOLA {nombreMayusculas}</Text>
                         <Text style={styles.welcomeText}>TE DAMOS LA BIENVENIDA A</Text>
                     </View>
                     <Image 
@@ -192,14 +192,16 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     gradientBackground: {
+        flex: 1, // Expande el gradiente para llenar todo el espacio disponible
         width: '100%',
         alignItems: 'center',
-        paddingTop: 10, 
+        justifyContent: 'space-between', // Espaciado entre botones y el menú inferior
+        paddingTop: 10,
     },
     buttonsContainer: {
         width: '80%',
         alignItems: 'center',
-        marginTop: -15, // Ajuste fino para subir los botones sin que toquen la imagen
+        marginTop: 10, // Ajuste fino para subir los botones sin que toquen la imagen
     },
     button: {
         marginVertical: 10, 
