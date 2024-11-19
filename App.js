@@ -17,6 +17,7 @@ import CompostajeComunidad from './Button_Reciclaje/CompostajeComunidad';
 import HuertosUrbanosScreen from './Button_Reciclaje/HuertosUrbanos';
 import ReforestacionUrbanaScreen from './Button_Reciclaje/ReforestacionUrbana';
 import Animacion from './Button_PuntosReciclaje/animacion'; // Asegúrate de que esta sea la ruta correcta a animacion.js
+import Configuracion from './Menu_Inferior/Configuracion'; // Importa tu archivo Configuracion.js
 
 const Stack = createNativeStackNavigator();
 
@@ -38,7 +39,8 @@ export default function App() {
                     <Stack.Screen name="PuntosReciclaje" component={PuntosReciclajeScreen} options={{ title: 'Puntos de Reciclaje' }} />
                     <Stack.Screen name="Gestion" component={Gestion} />
                     <Stack.Screen name="Acerca" component={AcercaScreen} />
-                    <Stack.Screen name="Animacion" component={Animacion} options={{ headerShown: false }} /> 
+                    <Stack.Screen name="Animacion" component={Animacion} options={{ headerShown: false }} />
+                    <Stack.Screen name="Configuracion" component={Configuracion} options={{ title: 'Configuración' }} /> 
                 </Stack.Navigator>
             </NavigationContainer>
         </UserProvider>

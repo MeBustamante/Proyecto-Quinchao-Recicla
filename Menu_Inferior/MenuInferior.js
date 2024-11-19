@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native'; // Importa useNavigation
+import { useNavigation } from '@react-navigation/native';
 
 const MenuInferior = () => {
-  const navigation = useNavigation(); // se cambia a useNavigation para no estar declarando en todas las ventanas
+  const navigation = useNavigation(); // Se utiliza useNavigation para manejar la navegación
 
   const goToHome = () => {
     navigation.reset({
@@ -20,21 +20,31 @@ const MenuInferior = () => {
         style={styles.mascotaImage}
       />
 
-      <TouchableOpacity style={styles.menuButton}>
+      {/* Navegación a Configuración */}
+      <TouchableOpacity
+        style={styles.menuButton}
+        onPress={() => navigation.navigate('Configuracion')} // Navega a la pantalla de configuración
+      >
         <Ionicons name="settings-outline" size={24} color="white" />
         <Text style={styles.menuText}>Configuración</Text>
       </TouchableOpacity>
       
+      {/* Navegación a Inicio */}
       <TouchableOpacity style={styles.menuButton} onPress={goToHome}>
         <Ionicons name="home-outline" size={24} color="white" />
         <Text style={styles.menuText}>Inicio</Text>
       </TouchableOpacity>
       
-      <TouchableOpacity style={styles.menuButton}>
+      {/* Navegación a Ayuda */}
+      <TouchableOpacity
+        style={styles.menuButton}
+        onPress={() => navigation.navigate('Ayuda')} // Puedes agregar la pantalla de Ayuda
+      >
         <Ionicons name="help-circle-outline" size={24} color="white" />
         <Text style={styles.menuText}>Ayuda</Text>
       </TouchableOpacity>
 
+      {/* Navegación a Acerca de */}
       <TouchableOpacity style={styles.menuButton} onPress={() => navigation.navigate('Acerca')}>
         <Ionicons name="information-circle-outline" size={24} color="white" />
         <Text style={styles.menuText}>Acerca de</Text>
