@@ -15,24 +15,44 @@ const CompostajeCasa = ({ navigation }) => {
                             Aprende cómo hacer compostaje en tu hogar y contribuye al medio ambiente.
                         </Text>
                         <Text style={styles.sectionTitle}>Tips de Compostaje:</Text>
-                        <Text style={styles.tips}>
-                            • Ubica el compost en un área semi-sombreada.{'\n'}
-                            • Equilibra materiales verdes (húmedos) y marrones (secos).{'\n'}
-                            • Mantén el compost húmedo, pero no encharcado.{'\n'}
-                            • Revuelve el compost regularmente para airearlo.{'\n'}
-                            • Usa restos de comida (sin carne o lácteos) y desechos de jardín.{'\n'}
+                        <Text style={styles.tip}>
+                            • Ubica el compost en un área semi-sombreada.
+                        </Text>
+                        <Text style={styles.tip}>
+                            • Equilibra materiales verdes (húmedos) y marrones (secos).
+                        </Text>
+                        <Text style={styles.tip}>
+                            • Mantén el compost húmedo, pero no encharcado.
+                        </Text>
+                        <Text style={styles.tip}>
+                            • Revuelve el compost regularmente para airearlo.
+                        </Text>
+                        <Text style={styles.tip}>
+                            • Usa restos de comida (sin carne o lácteos) y desechos de jardín.
+                        </Text>
+                        <Text style={styles.tip}>
                             • Cubre los restos de comida con hojas secas para evitar olores.
                         </Text>
                     </View>
 
                     <View style={styles.contentContainer}>
                         <Text style={styles.sectionTitle}>Recomendaciones de Cuidado:</Text>
-                        <Text style={styles.tips}>
-                            • Asegúrate de que el compost tenga buen drenaje para evitar exceso de agua.{'\n'}
-                            • Evita agregar grandes cantidades de cítricos, ya que pueden acidificar el compost.{'\n'}
-                            • Si notas malos olores, revisa el equilibrio entre materiales secos y húmedos.{'\n'}
-                            • Protege el compost de lluvias intensas con una cubierta.{'\n'}
-                            • Después de 2-3 meses, revisa si el compost está listo (color oscuro y olor a tierra fresca).{'\n'}
+                        <Text style={styles.tip}>
+                            • Asegúrate de que el compost tenga buen drenaje para evitar exceso de agua.
+                        </Text>
+                        <Text style={styles.tip}>
+                            • Evita agregar grandes cantidades de cítricos, ya que pueden acidificar el compost.
+                        </Text>
+                        <Text style={styles.tip}>
+                            • Si notas malos olores, revisa el equilibrio entre materiales secos y húmedos.
+                        </Text>
+                        <Text style={styles.tip}>
+                            • Protege el compost de lluvias intensas con una cubierta.
+                        </Text>
+                        <Text style={styles.tip}>
+                            • Después de 2-3 meses, revisa si el compost está listo (color oscuro y olor a tierra fresca).
+                        </Text>
+                        <Text style={styles.tip}>
                             • Usa el compost en maceteros, huertos urbanos o jardines comunitarios.
                         </Text>
                     </View>
@@ -62,7 +82,7 @@ const styles = StyleSheet.create({
     infoTitle: { fontSize: 22, fontWeight: 'bold', color: 'black', textAlign: 'center', marginBottom: 15 },
     infoSubtitle: { fontSize: 16, color: 'black', textAlign: 'center', marginBottom: 15 },
     sectionTitle: { fontSize: 18, fontWeight: 'bold', color: '#388E3C', textAlign: 'center', marginBottom: 10 },
-    tips: { fontSize: 14, color: 'black', textAlign: 'left', marginBottom: 15 },
+    tip: { fontSize: 14, color: 'black', textAlign: 'left', marginBottom: 15 },
     image: {
         width: '90%',
         height: 180,
