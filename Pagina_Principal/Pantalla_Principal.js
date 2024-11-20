@@ -23,7 +23,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <LinearGradient
-                colors={['#81C784', '#388E3C']}
+                colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
                 style={styles.gradientBackground}
             >
                 <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -118,9 +118,9 @@ const styles = StyleSheet.create({
     headerContainer: {
         width: '100%',
         height: 200,
-        borderWidth: 5,
+        borderWidth: 1,
         borderColor: '#4CAF50',
-        borderRadius: 20,
+        borderRadius: 1,
         overflow: 'hidden',
         position: 'relative',
     },
@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
         color: '#000',
         textAlign: 'center',
         marginTop: 5,
+        fontWeight: 'bold',
     },
     buttonImage: {
         width: '100%',
