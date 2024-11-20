@@ -124,6 +124,12 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         position: 'relative',
     },
+    scrollContent: {
+        flexGrow: 1,
+        alignItems: 'center',
+        paddingTop: 30, // Desplaza todo hacia abajo
+        paddingBottom: 80, // Espacio suficiente para que el último botón sea visible
+    },
     backgroundImage: {
         width: '100%',
         height: '100%',
