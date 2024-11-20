@@ -15,7 +15,7 @@ const Animacion = () => {
             <Text style={styles.text}>PEQUEÑAS ACCIONES, GRANDES CAMBIOS.</Text>
             <Text style={styles.text}>¿TE UNES?</Text>
             <LottieView
-                source={require('./Animation.json')} // Ajusta la ruta si es necesario
+                source={require('./animacion2.json')} // Ajusta la ruta si es necesario
                 autoPlay
                 loop
                 style={styles.animation}
