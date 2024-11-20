@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import LottieView from 'lottie-react-native';
+import { AppContext } from '../ConfigGlobal/AppContext'; // Importa el contexto global
 
 const Animacion = () => {
+    const { language } = useContext(AppContext); // Obtiene el idioma actual del contexto
+
+    // Traducciones dinámicas
+    const translations = {
+        es: {
+            slogan: 'PEQUEÑAS ACCIONES, GRANDES CAMBIOS.',
+            question: '¿TE UNES?',
+            loading: 'CARGANDO EL MAPA, POR FAVOR ESPERA...',
+        },
+        en: {
+            slogan: 'SMALL ACTIONS, BIG CHANGES.',
+            question: 'WILL YOU JOIN?',
+            loading: 'LOADING THE MAP, PLEASE WAIT...',
+        },
+    };
+
+    const currentLanguage = translations[language]; // Selección del idioma actual
+
     return (
         <View style={styles.container}>
             <View style={styles.logoContainer}>
@@ -10,17 +29,16 @@ const Animacion = () => {
                     source={require('../assets/LOGO NEUTRO HORIZONTAL.png')} // Ajusta la ruta
                     style={styles.logo}
                 />
-             
             </View>
-            <Text style={styles.text}>PEQUEÑAS ACCIONES, GRANDES CAMBIOS.</Text>
-            <Text style={styles.text}>¿TE UNES?</Text>
+            <Text style={styles.text}>{currentLanguage.slogan}</Text>
+            <Text style={styles.text}>{currentLanguage.question}</Text>
             <LottieView
                 source={require('./animacion2.json')} // Ajusta la ruta si es necesario
                 autoPlay
                 loop
                 style={styles.animation}
             />
-            <Text style={styles.loadingText}>CARGANDO EL MAPA, POR FAVOR ESPERA...</Text>
+            <Text style={styles.loadingText}>{currentLanguage.loading}</Text>
         </View>
     );
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Modal, TouchableOpacity, FlatList, Linking } from 'react-native';
+import { View, Text, StyleSheet, Modal, TouchableOpacity, Image, FlatList, Linking } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import * as FileSystem from 'expo-file-system';
@@ -69,22 +69,12 @@ const PuntosReciclaje = ({ navigation }) => {
 
     const toggleFilter = (filter) => {
         setActiveFilters((prevFilters) => {
-            const essentialFilters = ["Botellas Plásticas", "Latas de Aluminio", "Vidrio", "Cartón", "Papel"];
             if (filter === "Todos") {
                 return prevFilters.includes("Todos") ? [] : ["Todos"];
             } else {
                 let newFilters = prevFilters.includes(filter)
-                    ? prevFilters.filter((f) => f !== filter) // Desmarcar si ya está seleccionado
-                    : [...prevFilters.filter((f) => f !== "Todos"), filter]; // Agregar y desmarcar "Todos"
-
-                if (newFilters.includes("Orgánico") && essentialFilters.every((f) => newFilters.includes(f))) {
-                    newFilters = ["Todos"];
-                }
-
-                if (filter === "Orgánico" && newFilters.length > 1 && !newFilters.includes("Todos")) {
-                    newFilters = ["Orgánico"];
-                }
-
+                    ? prevFilters.filter((f) => f !== filter)
+                    : [...prevFilters.filter((f) => f !== "Todos"), filter];
                 return newFilters.length === 0 ? ["Todos"] : newFilters;
             }
         });
@@ -173,6 +163,37 @@ const PuntosReciclaje = ({ navigation }) => {
                 ))}
             </MapView>
 
+            {/* Modal para mostrar detalles del punto */}
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => setModalVisible(false)}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+                            <Text style={styles.closeButtonText}>×</Text>
+                        </TouchableOpacity>
+                        <Image
+                            source={require('../assets/LOG_AMBIENTE.jpg')}
+                            style={styles.logo}
+                        />
+                        <Text style={styles.modalTitle}>{selectedPoint?.name}</Text>
+                        <Text style={styles.subtitle}>Acá puedes reciclar:</Text>
+                        <View style={styles.listContainer}>
+                            {(selectedPoint?.description || []).map((item, index) => (
+                                <Text key={index} style={styles.listItem}>• {item}</Text>
+                            ))}
+                        </View>
+                        <TouchableOpacity style={styles.directionsButton} onPress={handleComoLlegar}>
+                            <Text style={styles.directionsButtonText}>COMO LLEGAR</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+
+            {/* Menú inferior */}
             <MenuInferior navigation={navigation} />
         </View>
     );
@@ -189,7 +210,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 10,
         left: 10,
-        width: '80%', // Reduce el ancho para que no bloquee la interacción
+        width: '80%',
     },
     dropdownButton: {
         backgroundColor: '#4CAF50',
@@ -229,6 +250,78 @@ const styles = StyleSheet.create({
     activeDropdownItemText: {
         color: '#00796B',
         fontWeight: 'bold',
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+        width: '80%',
+        padding: 20,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        alignItems: 'center',
+        position: 'relative',
+    },
+    logo: {
+        width: 90,
+        height: 90,
+        marginBottom: 20,
+    },
+    closeButton: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        backgroundColor: '#000000',
+        borderRadius: 15,
+        width: 30,
+        height: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#4CAF50',
+    },
+    closeButtonText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+    },
+    modalTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        textAlign: 'center',
+    },
+    subtitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#4CAF50',
+        textAlign: 'center',
+        marginBottom: 10,
+    },
+    listContainer: {
+        alignSelf: 'flex-start',
+        marginLeft: 20,
+    },
+    listItem: {
+        fontSize: 16,
+        textAlign: 'left',
+        marginBottom: 5,
+    },
+    directionsButton: {
+        marginTop: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        backgroundColor: '#4CAF50',
+        borderRadius: 20,
+        alignItems: 'center',
+    },
+    directionsButtonText: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 16,
     },
 });
 
