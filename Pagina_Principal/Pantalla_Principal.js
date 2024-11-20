@@ -1,24 +1,56 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { useUser } from '../Login/UserContext';
+import { AppContext } from '../ConfigGlobal/AppContext'; // Importa el contexto global
 
 const PantallaPrincipalScreen = ({ navigation }) => {
     const { nombre } = useUser();
+    const { language } = useContext(AppContext); // Acceso al idioma desde el contexto global
     const nombreMayusculas = nombre.toUpperCase();
 
-    const handleReciclajeButtonPress = () => {
-        navigation.navigate('MenuReciclaje');
+    // Traducciones dinámicas
+    const translations = {
+        es: {
+            greeting: `HOLA ${nombreMayusculas}`,
+            welcome: 'TE DAMOS LA BIENVENIDA A',
+            reciclaje: {
+                title: 'RECICLAJE',
+                subtitle: 'Gestiona tus residuos y únete a la campaña de reciclaje.',
+            },
+            servicios: {
+                title: 'SERVICIOS',
+                subtitle: 'Solicita retiro de residuos y reporta microbasurales en tu comunidad.',
+            },
+            puntos: {
+                title: 'PUNTOS DE RECICLAJE',
+                subtitle: 'Ubica en el mapa los Puntos Verdes cercanos para reciclar de manera fácil y responsable.',
+            },
+        },
+        en: {
+            greeting: `HELLO ${nombreMayusculas}`,
+            welcome: 'WELCOME TO',
+            reciclaje: {
+                title: 'RECYCLING',
+                subtitle: 'Manage your waste and join the recycling campaign.',
+            },
+            servicios: {
+                title: 'SERVICES',
+                subtitle: 'Request waste collection and report illegal dumping in your community.',
+            },
+            puntos: {
+                title: 'RECYCLING POINTS',
+                subtitle: 'Locate nearby Green Points to recycle easily and responsibly.',
+            },
+        },
     };
 
-    const handleBoton2Press = () => {
-        navigation.navigate('Servicios');
-    };
+    const currentLanguage = translations[language]; // Selección del idioma actual
 
-    const handleBoton3Press = () => {
-        navigation.navigate('PuntosReciclaje');
-    };
+    const handleReciclajeButtonPress = () => navigation.navigate('MenuReciclaje');
+    const handleBoton2Press = () => navigation.navigate('Servicios');
+    const handleBoton3Press = () => navigation.navigate('PuntosReciclaje');
 
     return (
         <View style={styles.container}>
@@ -36,8 +68,8 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                         />
                         {/* Contenedor del texto y el logo */}
                         <View style={styles.textOverlay}>
-                            <Text style={styles.greetingText}>HOLA {nombreMayusculas}</Text>
-                            <Text style={styles.welcomeText}>TE DAMOS LA BIENVENIDA A</Text>
+                            <Text style={styles.greetingText}>{currentLanguage.greeting}</Text>
+                            <Text style={styles.welcomeText}>{currentLanguage.welcome}</Text>
                             <Image
                                 source={require('../assets/LOG_AMBIENTE.jpg')}
                                 style={styles.logo}
@@ -51,9 +83,11 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                             style={[styles.button, styles.buttonYellowBorder]}
                             onPress={handleReciclajeButtonPress}
                         >
-                            <Text style={[styles.infoTitle, { color: '#FFC107' }]}>RECICLAJE</Text>
+                            <Text style={[styles.infoTitle, { color: '#FFC107' }]}>
+                                {currentLanguage.reciclaje.title}
+                            </Text>
                             <Text style={styles.infoSubtitle}>
-                                Gestiona tus residuos y únete a la campaña de reciclaje.
+                                {currentLanguage.reciclaje.subtitle}
                             </Text>
                             <Image
                                 source={require('../assets/RG.jpg')}
@@ -66,9 +100,11 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                             style={[styles.button, styles.buttonOrangeBorder]}
                             onPress={handleBoton2Press}
                         >
-                            <Text style={[styles.infoTitle, { color: '#FF9800' }]}>SERVICIOS</Text>
+                            <Text style={[styles.infoTitle, { color: '#FF9800' }]}>
+                                {currentLanguage.servicios.title}
+                            </Text>
                             <Text style={styles.infoSubtitle}>
-                                Solicita retiro de residuos y reporta microbasurales en tu comunidad.
+                                {currentLanguage.servicios.subtitle}
                             </Text>
                             <Image
                                 source={require('../assets/servicio.jpg')}
@@ -81,9 +117,11 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                             style={[styles.button, styles.buttonGreenBorder]}
                             onPress={handleBoton3Press}
                         >
-                            <Text style={[styles.infoTitle, { color: '#4CAF50' }]}>PUNTOS DE RECICLAJE</Text>
+                            <Text style={[styles.infoTitle, { color: '#4CAF50' }]}>
+                                {currentLanguage.puntos.title}
+                            </Text>
                             <Text style={styles.infoSubtitle}>
-                                Ubica en el mapa los Puntos Verdes cercanos para reciclar de manera fácil y responsable.
+                                {currentLanguage.puntos.subtitle}
                             </Text>
                             <Image
                                 source={require('../assets/mapa6.png')}
@@ -123,12 +161,6 @@ const styles = StyleSheet.create({
         borderRadius: 1,
         overflow: 'hidden',
         position: 'relative',
-    },
-    scrollContent: {
-        flexGrow: 1,
-        alignItems: 'center',
-        paddingTop: 30, // Desplaza todo hacia abajo
-        paddingBottom: 80, // Espacio suficiente para que el último botón sea visible
     },
     backgroundImage: {
         width: '100%',
