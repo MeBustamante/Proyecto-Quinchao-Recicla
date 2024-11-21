@@ -3,9 +3,10 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, ScrollView,
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
-import CheckBox from 'react-native-check-box'; // Importa CheckBox o usa uno propio
+import CheckBox from 'react-native-check-box';
+import LottieView from 'lottie-react-native'; // Importamos Lottie para la animación
 
-const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
+const { height: screenHeight } = Dimensions.get('window');
 
 const SolicitudRetiroResiduos = () => {
   const [nombre, setNombre] = useState('');
@@ -17,7 +18,6 @@ const SolicitudRetiroResiduos = () => {
 
   const navigation = useNavigation();
 
-  // Opciones de residuos
   const residuos = ['Latas', 'Plásticos', 'Vidrios', 'Metales', 'Papel', 'Orgánicos'];
 
   const toggleResiduo = (residuo) => {
@@ -27,7 +27,7 @@ const SolicitudRetiroResiduos = () => {
   };
 
   const handleSubmit = () => {
-    setShowModal(true); // Muestra el modal con la confirmación
+    setShowModal(true); // Muestra el modal con la animación
   };
 
   return (
@@ -36,15 +36,14 @@ const SolicitudRetiroResiduos = () => {
       style={styles.background}
     >
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {/* Banner con título encima */}
         <View style={styles.bannerContainer}>
           <Image source={require('../assets/retiro1.png')} style={styles.banner} />
         </View>
 
         <View style={styles.container}>
           <Text style={styles.description}>
-          ¡Cuidemos la comuna! Completa los datos y déjalo en nuestras manos!
-           </Text>
+            ¡Cuidemos la comuna! Completa los datos y déjalo en nuestras manos.
+          </Text>
 
           <View style={styles.formContainer}>
             <Text style={styles.label}>Nombre y Apellidos</Text>
@@ -83,7 +82,7 @@ const SolicitudRetiroResiduos = () => {
 
             <Text style={styles.label}>Tipo de Residuos</Text>
             <View style={styles.residuosContainer}>
-              {residuos.map((residuo, index) => (
+              {residuos.map((residuo) => (
                 <View key={residuo} style={styles.checkboxContainer}>
                   <CheckBox
                     isChecked={selectedResiduos.includes(residuo)}
@@ -104,10 +103,9 @@ const SolicitudRetiroResiduos = () => {
         </View>
       </ScrollView>
 
-      {/* Menú inferior */}
       <MenuInferior navigation={navigation} />
 
-      {/* Modal para mostrar el formulario enviado */}
+      {/* Modal para mostrar la animación y mensaje */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -116,14 +114,22 @@ const SolicitudRetiroResiduos = () => {
       >
         <View style={styles.modalBackground}>
           <View style={styles.modalContainer}>
-            <Text style={styles.modalTitle}>Formulario enviado</Text>
+            <LottieView
+              source={require('../assets/Animaciones/enviar.json')}
+              autoPlay
+              loop={true} // La animación se repite
+              style={styles.animation}
+            />
+            <Text style={styles.modalTitle}>
+              ¡Gracias por tu compromiso! Tu solicitud ha sido enviada correctamente.
+            </Text>
             <Text style={styles.modalText}>
               Residuos seleccionados: {selectedResiduos.length > 0 ? selectedResiduos.join(', ') : 'Ninguno'}
             </Text>
             <TouchableOpacity
               style={styles.modalButton}
               onPress={() => {
-                setShowModal(false);  // Cierra el modal
+                setShowModal(false); // Cierra el modal
                 navigation.navigate('Home'); // Navega a la pantalla principal
               }}
             >
@@ -142,7 +148,7 @@ const styles = StyleSheet.create({
   },
   bannerContainer: {
     width: '100%',
-    height: screenHeight * 0.20, // 22% de la pantalla
+    height: screenHeight * 0.2,
     marginBottom: 1,
   },
   banner: {
@@ -151,11 +157,10 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   scrollContainer: {
-    paddingBottom: 80, // Espacio para evitar que el contenido se superponga con el menú inferior
+    paddingBottom: 80,
   },
   container: {
     paddingHorizontal: 20,
-    paddingTop: 0.1,
   },
   description: {
     fontSize: 16,
@@ -186,7 +191,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     padding: 10,
     borderRadius: 5,
-    marginBottom: 3,
+    marginBottom: 10,
     backgroundColor: '#ffffff',
   },
   residuosContainer: {
@@ -195,22 +200,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   checkboxContainer: {
-    width: '48%', // Dos columnas
+    width: '48%',
     marginBottom: 5,
   },
   checkboxText: {
     fontSize: 14,
     color: '#333',
-  },submitButton: {
+  },
+  submitButton: {
     backgroundColor: '#4CAF50',
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
-    elevation: 8, // Sombra en Android
-    shadowColor: 'black', // Color de la sombra en iOS
-    shadowOffset: { width: 2, height: 4 }, // Desplazamiento de la sombra en iOS
-    shadowOpacity: 0.3, // Opacidad de la sombra en iOS
-    shadowRadius: 4, // Radio de la sombra en iOS
+    elevation: 8,
   },
   submitButtonText: {
     color: 'white',
@@ -226,19 +228,26 @@ const styles = StyleSheet.create({
   modalContainer: {
     backgroundColor: 'white',
     padding: 20,
-    borderRadius: 10,
+    borderRadius: 20,
     alignItems: 'center',
-    width: '80%',
+    width: '85%',
+  },
+  animation: {
+    width: 150,
+    height: 150,
+    marginBottom: 20,
   },
   modalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'green',
+    fontSize: 16,
+    textAlign: 'center',
     marginBottom: 10,
+    color: 'green',
+    fontWeight: 'bold',
   },
   modalText: {
     fontSize: 16,
     color: '#333',
+    textAlign: 'center',
     marginBottom: 20,
   },
   modalButton: {

@@ -1,23 +1,32 @@
 import React, { useState } from 'react';
-import { View,Text,TextInput,StyleSheet,TouchableOpacity,Image,Alert,KeyboardAvoidingView, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  KeyboardAvoidingView,
+  ScrollView,
+  Modal,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import * as ImagePicker from 'expo-image-picker'; // Importamos ImagePicker
-import { Ionicons } from '@expo/vector-icons'; // Iconos de Expo
+import * as ImagePicker from 'expo-image-picker';
+import { Ionicons } from '@expo/vector-icons';
+import LottieView from 'lottie-react-native';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { useNavigation } from '@react-navigation/native';
 import { Platform } from 'react-native';
 
-
 const DenunciaMicrobasural = () => {
   const navigation = useNavigation();
-
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [telefono, setTelefono] = useState('');
   const [direccion, setDireccion] = useState('');
   const [archivo, setArchivo] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
-  // Solicitar permisos
   const requestPermission = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
@@ -27,7 +36,6 @@ const DenunciaMicrobasural = () => {
     return true;
   };
 
-  // Función para seleccionar imagen desde la galería
   const pickImage = async () => {
     const permission = await requestPermission();
     if (!permission) return;
@@ -44,7 +52,6 @@ const DenunciaMicrobasural = () => {
     }
   };
 
-  // Función para tomar una foto
   const takePhoto = async () => {
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
     if (status !== 'granted') {
@@ -63,37 +70,24 @@ const DenunciaMicrobasural = () => {
     }
   };
 
-  // Mostrar Alert y redirigir a "Home"
   const handleSubmit = () => {
-    Alert.alert(
-      'Formulario enviado',
-      'Tu denuncia ha sido registrada exitosamente.',
-      [
-        {
-          text: 'Cerrar',
-          onPress: () => navigation.navigate('Home'),
-        },
-      ],
-      { cancelable: false }
-    );
+    setModalVisible(true);
   };
 
   return (
-    <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.background}>
-      {/* Banner */}
+    <LinearGradient
+      colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
+      style={styles.background}
+    >
       <ScrollView contentContainerStyle={styles.scrollContent}>
-
-      <Image source={require('../assets/denuncia.png')} style={styles.banner} />
-
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
+        <Image source={require('../assets/denuncia.png')} style={styles.banner} />
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
           <Text style={styles.description}>
             Por favor, rellena los datos y adjunta imagen del microbasural que encontraste.
           </Text>
-
-          {/* Formulario */}
           <View style={styles.formContainer}>
             <Text style={styles.label}>Nombre y Apellidos</Text>
             <TextInput
@@ -102,7 +96,6 @@ const DenunciaMicrobasural = () => {
               value={nombre}
               onChangeText={setNombre}
             />
-
             <Text style={styles.label}>Correo Electrónico</Text>
             <TextInput
               style={styles.input}
@@ -110,7 +103,6 @@ const DenunciaMicrobasural = () => {
               value={email}
               onChangeText={setEmail}
             />
-
             <Text style={styles.label}>Teléfono</Text>
             <TextInput
               style={styles.input}
@@ -118,7 +110,6 @@ const DenunciaMicrobasural = () => {
               value={telefono}
               onChangeText={setTelefono}
             />
-
             <Text style={styles.label}>Dirección del Microbasural</Text>
             <TextInput
               style={styles.input}
@@ -126,35 +117,64 @@ const DenunciaMicrobasural = () => {
               value={direccion}
               onChangeText={setDireccion}
             />
-
-            {/* Botones para subir o tomar imagen */}
             <Text style={styles.label}>Subir Imagen</Text>
             <View style={styles.imageRow}>
-            <TouchableOpacity style={[styles.uploadButton, styles.leftButton]} onPress={takePhoto}>
-              <Ionicons name="camera-outline" size={20} color="black" />
-              <Text style={styles.uploadButtonText}>Tomar Foto</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={[styles.uploadButton, styles.rightButton]} onPress={pickImage}>
-              <Ionicons name="image-outline" size={20} color="black" />
-              <Text style={styles.uploadButtonText}>Subir Imagen</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.uploadButton, styles.leftButton]}
+                onPress={takePhoto}
+              >
+                <Ionicons name="camera-outline" size={20} color="black" />
+                <Text style={styles.uploadButtonText}>Tomar Foto</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.uploadButton, styles.rightButton]}
+                onPress={pickImage}
+              >
+                <Ionicons name="image-outline" size={20} color="black" />
+                <Text style={styles.uploadButtonText}>Subir Imagen</Text>
+              </TouchableOpacity>
             </View>
-
-
-            {/* Mostrar la imagen seleccionada */}
             {archivo && <Image source={{ uri: archivo }} style={styles.imagePreview} />}
-
-            {/* Botón de Enviar */}
             <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
               <Text style={styles.submitButtonText}>Enviar</Text>
             </TouchableOpacity>
           </View>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
       </ScrollView>
-
-      {/* Menú inferior */}
       <MenuInferior navigation={navigation} />
+      {/* Modal para la animación y mensaje */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <LottieView
+              source={require('../assets/Animaciones/enviar.json')}
+              autoPlay
+              loop={true}
+              style={styles.animation}
+            />
+            <Text style={styles.modalTitle}>
+              ¡Gracias por tu compromiso! Tu reporte ha sido enviado correctamente.
+            </Text>
+            <Text style={styles.modalText}>
+              Juntos trabajamos por un Quinchao más limpio y sostenible.
+            </Text>
+            <TouchableOpacity
+              style={styles.closeButton}
+              onPress={() => {
+                setModalVisible(false);
+                navigation.navigate('Home');
+              }}
+            >
+              <Text style={styles.closeButtonText}>Cerrar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </LinearGradient>
   );
 };
@@ -225,34 +245,65 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 10,
   },
+  modalTitle: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 10,
+    color: 'green', // Texto verde
+    fontWeight: 'bold', // Texto en negrita
+  },  
   imageRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 15,
   },
-  leftButton: {
-    flex: 1,
-    marginRight: 10, // Espacio entre el botón izquierdo y derecho
-  },
-  rightButton: {
-    flex: 1,
-    marginLeft: 10, // Espacio entre el botón derecho y el izquierdo
-  },  
   submitButton: {
     backgroundColor: '#4CAF50',
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
-    elevation: 8, // Sombra en Android
-    shadowColor: 'black', // Color de la sombra en iOS
-    shadowOffset: { width: 2, height: 4 }, // Desplazamiento de la sombra en iOS
-    shadowOpacity: 0.3, // Opacidad de la sombra en iOS
-    shadowRadius: 4, // Radio de la sombra en iOS
+    elevation: 8,
   },
   submitButtonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: '800',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 20,
+    alignItems: 'center',
+    width: '85%',
+  },
+  animation: {
+    width: 150,
+    height: 150,
+    marginBottom: 20,
+  },
+  modalText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 10,
+    color: '#333',
+  },
+  closeButton: {
+    marginTop: 15,
+    backgroundColor: '#4CAF50',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  closeButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
