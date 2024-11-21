@@ -83,7 +83,7 @@ const DenunciaMicrobasural = () => {
       {/* Banner */}
       <ScrollView contentContainerStyle={styles.scrollContent}>
 
-      <Image source={require('../assets/retiro.png')} style={styles.banner} />
+      <Image source={require('../assets/denuncia.png')} style={styles.banner} />
 
       <KeyboardAvoidingView
         style={styles.container}
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
   uploadButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#fced99',
+    backgroundColor: '#faeeac',
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 8,
@@ -243,6 +243,11 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
+    elevation: 8, // Sombra en Android
+    shadowColor: 'black', // Color de la sombra en iOS
+    shadowOffset: { width: 2, height: 4 }, // Desplazamiento de la sombra en iOS
+    shadowOpacity: 0.3, // Opacidad de la sombra en iOS
+    shadowRadius: 4, // Radio de la sombra en iOS
   },
   submitButtonText: {
     color: 'white',
