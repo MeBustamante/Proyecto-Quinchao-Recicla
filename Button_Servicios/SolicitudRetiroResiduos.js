@@ -43,7 +43,7 @@ const SolicitudRetiroResiduos = () => {
 
         <View style={styles.container}>
           <Text style={styles.description}>
-          ¡Cuidemos la comuna! Completa los datos y déjalo en nuestras manos!
+          ¡Cuidemos nuestra comuna! Completa los datos y nos encargamos del resto!
            </Text>
 
           <View style={styles.formContainer}>
@@ -158,10 +158,10 @@ const styles = StyleSheet.create({
     paddingTop: 0.1,
   },
   description: {
-    fontSize: 16,
-    textAlign: 'justify',
+    fontSize: 18,
+    textAlign: 'center',
     color: 'black',
-    paddingHorizontal: 15,
+    paddingHorizontal: 12,
     marginBottom: 8,
   },
   formContainer: {
