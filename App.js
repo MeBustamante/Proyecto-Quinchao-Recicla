@@ -36,11 +36,11 @@ export default function App() {
             <Stack.Screen name="Servicios" component={ServiciosScreen} options={{ title: 'Servicios' }} />
             <Stack.Screen name="HuertosUrbanos" component={HuertosUrbanosScreen} options={{ title: 'Huertos Urbanos' }} />
             <Stack.Screen name="ReforestacionUrbana" component={ReforestacionUrbanaScreen} options={{ title: 'Reforestación Urbana' }} />
-            <Stack.Screen name="SolicitudRetiroResiduos" component={SolicitudRetiroResiduos} />
-            <Stack.Screen name="DenunciaMicrobasural" component={DenunciaMicrobasural} />
+            <Stack.Screen name="SolicitudRetiroResiduos" component={SolicitudRetiroResiduos} options={{ title: 'Solicitud Retiro Residuos' }}/>
+            <Stack.Screen name="DenunciaMicrobasural" component={DenunciaMicrobasural} options={{ title: 'Denuncia Microbasural' }}/>
             <Stack.Screen name="PuntosReciclaje" component={PuntosReciclajeScreen} options={{ title: 'Puntos de Reciclaje' }} />
-            <Stack.Screen name="Gestion" component={Gestion} />
-            <Stack.Screen name="Acerca" component={AcercaScreen} />
+            <Stack.Screen name="Gestion" component={Gestion} options={{ title: 'Gestión de Residuos' }}/>
+            <Stack.Screen name="Acerca" component={AcercaScreen} options={{ title: 'Acerca De Nosotros' }}/>
             <Stack.Screen name="Animacion" component={Animacion} options={{ headerShown: false }} />
             <Stack.Screen name="Configuracion" component={Configuracion} options={{ title: 'Configuración' }} />
           </Stack.Navigator>
