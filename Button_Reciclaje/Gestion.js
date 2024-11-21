@@ -41,26 +41,10 @@ const Gestion = () => {
 
   return (
     <View style={styles.container}>
-      <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
-
-        <View style={styles.logoContainerLeft}>
-          <Image 
-            source={require('../assets/LOGONEGRO.png')} 
-            style={styles.logo} 
-          />
-        </View>
-
-        <View style={styles.logoContainerRight}>
-          <Image 
-            source={require('../assets/LOG_AMBIENTE.jpg')} 
-            style={styles.logo} 
-          />
-        </View>
+      <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
 
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>Gestión</Text>
-          <Text style={styles.titleText}>de</Text>
-          <Text style={styles.titleText}>Residuos</Text>
+          <Text style={styles.titleText}>Gestión de Residuos</Text>
         </View>
 
         <View style={styles.secondContainer}>
