@@ -1,6 +1,6 @@
 // Gestión Residuos
 import React from 'react';
-import { StyleSheet, Text, View, Alert } from 'react-native';
+import { StyleSheet, Text, View, Alert, Image } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
@@ -60,9 +60,8 @@ const Gestion = () => {
     <View style={styles.container}>
       <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
 
-        <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>Gestión de Residuos</Text>
-        </View>
+        {/* Banner */}
+        <Image source={require('../assets/gestion.png')} style={styles.banner} />
 
         <View style={styles.secondContainer}>
           <Text style={styles.referenceText}>
@@ -106,15 +105,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',  
     paddingTop: 10,  
   },
-  titleContainer: {
-    marginBottom: 15,  
-    padding: 10,
-    alignItems: 'center',  
-  },
-  titleText: {
-    fontSize: 30, 
-    fontWeight: 'bold', 
-    color: '#000000',  
+  banner: {
+    width: '95%',
+    height: 95,
+    resizeMode: 'cover',
   },
   secondContainer: {
     marginBottom: 10,  
@@ -123,8 +117,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',  
   },
   referenceText: {
-    fontSize: 15, 
-    fontWeight: 'normal', 
+    fontSize: 16, 
+    fontWeight: '600', 
     color: '#000000',  
     textAlign: 'justify',  
   },

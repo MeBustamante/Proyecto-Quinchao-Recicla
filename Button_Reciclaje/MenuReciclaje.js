@@ -33,11 +33,9 @@ const MenuReciclaje = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
+      <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
         
         <Image source={require('../assets/reciclaje_encabezado.png')} style={styles.headerImage} />
-
-        <Text style={styles.header}>Menu de Reciclaje</Text>
 
         <View style={styles.buttonsContainer}>
           {/* Botón para Programas de Compostaje */}
@@ -136,14 +134,16 @@ const styles = StyleSheet.create({
   gradientBackground: { flex: 1, width: '100%', alignItems: 'center', paddingVertical: 20 },
   headerImage: { 
     width: '100%', 
-    height: 150, 
+    height: 130, 
     resizeMode: 'cover', 
     marginBottom: 10,
     position: 'absolute',
     top: 0,
   },
-  header: { fontSize: 30, fontWeight: 'bold', color: '#fff', marginTop: 160, marginBottom: 20 },
-  buttonsContainer: { width: '80%', marginTop: 40 },
+  buttonsContainer: { 
+    width: '80%', 
+    marginTop: 170, // Ajustamos el margen superior para que los botones no se superpongan con la imagen
+  },
 
   programBox: {
     borderRadius: 25,
