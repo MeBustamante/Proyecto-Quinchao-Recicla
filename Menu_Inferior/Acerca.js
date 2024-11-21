@@ -21,7 +21,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       {/* Aplicamos el LinearGradient como fondo */}
-      <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
+      <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
       
         <View style={styles.imageContainer}>
           <Image 

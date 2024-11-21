@@ -1,6 +1,6 @@
 // Gestión Residuos
 import React from 'react';
-import { StyleSheet, Text, View, Alert, Image } from 'react-native';
+import { StyleSheet, Text, View, Alert } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
@@ -8,59 +8,60 @@ import MenuInferior from '../Menu_Inferior/MenuInferior';
 const Gestion = () => {
 
   const handleDayPress = (day) => {
-    if (fridays[day.dateString] && fridays[day.dateString].selectedColor === 'red') {
-      Alert.alert('Recolección de residuos', 'Hoy es el día que pasamos a recolectar los residuos en tu área.');
+    const dateString = day.dateString;
+    
+    if (fridays[dateString]) {
+      const { selectedColor, selectedTextColor, hours, address } = fridays[dateString];
+      if (selectedColor === 'red') {
+        Alert.alert(
+          'Recolección de residuos',
+          `Hoy es el día que pasamos a recolectar los residuos en tu área.\n\nHora: ${hours}\nDirección: ${address}`,
+        );
+      }
     }
   };
 
-  const generateFridays = (year, month) => {
+  const generateFridays = (year) => {
     const fridays = {};
-    const startDate = new Date(year, month - 1, 1);
-    const firstDay = startDate.getDay();
+    
+    for (let month = 0; month < 12; month++) {
+      const startDate = new Date(year, month, 1);
+      const firstDay = startDate.getDay();
 
-    let firstFriday = 1 + (5 - firstDay + 7) % 7;
-    for (let i = firstFriday; i <= 31; i += 7) {
-      const dayString = `${year}-${month < 10 ? '0' + month : month}-${i < 10 ? '0' + i : i}`;
-      fridays[dayString] = {
-        selected: true,
-        selectedColor: 'red',
-        selectedTextColor: 'white',
-        customStyles: {
-          container: {
-            backgroundColor: 'lightblue',
+      // Calcula el primer viernes del mes
+      let firstFriday = 1 + (5 - firstDay + 7) % 7;
+      
+      for (let i = firstFriday; i <= 31; i += 7) {
+        const dayString = `${year}-${(month + 1) < 10 ? '0' + (month + 1) : (month + 1)}-${i < 10 ? '0' + i : i}`;
+        
+
+        fridays[dayString] = {
+          selected: true,
+          selectedColor: 'red',
+          selectedTextColor: 'white',
+          customStyles: {
+            container: {
+              backgroundColor: 'lightblue',
+            },
           },
-        },
-      };
+          hours: '10:00 AM - 12:00 PM', // Hora de recolección
+          address: 'Calle Ejemplo 123', // Dirección de recolección
+        };
+      }
     }
+    
     return fridays;
   };
 
-  const month = 11; 
-  const year = 2024; 
-  const fridays = generateFridays(year, month);
+  const year = 2024;  // Año para generar los viernes
+  const fridays = generateFridays(year);
 
   return (
     <View style={styles.container}>
-      <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
-
-        <View style={styles.logoContainerLeft}>
-          <Image 
-            source={require('../assets/LOGONEGRO.png')} 
-            style={styles.logo} 
-          />
-        </View>
-
-        <View style={styles.logoContainerRight}>
-          <Image 
-            source={require('../assets/LOG_AMBIENTE.jpg')} 
-            style={styles.logo} 
-          />
-        </View>
+      <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
 
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>Gestión</Text>
-          <Text style={styles.titleText}>de</Text>
-          <Text style={styles.titleText}>Residuos</Text>
+          <Text style={styles.titleText}>Gestión de Residuos</Text>
         </View>
 
         <View style={styles.secondContainer}>
@@ -104,23 +105,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start', 
     alignItems: 'center',  
     paddingTop: 10,  
-  },
-  logoContainerLeft: {
-    position: 'absolute',
-    top: 30,
-    left: 10,
-    zIndex: 1, 
-  },
-  logoContainerRight: {
-    position: 'absolute',
-    top: 30,
-    right: 10,
-    zIndex: 1, 
-  },
-  logo: {
-    width: 80,
-    height: 80,
-    resizeMode: 'contain', 
   },
   titleContainer: {
     marginBottom: 15,  
