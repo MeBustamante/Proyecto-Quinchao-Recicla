@@ -25,9 +25,16 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <UserProvider>
-      <AppProvider> 
+      <AppProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login">
+          <Stack.Navigator
+            initialRouteName="Login"
+            screenOptions={{
+              headerTitleAlign: 'center', // Centra el título en el header
+              headerStyle: { backgroundColor: '#00796B' }, // Establece el fondo del header (opcional)
+              headerTintColor: '#FFFFFF', // Cambia el color de los íconos y título en el header
+            }}
+          >
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Home" component={PantallaPrincipalScreen} options={{ headerShown: false }} />
             <Stack.Screen name="MenuReciclaje" component={MenuReciclajeScreen} options={{ title: 'Menú Reciclaje' }} />
@@ -36,11 +43,11 @@ export default function App() {
             <Stack.Screen name="Servicios" component={ServiciosScreen} options={{ title: 'Servicios' }} />
             <Stack.Screen name="HuertosUrbanos" component={HuertosUrbanosScreen} options={{ title: 'Huertos Urbanos' }} />
             <Stack.Screen name="ReforestacionUrbana" component={ReforestacionUrbanaScreen} options={{ title: 'Reforestación Urbana' }} />
-            <Stack.Screen name="SolicitudRetiroResiduos" component={SolicitudRetiroResiduos} options={{ title: 'Solicitud Retiro Residuos' }}/>
-            <Stack.Screen name="DenunciaMicrobasural" component={DenunciaMicrobasural} options={{ title: 'Denuncia Microbasural' }}/>
+            <Stack.Screen name="SolicitudRetiroResiduos" component={SolicitudRetiroResiduos} options={{ title: 'Solicitud Retiro Residuos' }} />
+            <Stack.Screen name="DenunciaMicrobasural" component={DenunciaMicrobasural} options={{ title: 'Denuncia Microbasural' }} />
             <Stack.Screen name="PuntosReciclaje" component={PuntosReciclajeScreen} options={{ title: 'Puntos de Reciclaje' }} />
-            <Stack.Screen name="Gestion" component={Gestion} options={{ title: 'Gestión de Residuos' }}/>
-            <Stack.Screen name="Acerca" component={AcercaScreen} options={{ title: 'Acerca De Nosotros' }}/>
+            <Stack.Screen name="Gestion" component={Gestion} options={{ title: 'Gestión de Residuos' }} />
+            <Stack.Screen name="Acerca" component={AcercaScreen} options={{ title: 'Acerca De Nosotros' }} />
             <Stack.Screen name="Animacion" component={Animacion} options={{ headerShown: false }} />
             <Stack.Screen name="Configuracion" component={Configuracion} options={{ title: 'Configuración' }} />
           </Stack.Navigator>
