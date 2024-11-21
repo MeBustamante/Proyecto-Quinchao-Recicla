@@ -43,8 +43,8 @@ const SolicitudRetiroResiduos = () => {
 
         <View style={styles.container}>
           <Text style={styles.description}>
-            Por favor, rellena los datos solicitados en el siguiente formulario para ir por los residuos.
-          </Text>
+          ¡Cuidemos la comuna! Completa los datos y déjalo en nuestras manos!
+           </Text>
 
           <View style={styles.formContainer}>
             <Text style={styles.label}>Nombre y Apellidos</Text>
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   },
   bannerContainer: {
     width: '100%',
-    height: screenHeight * 0.22, // 22% de la pantalla
+    height: screenHeight * 0.20, // 22% de la pantalla
     marginBottom: 1,
   },
   banner: {
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     color: '#333333',
-    marginBottom: 3,
+    marginBottom: 2,
     fontWeight: 'bold',
   },
   input: {
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     padding: 10,
     borderRadius: 5,
-    marginBottom: 8,
+    marginBottom: 3,
     backgroundColor: '#ffffff',
   },
   residuosContainer: {
@@ -196,20 +196,24 @@ const styles = StyleSheet.create({
   },
   checkboxContainer: {
     width: '48%', // Dos columnas
-    marginBottom: 10,
+    marginBottom: 5,
   },
   checkboxText: {
     fontSize: 14,
     color: '#333',
-  },
-  submitButton: {
-    backgroundColor: '#388E3C',
+  },submitButton: {
+    backgroundColor: '#4CAF50',
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
+    elevation: 8, // Sombra en Android
+    shadowColor: 'black', // Color de la sombra en iOS
+    shadowOffset: { width: 2, height: 4 }, // Desplazamiento de la sombra en iOS
+    shadowOpacity: 0.3, // Opacidad de la sombra en iOS
+    shadowRadius: 4, // Radio de la sombra en iOS
   },
   submitButtonText: {
-    color: '#ffffff',
+    color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
   },
