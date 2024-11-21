@@ -1,45 +1,38 @@
 // Servicios.js
 import React from 'react';
-import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 
+const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
 
 const ServiciosScreen = () => {
   const navigation = useNavigation();
 
   return (
     <LinearGradient
-      colors={['#81C784', '#388E3C']}
+      colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
       style={styles.background}
     >
-      {/* Logo en la esquina superior izquierda */}
-      <View style={styles.logoContainerLeft}>
+      {/* Imagen tipo banner con el título encima */}
+      <View style={styles.bannerContainer}>
         <Image 
-          source={require('../assets/LOGONEGRO.png')} 
-          style={styles.logo} 
+          source={require('../assets/servicios3.png')} 
+          style={styles.banner} 
         />
       </View>
 
-      {/* Logo en la esquina superior derecha */}
-      <View style={styles.logoContainerRight}>
-        <Image 
-          source={require('../assets/LOG_AMBIENTE.jpg')} 
-          style={styles.logo} 
-        />
-      </View>
-
-      {/* Contenido principal */}
-      <View style={styles.contentContainer}>
-        <Text style={styles.title}>Servicios</Text>
-
+      {/* Contenido con ScrollView */}
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Pressable
           style={styles.button}
           onPress={() => navigation.navigate('SolicitudRetiroResiduos')}
         >
           <Text style={styles.buttonText}>Solicitud Retiro Residuos</Text>
-          <Text style={styles.subtitulo}>Acá podrás solicitar el retiro de residuos de tu domicilio</Text>
+          <Text style={styles.subtitulo}>
+            Acá podrás solicitar el retiro de residuos de tu domicilio
+          </Text>
           <Image 
             source={require('../assets/solicitudretiro.png')} 
             style={styles.botonimagen} 
@@ -51,14 +44,19 @@ const ServiciosScreen = () => {
           onPress={() => navigation.navigate('DenunciaMicrobasural')}
         >
           <Text style={styles.buttonText}>Denuncia Microbasural</Text>
-          <Text style={styles.subtitulo}>Acá podrás denunciar microbasurales ilegales que veas en la comuna</Text>
+          <Text style={styles.subtitulo}>
+            Acá podrás denunciar microbasurales ilegales que veas en la comuna
+          </Text>
           <Image 
             source={require('../assets/MICROBASURAL.png')} 
             style={styles.botonimagen} 
           />
         </Pressable>
-         {/* Agregar el menú inferior */}
-         <MenuInferior navigation={navigation} />
+      </ScrollView>
+
+      {/* Menú inferior */}
+      <View style={styles.menuInferiorContainer}>
+        <MenuInferior navigation={navigation} />
       </View>
     </LinearGradient>
   );
@@ -68,56 +66,34 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
   },
-  logo: {
-    width: 80, 
-    height: 80, 
-    resizeMode: 'contain',
+  bannerContainer: {
+    position: 'relative',
+    width: '100%',
+    height: screenHeight * 0.19, // 20% de la altura de la pantalla
+    marginBottom: 5, // Espacio entre el banner y el contenido principal
   },
-  logoContainerLeft: { 
-    position: 'absolute', 
-    top: 30, 
-    left: 10, 
-    zIndex: 1 
+  banner: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
-  logoContainerRight: { 
-    position: 'absolute', 
-    top: 30, 
-    right: 10, 
-    zIndex: 1 
-  },
-  contentContainer: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginTop: 85, // Ajusta la posición vertical
+  scrollContainer: {
     paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    marginBottom: 15,
-    color: 'black',
-    textAlign: 'center',
-  },
-  subtitulo: {
-    textAlign: 'center',
-    paddingHorizontal: 10,
-    marginBottom: 20,
+    paddingBottom: 80, // Espacio para evitar que el contenido se superponga con el menú inferior
   },
   button: {
     backgroundColor: 'white',
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 8,
-    marginVertical: 15,
-    width: '90%',
+    marginVertical: 10,
+    width: '100%',
     alignItems: 'center',
-    // Sombra para resaltar el botón
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
-    elevation: 8
+    elevation: 8,
   },
   buttonText: {
     color: 'black',
@@ -125,10 +101,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
+  subtitulo: {
+    textAlign: 'center',
+    paddingHorizontal: 10,
+    marginBottom: 20,
+  },
   botonimagen: {
     width: '100%',
     height: 100,
     borderRadius: 5,
+  },
+  menuInferiorContainer: {
+    width: screenWidth, // Asegura que ocupe todo el ancho de la pantalla
+    position: 'absolute',
+    bottom: 0,
   },
 });
 
