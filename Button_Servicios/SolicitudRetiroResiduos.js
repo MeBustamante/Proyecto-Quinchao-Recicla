@@ -1,9 +1,9 @@
-// SolicitudRetiroResiduos.js
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
+import CheckBox from 'react-native-check-box'; // Importa CheckBox o usa uno propio
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
 
@@ -12,12 +12,22 @@ const SolicitudRetiroResiduos = () => {
   const [telefono, setTelefono] = useState('');
   const [email, setEmail] = useState('');
   const [direccion, setDireccion] = useState('');
-  const [residuo, setResiduo] = useState('');
+  const [selectedResiduos, setSelectedResiduos] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const navigation = useNavigation();
 
+  // Opciones de residuos
+  const residuos = ['Latas', 'Plásticos', 'Vidrios', 'Metales', 'Papel', 'Orgánicos'];
+
+  const toggleResiduo = (residuo) => {
+    setSelectedResiduos((prev) =>
+      prev.includes(residuo) ? prev.filter((item) => item !== residuo) : [...prev, residuo]
+    );
+  };
+
   const handleSubmit = () => {
-    alert('Formulario enviado');
+    setShowModal(true); // Muestra el modal con la confirmación
   };
 
   return (
@@ -25,16 +35,12 @@ const SolicitudRetiroResiduos = () => {
       colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
       style={styles.background}
     >
-      {/* Banner con título encima */}
-      <View style={styles.bannerContainer}>
-        <Image source={require('../assets/retiro.png')} style={styles.banner} />
-        <View style={styles.titleOverlay}>
-          <Text style={styles.title}>Solicitud de Retiro de Residuos</Text>
-        </View>
-      </View>
-
-      {/* Contenido del formulario con ScrollView */}
       <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {/* Banner con título encima */}
+        <View style={styles.bannerContainer}>
+          <Image source={require('../assets/retiro1.png')} style={styles.banner} />
+        </View>
+
         <View style={styles.container}>
           <Text style={styles.description}>
             Por favor, rellena los datos solicitados en el siguiente formulario para ir por los residuos.
@@ -76,14 +82,20 @@ const SolicitudRetiroResiduos = () => {
             />
 
             <Text style={styles.label}>Tipo de Residuos</Text>
-            <TextInput
-              style={styles.textArea}
-              placeholder="Latas, plásticos, vidrios, metales, etc."
-              value={residuo}
-              onChangeText={setResiduo}
-              multiline={true}
-              numberOfLines={4}
-            />
+            <View style={styles.residuosContainer}>
+              {residuos.map((residuo, index) => (
+                <View key={residuo} style={styles.checkboxContainer}>
+                  <CheckBox
+                    isChecked={selectedResiduos.includes(residuo)}
+                    onClick={() => toggleResiduo(residuo)}
+                    rightText={residuo}
+                    rightTextStyle={styles.checkboxText}
+                    checkBoxColor="#388E3C"
+                    style={styles.checkbox}
+                  />
+                </View>
+              ))}
+            </View>
 
             <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
               <Text style={styles.submitButtonText}>Enviar</Text>
@@ -94,6 +106,32 @@ const SolicitudRetiroResiduos = () => {
 
       {/* Menú inferior */}
       <MenuInferior navigation={navigation} />
+
+      {/* Modal para mostrar el formulario enviado */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={showModal}
+        onRequestClose={() => setShowModal(false)}
+      >
+        <View style={styles.modalBackground}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>Formulario enviado</Text>
+            <Text style={styles.modalText}>
+              Residuos seleccionados: {selectedResiduos.length > 0 ? selectedResiduos.join(', ') : 'Ninguno'}
+            </Text>
+            <TouchableOpacity
+              style={styles.modalButton}
+              onPress={() => {
+                setShowModal(false);  // Cierra el modal
+                navigation.navigate('Home'); // Navega a la pantalla principal
+              }}
+            >
+              <Text style={styles.modalButtonText}>Cerrar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </LinearGradient>
   );
 };
@@ -101,48 +139,30 @@ const SolicitudRetiroResiduos = () => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-  },bannerContainer: {
+  },
+  bannerContainer: {
     width: '100%',
-    height: screenHeight * 0.18, // 18% de la pantalla
-    overflow: 'hidden', // Asegúrate de que el contenedor recorte la imagen
-    marginBottom: 5,
+    height: screenHeight * 0.22, // 22% de la pantalla
+    marginBottom: 1,
   },
   banner: {
     width: '100%',
-    height: screenHeight * 0.36, // Aumenta la altura de la imagen para recortar desde arriba
-    resizeMode: 'cover',
-    position: 'absolute',
-    top: -screenHeight * 0.128, // Desplaza la imagen hacia arriba
-  },
-  titleOverlay: {
-    position: 'absolute',
-    top: '50%',
-    left: '63%',
-    transform: [{ translateX: -screenWidth * 0.5 }, { translateY: -10 }],
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'black',
-    textAlign: 'center',
-    textShadowColor: 'white',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 4,
+    height: '100%',
+    resizeMode: 'contain',
   },
   scrollContainer: {
     paddingBottom: 80, // Espacio para evitar que el contenido se superponga con el menú inferior
   },
   container: {
     paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingTop: 0.1,
   },
   description: {
     fontSize: 16,
     textAlign: 'justify',
     color: 'black',
     paddingHorizontal: 15,
-    marginBottom: 12,
+    marginBottom: 8,
   },
   formContainer: {
     backgroundColor: 'white',
@@ -150,15 +170,15 @@ const styles = StyleSheet.create({
     padding: 20,
     marginHorizontal: 10,
     elevation: 5,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+    shadowColor: 'black',
+    shadowOffset: { width: 2, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
   },
   label: {
     fontSize: 14,
     color: '#333333',
-    marginBottom: 5,
+    marginBottom: 3,
     fontWeight: 'bold',
   },
   input: {
@@ -166,17 +186,21 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     padding: 10,
     borderRadius: 5,
-    marginBottom: 15,
+    marginBottom: 8,
     backgroundColor: '#ffffff',
   },
-  textArea: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    borderRadius: 5,
-    height: 80,
-    marginBottom: 15,
-    backgroundColor: '#ffffff',
+  residuosContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  checkboxContainer: {
+    width: '48%', // Dos columnas
+    marginBottom: 10,
+  },
+  checkboxText: {
+    fontSize: 14,
+    color: '#333',
   },
   submitButton: {
     backgroundColor: '#388E3C',
@@ -188,6 +212,41 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContainer: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+    width: '80%',
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'green',
+    marginBottom: 10,
+  },
+  modalText: {
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 20,
+  },
+  modalButton: {
+    backgroundColor: '#388E3C',
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  modalButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
   },
 });
 
