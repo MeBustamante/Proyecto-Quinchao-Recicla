@@ -30,8 +30,6 @@ export default function App() {
           />
         </View>
 
-        <Text style={styles.title}>Acerca de </Text>
-
         <View style={styles.infoContainer}>
           <Text style={styles.infoText}>
             ¡Bienvenido a la aplicación de Quinchao Recicla!{'\n'}
@@ -77,17 +75,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',  
     padding: 10,  
   },
-  title: {
-    fontSize: 24,
-    color: '#000',  
-    fontWeight: 'bold',
-    marginBottom: 30, 
-  },
+  
   imageContainer: {
     width: '100%',
     flexDirection: 'row', 
-    justifyContent: 'flex-start',  
-    marginBottom: -25, 
+    justifyContent: 'center',  
+    marginBottom: 20, 
   },
   leftImage: {
     width: 80, 
@@ -100,7 +93,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     width: '90%',
-    padding: 20,
+    padding: 18,
     backgroundColor: '#F0FFFF',  
     borderRadius: 10,
     marginBottom: 20, 
