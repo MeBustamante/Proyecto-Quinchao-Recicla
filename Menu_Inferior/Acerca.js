@@ -22,7 +22,7 @@ export default function App() {
     <View style={styles.container}>
       {/* Aplicamos el LinearGradient como fondo */}
       <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
-      
+        
         <View style={styles.imageContainer}>
           <Image 
             source={require('../assets/LOG_AMBIENTE.jpg')}  
@@ -32,22 +32,30 @@ export default function App() {
 
         <View style={styles.infoContainer}>
           <Text style={styles.infoText}>
-            ¡Bienvenido a la aplicación de Quinchao Recicla!{'\n'}
-            El equipo desarrollador está conformado por Kathya Mansilla, Marcelo Bustamante, Yeremi Aburto, Matías Llaipen y Manuel Sanhueza.{'\n\n'}
-            ¡Gracias por elegir nuestra aplicación sobre reciclaje, esperamos que la disfrutes!{'\n\n'}
+            ¡¡Bienvenid@s a Quinchao Recicla!!{'\n'}
+            El equipo de desarrollo está compuesto por Kathya Mansilla, Marcelo Bustamante, Yeremi Aburto, Matías Llaipen y Manuel Sanhueza.{'\n\n'}
+            ¡Gracias por elegir nuestra app y unirte al cuidado del planeta! Juntos podemos hacer la diferencia. ¡Disfruta y sigue contribuyendo al cambio!
           </Text>
           
+          <Image
+            source={require('../assets/XD.jpg')}  // Ruta de la nueva imagen
+            style={styles.newImage}  // Usamos el estilo actualizado
+          />
+
+          <Text style={styles.infoText}>
+            ¡Síguenos en Redes Sociales!
+          </Text>
           {/* Contenedor para las redes sociales */}
           <View style={styles.footerContainer}>
             {/* Enlace a Instagram */}
             <TouchableOpacity onPress={openInstagram} style={styles.socialIconContainer}>
-              <Ionicons name="logo-instagram" size={24} color="#833AB4" style={styles.icon} />
-              <Text style={styles.footerText}>@muniquinchao</Text>
+              <Ionicons name="logo-instagram" size={29} color="#833AB4" style={styles.icon} />
+              <Text style={styles.footerText}>@Muniquinchao</Text>
             </TouchableOpacity>
 
             {/* Enlace a Facebook */}
             <TouchableOpacity onPress={openFacebook} style={styles.socialIconContainer}>
-              <FontAwesome name="facebook" size={24} color="#3b5998" style={styles.icon} />
+              <FontAwesome name="facebook" size={29} color="#3b5998" style={styles.icon} />
               <Text style={styles.footerText}>Municipalidad Quinchao</Text>
             </TouchableOpacity>
           </View>
@@ -73,52 +81,63 @@ const styles = StyleSheet.create({
     width: '100%',  
     alignItems: 'center', 
     justifyContent: 'flex-start',  
-    padding: 10,  
+    padding: 5,  // Aumentamos el padding para que no se vea tan comprimido
   },
   
   imageContainer: {
     width: '100%',
     flexDirection: 'row', 
     justifyContent: 'center',  
-    marginBottom: 20, 
-  },
-  leftImage: {
-    width: 80, 
-    height: 90,
-    marginRight: 10,  
+    marginBottom: 15, 
   },
   rightImage: {
-    width: 80, 
-    height: 80,
+    width: 95,   // Aumentamos un poco el tamaño de la imagen
+    height: 95,
+    borderRadius: 10,  // Agregamos bordes redondeados
+    borderWidth: 2,
+    borderColor: '#ccc',
+  },
+  newImage: {
+    width: 290,   // Aumentamos el tamaño de la imagen a 150px
+    height: 120,  // Aumentamos el tamaño de la imagen a 150px
+    borderRadius: 15,  // Bordes redondeados
+    borderWidth: 2,
+    borderColor: '#ccc',
+    marginBottom: 5,  // Margen inferior para separación
   },
   infoContainer: {
     width: '90%',
-    padding: 18,
+    padding: 15,
     backgroundColor: '#F0FFFF',  
-    borderRadius: 10,
+    borderRadius: 15,
     marginBottom: 20, 
+    shadowColor: '#000',  // Agregamos sombra para dar un efecto elevado
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
   },
   infoText: {
     fontSize: 18,
     color: '#333',
-    textAlign: 'justify',  
+    textAlign: 'justify',
+    marginTop: -8,  
   },
   footerContainer: {
     width: '100%',  
     flexDirection: 'column',  
     alignItems: 'flex-start',  
-    marginTop: 20,  
+    marginTop: 15,  
   },
   socialIconContainer: {
     flexDirection: 'row',  
     alignItems: 'center',  
-    marginBottom: 15,  
+    marginBottom: 10,  // Aumentamos el margen para mayor separación
   },
   icon: {
-    marginRight: 10,  
+    marginRight: 9,  // Más espacio entre el ícono y el texto
   },
   footerText: {
-    fontSize: 16,
+    fontSize: 17,
     color: '#333',
     textAlign: 'left',  
   },
