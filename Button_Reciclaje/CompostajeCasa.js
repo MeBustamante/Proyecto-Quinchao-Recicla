@@ -1,31 +1,40 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { ScrollView, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 
 const CompostajeCasa = ({ navigation }) => {
     return (
-        <ScrollView style={styles.scrollContainer}>
+        <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentScroll}>
             <View style={styles.container}>
                 <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
                     <View style={styles.contentContainer}>
-                        <Text style={styles.infoTitle}>Compostaje en Casa en Quinchao</Text>
-                        <View style={styles.textBlock}>
-                            <Text style={styles.sectionTitle}>Cómo Compostar en Casa</Text>
-                            {instruccionesCompostaje.map((instruccion, index) => (
-                                <Text style={styles.infoText} key={index}>
-                                    • {instruccion}
-                                </Text>
-                            ))}
-                        </View>
-                        <View style={styles.textBlock}>
-                            <Text style={styles.sectionTitle}>Recomendaciones para el Cuidado</Text>
-                            {recomendacionesCuidado.map((recomendacion, index) => (
-                                <Text style={styles.infoText} key={index}>
-                                    • {recomendacion}
-                                </Text>
-                            ))}
-                        </View>
+                        <Text style={styles.infoTitle}>Compostaje en Casa</Text>
+                        <Text style={styles.infoSubtitle}>
+                            Descubre cómo puedes contribuir al medio ambiente desde tu hogar mediante el compostaje.
+                        </Text>
+                        <Text style={styles.sectionTitle}>Cómo Comenzar:</Text>
+                        <Text style={styles.instructions}>
+                            1. Elige un contenedor adecuado para tu espacio.{'\n'}
+                            2. Coloca una capa de tierra en el fondo.{'\n'}
+                            3. Alterna capas de residuos húmedos y secos.{'\n'}
+                            4. Asegúrate de airear el compost regularmente.
+                        </Text>
+                        <Text style={styles.sectionTitle}>Tips para Mejorar:</Text>
+                        <Text style={styles.instructions}>
+                            - Mantén el compost húmedo, pero no encharcado.{'\n'}
+                            - Corta los residuos en pequeños pedazos para acelerar el proceso.{'\n'}
+                            - Evita compostar carne o productos lácteos.
+                        </Text>
+                        <Text style={styles.sectionTitle}>Beneficios del Compostaje:</Text>
+                        <Text style={styles.instructions}>
+                            - Reduce la cantidad de residuos enviados a vertederos.{'\n'}
+                            - Produce un abono excelente para las plantas.{'\n'}
+                            - Ayuda a retener la humedad en el suelo.
+                        </Text>
+                        <Text style={styles.motivationalText}>
+                            ¡Tu esfuerzo individual puede hacer una gran diferencia para nuestro planeta!
+                        </Text>
                         <Image source={require('../assets/Compostaje.png')} style={styles.image} />
                         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                             <Text style={styles.backButtonText}>Volver</Text>
@@ -38,90 +47,83 @@ const CompostajeCasa = ({ navigation }) => {
     );
 };
 
-const instruccionesCompostaje = [
-    "Elige un contenedor adecuado o área en tu jardín para empezar el compostaje.",
-    "Añade restos de comida y desechos de jardín al compost, en capas alternas.",
-    "Asegúrate de mantener el compost húmedo y revuélvelo regularmente para oxigenarlo.",
-    "Utiliza el compost maduro como abono para tus plantas y jardín después de unos meses.",
-    "Educa a tu familia sobre los beneficios del compostaje y cómo pueden contribuir."
-];
-
-const recomendacionesCuidado = [
-    "No incluyas materiales no biodegradables como plásticos o vidrios.",
-    "Evita compostar restos de carne o pescado para no atraer animales.",
-    "Cubre el compost para mantener la humedad y protegerlo de la lluvia directa.",
-    "Si el compost huele mal, añade más material 'marrón' como hojas secas para equilibrar.",
-    "Colabora con tus vecinos para compartir consejos y excedentes de compost."
-];
-
 const styles = StyleSheet.create({
     scrollContainer: {
         flex: 1,
     },
-    container: {
-        flex: 1,
-        alignItems: 'center',
+    contentScroll: {
+        flexGrow: 1,
+        justifyContent: 'center',
     },
-    gradientBackground: {
-        flex: 1,
-        width: '100%',
-        alignItems: 'center',
-        paddingVertical: 20,
+    container: { 
+        flex: 1, 
+        alignItems: 'center' 
+    },
+    gradientBackground: { 
+        width: '100%', 
+        alignItems: 'center', 
+        paddingVertical: 20 
     },
     contentContainer: {
         width: '90%',
         alignItems: 'center',
-        backgroundColor: '#F7E0B8', // Light beige background
+        padding: 20,
+        backgroundColor: '#fff',
         borderRadius: 20,
         borderWidth: 2,
         borderColor: '#4CAF50',
-        padding: 20,
+        marginTop: 20,
         marginBottom: 20,
     },
-    textBlock: {
-        width: '100%',
-        backgroundColor: '#FFF7E5', // Slightly darker beige for contrast
-        borderRadius: 10,
-        padding: 10,
-        marginBottom: 20,
+    infoTitle: { 
+        fontSize: 24, 
+        fontWeight: 'bold', 
+        color: 'black', 
+        textAlign: 'center', 
+        marginBottom: 10 
     },
-    infoTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: 'black',
-        textAlign: 'center',
-        marginBottom: 10,
+    infoSubtitle: { 
+        fontSize: 16, 
+        color: 'black', 
+        textAlign: 'center', 
+        marginBottom: 20 
     },
     sectionTitle: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
-        color: 'black',
+        color: '#4CAF50',
         textAlign: 'center',
         marginBottom: 5,
     },
-    infoText: {
-        fontSize: 16,
+    instructions: {
+        fontSize: 14,
         color: 'black',
         textAlign: 'left',
-        lineHeight: 24, // Increased line height for better readability
-        marginBottom: 10, // Adds space between tips
+        marginBottom: 15,
     },
-    image: {
-        width: '100%',
-        height: 200,
-        borderRadius: 10,
-        marginBottom: 20,
+    motivationalText: { 
+        fontSize: 16, 
+        color: 'black', 
+        fontStyle: 'italic', 
+        textAlign: 'center', 
+        marginBottom: 20 
     },
-    backButton: {
-        backgroundColor: '#4CAF50',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 10,
+    image: { 
+        width: '100%', 
+        height: 150, 
+        borderRadius: 10, 
+        marginBottom: 20 
     },
-    backButtonText: {
-        color: '#fff',
-        fontWeight: 'bold',
-        textAlign: 'center',
+    backButton: { 
+        backgroundColor: '#4CAF50', 
+        paddingVertical: 12, 
+        paddingHorizontal: 25, 
+        borderRadius: 10 
+    },
+    backButtonText: { 
+        color: '#fff', 
+        fontWeight: 'bold', 
+        textAlign: 'center' 
     },
 });
 
