@@ -1,21 +1,41 @@
-// Servicios.js
-import React from 'react';
+import React, { useContext } from 'react'; // Importa useContext
 import { View, Text, Pressable, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
+import { AppContext } from '../ConfigGlobal/AppContext'; // Importa el contexto global
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
 
 const ServiciosScreen = () => {
   const navigation = useNavigation();
+  const { language } = useContext(AppContext); // Obtén el idioma del contexto
+
+  // Textos en ambos idiomas
+  const texts = {
+    es: {
+      solicitudRetiro: 'Solicitud Retiro Residuos',
+      subtituloRetiro: 'Acá podrás solicitar el retiro de residuos de tu domicilio',
+      denunciaMicrobasural: 'Denuncia Microbasural',
+      subtituloMicrobasural: 'Acá podrás denunciar microbasurales ilegales que veas en la comuna',
+    },
+    en: {
+      solicitudRetiro: 'Request Waste Collection',
+      subtituloRetiro: 'Here you can request the collection of waste from your home',
+      denunciaMicrobasural: 'Report Illegal Dumpsites',
+      subtituloMicrobasural: 'Here you can report illegal dumpsites in the community',
+    },
+  };
+
+  // Selecciona el idioma actual
+  const t = texts[language];
 
   return (
     <LinearGradient
       colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
       style={styles.background}
     >
-      {/* Imagen tipo banner con el título encima */}
+      {/* Imagen tipo banner */}
       <View style={styles.bannerContainer}>
         <Image 
           source={require('../assets/servicios3.png')} 
@@ -29,10 +49,8 @@ const ServiciosScreen = () => {
           style={styles.button}
           onPress={() => navigation.navigate('SolicitudRetiroResiduos')}
         >
-          <Text style={styles.buttonText}>Solicitud Retiro Residuos</Text>
-          <Text style={styles.subtitulo}>
-            Acá podrás solicitar el retiro de residuos de tu domicilio
-          </Text>
+          <Text style={styles.buttonText}>{t.solicitudRetiro}</Text>
+          <Text style={styles.subtitulo}>{t.subtituloRetiro}</Text>
           <Image 
             source={require('../assets/solicitudretiro.png')} 
             style={styles.botonimagen} 
@@ -43,10 +61,8 @@ const ServiciosScreen = () => {
           style={styles.button}
           onPress={() => navigation.navigate('DenunciaMicrobasural')}
         >
-          <Text style={styles.buttonText}>Denuncia Microbasural</Text>
-          <Text style={styles.subtitulo}>
-            Acá podrás denunciar microbasurales ilegales que veas en la comuna
-          </Text>
+          <Text style={styles.buttonText}>{t.denunciaMicrobasural}</Text>
+          <Text style={styles.subtitulo}>{t.subtituloMicrobasural}</Text>
           <Image 
             source={require('../assets/MICROBASURAL.png')} 
             style={styles.botonimagen} 
