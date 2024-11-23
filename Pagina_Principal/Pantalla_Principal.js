@@ -1,14 +1,18 @@
-import React, { useContext } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { useUser } from '../Login/UserContext';
 import { AppContext } from '../ConfigGlobal/AppContext'; // Importa el contexto global
+import Icon from 'react-native-vector-icons/MaterialIcons'; // Icono de notificación
 
 const PantallaPrincipalScreen = ({ navigation }) => {
     const { nombre } = useUser();
     const { language } = useContext(AppContext); // Acceso al idioma desde el contexto global
     const nombreMayusculas = nombre.toUpperCase();
+
+    // Estado para controlar la visibilidad de las notificaciones
+    const [modalVisible, setModalVisible] = useState(false);
 
     // Traducciones dinámicas
     const translations = {
@@ -27,6 +31,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                 title: 'PUNTOS DE RECICLAJE',
                 subtitle: 'Ubica en el mapa los Puntos Verdes cercanos para reciclar de manera fácil y responsable.',
             },
+            notifications: 'Notificaciones', // Título para las notificaciones
         },
         en: {
             greeting: `HELLO ${nombreMayusculas}`,
@@ -43,6 +48,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                 title: 'RECYCLING POINTS',
                 subtitle: 'Locate nearby Green Points to recycle easily and responsibly.',
             },
+            notifications: 'Notifications', // Título para las notificaciones
         },
     };
 
@@ -52,6 +58,13 @@ const PantallaPrincipalScreen = ({ navigation }) => {
     const handleBoton2Press = () => navigation.navigate('Servicios');
     const handleBoton3Press = () => navigation.navigate('PuntosReciclaje');
 
+    // Datos de ejemplo para las notificaciones
+    const notifications = [
+        { id: 1, text: 'Nueva campaña de reciclaje en tu área.' },
+        { id: 2, text: '¡Ayúdanos a limpiar tu comunidad!' },
+        { id: 3, text: 'Nuevo punto de reciclaje disponible cerca de ti.' },
+    ];
+
     return (
         <View style={styles.container}>
             <LinearGradient
@@ -59,14 +72,12 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                 style={styles.gradientBackground}
             >
                 <ScrollView contentContainerStyle={styles.scrollContent}>
-                    {/* Encapsulación de la imagen y el texto de bienvenida */}
+                    {/* Encabezado con notificación */}
                     <View style={styles.headerContainer}>
-                        {/* Imagen de fondo */}
                         <Image
                             source={require('../assets/p3.jpg')}
                             style={styles.backgroundImage}
                         />
-                        {/* Contenedor del texto y el logo */}
                         <View style={styles.textOverlay}>
                             <Text style={styles.greetingText}>{currentLanguage.greeting}</Text>
                             <Text style={styles.welcomeText}>{currentLanguage.welcome}</Text>
@@ -78,6 +89,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                         </View>
                     </View>
 
+                    {/* Botones */}
                     <View style={styles.buttonsContainer}>
                         <TouchableOpacity
                             style={[styles.button, styles.buttonYellowBorder]}
@@ -137,6 +149,39 @@ const PantallaPrincipalScreen = ({ navigation }) => {
             <View style={styles.menuInferiorContainer}>
                 <MenuInferior />
             </View>
+
+            {/* Ícono de notificación */}
+            <TouchableOpacity
+                style={styles.notificationIconContainer}
+                onPress={() => setModalVisible(true)}
+            >
+                <Icon name="notifications" size={30} color="#fff" />
+            </TouchableOpacity>
+
+            {/* Modal de Notificaciones */}
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => setModalVisible(false)}
+            >
+                <View style={styles.modalBackground}>
+                    <View style={styles.modalContainer}>
+                        <Text style={styles.modalTitle}>{currentLanguage.notifications}</Text>
+                        {notifications.map(notification => (
+                            <Text key={notification.id} style={styles.notificationText}>
+                                {notification.text}
+                            </Text>
+                        ))}
+                        <TouchableOpacity
+                            style={styles.closeButton}
+                            onPress={() => setModalVisible(false)}
+                        >
+                            <Text style={styles.closeButtonText}>Cerrar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
         </View>
     );
 };
@@ -245,6 +290,48 @@ const styles = StyleSheet.create({
         width: '100%',
         position: 'absolute',
         bottom: 0,
+    },
+    // Estilos para la notificación
+    notificationIconContainer: {
+        position: 'absolute',
+        top: 40,
+        right: 20,
+        zIndex: 10, // Asegura que el ícono esté encima de otros componentes
+    },
+    modalBackground: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContainer: {
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 10,
+        width: '80%',
+        maxHeight: '70%',
+        overflow: 'scroll',
+    },
+    modalTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 15,
+        textAlign: 'center',
+    },
+    notificationText: {
+        fontSize: 16,
+        marginVertical: 10,
+    },
+    closeButton: {
+        marginTop: 20,
+        backgroundColor: '#FF9800',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
+    closeButtonText: {
+        color: 'white',
+        fontWeight: 'bold',
     },
 });
 
