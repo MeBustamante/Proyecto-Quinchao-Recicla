@@ -1,14 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 import CheckBox from 'react-native-check-box';
-import LottieView from 'lottie-react-native'; // Importamos Lottie para la animación
+import LottieView from 'lottie-react-native';
+import { AppContext } from '../ConfigGlobal/AppContext'; // Importa el contexto global
 
 const { height: screenHeight } = Dimensions.get('window');
 
+const translations = {
+  es: {
+    title: '¡Cuidemos la comuna! Completa los datos y déjalo en nuestras manos!',
+    name: 'Nombre y Apellidos',
+    phone: 'Teléfono',
+    email: 'Correo Electrónico',
+    address: 'Dirección',
+    wasteType: 'Tipo de Residuos',
+    submit: 'Enviar',
+    modalTitle: '¡Gracias por tu compromiso! Tu solicitud ha sido enviada correctamente.',
+    modalText: 'Residuos seleccionados:',
+    close: 'Cerrar',
+    wasteOptions: ['Latas', 'Plásticos', 'Vidrios', 'Metales', 'Papel', 'Orgánicos'], 
+
+  },
+  en: {
+    title: 'Let’s care for our community! Complete the information and leave it to us!',
+    name: 'Full Name',
+    phone: 'Phone',
+    email: 'Email Address',
+    address: 'Address',
+    wasteType: 'Type of Waste',
+    submit: 'Submit',
+    modalTitle: 'Thank you for your commitment! Your request has been successfully sent.',
+    modalText: 'Selected waste:',
+    close: 'Close',
+    wasteOptions: ['Cans', 'Plastics', 'Glass', 'Metals', 'Paper', 'Organics'], // Traducciones en inglés
+  },
+};
+
 const SolicitudRetiroResiduos = () => {
+  const { language } = useContext(AppContext); // Usa el contexto global para obtener el idioma
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
   const [email, setEmail] = useState('');
@@ -17,7 +49,6 @@ const SolicitudRetiroResiduos = () => {
   const [showModal, setShowModal] = useState(false);
 
   const navigation = useNavigation();
-
   const residuos = ['Latas', 'Plásticos', 'Vidrios', 'Metales', 'Papel', 'Orgánicos'];
 
   const toggleResiduo = (residuo) => {
@@ -30,6 +61,8 @@ const SolicitudRetiroResiduos = () => {
     setShowModal(true); // Muestra el modal con la animación
   };
 
+  const t = translations[language]; // Traducciones según el idioma
+
   return (
     <LinearGradient
       colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
@@ -41,49 +74,47 @@ const SolicitudRetiroResiduos = () => {
         </View>
 
         <View style={styles.container}>
-          <Text style={styles.description}>
-          ¡Cuidemos la comuna! Completa los datos y déjalo en nuestras manos!
-           </Text>
+          <Text style={styles.description}>{t.title}</Text>
 
           <View style={styles.formContainer}>
-            <Text style={styles.label}>Nombre y Apellidos</Text>
+            <Text style={styles.label}>{t.name}</Text>
             <TextInput
               style={styles.input}
-              placeholder="Ingrese su nombre y apellidos"
+              placeholder={t.name}
               value={nombre}
               onChangeText={setNombre}
             />
 
-            <Text style={styles.label}>Teléfono</Text>
+            <Text style={styles.label}>{t.phone}</Text>
             <TextInput
               style={styles.input}
-              placeholder="Ingrese su número de teléfono"
+              placeholder={t.phone}
               value={telefono}
               onChangeText={setTelefono}
               keyboardType="phone-pad"
             />
 
-            <Text style={styles.label}>Correo Electrónico</Text>
+            <Text style={styles.label}>{t.email}</Text>
             <TextInput
               style={styles.input}
-              placeholder="Ingrese su correo electrónico"
+              placeholder={t.email}
               value={email}
               onChangeText={setEmail}
               keyboardType="email-address"
             />
 
-            <Text style={styles.label}>Dirección</Text>
+            <Text style={styles.label}>{t.address}</Text>
             <TextInput
               style={styles.input}
-              placeholder="Ingrese su dirección"
+              placeholder={t.address}
               value={direccion}
               onChangeText={setDireccion}
             />
 
-            <Text style={styles.label}>Tipo de Residuos</Text>
+            <Text style={styles.label}>{t.wasteType}</Text>
             <View style={styles.residuosContainer}>
-              {residuos.map((residuo) => (
-                <View key={residuo} style={styles.checkboxContainer}>
+              {t.wasteOptions.map((residuo, index) => (
+                <View key={index} style={styles.checkboxContainer}>
                   <CheckBox
                     isChecked={selectedResiduos.includes(residuo)}
                     onClick={() => toggleResiduo(residuo)}
@@ -96,8 +127,9 @@ const SolicitudRetiroResiduos = () => {
               ))}
             </View>
 
+
             <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-              <Text style={styles.submitButtonText}>Enviar</Text>
+              <Text style={styles.submitButtonText}>{t.submit}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -105,7 +137,6 @@ const SolicitudRetiroResiduos = () => {
 
       <MenuInferior navigation={navigation} />
 
-      {/* Modal para mostrar la animación y mensaje */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -117,23 +148,21 @@ const SolicitudRetiroResiduos = () => {
             <LottieView
               source={require('../assets/Animaciones/enviar.json')}
               autoPlay
-              loop={true} // La animación se repite
+              loop={true}
               style={styles.animation}
             />
-            <Text style={styles.modalTitle}>
-              ¡Gracias por tu compromiso! Tu solicitud ha sido enviada correctamente.
-            </Text>
+            <Text style={styles.modalTitle}>{t.modalTitle}</Text>
             <Text style={styles.modalText}>
-              Residuos seleccionados: {selectedResiduos.length > 0 ? selectedResiduos.join(', ') : 'Ninguno'}
+              {t.modalText} {selectedResiduos.length > 0 ? selectedResiduos.join(', ') : 'Ninguno'}
             </Text>
             <TouchableOpacity
               style={styles.modalButton}
               onPress={() => {
-                setShowModal(false); // Cierra el modal
-                navigation.navigate('Home'); // Navega a la pantalla principal
+                setShowModal(false);
+                navigation.navigate('Home');
               }}
             >
-              <Text style={styles.modalButtonText}>Cerrar</Text>
+              <Text style={styles.modalButtonText}>{t.close}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -141,6 +170,7 @@ const SolicitudRetiroResiduos = () => {
     </LinearGradient>
   );
 };
+
 
 const styles = StyleSheet.create({
   background: {
