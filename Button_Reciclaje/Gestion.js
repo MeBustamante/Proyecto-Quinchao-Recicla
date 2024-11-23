@@ -44,8 +44,8 @@ const Gestion = () => {
               backgroundColor: 'lightblue',
             },
           },
-          hours: '10:00 AM - 12:00 PM', // Hora de recolección
-          address: 'Calle Ejemplo 123', // Dirección de recolección
+          hours: '10:00 AM - 2:00 PM', // Hora de recolección
+          address: 'Isla de Achao', // Dirección de recolección
         };
       }
     }
@@ -66,7 +66,7 @@ const Gestion = () => {
 
           <View style={styles.secondContainer}>
             <Text style={styles.referenceText}>
-              Mantén tu zona limpia y organizada con nuestro calendario de recolección. Aquí podrás ver las fechas programadas para la recolección de diferentes tipos de residuos en tu área.
+              Mantén tu zona limpia y organizada con nuestro calendario de recolección. Aquí podrás ver las fechas programadas:
             </Text>
           </View>
 
@@ -92,16 +92,16 @@ const Gestion = () => {
               Aquí tienes el recorrido de recolección para las diferentes zonas:
             </Text>
             <View style={styles.recourseItem}>
-              <Text style={styles.recourseAddress}>Calle Ejemplo 123</Text>
-              <Text style={styles.recourseHours}>Hora: 10:00 AM</Text>
+              <Text style={styles.recourseAddress}>Calle Mirador Alto 123</Text>
+              <Text style={styles.recourseHours}>Hora: 10:00 AM a 10:00 AM</Text>
             </View>
             <View style={styles.recourseItem}>
-              <Text style={styles.recourseAddress}>Calle Ficticia 456</Text>
-              <Text style={styles.recourseHours}>Hora: 11:30 AM</Text>
+              <Text style={styles.recourseAddress}>Calle Serrano 456</Text>
+              <Text style={styles.recourseHours}>Hora: 11:30 AM a 12:00 PM</Text>
             </View>
             <View style={styles.recourseItem}>
-              <Text style={styles.recourseAddress}>Avenida Principal 789</Text>
-              <Text style={styles.recourseHours}>Hora: 1:00 PM</Text>
+              <Text style={styles.recourseAddress}>Calle Padre German Ampuero 789</Text>
+              <Text style={styles.recourseHours}>Hora: 1:00 PM a 2:00 PM</Text>
             </View>
           </View>
         </ScrollView>
@@ -150,31 +150,31 @@ const styles = StyleSheet.create({
   },
   referenceText: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '500',
     color: '#000000',
     textAlign: 'justify',
   },
   thirdContainer: {
     width: '90%',
     padding: 15,
-    borderWidth: 2,
-    borderColor: '#000',
-    borderRadius: 10,
+    borderWidth: 2.5,
+    borderColor: '#4CAF50',
+    borderRadius: 15,
     backgroundColor: '#fff',
     height: 350,
     alignItems: 'center',
-    marginBottom: 20, // Separación entre el calendario y el siguiente contenido
+    marginBottom: 10, // Separación entre el calendario y el siguiente contenido
   },
   recourseContainer: {
-    marginTop: 20,
+    marginTop: 5,
     padding: 15,
     width: '90%',
-    backgroundColor: '#ffcc80',
+    backgroundColor: '#fff',
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#000',
+    borderWidth: 2.5,
+    borderColor: '#4CAF50',
     alignItems: 'center',
-    marginBottom: 30, // Separación entre el cuadro de recorrido y el menú inferior
+    marginBottom: 10, // Separación entre el cuadro de recorrido y el menú inferior
   },
   recourseTitle: {
     fontSize: 18,
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   recourseText: {
-    fontSize: 14,
+    fontSize: 15,
     color: '#000',
     textAlign: 'center',
     marginBottom: 15,
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingVertical: 8,
     paddingHorizontal: 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#4CAF50',
     borderRadius: 5,
     borderWidth: 1,
     borderColor: '#ccc',
@@ -201,11 +201,11 @@ const styles = StyleSheet.create({
   recourseAddress: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#000',
+    color: 'white',
   },
   recourseHours: {
     fontSize: 14,
-    color: '#000',
+    color: 'white',
   },
   menuContainer: {
     position: 'absolute',
