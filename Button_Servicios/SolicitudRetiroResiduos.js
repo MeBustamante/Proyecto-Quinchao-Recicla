@@ -21,8 +21,9 @@ const translations = {
     modalTitle: '¡Gracias por tu compromiso! Tu solicitud ha sido enviada correctamente.',
     modalText: 'Residuos seleccionados:',
     close: 'Cerrar',
-    wasteOptions: ['Latas', 'Plásticos', 'Vidrios', 'Metales', 'Papel', 'Orgánicos'], 
-
+    wasteOptions: ['Latas', 'Plásticos', 'Vidrios', 'Metales', 'Papel', 'Orgánicos'],
+    errorModalText: "Por favor complete todos los campos.",
+    close: "Cerrar", 
   },
   en: {
     title: 'Let’s care for our community! Complete the information and leave it to us!',
@@ -36,6 +37,8 @@ const translations = {
     modalText: 'Selected waste:',
     close: 'Close',
     wasteOptions: ['Cans', 'Plastics', 'Glass', 'Metals', 'Paper', 'Organics'], // Traducciones en inglés
+    errorModalText: "Please complete all fields.",
+    close: "Close",
   },
 };
 
@@ -56,11 +59,20 @@ const SolicitudRetiroResiduos = () => {
       prev.includes(residuo) ? prev.filter((item) => item !== residuo) : [...prev, residuo]
     );
   };
+  const [showErrorModal, setShowErrorModal] = useState(false); // Estado para mostrar el modal de error
 
   const handleSubmit = () => {
-    setShowModal(true); // Muestra el modal con la animación
+    // Verificar si todos los campos están completos
+    if (!nombre || !telefono || !email || !direccion || selectedResiduos.length === 0) {
+      // Mostrar modal de error si algún campo está vacío
+      setShowErrorModal(true);
+      return; // Evita que el formulario sea enviado
+    }
+  
+    // Si todos los campos están completos, mostrar el modal de éxito
+    setShowModal(true);
   };
-
+  
   const t = translations[language]; // Traducciones según el idioma
 
   return (
@@ -137,6 +149,8 @@ const SolicitudRetiroResiduos = () => {
 
       <MenuInferior navigation={navigation} />
 
+      
+      {/* Modal de éxito */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -163,6 +177,26 @@ const SolicitudRetiroResiduos = () => {
               }}
             >
               <Text style={styles.modalButtonText}>{t.close}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Modal de error (nuevo) */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={showErrorModal}
+        onRequestClose={() => setShowErrorModal(false)}
+      >
+        <View style={styles.modalBackground}>
+          <View style={styles.errorModalContainer}>
+            <Text style={styles.errorModalText}>{t.errorModalText}</Text>
+            <TouchableOpacity
+              style={styles.errorModalButton}
+              onPress={() => setShowErrorModal(false)}
+            >
+              <Text style={styles.errorModalButtonText}>{t.close}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -291,6 +325,40 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 16,
   },
+    // Estilos del modal de error
+    modalBackground: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo translúcido
+    },
+    errorModalContainer: {
+      backgroundColor: 'white',
+      padding: 20,
+      borderRadius: 10, // Borde redondeado
+      alignItems: 'center',
+      width: '80%',
+      shadowColor: 'black',
+      shadowOffset: { width: 2, height: 4 },
+      shadowOpacity: 0.3,
+      shadowRadius: 5,
+    },
+    errorModalText: {
+      fontSize: 16,
+      color: 'black', 
+      textAlign: 'center',
+      marginBottom: 20,
+    },
+    errorModalButton: {
+      backgroundColor: '#4CAF50', 
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      borderRadius: 5,
+    },
+    errorModalButtonText: {
+      color: '#ffffff',
+      fontSize: 16,
+    },
 });
 
 export default SolicitudRetiroResiduos;
