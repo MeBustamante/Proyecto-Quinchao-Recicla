@@ -62,11 +62,18 @@ const DenunciaMicrobasural = () => {
   const [direccion, setDireccion] = useState('');
   const [archivo, setArchivo] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+
+  const showCustomAlert = (message) => {
+    setAlertMessage(message);
+    setAlertVisible(true);
+  };
 
   const requestPermission = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== 'granted') {
-      alert(texts[language].galleryPermission);
+      showCustomAlert(texts[language].galleryPermission);
       return false;
     }
     return true;
@@ -91,7 +98,7 @@ const DenunciaMicrobasural = () => {
   const takePhoto = async () => {
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
     if (status !== 'granted') {
-      alert(texts[language].cameraPermission);
+      showCustomAlert(texts[language].cameraPermission);
       return;
     }
 
@@ -107,9 +114,31 @@ const DenunciaMicrobasural = () => {
   };
 
   const handleSubmit = () => {
+    if (!nombre.trim()) {
+      showCustomAlert(texts[language].enterFullName);
+      return;
+    }
+    if (!email.trim()) {
+      showCustomAlert(texts[language].enterEmail);
+      return;
+    }
+    if (!telefono.trim()) {
+      showCustomAlert(texts[language].enterPhone);
+      return;
+    }
+    if (!direccion.trim()) {
+      showCustomAlert(texts[language].enterAddress);
+      return;
+    }
+    if (!archivo) {
+      showCustomAlert(texts[language].uploadImage);
+      return;
+    }
+
     setModalVisible(true);
   };
 
+  
   return (
     <LinearGradient
       colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
@@ -179,31 +208,22 @@ const DenunciaMicrobasural = () => {
       <Modal
         animationType="fade"
         transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
+        visible={alertVisible}
+        onRequestClose={() => setAlertVisible(false)}
       >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <LottieView
-              source={require('../assets/Animaciones/enviar.json')}
-              autoPlay
-              loop={true}
-              style={styles.animation}
-            />
-            <Text style={styles.modalTitle}>{texts[language].thankYou}</Text>
-            <Text style={styles.modalText}>{texts[language].cleanEnvironment}</Text>
+        <View style={styles.alertOverlay}>
+          <View style={styles.alertContainer}>
+            <Text style={styles.alertText}>{alertMessage}</Text>
             <TouchableOpacity
-              style={styles.closeButton}
-              onPress={() => {
-                setModalVisible(false);
-                navigation.navigate('Home');
-              }}
+              style={styles.alertButton}
+              onPress={() => setAlertVisible(false)}
             >
-              <Text style={styles.closeButtonText}>{texts[language].close}</Text>
+              <Text style={styles.alertButtonText}>{texts[language].close}</Text>
             </TouchableOpacity>
           </View>
         </View>
       </Modal>
+      {/* Modal de confirmación (ya existente) */}
     </LinearGradient>
   );
 };
@@ -330,6 +350,37 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   closeButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  alertOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  alertContainer: {
+    width: '80%',
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 20,
+    alignItems: 'center',
+    elevation: 5,
+  },
+  alertText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 20,
+    color: '#333',
+  },
+  alertButton: {
+    backgroundColor: '#4CAF50',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+  },
+  alertButtonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
