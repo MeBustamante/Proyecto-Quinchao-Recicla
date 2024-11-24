@@ -6,12 +6,12 @@ import MenuInferior from '../Menu_Inferior/MenuInferior';
 const CompostajeCasa = ({ navigation }) => {
     return (
         <View style={styles.fullScreen}>
-            <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
+            <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
                 <ScrollView style={styles.scrollContainer}>
-                    <View style={styles.contentContainer}>
+                    <View style={[styles.contentContainer, { marginTop: 50 }]}>
                         <Text style={styles.infoTitleBlack}>Compostaje en Casa</Text>
                         <Text style={styles.sectionTitle}>Actividad</Text>
-                        <Text style={styles.infoText}>
+                        <Text style={[styles.infoText, { textAlign: 'center' }]}>
                             Preparación y mantenimiento de un compostador doméstico.
                         </Text>
                         <Text style={styles.sectionTitle}>Tips</Text>
@@ -52,51 +52,46 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     contentContainer: {
-        alignItems: 'flex-start',
-        backgroundColor: '#fff',
+        width: '85%',
+        alignSelf: 'center',
+        backgroundColor: '#ffffff',
         borderRadius: 20,
         borderWidth: 2,
         borderColor: '#4CAF50',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        marginHorizontal: 50,
-        marginTop: 20,
-        marginBottom: 20,
+        padding: 15,
+        marginBottom: 30,
     },
     infoTitleBlack: {
         fontSize: 18,
         fontWeight: 'bold',
         color: 'black',
         textAlign: 'center',
-        width: '100%',
-        marginBottom: 5,
+        marginBottom: 10,
     },
     sectionTitle: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#4CAF50',
         textAlign: 'center',
-        width: '100%',
-        marginBottom: 3,
+        marginBottom: 5,
     },
     infoText: {
         fontSize: 14,
         color: 'black',
         textAlign: 'left',
-        lineHeight: 20,
-        width: '100%',
-        marginBottom: 5,
+        lineHeight: 22,
+        marginBottom: 10,
     },
     image: {
         width: '100%',
-        height: 160,
+        height: 150,
         borderRadius: 10,
-        marginBottom: 15,
+        marginBottom: 20,
     },
     backButton: {
         backgroundColor: '#4CAF50',
-        paddingVertical: 8,
-        paddingHorizontal: 18,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
         borderRadius: 10,
     },
     backButtonText: {

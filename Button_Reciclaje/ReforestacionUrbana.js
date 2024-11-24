@@ -6,12 +6,12 @@ import MenuInferior from '../Menu_Inferior/MenuInferior';
 const ReforestacionUrbana = ({ navigation }) => {
     return (
         <View style={styles.fullScreen}>
-            <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
+            <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
                 <ScrollView style={styles.scrollContainer}>
-                    <View style={[styles.contentContainer, {marginTop: 30}]}>
+                    <View style={styles.contentContainer}>
                         <Text style={styles.infoTitle}>Reforestación Urbana en Quinchao</Text>
                         <Text style={styles.sectionTitle}>Actividad</Text>
-                        <Text style={styles.infoText}>
+                        <Text style={[styles.infoText, { textAlign: 'center' }]}>
                             Participa en la reforestación urbana plantando árboles en zonas públicas para revitalizar el entorno.
                         </Text>
                         <Text style={styles.sectionTitle}>Tips</Text>
@@ -58,7 +58,9 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         borderWidth: 2,
         borderColor: '#4CAF50',
-        padding: 15,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        marginTop: 50, // Ajustado para bajar el cuadro blanco
         marginBottom: 30,
     },
     infoTitle: {

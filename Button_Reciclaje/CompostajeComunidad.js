@@ -6,12 +6,12 @@ import MenuInferior from '../Menu_Inferior/MenuInferior';
 const CompostajeComunidad = ({ navigation }) => {
     return (
         <View style={styles.fullScreen}>
-            <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
+            <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
                 <ScrollView style={styles.scrollContainer}>
                     <View style={styles.contentContainer}>
                         <Text style={styles.infoTitleBlack}>Compostaje Comunitario en Quinchao</Text>
                         <Text style={styles.sectionTitle}>Actividad</Text>
-                        <Text style={styles.infoText}>
+                        <Text style={[styles.infoText, { textAlign: 'center' }]}>
                             Organización de una jornada de recogida y clasificación de residuos orgánicos.
                         </Text>
                         <Text style={styles.sectionTitle}>Tips</Text>
@@ -52,51 +52,48 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     contentContainer: {
-        alignItems: 'flex-start',
+        width: '85%',
+        alignSelf: 'center',
         backgroundColor: '#fff',
         borderRadius: 20,
         borderWidth: 2,
         borderColor: '#4CAF50',
         paddingVertical: 10,
         paddingHorizontal: 20,
-        marginHorizontal: 50,
-        marginTop: 20,
-        marginBottom: 20,
+        marginTop: 50, // Ajustado para que el cuadro blanco esté más abajo
+        marginBottom: 30,
     },
     infoTitleBlack: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: 'black', // Title color changed to black
+        color: 'black',
         textAlign: 'center',
-        width: '100%',
-        marginBottom: 5,
+        marginBottom: 10,
     },
     sectionTitle: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#4CAF50',
         textAlign: 'center',
-        width: '100%',
-        marginBottom: 3,
+        marginBottom: 5,
     },
     infoText: {
         fontSize: 14,
         color: 'black',
         textAlign: 'left',
-        lineHeight: 20,
-        width: '100%',
-        marginBottom: 5,
+        lineHeight: 22,
+        marginBottom: 10,
     },
     image: {
         width: '100%',
-        height: 160,
+        height: 150,
         borderRadius: 10,
-        marginBottom: 15,
+        marginBottom: 20,
     },
     backButton: {
         backgroundColor: '#4CAF50',
-        paddingVertical: 8,
-        paddingHorizontal: 18,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
         borderRadius: 10,
     },
     backButtonText: {

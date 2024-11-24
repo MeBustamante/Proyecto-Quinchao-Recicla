@@ -6,12 +6,12 @@ import MenuInferior from '../Menu_Inferior/MenuInferior';
 const HuertosUrbanos = ({ navigation }) => {
     return (
         <View style={styles.fullScreen}>
-            <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
+            <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
                 <ScrollView style={styles.scrollContainer}>
-                    <View style={[styles.contentContainer, {marginTop: 30}]}>
+                    <View style={[styles.contentContainer, { marginTop: 30 }]}>
                         <Text style={styles.infoTitle}>Huertos Urbanos en Quinchao</Text>
                         <Text style={styles.sectionTitle}>Actividad</Text>
-                        <Text style={styles.infoText}>
+                        <Text style={[styles.infoText, { textAlign: 'center' }]}>
                             Diseña y cultiva un huerto urbano utilizando espacios pequeños y técnicas sostenibles.
                         </Text>
                         <Text style={styles.sectionTitle}>Tips</Text>
