@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { UserProvider } from './Login/UserContext';
-import { AppProvider } from './ConfigGlobal/AppContext'; // Importa el AppProvider
+import { AppProvider } from './ConfigGlobal/AppContext';
 
 import LoginScreen from './Login/Login';
 import PantallaPrincipalScreen from './Pagina_Principal/Pantalla_Principal';
@@ -19,6 +19,7 @@ import HuertosUrbanosScreen from './Button_Reciclaje/HuertosUrbanos';
 import ReforestacionUrbanaScreen from './Button_Reciclaje/ReforestacionUrbana';
 import Animacion from './Button_PuntosReciclaje/animacion';
 import Configuracion from './Menu_Inferior/Configuracion';
+import Ayuda from './Menu_Inferior/Ayuda'; // Importar correctamente el componente Ayuda
 
 const Stack = createNativeStackNavigator();
 
@@ -30,9 +31,9 @@ export default function App() {
           <Stack.Navigator
             initialRouteName="Login"
             screenOptions={{
-              headerTitleAlign: 'center', // Centra el título en el header
-              headerStyle: { backgroundColor: '#00796B' }, // Establece el fondo del header (opcional)
-              headerTintColor: '#FFFFFF', // Cambia el color de los íconos y título en el header
+              headerTitleAlign: 'center',
+              headerStyle: { backgroundColor: '#00796B' },
+              headerTintColor: '#FFFFFF',
             }}
           >
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
@@ -50,6 +51,7 @@ export default function App() {
             <Stack.Screen name="Acerca" component={AcercaScreen} options={{ title: 'Acerca De Nosotros' }} />
             <Stack.Screen name="Animacion" component={Animacion} options={{ headerShown: false }} />
             <Stack.Screen name="Configuracion" component={Configuracion} options={{ title: 'Configuración' }} />
+            <Stack.Screen name="Ayuda" component={Ayuda} options={{ title: 'Ayuda' }} />
           </Stack.Navigator>
         </NavigationContainer>
       </AppProvider>
