@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   banner: {
-    width: '95%',
+    width: '100%',
     height: 95,
     resizeMode: 'cover',
     marginBottom: 20,
