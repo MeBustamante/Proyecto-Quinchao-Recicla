@@ -7,8 +7,10 @@ import {
   StyleSheet,
   ScrollView,
   Modal,
+  Alert,
 } from 'react-native';
 import LottieView from 'lottie-react-native';
+import * as Notifications from 'expo-notifications';
 import { AppContext } from '../ConfigGlobal/AppContext'; // Ajusta la ruta según tu proyecto
 
 const Configuracion = () => {
@@ -20,6 +22,7 @@ const Configuracion = () => {
     timeFormat,
     setTimeFormat,
     locationAccess,
+    collectionSchedule,
   } = useContext(AppContext);
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -42,6 +45,9 @@ const Configuracion = () => {
       version: 'Tu versión es: Beta 1.0.0.2',
       date: 'Noviembre 2024',
       close: 'Cerrar',
+      notificationSuccess: 'Notificaciones programadas correctamente.',
+      notificationCancelled: 'Se han cancelado todas las notificaciones.',
+      notificationPermissionDenied: 'Permiso de notificaciones denegado.',
     },
     en: {
       title: 'Settings',
@@ -59,10 +65,67 @@ const Configuracion = () => {
       version: 'Your version is: Beta 1.0.0.2',
       date: 'November 2024',
       close: 'Close',
+      notificationSuccess: 'Notifications scheduled successfully.',
+      notificationCancelled: 'All notifications have been cancelled.',
+      notificationPermissionDenied: 'Notification permission denied.',
     },
   };
 
   const currentLanguage = translations[language];
+
+  // Solicitar permisos de notificaciones
+  const requestNotificationPermission = async () => {
+    const { status } = await Notifications.requestPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert(currentLanguage.notificationPermissionDenied);
+      return false;
+    }
+    return true;
+  };
+
+  // Función para programar notificaciones
+  const scheduleNotifications = async () => {
+    if (collectionSchedule.length === 0) {
+      Alert.alert(currentLanguage.error, 'No hay horarios disponibles para programar notificaciones.');
+      return;
+    }
+
+    for (const schedule of collectionSchedule) {
+      const [year, month, day] = schedule.date.split('-');
+      const notificationDate = new Date(year, month - 1, day, 9, 0);
+
+      if (notificationDate > new Date()) {
+        await Notifications.scheduleNotificationAsync({
+          content: {
+            title: currentLanguage.notifications,
+            body: `Hoy habrá recolección en ${schedule.address} de ${schedule.hours}.`,
+          },
+          trigger: notificationDate,
+        });
+      }
+    }
+
+    Alert.alert(currentLanguage.notificationSuccess);
+  };
+
+  // Función para cancelar todas las notificaciones programadas
+  const cancelNotifications = async () => {
+    await Notifications.cancelAllScheduledNotificationsAsync();
+    Alert.alert(currentLanguage.notificationCancelled);
+  };
+
+  // Manejar el cambio del switch
+  const handleNotificationSwitch = async (value) => {
+    if (value) {
+      const permissionGranted = await requestNotificationPermission();
+      if (!permissionGranted) return; // No activa el switch si no hay permisos
+      setNotificationsEnabled(true);
+      scheduleNotifications();
+    } else {
+      setNotificationsEnabled(false);
+      cancelNotifications();
+    }
+  };
 
   const handleCheckUpdate = () => {
     setIsUpdating(true);
@@ -117,15 +180,14 @@ const Configuracion = () => {
         </View>
 
         {/* Notificaciones */}
-<View style={styles.optionRow}>
-  <Text style={styles.optionLabel}>{currentLanguage.notifications}</Text>
-  <Switch
-    value={notificationsEnabled}
-    onValueChange={() => setNotificationsEnabled(!notificationsEnabled)}
-    style={styles.switch}
-  />
-</View>
-
+        <View style={styles.optionRow}>
+          <Text style={styles.optionLabel}>{currentLanguage.notifications}</Text>
+          <Switch
+            value={notificationsEnabled}
+            onValueChange={handleNotificationSwitch}
+            style={styles.switch}
+          />
+        </View>
 
         {/* Formato de Hora */}
         <View style={styles.option}>
@@ -251,14 +313,13 @@ const styles = StyleSheet.create({
   },
   optionRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between', // Coloca los elementos en extremos opuestos
-    alignItems: 'center', // Alinea verticalmente
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 20,
   },
   switch: {
-    transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }], // Escala el tamaño del switch si es necesario
+    transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }],
   },
-  
   languageOptions: {
     flexDirection: 'row',
   },
