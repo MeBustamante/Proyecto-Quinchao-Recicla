@@ -1,90 +1,86 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 
 const HuertosUrbanos = ({ navigation }) => {
     return (
-        <View style={styles.container}>
+        <View style={styles.fullScreen}>
             <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
-                <View style={styles.contentContainer}>
-                    <Text style={styles.title}>Huertos Urbanos</Text>
-                    <Text style={styles.subtitle}>
-                        Crea huertos en la ciudad para cultivar alimentos saludables y conectar con la naturaleza.
-                    </Text>
-                    <Text style={styles.objectivesTitle}>Objetivos:</Text>
-                    <Text style={styles.objectives}>
-                        - Fomentar la autosuficiencia{'\n'}
-                        - Reducir la huella de carbono{'\n'}
-                        - Unir a la comunidad
-                    </Text>
-                    <Text style={styles.motivationalText}>
-                        "¡Únete y cultiva el cambio!"
-                    </Text>
-                    <Image source={require('../assets/Huertosurbanos.png')} style={styles.image} />
-                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                        <Text style={styles.backButtonText}>Volver</Text>
-                    </TouchableOpacity>
-                </View>
+                <ScrollView style={styles.scrollContainer}>
+                    <View style={[styles.contentContainer, {marginTop: 30}]}>
+                        <Text style={styles.infoTitle}>Huertos Urbanos en Quinchao</Text>
+                        <Text style={styles.sectionTitle}>Actividad</Text>
+                        <Text style={styles.infoText}>
+                            Diseña y cultiva un huerto urbano utilizando espacios pequeños y técnicas sostenibles.
+                        </Text>
+                        <Text style={styles.sectionTitle}>Tips</Text>
+                        <Text style={styles.infoText}>
+                            • Usa contenedores reciclados para plantar.
+                        </Text>
+                        <Text style={styles.infoText}>
+                            • Elige plantas que requieran bajo mantenimiento y se adapten al clima local.
+                        </Text>
+                        <Text style={styles.sectionTitle}>Recomendaciones</Text>
+                        <Text style={styles.infoText}>
+                            Colabora con vecinos para intercambiar plantas y recursos, fortaleciendo la comunidad.
+                        </Text>
+                        <Image source={require('../assets/Huertosurbanos.png')} style={styles.image} />
+                        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                            <Text style={styles.backButtonText}>Volver</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
+                <MenuInferior />
             </LinearGradient>
-            <MenuInferior />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    fullScreen: {
         flex: 1,
-        alignItems: 'center',
     },
     gradientBackground: {
         flex: 1,
         width: '100%',
         alignItems: 'center',
-        paddingVertical: 20,
+        justifyContent: 'center',
+    },
+    scrollContainer: {
+        flex: 1,
+        width: '100%',
     },
     contentContainer: {
         width: '85%',
-        alignItems: 'center',
-        padding: 20,
-        backgroundColor: '#fff',
+        alignSelf: 'center',
+        backgroundColor: '#ffffff',
         borderRadius: 20,
         borderWidth: 2,
         borderColor: '#4CAF50',
-        marginTop: 20,
+        padding: 15,
+        marginBottom: 30,
     },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#000000',
-        textAlign: 'center',
-        marginBottom: 10,
-    },
-    subtitle: {
-        fontSize: 16,
-        color: '#000000',
-        textAlign: 'center',
-        marginBottom: 10,
-    },
-    objectivesTitle: {
+    infoTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#000000',
+        color: 'black',
+        textAlign: 'center',
+        marginBottom: 10,
+    },
+    sectionTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#4CAF50',
         textAlign: 'center',
         marginBottom: 5,
     },
-    objectives: {
+    infoText: {
         fontSize: 14,
-        color: '#000000',
-        textAlign: 'center',
-        marginBottom: 15,
-    },
-    motivationalText: {
-        fontSize: 14,
-        color: '#000000',
-        fontStyle: 'italic',
-        textAlign: 'center',
-        marginBottom: 20,
+        color: 'black',
+        textAlign: 'left',
+        lineHeight: 22,
+        marginBottom: 10,
     },
     image: {
         width: '100%',

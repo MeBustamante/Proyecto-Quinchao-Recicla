@@ -1,90 +1,86 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 
 const ReforestacionUrbana = ({ navigation }) => {
     return (
-        <View style={styles.container}>
+        <View style={styles.fullScreen}>
             <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
-                <View style={styles.contentContainer}>
-                    <Text style={styles.title}>Reforestación Urbana</Text>
-                    <Text style={styles.subtitle}>
-                        Plantemos árboles en la ciudad para mejorar el aire y crear un entorno más verde.
-                    </Text>
-                    <Text style={styles.objectivesTitle}>Objetivos:</Text>
-                    <Text style={styles.objectives}>
-                        - Aumentar áreas verdes{'\n'}
-                        - Reducir la contaminación{'\n'}
-                        - Involucrar a la comunidad
-                    </Text>
-                    <Text style={styles.motivationalText}>
-                        "¡Planta un árbol, cambia el futuro!"
-                    </Text>
-                    <Image source={require('../assets/ReforestacionUrbana.png')} style={styles.image} />
-                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                        <Text style={styles.backButtonText}>Volver</Text>
-                    </TouchableOpacity>
-                </View>
+                <ScrollView style={styles.scrollContainer}>
+                    <View style={[styles.contentContainer, {marginTop: 30}]}>
+                        <Text style={styles.infoTitle}>Reforestación Urbana en Quinchao</Text>
+                        <Text style={styles.sectionTitle}>Actividad</Text>
+                        <Text style={styles.infoText}>
+                            Participa en la reforestación urbana plantando árboles en zonas públicas para revitalizar el entorno.
+                        </Text>
+                        <Text style={styles.sectionTitle}>Tips</Text>
+                        <Text style={styles.infoText}>
+                            • Elige especies nativas que requieran poco mantenimiento.
+                        </Text>
+                        <Text style={styles.infoText}>
+                            • Colabora con organizaciones locales para obtener recursos y permisos necesarios.
+                        </Text>
+                        <Text style={styles.sectionTitle}>Recomendaciones</Text>
+                        <Text style={styles.infoText}>
+                            Organiza eventos de plantación comunitarios para fomentar la participación y educación ambiental.
+                        </Text>
+                        <Image source={require('../assets/ReforestacionUrbana.png')} style={styles.image} />
+                        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                            <Text style={styles.backButtonText}>Volver</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
+                <MenuInferior />
             </LinearGradient>
-            <MenuInferior />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    fullScreen: {
         flex: 1,
-        alignItems: 'center',
     },
     gradientBackground: {
         flex: 1,
         width: '100%',
         alignItems: 'center',
-        paddingVertical: 20,
+        justifyContent: 'center',
+    },
+    scrollContainer: {
+        flex: 1,
+        width: '100%',
     },
     contentContainer: {
         width: '85%',
-        alignItems: 'center',
-        padding: 20,
-        backgroundColor: '#fff',
+        alignSelf: 'center',
+        backgroundColor: '#ffffff',
         borderRadius: 20,
         borderWidth: 2,
         borderColor: '#4CAF50',
-        marginTop: 20,
+        padding: 15,
+        marginBottom: 30,
     },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#000000', // Cambiado a negro
-        textAlign: 'center',
-        marginBottom: 10,
-    },
-    subtitle: {
-        fontSize: 16,
-        color: '#000',
-        textAlign: 'center',
-        marginBottom: 10,
-    },
-    objectivesTitle: {
+    infoTitle: {
         fontSize: 18,
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center',
+        marginBottom: 10,
+    },
+    sectionTitle: {
+        fontSize: 16,
         fontWeight: 'bold',
         color: '#4CAF50',
         textAlign: 'center',
         marginBottom: 5,
     },
-    objectives: {
+    infoText: {
         fontSize: 14,
-        color: '#000',
-        textAlign: 'center',
-        marginBottom: 15,
-    },
-    motivationalText: {
-        fontSize: 14,
-        color: '#000',
-        fontStyle: 'italic',
-        textAlign: 'center',
-        marginBottom: 20,
+        color: 'black',
+        textAlign: 'left',
+        lineHeight: 22,
+        marginBottom: 10,
     },
     image: {
         width: '100%',
