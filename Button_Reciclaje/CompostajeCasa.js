@@ -1,129 +1,108 @@
 import React from 'react';
-import { ScrollView, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 
 const CompostajeCasa = ({ navigation }) => {
     return (
-        <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentScroll}>
-            <View style={styles.container}>
-                <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
+        <View style={styles.fullScreen}>
+            <LinearGradient colors={['#81C784', '#388E3C']} style={styles.gradientBackground}>
+                <ScrollView style={styles.scrollContainer}>
                     <View style={styles.contentContainer}>
-                        <Text style={styles.infoTitle}>Compostaje en Casa</Text>
-                        <Text style={styles.infoSubtitle}>
-                            Descubre cómo puedes contribuir al medio ambiente desde tu hogar mediante el compostaje.
+                        <Text style={styles.infoTitleBlack}>Compostaje en Casa</Text>
+                        <Text style={styles.sectionTitle}>Actividad</Text>
+                        <Text style={styles.infoText}>
+                            Preparación y mantenimiento de un compostador doméstico.
                         </Text>
-                        <Text style={styles.sectionTitle}>Cómo Comenzar:</Text>
-                        <Text style={styles.instructions}>
-                            1. Elige un contenedor adecuado para tu espacio.{'\n'}
-                            2. Coloca una capa de tierra en el fondo.{'\n'}
-                            3. Alterna capas de residuos húmedos y secos.{'\n'}
-                            4. Asegúrate de airear el compost regularmente.
+                        <Text style={styles.sectionTitle}>Tips</Text>
+                        <Text style={styles.infoText}>
+                            • Coloca tu compostador en un área sombreada para evitar el secado excesivo.
                         </Text>
-                        <Text style={styles.sectionTitle}>Tips para Mejorar:</Text>
-                        <Text style={styles.instructions}>
-                            - Mantén el compost húmedo, pero no encharcado.{'\n'}
-                            - Corta los residuos en pequeños pedazos para acelerar el proceso.{'\n'}
-                            - Evita compostar carne o productos lácteos.
+                        <Text style={styles.infoText}>
+                            • Mantén un equilibrio entre materiales verdes y marrones para optimizar la descomposición.
                         </Text>
-                        <Text style={styles.sectionTitle}>Beneficios del Compostaje:</Text>
-                        <Text style={styles.instructions}>
-                            - Reduce la cantidad de residuos enviados a vertederos.{'\n'}
-                            - Produce un abono excelente para las plantas.{'\n'}
-                            - Ayuda a retener la humedad en el suelo.
-                        </Text>
-                        <Text style={styles.motivationalText}>
-                            ¡Tu esfuerzo individual puede hacer una gran diferencia para nuestro planeta!
+                        <Text style={styles.sectionTitle}>Recomendación</Text>
+                        <Text style={styles.infoText}>
+                            Controla regularmente la humedad y temperatura del compost para asegurar un proceso efectivo.
                         </Text>
                         <Image source={require('../assets/Compostaje.png')} style={styles.image} />
                         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                             <Text style={styles.backButtonText}>Volver</Text>
                         </TouchableOpacity>
                     </View>
-                </LinearGradient>
+                </ScrollView>
                 <MenuInferior />
-            </View>
-        </ScrollView>
+            </LinearGradient>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
-    scrollContainer: {
+    fullScreen: {
         flex: 1,
     },
-    contentScroll: {
-        flexGrow: 1,
+    gradientBackground: {
+        flex: 1,
+        width: '100%',
+        alignItems: 'center',
         justifyContent: 'center',
     },
-    container: { 
-        flex: 1, 
-        alignItems: 'center' 
-    },
-    gradientBackground: { 
-        width: '100%', 
-        alignItems: 'center', 
-        paddingVertical: 20 
+    scrollContainer: {
+        flex: 1,
+        width: '100%',
     },
     contentContainer: {
-        width: '90%',
-        alignItems: 'center',
-        padding: 20,
+        alignItems: 'flex-start',
         backgroundColor: '#fff',
         borderRadius: 20,
         borderWidth: 2,
         borderColor: '#4CAF50',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        marginHorizontal: 50,
         marginTop: 20,
         marginBottom: 20,
     },
-    infoTitle: { 
-        fontSize: 24, 
-        fontWeight: 'bold', 
-        color: 'black', 
-        textAlign: 'center', 
-        marginBottom: 10 
-    },
-    infoSubtitle: { 
-        fontSize: 16, 
-        color: 'black', 
-        textAlign: 'center', 
-        marginBottom: 20 
+    infoTitleBlack: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center',
+        width: '100%',
+        marginBottom: 5,
     },
     sectionTitle: {
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: 'bold',
         color: '#4CAF50',
         textAlign: 'center',
-        marginBottom: 5,
+        width: '100%',
+        marginBottom: 3,
     },
-    instructions: {
+    infoText: {
         fontSize: 14,
         color: 'black',
         textAlign: 'left',
+        lineHeight: 20,
+        width: '100%',
+        marginBottom: 5,
+    },
+    image: {
+        width: '100%',
+        height: 160,
+        borderRadius: 10,
         marginBottom: 15,
     },
-    motivationalText: { 
-        fontSize: 16, 
-        color: 'black', 
-        fontStyle: 'italic', 
-        textAlign: 'center', 
-        marginBottom: 20 
+    backButton: {
+        backgroundColor: '#4CAF50',
+        paddingVertical: 8,
+        paddingHorizontal: 18,
+        borderRadius: 10,
     },
-    image: { 
-        width: '100%', 
-        height: 150, 
-        borderRadius: 10, 
-        marginBottom: 20 
-    },
-    backButton: { 
-        backgroundColor: '#4CAF50', 
-        paddingVertical: 12, 
-        paddingHorizontal: 25, 
-        borderRadius: 10 
-    },
-    backButtonText: { 
-        color: '#fff', 
-        fontWeight: 'bold', 
-        textAlign: 'center' 
+    backButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        textAlign: 'center',
     },
 });
 
