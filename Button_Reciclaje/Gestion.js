@@ -1,5 +1,4 @@
-// Gestión Residuos
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { StyleSheet, Text, View, Alert, Image, ScrollView } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -7,7 +6,7 @@ import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { AppContext } from '../ConfigGlobal/AppContext';
 
 const Gestion = () => {
-  const { language } = useContext(AppContext); // Obtenemos el idioma actual
+  const { language, setCollectionSchedule } = useContext(AppContext); // Obtenemos el idioma actual y el setter del contexto
 
   const handleDayPress = (day) => {
     const dateString = day.dateString;
@@ -25,6 +24,7 @@ const Gestion = () => {
 
   const generateFridays = (year) => {
     const fridays = {};
+    const scheduleArray = []; // Arreglo para almacenar los horarios
 
     for (let month = 0; month < 12; month++) {
       const startDate = new Date(year, month, 1);
@@ -34,7 +34,7 @@ const Gestion = () => {
       let firstFriday = 1 + (5 - firstDay + 7) % 7;
 
       for (let i = firstFriday; i <= 31; i += 7) {
-        const dayString = `${year}-${(month + 1) < 10 ? '0' + (month + 1) : (month + 1)}-${i < 10 ? '0' + i : i}`;
+        const dayString = `${year}-${(month + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}`;
 
         fridays[dayString] = {
           selected: true,
@@ -48,14 +48,29 @@ const Gestion = () => {
           hours: '10:00 AM - 2:00 PM', // Hora de recolección
           address: 'Isla de Achao', // Dirección de recolección
         };
+
+        // Añadimos este viernes al arreglo global
+        scheduleArray.push({
+          date: dayString,
+          hours: '10:00 AM - 2:00 PM',
+          address: 'Isla de Achao',
+        });
       }
     }
 
-    return fridays;
+    return { fridays, scheduleArray };
   };
 
-  const year = 2024;  // Año para generar los viernes
-  const fridays = generateFridays(year);
+  useEffect(() => {
+    const year = 2024;
+    const { scheduleArray } = generateFridays(year);
+
+    // Actualizamos el contexto con los horarios después del renderizado inicial
+    setCollectionSchedule(scheduleArray);
+  }, [setCollectionSchedule]);
+
+  const year = 2024; // Año para generar los viernes
+  const { fridays } = generateFridays(year);
 
   // Textos en español e inglés
   const texts = {
@@ -84,13 +99,12 @@ const Gestion = () => {
       recourseHours1: 'Time: 10:00 AM to 10:00 AM',
       recourseHours2: 'Time: 11:30 AM to 12:00 PM',
       recourseHours3: 'Time: 1:00 PM to 2:00 PM',
-    }
+    },
   };
 
   return (
     <View style={styles.container}>
       <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
-        
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           {/* Banner */}
           <Image source={require('../assets/gestion.png')} style={styles.banner} />
@@ -136,12 +150,11 @@ const Gestion = () => {
             </View>
           </View>
         </ScrollView>
+        {/* Menú Inferior */}
+        <View style={styles.menuContainer}>
+          <MenuInferior />
+        </View>
       </LinearGradient>
-
-      {/* Menú Inferior */}
-      <View style={styles.menuContainer}>
-        <MenuInferior />
-      </View>
     </View>
   );
 };
@@ -153,12 +166,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  scrollContainer: {
-    flexGrow: 1,
-    paddingBottom: 80,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   gradientBackground: {
     flex: 1,
     width: '100%',
@@ -166,6 +173,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 10,
     paddingBottom: 20,
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    paddingBottom: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   banner: {
     width: '100%',
