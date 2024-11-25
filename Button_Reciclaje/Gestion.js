@@ -5,95 +5,90 @@ import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { AppContext } from '../ConfigGlobal/AppContext';
 
-const { height: screenHeight } = Dimensions.get('window'); // Dimensiones para calcular alturas dinámicas
+const { height: screenHeight } = Dimensions.get('window');
+
+// Función para formatear las fechas
+const formatDate = (dateString) => {
+  const months = [
+    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+  ];
+  const [year, month, day] = dateString.split('-');
+  return `${day} de ${months[parseInt(month, 10) - 1]} del ${year}`;
+};
+
+// Traducción de días de la semana
+const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 
 const Gestion = () => {
-  const { language, setCollectionSchedule } = useContext(AppContext); // Contexto global
-  const [modalVisible, setModalVisible] = useState(false); // Modal
-  const [modalData, setModalData] = useState({}); // Datos del modal
+  const { language, setCollectionSchedule } = useContext(AppContext); 
+  const [modalVisible, setModalVisible] = useState(false); 
+  const [modalData, setModalData] = useState({}); 
+
+  const schedule = {
+    Quinchao: { dates: ['2024-11-01', '2024-11-06', '2024-11-11', '2024-11-16', '2024-11-21', '2024-11-26'], color: '#1E90FF' },
+    Matao: { dates: ['2024-11-02', '2024-11-12', '2024-11-22'], color: '#32CD32' },
+    Chequian: { dates: ['2024-11-03', '2024-11-13', '2024-11-23'], color: '#32CD32' },
+    Chaulinec: { dates: ['2024-11-04', '2024-11-14', '2024-11-24'], color: '#FFA500' },
+    Alao: { dates: ['2024-11-05', '2024-11-15', '2024-11-25'], color: '#FFA500' },
+    Apiao: { dates: ['2024-11-05', '2024-11-15', '2024-11-25'], color: '#FFA500' },
+  };
+
+  const markedDates = {};
+  Object.keys(schedule).forEach((key) => {
+    schedule[key].dates.forEach((date) => {
+      markedDates[date] = {
+        selected: true,
+        selectedColor: schedule[key].color,
+        selectedTextColor: 'white',
+      };
+    });
+  });
 
   const handleDayPress = (day) => {
     const dateString = day.dateString;
-
-    if (fridays[dateString]) {
-      const { selectedColor, hours, address } = fridays[dateString];
-      if (selectedColor === 'red') {
-        setModalData({ hours, address });
-        setModalVisible(true);
-      }
-    }
-  };
-
-  const generateFridays = (year) => {
-    const fridays = {};
-    const scheduleArray = [];
-
-    for (let month = 0; month < 12; month++) {
-      const startDate = new Date(year, month, 1);
-      const firstDay = startDate.getDay();
-      // Calcula el primer viernes del mes
-      let firstFriday = 1 + (5 - firstDay + 7) % 7;
-
-      for (let i = firstFriday; i <= 31; i += 7) {
-        const dayString = `${year}-${(month + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}`;
-
-        fridays[dayString] = {
-          selected: true,
-          selectedColor: 'red',
-          selectedTextColor: 'white',
-          hours: '10:00 AM - 2:00 PM',
-          address: 'Isla de Achao',
-        };
-
-        scheduleArray.push({ 
-          date: dayString, hours: '10:00 AM - 2:00 PM', 
-          address: 'Isla de Achao',
+    for (const key in schedule) {
+      if (schedule[key].dates.includes(dateString)) {
+        setModalData({
+          area: key,
+          date: formatDate(dateString),
         });
+        setModalVisible(true);
+        return;
       }
     }
-    return { fridays, scheduleArray };
   };
 
   useEffect(() => {
-    const year = 2024;
-    const { scheduleArray } = generateFridays(year);
-
-    // Actualizamos el contexto con los horarios después del renderizado inicial
+    const scheduleArray = [];
+    Object.keys(schedule).forEach((key) => {
+      schedule[key].dates.forEach((date) => {
+        scheduleArray.push({ date, area: key });
+      });
+    });
     setCollectionSchedule(scheduleArray);
   }, [setCollectionSchedule]);
 
-  const year = 2024;
-  const { fridays } = generateFridays(year);
-
-    // Textos en español e inglés
   const texts = {
     es: {
       alertTitle: 'Recolección de residuos',
-      alertMessage: 'Hoy es el día que pasamos a recolectar los residuos en tu área.',
-      referenceText: 'Mantén tu zona limpia y organizada con nuestro calendario de recolección. Aquí podrás ver las fechas programadas:',
-      recourseTitle: 'Recorrido de Recolección',
-      recourseText: 'Aquí tienes el recorrido de recolección para las diferentes zonas:',
-      recourseAddress1: 'Calle Mirador Alto 123',
-      recourseAddress2: 'Calle Serrano 456',
-      recourseAddress3: 'Calle Padre German Ampuero 789',
-      recourseHours1: 'Hora: 10:00 AM a 10:00 AM',
-      recourseHours2: 'Hora: 11:30 AM a 12:00 PM',
-      recourseHours3: 'Hora: 1:00 PM a 2:00 PM',
+      referenceText: 'Consulta el cronograma de recolección en tu zona según el calendario:',
+      tableTitle: 'Cronograma de recolección',
+      areaHeader: 'Localidad',
+      datesHeader: 'Fechas de recolección',
+      close: 'Cerrar',
     },
     en: {
       alertTitle: 'Waste Collection',
-      alertMessage: 'Today is the day we come to collect waste in your area.',
-      referenceText: 'Keep your area clean and organized with our waste collection calendar:',
-      recourseTitle: 'Collection Route',
-      recourseText: 'Here is the collection route for the different zones:',
-      recourseAddress1: 'Mirador Alto Street 123',
-      recourseAddress2: 'Serrano Street 456',
-      recourseAddress3: 'Padre German Ampuero Street 789',
-      recourseHours1: 'Time: 10:00 AM a 10:00 AM',
-      recourseHours2: 'Time: 11:30 AM a 12:00 PM',
-      recourseHours3: 'Time: 1:00 PM a 2:00 PM',
+      referenceText: 'Check the collection schedule in your area according to the calendar:',
+      tableTitle: 'Collection Schedule',
+      areaHeader: 'Area',
+      datesHeader: 'Collection Dates',
+      close: 'Close',
     },
   };
+
+  const currentTexts = texts[language];
 
   return (
     <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
@@ -103,41 +98,77 @@ const Gestion = () => {
           <Image source={require('../assets/gestion.png')} style={styles.banner} />
         </View>
 
-        {/* Textos y calendario */}
-        <Text style={styles.referenceText}>{texts[language].referenceText}</Text>
-        <View style={styles.calendarContainer}>
-          <Calendar
-            markedDates={fridays}
-            onDayPress={handleDayPress}            
-            theme={{
-              selectedDayBackgroundColor: 'red',
-              todayTextColor: 'black',
-              arrowColor: 'black',
-              dayTextColor: '#000',
-            }}
-            locale={language === 'es' ? 'es' : 'en'}
-          />
-        </View>
+        {/* Texto de recordatorio antes del calendario */}
+<View style={styles.reminderContainer}>
+  <Text style={styles.reminderText}>
+    Recuerda: El reciclaje comienza en casa. Clasifica tus residuos correctamente.
+  </Text>
+</View>
 
-        {/* Cuadro de Recorrido */}
-        <View style={styles.recourseContainer}>
-            <Text style={styles.recourseTitle}>{texts[language].recourseTitle}</Text>
-            <Text style={styles.recourseText}>
-              {texts[language].recourseText}
-            </Text>
-            <View style={styles.recourseItem}>
-              <Text style={styles.recourseAddress}>{texts[language].recourseAddress1}</Text>
-              <Text style={styles.recourseHours}>{texts[language].recourseHours1}</Text>
-            </View>
-            <View style={styles.recourseItem}>
-              <Text style={styles.recourseAddress}>{texts[language].recourseAddress2}</Text>
-              <Text style={styles.recourseHours}>{texts[language].recourseHours2}</Text>
-            </View>
-            <View style={styles.recourseItem}>
-              <Text style={styles.recourseAddress}>{texts[language].recourseAddress3}</Text>
-              <Text style={styles.recourseHours}>{texts[language].recourseHours3}</Text>
-            </View>
-          </View>
+{/* Calendario */}
+<View style={styles.calendarContainer}>
+  <Calendar
+    markedDates={markedDates}
+    onDayPress={handleDayPress}
+    theme={{
+      textDayFontFamily: 'System',
+      textMonthFontFamily: 'System',
+      textDayHeaderFontFamily: 'System',
+      textMonthFontSize: 18,
+      textDayFontSize: 16,
+      monthTextColor: 'black',
+      todayTextColor: 'red',
+      arrowColor: 'black',
+      dayTextColor: '#000',
+      textDayHeaderFontSize: 12,
+    }}
+    renderHeader={(date) => {
+      const months = [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+      ];
+      return (
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#000' }}>
+          {months[date.getMonth()]} {date.getFullYear()}
+        </Text>
+      );
+    }}
+    renderDayHeader={(day, index) => (
+      <Text key={index} style={{ fontSize: 12, fontWeight: 'bold', color: '#000' }}>
+        {daysOfWeek[index]}
+      </Text>
+    )}
+    firstDay={1} // La semana empieza el lunes
+  />
+</View>
+
+        
+        {/* Tabla de Cronograma */}
+<View style={styles.tableContainer}>
+  <Text style={styles.tableTitle}>{currentTexts.tableTitle}</Text>
+  {Object.keys(schedule).map((area, index) => (
+    <View
+      key={index}
+      style={[
+        styles.tableRow,
+        {
+          borderLeftColor: schedule[area].color, // Color del borde izquierdo
+          backgroundColor: `${schedule[area].color}20`, // Color de fondo con opacidad
+        },
+      ]}
+    >
+      <Text style={styles.tableArea}>{area}</Text>
+      <View style={styles.tableDates}>
+        {schedule[area].dates.map((date, idx) => (
+          <Text key={idx} style={styles.tableDate}>
+            {formatDate(date)}
+          </Text>
+        ))}
+      </View>
+    </View>
+  ))}
+</View>
+
       </ScrollView>
 
       {/* Menú Inferior */}
@@ -149,11 +180,15 @@ const Gestion = () => {
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>{texts[language].alertTitle}</Text>
-            <Text style={styles.modalMessage}>Hora: {modalData.hours}</Text>
-            <Text style={styles.modalMessage}>Dirección: {modalData.address}</Text>
+            <Text style={styles.modalTitle}>{currentTexts.alertTitle}</Text>
+            <Text style={styles.modalMessage}>
+              {currentTexts.areaHeader}: {modalData.area}
+            </Text>
+            <Text style={styles.modalMessage}>
+              Fecha: {modalData.date}
+            </Text>
             <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
-              <Text style={styles.closeButtonText}>Cerrar</Text>
+              <Text style={styles.closeButtonText}>{currentTexts.close}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -182,6 +217,58 @@ const styles = StyleSheet.create({
   modalMessage: { fontSize: 16, marginBottom: 10 },
   closeButton: { backgroundColor: '#4CAF50', paddingVertical: 10, borderRadius: 5, paddingHorizontal: 20 },
   closeButtonText: { color: 'white', fontSize: 16 },
+
+  tableContainer: {
+    marginTop: 15,
+    width: '90%',
+    backgroundColor: '#FFF',
+    borderRadius: 10,
+    padding: 15,
+  },
+  tableTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#000',
+    textAlign: 'center',
+  },
+  reminderContainer: {
+    backgroundColor: '#FFEDD5', // Fondo moderno (naranja claro)
+    borderRadius: 10, // Bordes redondeados
+    padding: 15, // Espaciado interno
+    marginVertical: 20, // Separación con otros elementos
+    marginHorizontal: 10, // Separación lateral
+    borderWidth: 1, // Borde fino
+    borderColor: '#FF8C00', // Borde naranja oscuro
+  },
+  reminderText: {
+    fontSize: 18, // Tamaño del texto
+    fontWeight: 'bold', // Negrita
+    color: '#FF8C00', // Naranja oscuro para el texto
+    textAlign: 'center', // Centrado
+    lineHeight: 24, // Espaciado entre líneas
+  },
+  tableRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 10,
+    borderLeftWidth: 5,
+    paddingLeft: 10,
+  },
+  tableArea: {
+    flex: 0.3,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  tableDates: {
+    flex: 0.7,
+    flexDirection: 'column',
+  },
+  tableDate: {
+    fontSize: 14,
+    color: '#000',
+  },
 });
 
 export default Gestion;
