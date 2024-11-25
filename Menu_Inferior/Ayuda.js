@@ -10,7 +10,6 @@ const Ayuda = () => {
 
   const translations = {
     es: {
-      title: 'Ayuda',
       appUsage: '¿Cómo usar la aplicación?',
       appUsageDescription: 'Navega a través de las opciones en el menú inferior para explorar diferentes funcionalidades de la aplicación. En el menú principal podrás acceder a los diferentes servicios, como la denuncia de microbasurales y la consulta de puntos de reciclaje.',
       reportWaste: '¿Cómo realizar una denuncia?',
@@ -23,7 +22,6 @@ const Ayuda = () => {
       contactDescription: 'Si necesitas ayuda adicional, por favor contacta con nosotros al correo: soporte@quinchaorecicla.cl. Estamos disponibles para resolver cualquier duda o problema que tengas.'
     },
     en: {
-      title: 'Help',
       appUsage: 'How to use the app?',
       appUsageDescription: 'Navigate through the options in the bottom menu to explore the different features of the app. In the main menu, you can access different services, such as reporting illegal dumps and finding recycling points.',
       reportWaste: 'How to make a report?',
@@ -45,7 +43,6 @@ const Ayuda = () => {
       style={styles.gradientBackground}
     >
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>{currentLanguage.title}</Text>
 
         <Card style={styles.card}>
           <Card.Content>
@@ -99,13 +96,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: 20,
     paddingBottom: 80, // Asegura que el contenido no quede oculto debajo del menú inferior
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#388E3C',
-    textAlign: 'center',
   },
   sectionTitle: {
     fontSize: 18,
