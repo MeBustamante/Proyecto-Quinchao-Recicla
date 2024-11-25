@@ -107,7 +107,7 @@ const Gestion = () => {
       <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           {/* Banner */}
-          <Image source={require('../assets/gestion.png')} style={styles.banner} />
+          <Image source={require('../assets/camiondebasura4.png')} style={styles.banner} />
 
           <View style={styles.secondContainer}>
             <Text style={styles.referenceText}>
@@ -204,10 +204,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   banner: {
-    width: '100%',
-    height: 130,
+    width: '65%',
+    height: 200,
     resizeMode: 'cover',
-    marginBottom: 10,
+    marginBottom: 20,
   },
   secondContainer: {
     marginBottom: 20,
