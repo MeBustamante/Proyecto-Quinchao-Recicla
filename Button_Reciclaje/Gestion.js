@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import { StyleSheet, Text, View, Alert, Image, ScrollView } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Modal, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
@@ -7,6 +7,8 @@ import { AppContext } from '../ConfigGlobal/AppContext';
 
 const Gestion = () => {
   const { language, setCollectionSchedule } = useContext(AppContext); // Obtenemos el idioma actual y el setter del contexto
+  const [modalVisible, setModalVisible] = useState(false); // Estado para mostrar el Modal
+  const [modalData, setModalData] = useState({}); // Datos del modal
 
   const handleDayPress = (day) => {
     const dateString = day.dateString;
@@ -14,10 +16,8 @@ const Gestion = () => {
     if (fridays[dateString]) {
       const { selectedColor, selectedTextColor, hours, address } = fridays[dateString];
       if (selectedColor === 'red') {
-        Alert.alert(
-          texts[language].alertTitle,
-          `${texts[language].alertMessage}\n\nHora: ${hours}\nDirección: ${address}`,
-        );
+        setModalData({ hours, address }); // Actualizamos los datos del modal
+        setModalVisible(true); // Mostramos el modal
       }
     }
   };
@@ -150,11 +150,34 @@ const Gestion = () => {
             </View>
           </View>
         </ScrollView>
+
         {/* Menú Inferior */}
         <View style={styles.menuContainer}>
           <MenuInferior />
         </View>
       </LinearGradient>
+
+      {/* Modal con la información */}
+      <Modal
+        visible={modalVisible}
+        animationType="fade"
+        transparent={true}
+        onRequestClose={() => setModalVisible(false)} // Cerrar modal
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>{texts[language].alertTitle}</Text>
+            <Text style={styles.modalMessage}>Hora: {modalData.hours}</Text>
+            <Text style={styles.modalMessage}>Dirección: {modalData.address}</Text>
+            <TouchableOpacity
+              style={styles.closeButton}
+              onPress={() => setModalVisible(false)} // Cerrar el modal
+            >
+              <Text style={styles.closeButtonText}>Cerrar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -182,9 +205,9 @@ const styles = StyleSheet.create({
   },
   banner: {
     width: '100%',
-    height: 95,
+    height: 130,
     resizeMode: 'cover',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   secondContainer: {
     marginBottom: 20,
@@ -256,6 +279,38 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
     zIndex: 10,
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo semi-transparente
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    width: '80%',
+    alignItems: 'center',
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  modalMessage: {
+    fontSize: 16,
+    marginBottom: 10,
+  },
+  closeButton: {
+    backgroundColor: '#4CAF50',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  closeButtonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
 
