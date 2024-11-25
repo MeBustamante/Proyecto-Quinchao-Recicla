@@ -36,7 +36,7 @@ export default function App() {
       thanks: 'Thank you for choosing our app and joining the care of the planet! Together we can make a difference. Enjoy and keep contributing to the change!',
       instagramText: '@Muniquinchao',
       facebookText: 'Municipality of Quinchao',
-      secondMessage: 'This mobile app was born as an initiative of the Illustrious Municipality of Quinchao, with the goal of encouraging recycling and promoting sustainable waste management in the community.\n\nThe development of the app was carried out by a talented team of Computer Science students from the University of Los Lagos, Chiloé campus, who with dedication and creativity made this idea a reality:\n\nProject Leader: Marcelo Bustamante Villarroel\n\nProgrammers and Designers: Matías Llaipén Uribe, Kathya Mansilla Fernández, Manuel Sanhueza Villanueva, Yeremi Aburto Miranda\n\nThis tool is a step towards a cleaner and more sustainable future. Thank you for being part of the change!\n\nCastro, Chiloé, 2024',
+      secondMessage: 'This mobile app was born as an initiative of the Illustrious Municipality of Quinchao, with the goal of encouraging recycling and promoting sustainable waste management in the community.\n\nThe development of the app was carried out by a talented team of Computer Science students from the University of Los Lagos, Chiloé campus, who with dedication and creativity made this idea a reality:\n\nProgrammers and Designers:  Marcelo Bustamante Villarroel, Matías Llaipén Uribe, Kathya Mansilla Fernández, Manuel Sanhueza Villanueva, Yeremi Aburto Miranda\n\nThis tool is a step towards a cleaner and more sustainable future. Thank you for being part of the change!\n\nCastro, Chiloé, 2024',
     },
   };
 
@@ -55,11 +55,17 @@ export default function App() {
           </View>
 
           <View style={styles.infoContainer}>
-            <Text style={styles.infoText}>
-              {currentTexts.secondMessage.split('Programadores y Diseñadores: ')[0]}
-              <Text style={{ fontWeight: 'bold' }}>Programadores y Diseñadores:</Text>
-              {currentTexts.secondMessage.split('Programadores y Diseñadores: ')[1]}
-            </Text>
+          <Text style={styles.infoText}>
+  {language === 'es'
+    ? currentTexts.secondMessage.split('Programadores y Diseñadores: ')[0]
+    : currentTexts.secondMessage.split('Programmers and Designers: ')[0]}
+  <Text style={{ fontWeight: 'bold' }}>
+    {language === 'es' ? 'Programadores y Diseñadores:' : 'Programmers and Designers:'}
+  </Text>
+  {language === 'es'
+    ? currentTexts.secondMessage.split('Programadores y Diseñadores: ')[1]
+    : currentTexts.secondMessage.split('Programmers and Designers: ')[1]}
+</Text>
 
             {/* Imagen centrada */}
             <View style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
