@@ -22,8 +22,8 @@ const translations = {
     modalText: 'Residuos seleccionados:',
     close: 'Cerrar',
     wasteOptions: ['Latas', 'Plásticos', 'Vidrios', 'Metales', 'Papel', 'Orgánicos'],
-    errorModalText: "Por favor complete todos los campos.",
-    close: "Cerrar", 
+    errorModalText: 'Por favor complete todos los campos.',
+    close: 'Cerrar',
   },
   en: {
     title: 'Let’s care for our community! Complete the information and leave it to us!',
@@ -37,8 +37,8 @@ const translations = {
     modalText: 'Selected waste:',
     close: 'Close',
     wasteOptions: ['Cans', 'Plastics', 'Glass', 'Metals', 'Paper', 'Organics'], // Traducciones en inglés
-    errorModalText: "Please complete all fields.",
-    close: "Close",
+    errorModalText: 'Please complete all fields.',
+    close: 'Close',
   },
 };
 
@@ -50,30 +50,29 @@ const SolicitudRetiroResiduos = () => {
   const [direccion, setDireccion] = useState('');
   const [selectedResiduos, setSelectedResiduos] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false); // Estado para mostrar el modal de error
 
   const navigation = useNavigation();
-  const residuos = ['Latas', 'Plásticos', 'Vidrios', 'Metales', 'Papel', 'Orgánicos'];
 
   const toggleResiduo = (residuo) => {
     setSelectedResiduos((prev) =>
       prev.includes(residuo) ? prev.filter((item) => item !== residuo) : [...prev, residuo]
     );
   };
-  const [showErrorModal, setShowErrorModal] = useState(false); // Estado para mostrar el modal de error
+
+  const t = translations[language]; // Traducciones según el idioma
 
   const handleSubmit = () => {
     // Verificar si todos los campos están completos
     if (!nombre || !telefono || !email || !direccion || selectedResiduos.length === 0) {
       // Mostrar modal de error si algún campo está vacío
       setShowErrorModal(true);
-      return; // Evita que el formulario sea enviado
+      return;
     }
-  
+
     // Si todos los campos están completos, mostrar el modal de éxito
     setShowModal(true);
   };
-  
-  const t = translations[language]; // Traducciones según el idioma
 
   return (
     <LinearGradient
@@ -139,7 +138,6 @@ const SolicitudRetiroResiduos = () => {
               ))}
             </View>
 
-
             <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
               <Text style={styles.submitButtonText}>{t.submit}</Text>
             </TouchableOpacity>
@@ -149,7 +147,6 @@ const SolicitudRetiroResiduos = () => {
 
       <MenuInferior navigation={navigation} />
 
-      
       {/* Modal de éxito */}
       <Modal
         animationType="fade"
@@ -182,7 +179,7 @@ const SolicitudRetiroResiduos = () => {
         </View>
       </Modal>
 
-      {/* Modal de error (nuevo) */}
+      {/* Modal de error */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -191,6 +188,13 @@ const SolicitudRetiroResiduos = () => {
       >
         <View style={styles.modalBackground}>
           <View style={styles.errorModalContainer}>
+            <LottieView
+              source={require('../assets/Animaciones/fail.json')}
+              autoPlay
+              loop={true}
+              style={styles.animation}
+              speed={0.5}
+            />
             <Text style={styles.errorModalText}>{t.errorModalText}</Text>
             <TouchableOpacity
               style={styles.errorModalButton}
@@ -204,7 +208,6 @@ const SolicitudRetiroResiduos = () => {
     </LinearGradient>
   );
 };
-
 
 const styles = StyleSheet.create({
   background: {
@@ -297,9 +300,9 @@ const styles = StyleSheet.create({
     width: '85%',
   },
   animation: {
-    width: 150,
-    height: 150,
-    marginBottom: 20,
+    width: 250,
+    height: 200,
+    marginBottom: 0,
   },
   modalTitle: {
     fontSize: 16,
@@ -325,40 +328,33 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 16,
   },
-    // Estilos del modal de error
-    modalBackground: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo translúcido
-    },
-    errorModalContainer: {
-      backgroundColor: 'white',
-      padding: 20,
-      borderRadius: 10, // Borde redondeado
-      alignItems: 'center',
-      width: '80%',
-      shadowColor: 'black',
-      shadowOffset: { width: 2, height: 4 },
-      shadowOpacity: 0.3,
-      shadowRadius: 5,
-    },
-    errorModalText: {
-      fontSize: 16,
-      color: 'black', 
-      textAlign: 'center',
-      marginBottom: 20,
-    },
-    errorModalButton: {
-      backgroundColor: '#4CAF50', 
-      paddingVertical: 10,
-      paddingHorizontal: 20,
-      borderRadius: 5,
-    },
-    errorModalButtonText: {
-      color: '#ffffff',
-      fontSize: 16,
-    },
+  errorModalContainer: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+    width: '80%',
+    shadowColor: 'black',
+    shadowOffset: { width: 2, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+  },
+  errorModalText: {
+    fontSize: 16,
+    color: 'black',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  errorModalButton: {
+    backgroundColor: '#4CAF50',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  errorModalButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
+  },
 });
 
 export default SolicitudRetiroResiduos;

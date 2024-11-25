@@ -7,11 +7,11 @@ import LottieView from 'lottie-react-native';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { useNavigation } from '@react-navigation/native';
 import { Platform } from 'react-native';
-import { AppContext } from '../ConfigGlobal/AppContext'; // Importación del contexto global
+import { AppContext } from '../ConfigGlobal/AppContext';
 
 const DenunciaMicrobasural = () => {
   const navigation = useNavigation();
-  const { language } = useContext(AppContext); // Obtén el idioma del contexto
+  const { language } = useContext(AppContext);
 
   const texts = {
     es: {
@@ -28,11 +28,7 @@ const DenunciaMicrobasural = () => {
       takePhoto: 'Tomar Foto',
       selectImage: 'Subir Imagen',
       send: 'Enviar',
-      thankYou: '¡Gracias por tu compromiso!',
-      cleanEnvironment: 'Juntos trabajamos por un Quinchao más limpio y sostenible.',
       close: 'Cerrar',
-      galleryPermission: 'Se necesitan permisos para acceder a la galería',
-      cameraPermission: 'Se necesitan permisos para usar la cámara',
     },
     en: {
       description: 'Please fill out the information and attach an image of the illegal dump you found.',
@@ -48,11 +44,7 @@ const DenunciaMicrobasural = () => {
       takePhoto: 'Take Photo',
       selectImage: 'Select Image',
       send: 'Send',
-      thankYou: 'Thank you for your commitment!',
-      cleanEnvironment: 'Together we work for a cleaner and more sustainable Quinchao.',
       close: 'Close',
-      galleryPermission: 'Gallery access permissions are required',
-      cameraPermission: 'Camera access permissions are required',
     },
   };
 
@@ -61,7 +53,6 @@ const DenunciaMicrobasural = () => {
   const [telefono, setTelefono] = useState('');
   const [direccion, setDireccion] = useState('');
   const [archivo, setArchivo] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
@@ -134,11 +125,8 @@ const DenunciaMicrobasural = () => {
       showCustomAlert(texts[language].uploadImage);
       return;
     }
-
-    setModalVisible(true);
   };
 
-  
   return (
     <LinearGradient
       colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
@@ -205,6 +193,7 @@ const DenunciaMicrobasural = () => {
         </KeyboardAvoidingView>
       </ScrollView>
       <MenuInferior navigation={navigation} />
+      {/* Modal de alerta con animación */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -213,6 +202,13 @@ const DenunciaMicrobasural = () => {
       >
         <View style={styles.alertOverlay}>
           <View style={styles.alertContainer}>
+            <LottieView
+              source={require('../assets/Animaciones/fail.json')}
+              autoPlay
+              loop={true}
+              speed={0.5} // Velocidad ajustada
+              style={styles.animation}
+            />
             <Text style={styles.alertText}>{alertMessage}</Text>
             <TouchableOpacity
               style={styles.alertButton}
@@ -223,7 +219,6 @@ const DenunciaMicrobasural = () => {
           </View>
         </View>
       </Modal>
-      {/* Modal de confirmación (ya existente) */}
     </LinearGradient>
   );
 };
