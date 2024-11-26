@@ -202,6 +202,14 @@ const DenunciaMicrobasural = () => {
               </TouchableOpacity>
             </View>
             {archivo && <Image source={{ uri: archivo }} style={styles.imagePreview} />}
+
+            {/* Mensaje de uso de datos */}
+            <View style={styles.dataUsageContainer}>
+            <Text style={styles.dataUsageText}>
+               Al enviar este formulario, usted acepta que los datos proporcionados serán conocidos y utilizados exclusivamente por la Municipalidad de Quinchao para la gestión y resolución de su solicitud.
+            </Text>
+        </View>
+
             <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
               <Text style={styles.submitButtonText}>{texts[language].send}</Text>
             </TouchableOpacity>
@@ -265,6 +273,31 @@ const styles = StyleSheet.create({
   alertText: { fontSize: 16, textAlign: 'center', marginBottom: 20, color: '#333' },
   alertButton: { backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 20 },
   alertButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
+
+
+   /* diseño de mensaje de uso de datos */
+  dataUsageContainer: {
+    backgroundColor: '#F9F9F9', // Fondo gris claro
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    marginBottom: 20, // Espacio entre el mensaje y el botón de envío
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#E0E0E0', // Borde sutil
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 2,
+  },
+  dataUsageText: {
+    fontSize: 13,
+    textAlign: 'justify',
+    color: '#555', // Texto gris oscuro
+    fontStyle: 'italic',
+  },
+  
 });
+
 
 export default DenunciaMicrobasural;
