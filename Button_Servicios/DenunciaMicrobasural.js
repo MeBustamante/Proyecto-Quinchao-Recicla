@@ -220,30 +220,7 @@ const DenunciaMicrobasural = () => {
       <MenuInferior navigation={navigation} />
       
    {/* Modal para alertas */}
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={alertVisible}
-        onRequestClose={() => setAlertVisible(false)}
-      >
-        <View style={styles.alertOverlay}>
-          <View style={styles.alertContainer}>
-            <LottieView
-              source={require('../assets/Animaciones/fail.json')}
-              autoPlay
-              loop={true}
-              style={styles.animation}
-            />
-            <Text style={styles.alertText}>{alertMessage}</Text>
-            <TouchableOpacity style={styles.alertButton} onPress={() => setAlertVisible(false)}>
-              <Text style={styles.alertButtonText}>{texts[language].close}</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
-      {/* Nuevo modal para animación de envío */}
-      <Modal
+   <Modal
   animationType="slide"
   transparent={true}
   visible={sendModalVisible}
@@ -254,10 +231,11 @@ const DenunciaMicrobasural = () => {
       <LottieView
         source={require('../assets/Animaciones/enviar.json')}
         autoPlay
-        loop={false}
+        loop={true}
         style={styles.animation}
       />
-      <Text style={styles.alertText}>{texts[language].success}</Text>
+      <Text style={styles.modalSuccessTitle}>¡Gracias por tu compromiso!</Text>
+      <Text style={styles.modalSuccessText}>Tu denuncia fue enviada correctamente.</Text>
       <TouchableOpacity
         style={styles.alertButton}
         onPress={() => {
@@ -270,6 +248,8 @@ const DenunciaMicrobasural = () => {
     </View>
   </View>
 </Modal>
+
+
 
     </LinearGradient>
   );
@@ -325,6 +305,21 @@ const styles = StyleSheet.create({
     color: '#555', // Texto gris oscuro
     fontStyle: 'italic',
   },
+  modalSuccessTitle: {
+    fontSize: 18,
+    color: 'green',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  modalSuccessText: {
+    fontSize: 16,
+    color: '#333',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  
   
 });
 
