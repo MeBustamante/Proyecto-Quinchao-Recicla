@@ -35,7 +35,9 @@ const ServiciosScreen = () => {
       colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
       style={styles.background}
     >
-      {/* Imagen tipo banner */}
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+
+           {/* Imagen tipo banner */}
       <View style={styles.bannerContainer}>
         <Image 
           source={require('../assets/servicios3.png')} 
@@ -43,8 +45,6 @@ const ServiciosScreen = () => {
         />
       </View>
 
-      {/* Contenido con ScrollView */}
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Pressable
           style={styles.button}
           onPress={() => navigation.navigate('SolicitudRetiroResiduos')}
