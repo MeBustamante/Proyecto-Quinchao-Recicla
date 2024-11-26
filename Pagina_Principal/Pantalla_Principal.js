@@ -5,6 +5,8 @@ import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { useUser } from '../Login/UserContext';
 import { AppContext } from '../ConfigGlobal/AppContext';
 import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+
 
 const PantallaPrincipalScreen = ({ navigation }) => {
     const { nombre } = useUser();
@@ -70,7 +72,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
         <View style={styles.container}>
             {/* Campana fija */}
             <TouchableOpacity style={styles.fixedCampana} onPress={handleNotificationPress}>
-                <Ionicons name="notifications" size={28} color="#FF0000" />
+            <MaterialIcons name="notifications-active" size={40} color="#FFD700" />
             </TouchableOpacity>
 
             {/* Modal de notificaciones */}
@@ -318,6 +320,15 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 6,
         alignItems: 'center',
+    },
+    shadowCampana: {
+        // Para iOS
+        shadowColor: '#000', // Color de la sombra
+        shadowOffset: { width: 0, height: 2 }, // Desplazamiento
+        shadowOpacity: 0.25, // Opacidad de la sombra
+        shadowRadius: 3.84, // Radio de la sombra
+        // Para Android
+        elevation: 100, // Altura de la sombra
     },
     buttonYellowBorder: {
         borderColor: '#FFEB3B',
