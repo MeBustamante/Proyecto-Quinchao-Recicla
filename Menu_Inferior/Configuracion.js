@@ -75,25 +75,28 @@ const Configuracion = () => {
 
   // Solicitar permisos de notificaciones
   const requestNotificationPermission = async () => {
-    const { status } = await Notifications.requestPermissionsAsync();
-    if (status !== 'granted') {
-      Alert.alert(currentLanguage.notificationPermissionDenied);
-      return false;
+    const { status } = await Notifications.getPermissionsAsync();
+    if (status === 'granted') {
+      return true; // Si ya está otorgado, no solicita nuevamente
     }
-    return true;
+    const { status: newStatus } = await Notifications.requestPermissionsAsync();
+    return newStatus === 'granted';
   };
+  
 
   // Función para programar notificaciones
   const scheduleNotifications = async () => {
-    if (collectionSchedule.length === 0) {
-      Alert.alert(currentLanguage.error, 'No hay horarios disponibles para programar notificaciones.');
+    if (!collectionSchedule || collectionSchedule.length === 0) {
+      Alert.alert(currentLanguage.notifications, 'Las notificaciones fueron activadas.');
       return;
     }
-
+  
+    await cancelNotifications(); // Cancelar notificaciones anteriores
+  
     for (const schedule of collectionSchedule) {
       const [year, month, day] = schedule.date.split('-');
       const notificationDate = new Date(year, month - 1, day, 9, 0);
-
+  
       if (notificationDate > new Date()) {
         await Notifications.scheduleNotificationAsync({
           content: {
@@ -104,28 +107,34 @@ const Configuracion = () => {
         });
       }
     }
-
-    Alert.alert(currentLanguage.notificationSuccess);
+  
+    Alert.alert(currentLanguage.notifications, currentLanguage.notificationSuccess);
   };
+  
 
   // Función para cancelar todas las notificaciones programadas
   const cancelNotifications = async () => {
     await Notifications.cancelAllScheduledNotificationsAsync();
-    Alert.alert(currentLanguage.notificationCancelled);
+    Alert.alert(currentLanguage.notifications, currentLanguage.notificationCancelled);
   };
+  
 
   // Manejar el cambio del switch
   const handleNotificationSwitch = async (value) => {
     if (value) {
       const permissionGranted = await requestNotificationPermission();
-      if (!permissionGranted) return; // No activa el switch si no hay permisos
-      setNotificationsEnabled(true);
-      scheduleNotifications();
+      if (permissionGranted) {
+        setNotificationsEnabled(true); // Actualizar el estado del switch
+        scheduleNotifications(); // Programar notificaciones
+      } else {
+        setNotificationsEnabled(false); // Si no se otorgan permisos, no activa el switch
+      }
     } else {
-      setNotificationsEnabled(false);
-      cancelNotifications();
+      setNotificationsEnabled(false); // Actualizar el estado del switch
+      cancelNotifications(); // Cancelar notificaciones
     }
   };
+  
 
   const handleCheckUpdate = () => {
     setIsUpdating(true);

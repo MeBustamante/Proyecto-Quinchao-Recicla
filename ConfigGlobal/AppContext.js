@@ -17,6 +17,7 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [language, setLanguage] = useState('es'); // Estado para el idioma
   const [notifications, setNotifications] = useState([]); // Lista de notificaciones
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false); // Estado para notificaciones habilitadas/deshabilitadas
   const [collectionSchedule, setCollectionSchedule] = useState([]); // Estado para el cronograma
 
   // Función para agregar una nueva notificación con fecha y hora
@@ -28,15 +29,17 @@ export const AppProvider = ({ children }) => {
     };
     setNotifications((prevNotifications) => [...prevNotifications, newNotification]);
 
-    // Enviar notificación push local
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: 'Quinchao Recicla',
-        body: `✅ Su solicitud ha sido ingresada exitosamente y será gestionada a la brevedad. Gracias por su compromiso.`,
-        data: { data: message },
-      },
-      trigger: null, // Inmediata
-    });
+    if (notificationsEnabled) {
+      // Enviar notificación push local
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: 'Quinchao Recicla',
+          body: defaultPushMessage,
+          data: { data: message },
+        },
+        trigger: null, // Inmediata
+      });
+    }
   };
 
   return (
@@ -45,9 +48,11 @@ export const AppProvider = ({ children }) => {
         language,
         setLanguage,
         notifications,
-        addNotification, // Proveer la función de agregar notificaciones
+        addNotification,
+        notificationsEnabled, // Proveer el estado de notificaciones
+        setNotificationsEnabled, // Proveer la función para actualizar el estado
         collectionSchedule,
-        setCollectionSchedule, // Proveer el estado y función del cronograma
+        setCollectionSchedule,
       }}
     >
       {children}
