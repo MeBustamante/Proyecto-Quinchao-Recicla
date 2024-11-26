@@ -139,8 +139,12 @@ const DenunciaMicrobasural = () => {
     setAlertVisible(false);
     setSendModalVisible(true); // Mostrar el modal de envío exitoso
 
-    // Añadir notificación al contexto global
-    addNotification(`Nueva denuncia en: ${direccion}`);
+    // Modificar la notificación para que respete el idioma actual
+    const notificationMessage = language === 'es' 
+      ? `Nueva denuncia en: ${direccion}`
+      : `New complaint in: ${direccion}`;
+    
+    addNotification(notificationMessage);
 
     // Limpiar campos después de enviar la denuncia
     setNombre('');
@@ -222,7 +226,7 @@ const DenunciaMicrobasural = () => {
         </KeyboardAvoidingView>
       </ScrollView>
       <MenuInferior navigation={navigation} />
-      
+
       {/* Modal para alertas */}
       <Modal
         animationType="slide"
