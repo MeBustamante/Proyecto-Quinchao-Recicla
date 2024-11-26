@@ -7,11 +7,11 @@ import LottieView from 'lottie-react-native';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { useNavigation } from '@react-navigation/native';
 import { Platform } from 'react-native';
-import { AppContext } from '../ConfigGlobal/AppContext'; // Importar el contexto global
+import { AppContext } from '../ConfigGlobal/AppContext';
 
 const DenunciaMicrobasural = () => {
   const navigation = useNavigation();
-  const { language, addNotification } = useContext(AppContext); // Usar el contexto global para añadir notificaciones
+  const { language, addNotification } = useContext(AppContext);
 
   const texts = {
     es: {
@@ -57,6 +57,7 @@ const DenunciaMicrobasural = () => {
   const [archivo, setArchivo] = useState(null);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [sendModalVisible, setSendModalVisible] = useState(false); // Nuevo estado para el segundo modal
 
   const showCustomAlert = (message) => {
     setAlertMessage(message);
@@ -128,11 +129,11 @@ const DenunciaMicrobasural = () => {
     const now = new Date();
     const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
 
-    // Simulación de envío exitoso
+     // Simulación de envío exitoso
     setAlertVisible(false);
-    alert(texts[language].success);
+    setSendModalVisible(true); // Mostrar el modal de envío exitoso
 
-    // Añadir notificación al contexto global con fecha y hora
+    // Añadir notificación al contexto global
     addNotification(`Nueva denuncia en: ${direccion}`);
 
     // Limpiar campos después de enviar la denuncia
@@ -217,6 +218,8 @@ const DenunciaMicrobasural = () => {
         </KeyboardAvoidingView>
       </ScrollView>
       <MenuInferior navigation={navigation} />
+      
+   {/* Modal para alertas */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -229,14 +232,33 @@ const DenunciaMicrobasural = () => {
               source={require('../assets/Animaciones/fail.json')}
               autoPlay
               loop={true}
-              speed={0.5}
               style={styles.animation}
             />
             <Text style={styles.alertText}>{alertMessage}</Text>
-            <TouchableOpacity
-              style={styles.alertButton}
-              onPress={() => setAlertVisible(false)}
-            >
+            <TouchableOpacity style={styles.alertButton} onPress={() => setAlertVisible(false)}>
+              <Text style={styles.alertButtonText}>{texts[language].close}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Nuevo modal para animación de envío */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={sendModalVisible}
+        onRequestClose={() => setSendModalVisible(false)}
+      >
+        <View style={styles.alertOverlay}>
+          <View style={styles.alertContainer}>
+            <LottieView
+              source={require('../assets/Animaciones/enviar.json')}
+              autoPlay
+              loop={false}
+              style={styles.animation}
+            />
+            <Text style={styles.alertText}>{texts[language].success}</Text>
+            <TouchableOpacity style={styles.alertButton} onPress={() => setSendModalVisible(false)}>
               <Text style={styles.alertButtonText}>{texts[language].close}</Text>
             </TouchableOpacity>
           </View>
