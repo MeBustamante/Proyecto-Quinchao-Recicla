@@ -7,7 +7,6 @@ import { AppContext } from '../ConfigGlobal/AppContext';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
-
 const PantallaPrincipalScreen = ({ navigation }) => {
     const { nombre } = useUser();
     const { language, notifications } = useContext(AppContext); // Acceso al idioma y las notificaciones desde el contexto global
@@ -33,6 +32,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
             },
             notifications: 'Notificaciones',
             noNotifications: 'No tienes notificaciones nuevas.',
+            close: 'Cerrar', // Añadido aquí
         },
         en: {
             greeting: `HELLO ${nombreMayusculas}`,
@@ -51,6 +51,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
             },
             notifications: 'Notifications',
             noNotifications: 'No new notifications.',
+            close: 'Close', // Añadido aquí
         },
     };
 
@@ -100,7 +101,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                             )}
                         </ScrollView>
                         <TouchableOpacity style={styles.closeButton} onPress={handleCloseNotification}>
-                            <Text style={styles.closeButtonText}>Cerrar</Text>
+                            <Text style={styles.closeButtonText}>{currentLanguage.close}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -329,7 +330,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.15,
         shadowRadius: 3.84,
         elevation: 5, // Para Android
-      },
+    },
     fixedCampana: {
         position: 'absolute',
         top: 30, // Ajusta esta distancia desde el borde superior según tus necesidades
@@ -342,7 +343,6 @@ const styles = StyleSheet.create({
         // Sombra en Android
         elevation: 8 // Altura de la sombra para Android
     },
-      
     buttonYellowBorder: {
         borderColor: '#FFEB3B',
     },
