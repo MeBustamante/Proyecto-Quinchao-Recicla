@@ -206,12 +206,6 @@ const styles = StyleSheet.create({
     gradientBackground: {
         flex: 1,
     },
-    fixedCampana: {
-        position: 'absolute',
-        top: 110,
-        right: 10,
-        zIndex: 10,
-    },
     modalOverlay: {
         flex: 1,
         justifyContent: 'center',
