@@ -244,26 +244,33 @@ const DenunciaMicrobasural = () => {
 
       {/* Nuevo modal para animación de envío */}
       <Modal
-        animationType="slide"
-        transparent={true}
-        visible={sendModalVisible}
-        onRequestClose={() => setSendModalVisible(false)}
+  animationType="slide"
+  transparent={true}
+  visible={sendModalVisible}
+  onRequestClose={() => setSendModalVisible(false)}
+>
+  <View style={styles.alertOverlay}>
+    <View style={styles.alertContainer}>
+      <LottieView
+        source={require('../assets/Animaciones/enviar.json')}
+        autoPlay
+        loop={false}
+        style={styles.animation}
+      />
+      <Text style={styles.alertText}>{texts[language].success}</Text>
+      <TouchableOpacity
+        style={styles.alertButton}
+        onPress={() => {
+          setSendModalVisible(false);
+          navigation.navigate('Home'); // Navegar a la pantalla de inicio
+        }}
       >
-        <View style={styles.alertOverlay}>
-          <View style={styles.alertContainer}>
-            <LottieView
-              source={require('../assets/Animaciones/enviar.json')}
-              autoPlay
-              loop={false}
-              style={styles.animation}
-            />
-            <Text style={styles.alertText}>{texts[language].success}</Text>
-            <TouchableOpacity style={styles.alertButton} onPress={() => setSendModalVisible(false)}>
-              <Text style={styles.alertButtonText}>{texts[language].close}</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+        <Text style={styles.alertButtonText}>{texts[language].close}</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</Modal>
+
     </LinearGradient>
   );
 };
