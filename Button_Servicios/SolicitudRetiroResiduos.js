@@ -78,7 +78,10 @@ const SolicitudRetiroResiduos = () => {
       minute: '2-digit',
     });
 
-    const notificationMessage = `Se solicitó el retiro de residuos de ${selectedResiduos}. En ${direccion}`;
+    const notificationMessage = language === 'es'
+      ? `Se solicitó el retiro de residuos de ${selectedResiduos}. En ${direccion}`
+      : `Requested waste removal of ${selectedResiduos} at ${direccion}`;
+
     addNotification(notificationMessage);
 
     setTempSelectedResiduos(selectedResiduos); // Guarda los residuos seleccionados temporalmente
@@ -142,10 +145,10 @@ const SolicitudRetiroResiduos = () => {
               ))}
             </View>
 
-              {/* Mensaje de uso de datos */}
-  <View style={styles.dataUsageContainer}>
-    <Text style={styles.dataUsageText}>{t.terminos}</Text>
-  </View>
+            {/* Mensaje de uso de datos */}
+            <View style={styles.dataUsageContainer}>
+              <Text style={styles.dataUsageText}>{t.terminos}</Text>
+            </View>
 
             <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
               <Text style={styles.submitButtonText}>{t.submit}</Text>

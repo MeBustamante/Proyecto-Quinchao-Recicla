@@ -27,6 +27,7 @@ const DenunciaMicrobasural = () => {
       uploadImage: 'Subir Imagen',
       takePhoto: 'Tomar Foto',
       selectImage: 'Subir Imagen',
+      terminos: 'Al enviar este formulario, usted acepta que los datos proporcionados serán conocidos y utilizados exclusivamente por la Municipalidad de Quinchao para la gestión y resolución de su solicitud.',
       send: 'Enviar',
       enviado1: '¡Gracias por tu compromiso!',
       enviado2: 'Tu denuncia fue enviada correctamente.',
@@ -46,6 +47,7 @@ const DenunciaMicrobasural = () => {
       uploadImage: 'Upload Image',
       takePhoto: 'Take Photo',
       selectImage: 'Select Image',
+      terminos: 'By submitting this form, you agree that the data provided will be known and used exclusively by the Municipality of Quinchao for the management and resolution of your application.',
       send: 'Send',
       enviado1: 'Thank you for your commitment!',
       enviado2: 'Your report was successfully submitted.',
@@ -61,7 +63,7 @@ const DenunciaMicrobasural = () => {
   const [archivo, setArchivo] = useState(null);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
-  const [sendModalVisible, setSendModalVisible] = useState(false);
+  const [sendModalVisible, setSendModalVisible] = useState(false); // Nuevo estado para el segundo modal
 
   const showCustomAlert = (message) => {
     setAlertMessage(message);
@@ -133,17 +135,16 @@ const DenunciaMicrobasural = () => {
     const now = new Date();
     const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
 
-    // Crear el mensaje para la notificación dependiendo del idioma
-    const notificationMessage = language === 'es' 
-      ? `Nueva denuncia en: ${direccion} ` 
-      : `New complaint at: ${direccion} `;
-
-    // Simulación de envío exitoso
+     // Simulación de envío exitoso
     setAlertVisible(false);
     setSendModalVisible(true); // Mostrar el modal de envío exitoso
 
-    // Añadir notificación al contexto global
-    addNotification(notificationMessage);  // Pasar el mensaje de la notificación según el idioma
+    // Modificar la notificación para que respete el idioma actual
+    const notificationMessage = language === 'es' 
+      ? `Nueva denuncia en: ${direccion}`
+      : `New complaint in: ${direccion}`;
+    
+    addNotification(notificationMessage);
 
     // Limpiar campos después de enviar la denuncia
     setNombre('');
@@ -212,6 +213,11 @@ const DenunciaMicrobasural = () => {
               </TouchableOpacity>
             </View>
             {archivo && <Image source={{ uri: archivo }} style={styles.imagePreview} />}
+
+            {/* Mensaje de uso de datos */}
+            <View style={styles.dataUsageContainer}>
+              <Text style={styles.dataUsageText}>{texts[language].terminos}</Text>
+            </View>
 
             <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
               <Text style={styles.submitButtonText}>{texts[language].send}</Text>
@@ -282,14 +288,15 @@ const styles = StyleSheet.create({
   alertButton: { backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 20 },
   alertButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
 
+  /* diseño de mensaje de uso de datos */
   dataUsageContainer: {
-    backgroundColor: '#F9F9F9',
+    backgroundColor: '#F9F9F9', // Fondo gris claro
     paddingVertical: 10,
     paddingHorizontal: 15,
-    marginBottom: 20,
+    marginBottom: 20, // Espacio entre el mensaje y el botón de envío
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#E0E0E0',
+    borderColor: '#E0E0E0', // Borde sutil
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,

@@ -28,7 +28,7 @@ const PuntosReciclaje = ({ navigation }) => {
             materialsAllowed: ["Todos", "Botellas Plásticas", "Latas de Aluminio", "Vidrio", "Cartón", "Papel", "Orgánico"],
         },
         en: {
-            allPoints: "All Green Points are displayed",
+            allPoints: "Filters",
             filters: "Filters",
             modalTitle: "You can recycle here:",
             directionsButton: "GET DIRECTIONS",
