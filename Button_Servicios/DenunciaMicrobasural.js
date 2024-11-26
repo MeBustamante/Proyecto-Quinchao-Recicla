@@ -27,7 +27,6 @@ const DenunciaMicrobasural = () => {
       uploadImage: 'Subir Imagen',
       takePhoto: 'Tomar Foto',
       selectImage: 'Subir Imagen',
-      terminos: 'Al enviar este formulario, usted acepta que los datos proporcionados serán conocidos y utilizados exclusivamente por la Municipalidad de Quinchao para la gestión y resolución de su solicitud.',
       send: 'Enviar',
       enviado1: '¡Gracias por tu compromiso!',
       enviado2: 'Tu denuncia fue enviada correctamente.',
@@ -47,7 +46,6 @@ const DenunciaMicrobasural = () => {
       uploadImage: 'Upload Image',
       takePhoto: 'Take Photo',
       selectImage: 'Select Image',
-      terminos: 'By submitting this form, you agree that the data provided will be known and used exclusively by the Municipality of Quinchao for the management and resolution of your application.',
       send: 'Send',
       enviado1: 'Thank you for your commitment!',
       enviado2: 'Your report was successfully submitted.',
@@ -63,7 +61,7 @@ const DenunciaMicrobasural = () => {
   const [archivo, setArchivo] = useState(null);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
-  const [sendModalVisible, setSendModalVisible] = useState(false); // Nuevo estado para el segundo modal
+  const [sendModalVisible, setSendModalVisible] = useState(false);
 
   const showCustomAlert = (message) => {
     setAlertMessage(message);
@@ -135,12 +133,17 @@ const DenunciaMicrobasural = () => {
     const now = new Date();
     const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
 
-     // Simulación de envío exitoso
+    // Crear el mensaje para la notificación dependiendo del idioma
+    const notificationMessage = language === 'es' 
+      ? `Nueva denuncia en: ${direccion} ` 
+      : `New complaint at: ${direccion} `;
+
+    // Simulación de envío exitoso
     setAlertVisible(false);
     setSendModalVisible(true); // Mostrar el modal de envío exitoso
 
     // Añadir notificación al contexto global
-    addNotification(`Nueva denuncia en: ${direccion}`);
+    addNotification(notificationMessage);  // Pasar el mensaje de la notificación según el idioma
 
     // Limpiar campos después de enviar la denuncia
     setNombre('');
@@ -210,11 +213,6 @@ const DenunciaMicrobasural = () => {
             </View>
             {archivo && <Image source={{ uri: archivo }} style={styles.imagePreview} />}
 
-            {/* Mensaje de uso de datos */}
-            <View style={styles.dataUsageContainer}>
-            <Text style={styles.dataUsageText}>{texts[language].terminos}</Text>
-        </View>
-
             <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
               <Text style={styles.submitButtonText}>{texts[language].send}</Text>
             </TouchableOpacity>
@@ -222,39 +220,36 @@ const DenunciaMicrobasural = () => {
         </KeyboardAvoidingView>
       </ScrollView>
       <MenuInferior navigation={navigation} />
-      
-   {/* Modal para alertas */}
-   <Modal
-  animationType="slide"
-  transparent={true}
-  visible={sendModalVisible}
-  onRequestClose={() => setSendModalVisible(false)}
->
-  <View style={styles.alertOverlay}>
-    <View style={styles.alertContainer}>
-      <LottieView
-        source={require('../assets/Animaciones/enviar.json')}
-        autoPlay
-        loop={true}
-        style={styles.animation}
-      />
-      <Text style={styles.modalSuccessTitle}>{texts[language].enviado1}</Text>
-      <Text style={styles.modalSuccessText}>{texts[language].enviado2}</Text>
-      <TouchableOpacity
-        style={styles.alertButton}
-        onPress={() => {
-          setSendModalVisible(false);
-          navigation.navigate('Home'); // Navegar a la pantalla de inicio
-        }}
+
+      {/* Modal para alertas */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={sendModalVisible}
+        onRequestClose={() => setSendModalVisible(false)}
       >
-        <Text style={styles.alertButtonText}>{texts[language].close}</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-</Modal>
-
-
-
+        <View style={styles.alertOverlay}>
+          <View style={styles.alertContainer}>
+            <LottieView
+              source={require('../assets/Animaciones/enviar.json')}
+              autoPlay
+              loop={true}
+              style={styles.animation}
+            />
+            <Text style={styles.modalSuccessTitle}>{texts[language].enviado1}</Text>
+            <Text style={styles.modalSuccessText}>{texts[language].enviado2}</Text>
+            <TouchableOpacity
+              style={styles.alertButton}
+              onPress={() => {
+                setSendModalVisible(false);
+                navigation.navigate('Home'); // Navegar a la pantalla de inicio
+              }}
+            >
+              <Text style={styles.alertButtonText}>{texts[language].close}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </LinearGradient>
   );
 };
@@ -287,16 +282,14 @@ const styles = StyleSheet.create({
   alertButton: { backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 20 },
   alertButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
 
-
-   /* diseño de mensaje de uso de datos */
   dataUsageContainer: {
-    backgroundColor: '#F9F9F9', // Fondo gris claro
+    backgroundColor: '#F9F9F9',
     paddingVertical: 10,
     paddingHorizontal: 15,
-    marginBottom: 20, // Espacio entre el mensaje y el botón de envío
+    marginBottom: 20,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#E0E0E0', // Borde sutil
+    borderColor: '#E0E0E0',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -307,6 +300,5 @@ const styles = StyleSheet.create({
   modalSuccessTitle: { fontSize: 18, color: 'green', fontWeight: 'bold', textAlign: 'center', marginBottom: 10 },
   modalSuccessText: { fontSize: 16, color: '#333', textAlign: 'center', fontWeight: 'bold', marginBottom: 20 },
 });
-
 
 export default DenunciaMicrobasural;
