@@ -202,6 +202,8 @@ const PantallaPrincipalScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        paddingTop: 1, // Deja un espacio de 40 píxeles en la parte superior
+        backgroundColor: '#ffffff', 
     },
     gradientBackground: {
         flex: 1,
@@ -327,7 +329,7 @@ const styles = StyleSheet.create({
     },
     fixedCampana: {
         position: 'absolute',
-        top: 30, // Ajusta esta distancia desde el borde superior según tus necesidades
+        top: 35, // Ajusta esta distancia desde el borde superior según tus necesidades
         right: 10, // Ajusta esta distancia desde el borde derecho según tus necesidades
         zIndex: 100, // Asegúrate de que sea mayor a otros elementos en la pantalla
         shadowColor: 'black',
