@@ -56,7 +56,7 @@ const Configuracion = () => {
       locationAccess: 'Location Access',
       language: 'Language',
       permissionsGranted: 'Granted',
-      permissionsDenied: 'Denied',
+      permissionsDenied: 'Granted',
       twelveHours: '12 hours',
       twentyFourHours: '24 hours',
       checkUpdate: 'Check for Updates',
