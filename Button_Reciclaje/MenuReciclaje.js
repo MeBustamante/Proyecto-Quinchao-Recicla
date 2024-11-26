@@ -21,7 +21,7 @@ const MenuReciclaje = ({ navigation }) => {
       campanas: 'Campañas de Reciclaje',
       huertos: 'Huertos Urbanos',
       reforestacion: 'Reforestación Urbana',
-      gestion: 'Gestión de Residuos',
+      gestion: 'Calendario de Recolección',
     },
     en: {
       compostaje: 'Composting Programs',
@@ -30,7 +30,7 @@ const MenuReciclaje = ({ navigation }) => {
       campanas: 'Recycling Campaigns',
       huertos: 'Urban Gardens',
       reforestacion: 'Urban Reforestation',
-      gestion: 'Waste Management',
+      gestion: 'Collection Schedule',
     },
   };
 
