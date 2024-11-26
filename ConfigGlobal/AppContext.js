@@ -6,24 +6,24 @@ export const AppContext = createContext();
 // Proveedor del contexto
 export const AppProvider = ({ children }) => {
   const [language, setLanguage] = useState('es'); // Estado para el idioma
-  const [notificationsEnabled, setNotificationsEnabled] = useState(true); // Notificaciones
-  const [timeFormat, setTimeFormat] = useState('24h'); // Formato de hora
-  const [locationAccess, setLocationAccess] = useState(true); // Permiso de ubicación
-  const [collectionSchedule, setCollectionSchedule] = useState([]); // Horarios de recolección
+  const [notifications, setNotifications] = useState([]); // Lista de notificaciones
+
+  // Función para agregar una nueva notificación con fecha y hora
+  const addNotification = (message) => {
+    const newNotification = {
+      text: message,
+      date: new Date().toLocaleString(), // Fecha y hora en formato local
+    };
+    setNotifications((prevNotifications) => [...prevNotifications, newNotification]);
+  };
 
   return (
     <AppContext.Provider
       value={{
         language,
         setLanguage,
-        notificationsEnabled,
-        setNotificationsEnabled,
-        timeFormat,
-        setTimeFormat,
-        locationAccess,
-        setLocationAccess,
-        collectionSchedule,
-        setCollectionSchedule, // Nueva función para actualizar los horarios
+        notifications,
+        addNotification, // Proveer la función de agregar notificaciones
       }}
     >
       {children}
