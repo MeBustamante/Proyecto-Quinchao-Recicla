@@ -3,16 +3,14 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Modal } fr
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { useUser } from '../Login/UserContext';
-import { AppContext } from '../ConfigGlobal/AppContext'; // Importa el contexto global
-import Icon from 'react-native-vector-icons/MaterialIcons'; // Icono de notificación
+import { AppContext } from '../ConfigGlobal/AppContext';
+import { Ionicons } from '@expo/vector-icons';
 
 const PantallaPrincipalScreen = ({ navigation }) => {
     const { nombre } = useUser();
-    const { language } = useContext(AppContext); // Acceso al idioma desde el contexto global
+    const { language, notifications } = useContext(AppContext); // Acceso al idioma y las notificaciones desde el contexto global
+    const [isNotificationVisible, setNotificationVisible] = useState(false); // Controla la visibilidad del modal de notificaciones
     const nombreMayusculas = nombre.toUpperCase();
-
-    // Estado para controlar la visibilidad de las notificaciones
-    const [modalVisible, setModalVisible] = useState(false);
 
     // Traducciones dinámicas
     const translations = {
@@ -31,7 +29,8 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                 title: 'PUNTOS DE RECICLAJE',
                 subtitle: 'Ubica en el mapa los Puntos Verdes cercanos para reciclar de manera fácil y responsable.',
             },
-            notifications: 'Notificaciones', // Título para las notificaciones
+            notifications: 'Notificaciones',
+            noNotifications: 'No tienes notificaciones nuevas.',
         },
         en: {
             greeting: `HELLO ${nombreMayusculas}`,
@@ -48,31 +47,73 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                 title: 'RECYCLING POINTS',
                 subtitle: 'Locate nearby Green Points to recycle easily and responsibly.',
             },
-            notifications: 'Notifications', // Título para las notificaciones
+            notifications: 'Notifications',
+            noNotifications: 'No new notifications.',
         },
     };
 
-    const currentLanguage = translations[language]; // Selección del idioma actual
+    const currentLanguage = translations[language]; // Traducciones dinámicas según el idioma
+
+    const handleNotificationPress = () => {
+        setNotificationVisible(true); // Abre el modal de notificaciones
+    };
+
+    const handleCloseNotification = () => {
+        setNotificationVisible(false); // Cierra el modal de notificaciones
+    };
 
     const handleReciclajeButtonPress = () => navigation.navigate('MenuReciclaje');
     const handleBoton2Press = () => navigation.navigate('Servicios');
     const handleBoton3Press = () => navigation.navigate('PuntosReciclaje');
 
-    // Datos de ejemplo para las notificaciones
-    const notifications = [
-        { id: 1, text: 'Nueva campaña de reciclaje en tu área.' },
-        { id: 2, text: '¡Ayúdanos a limpiar tu comunidad!' },
-        { id: 3, text: 'Nuevo punto de reciclaje disponible cerca de ti.' },
-    ];
-
     return (
         <View style={styles.container}>
+            {/* Campana fija */}
+            <TouchableOpacity style={styles.fixedCampana} onPress={handleNotificationPress}>
+                <Ionicons name="notifications" size={28} color="#FF0000" />
+            </TouchableOpacity>
+
+            {/* Modal de notificaciones */}
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={isNotificationVisible}
+                onRequestClose={handleCloseNotification}
+            >
+                <View style={styles.modalOverlay}>
+                    <View style={styles.modalContainer}>
+                        <Text style={styles.modalTitle}>{currentLanguage.notifications}</Text>
+                        <ScrollView contentContainerStyle={styles.modalContent}>
+                            {notifications.length > 0 ? (
+                                notifications.map((notification, index) => (
+                                    <View key={index} style={styles.notificationContainer}>
+                                        <Text style={styles.notificationText}>
+                                            {notification.text}
+                                        </Text>
+                                        <Text style={styles.notificationDate}>
+                                            {notification.date}
+                                        </Text>
+                                    </View>
+                                ))
+                            ) : (
+                                <Text style={styles.noNotificationsText}>
+                                    {currentLanguage.noNotifications}
+                                </Text>
+                            )}
+                        </ScrollView>
+                        <TouchableOpacity style={styles.closeButton} onPress={handleCloseNotification}>
+                            <Text style={styles.closeButtonText}>Cerrar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+
             <LinearGradient
                 colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
                 style={styles.gradientBackground}
             >
                 <ScrollView contentContainerStyle={styles.scrollContent}>
-                    {/* Encabezado con notificación */}
+                    {/* Encabezado */}
                     <View style={styles.headerContainer}>
                         <Image
                             source={require('../assets/p3.jpg')}
@@ -149,39 +190,6 @@ const PantallaPrincipalScreen = ({ navigation }) => {
             <View style={styles.menuInferiorContainer}>
                 <MenuInferior />
             </View>
-
-            {/* Ícono de notificación */}
-            <TouchableOpacity
-                style={styles.notificationIconContainer}
-                onPress={() => setModalVisible(true)}
-            >
-                <Icon name="notifications" size={30} color="#fff" />
-            </TouchableOpacity>
-
-            {/* Modal de Notificaciones */}
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => setModalVisible(false)}
-            >
-                <View style={styles.modalBackground}>
-                    <View style={styles.modalContainer}>
-                        <Text style={styles.modalTitle}>{currentLanguage.notifications}</Text>
-                        {notifications.map(notification => (
-                            <Text key={notification.id} style={styles.notificationText}>
-                                {notification.text}
-                            </Text>
-                        ))}
-                        <TouchableOpacity
-                            style={styles.closeButton}
-                            onPress={() => setModalVisible(false)}
-                        >
-                            <Text style={styles.closeButtonText}>Cerrar</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </Modal>
         </View>
     );
 };
@@ -193,10 +201,63 @@ const styles = StyleSheet.create({
     gradientBackground: {
         flex: 1,
     },
+    fixedCampana: {
+        position: 'absolute',
+        top: 110,
+        right: 10,
+        zIndex: 10,
+    },
+    modalOverlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContainer: {
+        width: '85%',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 20,
+    },
+    modalTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    modalContent: {
+        paddingVertical: 10,
+    },
+    notificationContainer: {
+        marginBottom: 10,
+    },
+    notificationText: {
+        fontSize: 16,
+    },
+    notificationDate: {
+        fontSize: 12,
+        color: '#666',
+        textAlign: 'right',
+    },
+    noNotificationsText: {
+        fontSize: 16,
+        color: '#888',
+        textAlign: 'center',
+    },
+    closeButton: {
+        marginTop: 10,
+        backgroundColor: '#4CAF50',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
+    closeButtonText: {
+        color: 'white',
+        fontSize: 16,
+    },
     scrollContent: {
         flexGrow: 1,
         alignItems: 'center',
-        paddingBottom: 80, // Espacio suficiente para que el último botón sea visible
+        paddingBottom: 80,
     },
     headerContainer: {
         width: '100%',
@@ -227,7 +288,6 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 2, height: 2 },
         textShadowRadius: 4,
         textAlign: 'center',
-        marginBottom: 5,
     },
     welcomeText: {
         fontSize: 20,
@@ -237,13 +297,11 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 4,
         textAlign: 'center',
-        marginBottom: 5,
     },
     logo: {
         width: 90,
         height: 90,
         resizeMode: 'contain',
-        marginTop: 0,
     },
     buttonsContainer: {
         width: '90%',
@@ -290,48 +348,6 @@ const styles = StyleSheet.create({
         width: '100%',
         position: 'absolute',
         bottom: 0,
-    },
-    // Estilos para la notificación
-    notificationIconContainer: {
-        position: 'absolute',
-        top: 40,
-        right: 20,
-        zIndex: 10, // Asegura que el ícono esté encima de otros componentes
-    },
-    modalBackground: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    modalContainer: {
-        backgroundColor: 'white',
-        padding: 20,
-        borderRadius: 10,
-        width: '80%',
-        maxHeight: '70%',
-        overflow: 'scroll',
-    },
-    modalTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 15,
-        textAlign: 'center',
-    },
-    notificationText: {
-        fontSize: 16,
-        marginVertical: 10,
-    },
-    closeButton: {
-        marginTop: 20,
-        backgroundColor: '#FF9800',
-        padding: 10,
-        borderRadius: 5,
-        alignItems: 'center',
-    },
-    closeButtonText: {
-        color: 'white',
-        fontWeight: 'bold',
     },
 });
 
