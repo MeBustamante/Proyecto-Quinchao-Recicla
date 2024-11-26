@@ -1,14 +1,5 @@
 import React, { useState, useContext } from 'react';
-import {
-  View,
-  Text,
-  Switch,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-  Modal,
-  Alert,
-} from 'react-native';
+import {View, Text, Switch, TouchableOpacity, StyleSheet, ScrollView, Modal, Alert } from 'react-native';
 import LottieView from 'lottie-react-native';
 import * as Notifications from 'expo-notifications';
 import { AppContext } from '../ConfigGlobal/AppContext'; // Ajusta la ruta según tu proyecto
