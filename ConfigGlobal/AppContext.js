@@ -7,6 +7,7 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [language, setLanguage] = useState('es'); // Estado para el idioma
   const [notifications, setNotifications] = useState([]); // Lista de notificaciones
+  const [collectionSchedule, setCollectionSchedule] = useState([]); // Estado para el cronograma
 
   // Función para agregar una nueva notificación con fecha y hora
   const addNotification = (message) => {
@@ -24,6 +25,8 @@ export const AppProvider = ({ children }) => {
         setLanguage,
         notifications,
         addNotification, // Proveer la función de agregar notificaciones
+        collectionSchedule,
+        setCollectionSchedule, // Proveer el estado y función del cronograma
       }}
     >
       {children}
