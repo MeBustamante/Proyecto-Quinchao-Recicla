@@ -70,10 +70,6 @@ const PantallaPrincipalScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {/* Campana fija */}
-            <TouchableOpacity style={styles.fixedCampana} onPress={handleNotificationPress}>
-            <MaterialIcons name="notifications-active" size={40} color="#FFD700" />
-            </TouchableOpacity>
 
             {/* Modal de notificaciones */}
             <Modal
@@ -115,6 +111,12 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                 style={styles.gradientBackground}
             >
                 <ScrollView contentContainerStyle={styles.scrollContent}>
+                <TouchableOpacity
+                    style={[styles.fixedCampana, styles.shadowCampana]} // Sombra adicional opcional
+                    onPress={handleNotificationPress}
+                >
+                  <MaterialIcons name="notifications-active" size={40} color="white" />
+                </TouchableOpacity>
                     {/* Encabezado */}
                     <View style={styles.headerContainer}>
                         <Image
@@ -322,14 +324,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     shadowCampana: {
-        // Para iOS
-        shadowColor: '#000', // Color de la sombra
-        shadowOffset: { width: 0, height: 2 }, // Desplazamiento
-        shadowOpacity: 0.25, // Opacidad de la sombra
-        shadowRadius: 3.84, // Radio de la sombra
-        // Para Android
-        elevation: 100, // Altura de la sombra
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 3.84,
+        elevation: 5, // Para Android
+      },
+    fixedCampana: {
+        position: 'absolute',
+        top: 30, // Ajusta esta distancia desde el borde superior según tus necesidades
+        right: 10, // Ajusta esta distancia desde el borde derecho según tus necesidades
+        zIndex: 100, // Asegúrate de que sea mayor a otros elementos en la pantalla
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 4 }, // Desplazamiento de la sombra
+        shadowOpacity: 0.3, // Transparencia de la sombra
+        shadowRadius: 4, // Difusión de la sombra
+        // Sombra en Android
+        elevation: 8 // Altura de la sombra para Android
     },
+      
     buttonYellowBorder: {
         borderColor: '#FFEB3B',
     },
