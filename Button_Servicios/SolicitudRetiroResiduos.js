@@ -22,6 +22,7 @@ const translations = {
     modalText: 'Residuos seleccionados:',
     close: 'Cerrar',
     wasteOptions: ['Latas', 'Plásticos', 'Vidrios', 'Metales', 'Papel', 'Orgánicos'],
+    terminos: 'Al enviar este formulario, usted acepta que los datos proporcionados serán conocidos y utilizados exclusivamente por la Municipalidad de Quinchao para la gestión y resolución de su solicitud.',
     errorModalText: 'Por favor complete todos los campos.',
     close: 'Cerrar',
   },
@@ -37,6 +38,7 @@ const translations = {
     modalText: 'Selected waste:',
     close: 'Close',
     wasteOptions: ['Cans', 'Plastics', 'Glass', 'Metals', 'Paper', 'Organics'],
+    terminos: 'By submitting this form, you agree that the data provided will be known and used exclusively by the Municipality of Quinchao for the management and resolution of your application.',
     errorModalText: 'Please complete all fields.',
     close: 'Close',
   },
@@ -142,9 +144,7 @@ const SolicitudRetiroResiduos = () => {
 
               {/* Mensaje de uso de datos */}
   <View style={styles.dataUsageContainer}>
-    <Text style={styles.dataUsageText}>
-      Al enviar este formulario, usted acepta que los datos proporcionados serán conocidos y utilizados exclusivamente por la Municipalidad de Quinchao para la gestión y resolución de su solicitud.
-    </Text>
+    <Text style={styles.dataUsageText}>{t.terminos}</Text>
   </View>
 
             <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
