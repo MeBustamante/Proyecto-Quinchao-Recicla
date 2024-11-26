@@ -248,11 +248,11 @@ const DenunciaMicrobasural = () => {
 
 const styles = StyleSheet.create({
   background: { flex: 1 },
-  banner: { width: '100%', height: 120, resizeMode: 'cover' },
+  banner: { width: '100%', height: 110, resizeMode: 'cover' },
   container: { flex: 1, paddingHorizontal: 20 },
-  scrollContent: { paddingBottom: 60 },
+  scrollContent: { paddingBottom: 80 },
   description: { fontSize: 16, textAlign: 'justify', color: 'black', marginHorizontal: 10, marginBottom: 5 },
-  formContainer: { backgroundColor: '#fff', borderRadius: 10, padding: 20, marginBottom: 20, elevation: 4 },
+  formContainer: { backgroundColor: '#fff', borderRadius: 10, padding: 15, marginBottom: 20, elevation: 8 },
   label: { fontSize: 14, marginBottom: 3, color: '#333', fontWeight: 'bold' },
   input: { borderWidth: 1, borderColor: '#ccc', padding: 5, borderRadius: 5, marginBottom: 10, backgroundColor: '#fff' },
   uploadButton: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#faeeac', paddingVertical: 10, paddingHorizontal: 10, borderRadius: 8, marginBottom: 8 },
