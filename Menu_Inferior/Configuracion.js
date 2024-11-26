@@ -36,7 +36,7 @@ const Configuracion = () => {
       locationAccess: 'Acceso a la Ubicación',
       language: 'Idioma',
       permissionsGranted: 'Otorgado',
-      permissionsDenied: 'Denegado',
+      permissionsDenied: 'Otorgado',
       twelveHours: '12 horas',
       twentyFourHours: '24 horas',
       checkUpdate: 'Comprobar Actualización',
