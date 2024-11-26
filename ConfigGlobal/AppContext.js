@@ -22,7 +22,12 @@ export const AppProvider = ({ children }) => {
 
   // Función para agregar una nueva notificación con fecha y hora
   const addNotification = async (message) => {
-    const defaultPushMessage = `✅ Su solicitud ha sido ingresada exitosamente y será gestionada a la brevedad. Gracias por su compromiso con el cuidado del medio ambiente y por ser parte del cambio.`;
+    const messages = {
+      es: `✅ Su solicitud ha sido ingresada exitosamente y será gestionada a la brevedad. Gracias por su compromiso con el cuidado del medio ambiente y por ser parte del cambio.`,
+      en: `✅ Your request has been successfully submitted and will be processed shortly. Thank you for your commitment to environmental care and for being part of the change.`,
+    };
+
+    const defaultPushMessage = messages[language] || messages['es']; // Mensaje según el idioma actual
     const newNotification = {
       text: message,
       date: new Date().toLocaleString(), // Fecha y hora en formato local
@@ -33,7 +38,7 @@ export const AppProvider = ({ children }) => {
       // Enviar notificación push local
       await Notifications.scheduleNotificationAsync({
         content: {
-          title: 'Quinchao Recicla',
+          title: language === 'es' ? 'Quinchao Recicla' : 'Quinchao Recycles',
           body: defaultPushMessage,
           data: { data: message },
         },
