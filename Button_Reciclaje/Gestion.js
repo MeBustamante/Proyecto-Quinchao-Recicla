@@ -7,23 +7,37 @@ import { AppContext } from '../ConfigGlobal/AppContext';
 
 const { height: screenHeight } = Dimensions.get('window');
 
-// Función para formatear las fechas
-const formatDate = (dateString) => {
-  const months = [
-    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
-  ];
-  const [year, month, day] = dateString.split('-');
-  return `${day} de ${months[parseInt(month, 10) - 1]} del ${year}`;
+// Traducciones para meses y días
+const translations = {
+  es: {
+    months: [
+      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+    ],
+    days: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+  },
+  en: {
+    months: [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December',
+    ],
+    days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  },
 };
 
-// Traducción de días de la semana
-const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+// Función para formatear las fechas dinámicamente
+const formatDate = (dateString, language) => {
+  const { months } = translations[language];
+  const [year, month, day] = dateString.split('-');
+  return `${day} ${months[parseInt(month, 10) - 1]} ${year}`;
+};
 
 const Gestion = () => {
   const { language, setCollectionSchedule } = useContext(AppContext); 
   const [modalVisible, setModalVisible] = useState(false); 
   const [modalData, setModalData] = useState({}); 
+
+  const { months, days } = translations[language];
 
   const schedule = {
     Quinchao: { dates: ['2024-11-01', '2024-11-06', '2024-11-11', '2024-11-16', '2024-11-21', '2024-11-26'], color: '#1E90FF' },
@@ -51,7 +65,7 @@ const Gestion = () => {
       if (schedule[key].dates.includes(dateString)) {
         setModalData({
           area: key,
-          date: formatDate(dateString),
+          date: formatDate(dateString, language),
         });
         setModalVisible(true);
         return;
@@ -101,74 +115,66 @@ const Gestion = () => {
         </View>
 
         {/* Texto de recordatorio antes del calendario */}
-<View style={styles.reminderContainer}>
-  <Text style={styles.reminderText}>{currentTexts.recuerda}</Text>
-</View>
+        <View style={styles.reminderContainer}>
+          <Text style={styles.reminderText}>{currentTexts.recuerda}</Text>
+        </View>
 
-{/* Calendario */}
-<View style={styles.calendarContainer}>
-  <Calendar
-    markedDates={markedDates}
-    onDayPress={handleDayPress}
-    theme={{
-      textDayFontFamily: 'System',
-      textMonthFontFamily: 'System',
-      textDayHeaderFontFamily: 'System',
-      textMonthFontSize: 18,
-      textDayFontSize: 16,
-      monthTextColor: 'black',
-      todayTextColor: 'red',
-      arrowColor: 'black',
-      dayTextColor: '#000',
-      textDayHeaderFontSize: 12,
-    }}
-    renderHeader={(date) => {
-      const months = [
-        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
-      ];
-      return (
-        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#000' }}>
-          {months[date.getMonth()]} {date.getFullYear()}
-        </Text>
-      );
-    }}
-    renderDayHeader={(day, index) => (
-      <Text key={index} style={{ fontSize: 12, fontWeight: 'bold', color: '#000' }}>
-        {daysOfWeek[index]}
-      </Text>
-    )}
-    firstDay={1} // La semana empieza el lunes
-  />
-</View>
+        {/* Calendario */}
+        <View style={styles.calendarContainer}>
+          <Calendar
+            markedDates={markedDates}
+            onDayPress={handleDayPress}
+            theme={{
+              textDayFontFamily: 'System',
+              textMonthFontFamily: 'System',
+              textDayHeaderFontFamily: 'System',
+              textMonthFontSize: 18,
+              textDayFontSize: 16,
+              monthTextColor: 'black',
+              todayTextColor: 'red',
+              arrowColor: 'black',
+              dayTextColor: '#000',
+              textDayHeaderFontSize: 12,
+            }}
+            renderHeader={(date) => (
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#000' }}>
+                {months[date.getMonth()]} {date.getFullYear()}
+              </Text>
+            )}
+            renderDayHeader={(day, index) => (
+              <Text key={index} style={{ fontSize: 12, fontWeight: 'bold', color: '#000' }}>
+                {days[index]}
+              </Text>
+            )}
+            firstDay={1} // La semana empieza el lunes
+          />
+        </View>
 
-        
         {/* Tabla de Cronograma */}
-<View style={styles.tableContainer}>
-  <Text style={styles.tableTitle}>{currentTexts.tableTitle}</Text>
-  {Object.keys(schedule).map((area, index) => (
-    <View
-      key={index}
-      style={[
-        styles.tableRow,
-        {
-          borderLeftColor: schedule[area].color, // Color del borde izquierdo
-          backgroundColor: `${schedule[area].color}20`, // Color de fondo con opacidad
-        },
-      ]}
-    >
-      <Text style={styles.tableArea}>{area}</Text>
-      <View style={styles.tableDates}>
-        {schedule[area].dates.map((date, idx) => (
-          <Text key={idx} style={styles.tableDate}>
-            {formatDate(date)}
-          </Text>
-        ))}
-      </View>
-    </View>
-  ))}
-</View>
-
+        <View style={styles.tableContainer}>
+          <Text style={styles.tableTitle}>{currentTexts.tableTitle}</Text>
+          {Object.keys(schedule).map((area, index) => (
+            <View
+              key={index}
+              style={[
+                styles.tableRow,
+                {
+                  borderLeftColor: schedule[area].color,
+                  backgroundColor: `${schedule[area].color}20`,
+                },
+              ]}
+            >
+              <Text style={styles.tableArea}>{area}</Text>
+              <View style={styles.tableDates}>
+                {schedule[area].dates.map((date, idx) => (
+                  <Text key={idx} style={styles.tableDate}>
+                    {formatDate(date, language)}
+                  </Text>
+                ))}
+              </View>
+            </View>
+          ))}
+        </View>
       </ScrollView>
 
       {/* Menú Inferior */}
@@ -196,6 +202,7 @@ const Gestion = () => {
     </LinearGradient>
   );
 };
+
 
 const styles = StyleSheet.create({
   gradientBackground: { flex: 1, paddingVertical: 20 },
