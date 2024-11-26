@@ -19,15 +19,18 @@ import HuertosUrbanosScreen from './Button_Reciclaje/HuertosUrbanos';
 import ReforestacionUrbanaScreen from './Button_Reciclaje/ReforestacionUrbana';
 import Animacion from './Button_PuntosReciclaje/animacion';
 import Configuracion from './Menu_Inferior/Configuracion';
-import Ayuda from './Menu_Inferior/Ayuda'; // Importar correctamente el componente Ayuda
+import Ayuda from './Menu_Inferior/Ayuda';
+
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
   return (
     <UserProvider>
       <AppProvider>
         <NavigationContainer>
+
           <Stack.Navigator
             initialRouteName="Login"
             screenOptions={{
