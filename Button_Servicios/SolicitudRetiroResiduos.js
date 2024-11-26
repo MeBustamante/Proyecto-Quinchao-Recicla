@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 import CheckBox from 'react-native-check-box';
 import LottieView from 'lottie-react-native';
-import { AppContext } from '../ConfigGlobal/AppContext'; // Importa el contexto global
+import { AppContext } from '../ConfigGlobal/AppContext';
 
 const { height: screenHeight } = Dimensions.get('window');
 
@@ -36,21 +36,22 @@ const translations = {
     modalTitle: 'Thank you for your commitment! Your request has been successfully sent.',
     modalText: 'Selected waste:',
     close: 'Close',
-    wasteOptions: ['Cans', 'Plastics', 'Glass', 'Metals', 'Paper', 'Organics'], // Traducciones en inglés
+    wasteOptions: ['Cans', 'Plastics', 'Glass', 'Metals', 'Paper', 'Organics'],
     errorModalText: 'Please complete all fields.',
     close: 'Close',
   },
 };
 
 const SolicitudRetiroResiduos = () => {
-  const { language } = useContext(AppContext); // Usa el contexto global para obtener el idioma
+  const { language, addNotification } = useContext(AppContext);
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
   const [email, setEmail] = useState('');
   const [direccion, setDireccion] = useState('');
   const [selectedResiduos, setSelectedResiduos] = useState([]);
+  const [tempSelectedResiduos, setTempSelectedResiduos] = useState([]); // Estado temporal para mostrar en el modal
   const [showModal, setShowModal] = useState(false);
-  const [showErrorModal, setShowErrorModal] = useState(false); // Estado para mostrar el modal de error
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   const navigation = useNavigation();
 
@@ -60,25 +61,36 @@ const SolicitudRetiroResiduos = () => {
     );
   };
 
-  const t = translations[language]; // Traducciones según el idioma
+  const t = translations[language];
 
   const handleSubmit = () => {
-    // Verificar si todos los campos están completos
     if (!nombre || !telefono || !email || !direccion || selectedResiduos.length === 0) {
-      // Mostrar modal de error si algún campo está vacío
       setShowErrorModal(true);
       return;
     }
 
-    // Si todos los campos están completos, mostrar el modal de éxito
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString(language === 'es' ? 'es-CL' : 'en-US');
+    const formattedTime = currentDate.toLocaleTimeString(language === 'es' ? 'es-CL' : 'en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+
+    const notificationMessage = `Se solicitó el retiro de residuos de ${selectedResiduos}. En ${direccion}`;
+    addNotification(notificationMessage);
+
+    setTempSelectedResiduos(selectedResiduos); // Guarda los residuos seleccionados temporalmente
     setShowModal(true);
+
+    setNombre('');
+    setTelefono('');
+    setEmail('');
+    setDireccion('');
+    setSelectedResiduos([]); // Limpia los residuos seleccionados
   };
 
   return (
-    <LinearGradient
-      colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
-      style={styles.background}
-    >
+    <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.background}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.bannerContainer}>
           <Image source={require('../assets/retiro1.png')} style={styles.banner} />
@@ -89,12 +101,7 @@ const SolicitudRetiroResiduos = () => {
 
           <View style={styles.formContainer}>
             <Text style={styles.label}>{t.name}</Text>
-            <TextInput
-              style={styles.input}
-              placeholder={t.name}
-              value={nombre}
-              onChangeText={setNombre}
-            />
+            <TextInput style={styles.input} placeholder={t.name} value={nombre} onChangeText={setNombre} />
 
             <Text style={styles.label}>{t.phone}</Text>
             <TextInput
@@ -115,12 +122,7 @@ const SolicitudRetiroResiduos = () => {
             />
 
             <Text style={styles.label}>{t.address}</Text>
-            <TextInput
-              style={styles.input}
-              placeholder={t.address}
-              value={direccion}
-              onChangeText={setDireccion}
-            />
+            <TextInput style={styles.input} placeholder={t.address} value={direccion} onChangeText={setDireccion} />
 
             <Text style={styles.label}>{t.wasteType}</Text>
             <View style={styles.residuosContainer}>
@@ -164,7 +166,7 @@ const SolicitudRetiroResiduos = () => {
             />
             <Text style={styles.modalTitle}>{t.modalTitle}</Text>
             <Text style={styles.modalText}>
-              {t.modalText} {selectedResiduos.length > 0 ? selectedResiduos.join(', ') : 'Ninguno'}
+              {t.modalText} {tempSelectedResiduos.length > 0 ? tempSelectedResiduos.join(', ') : 'Ninguno'}
             </Text>
             <TouchableOpacity
               style={styles.modalButton}
