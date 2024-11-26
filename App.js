@@ -47,7 +47,7 @@ export default function App() {
             <Stack.Screen name="SolicitudRetiroResiduos" component={SolicitudRetiroResiduos} options={{ title: 'Solicitud Retiro Residuos' }} />
             <Stack.Screen name="DenunciaMicrobasural" component={DenunciaMicrobasural} options={{ title: 'Denuncia Microbasural' }} />
             <Stack.Screen name="PuntosReciclaje" component={PuntosReciclajeScreen} options={{ title: 'Puntos de Reciclaje' }} />
-            <Stack.Screen name="Gestion" component={Gestion} options={{ title: 'Gestión de Residuos' }} />
+            <Stack.Screen name="Gestion" component={Gestion} options={{ title: 'Calendario de Recolección' }} />
             <Stack.Screen name="Acerca" component={AcercaScreen} options={{ title: 'Acerca De Nosotros' }} />
             <Stack.Screen name="Animacion" component={Animacion} options={{ headerShown: false }} />
             <Stack.Screen name="Configuracion" component={Configuracion} options={{ title: 'Configuración' }} />
