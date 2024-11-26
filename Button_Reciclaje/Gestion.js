@@ -72,6 +72,7 @@ const Gestion = () => {
   const texts = {
     es: {
       alertTitle: 'Recolección de residuos',
+      recuerda: 'Recuerda: El reciclaje comienza en casa. Clasifica tus residuos correctamente.',
       referenceText: 'Consulta el cronograma de recolección en tu zona según el calendario:',
       tableTitle: 'Cronograma de recolección',
       areaHeader: 'Localidad',
@@ -80,6 +81,7 @@ const Gestion = () => {
     },
     en: {
       alertTitle: 'Waste Collection',
+      recuerda: 'Remember: Recycling starts at home. Sort your waste correctly.',
       referenceText: 'Check the collection schedule in your area according to the calendar:',
       tableTitle: 'Collection Schedule',
       areaHeader: 'Area',
@@ -100,9 +102,7 @@ const Gestion = () => {
 
         {/* Texto de recordatorio antes del calendario */}
 <View style={styles.reminderContainer}>
-  <Text style={styles.reminderText}>
-    Recuerda: El reciclaje comienza en casa. Clasifica tus residuos correctamente.
-  </Text>
+  <Text style={styles.reminderText}>{currentTexts.recuerda}</Text>
 </View>
 
 {/* Calendario */}
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
   bannerContainer: { width: '100%', marginBottom: 5 },
   banner: { width: '100%', height: 115, resizeMode: 'cover' },
   referenceText: { fontSize: 16, marginLeft: 11, marginRight: 11, fontWeight: '500',  color: '#000000', textAlign: 'justify', marginBottom: 10 },
-  calendarContainer: { width: '90%', borderWidth: 2.5, borderColor: '#4CAF50',borderRadius: 15, backgroundColor: '#fff', alignItems: 'center', marginBottom: 15, marginTop: 2 },
+  calendarContainer: { width: '90%', borderWidth: 2, borderColor: '#4CAF50',borderRadius: 15, backgroundColor: '#fff', alignItems: 'center', marginBottom: 15, marginTop: 2 },
   recourseContainer: { width: '90%', padding: 15, backgroundColor: '#fff', borderRadius: 10 },
   recourseTitle: { fontSize: 18, fontWeight: 'bold', color: '#000', marginBottom: 10 },
   recourseText: { fontSize: 15, color: '#000', textAlign: 'left', marginBottom: 15 },
@@ -217,14 +217,15 @@ const styles = StyleSheet.create({
   modalMessage: { fontSize: 16, marginBottom: 10 },
   closeButton: { backgroundColor: '#4CAF50', paddingVertical: 10, borderRadius: 5, paddingHorizontal: 20 },
   closeButtonText: { color: 'white', fontSize: 16 },
-
   tableContainer: {
-    marginTop: 15,
-    width: '90%',
-    backgroundColor: '#FFF',
-    borderRadius: 10,
-    padding: 15,
-  },
+    marginTop: 15, // Separación superior
+    width: '90%', // Ancho relativo
+    backgroundColor: '#FFF', // Fondo blanco
+    borderRadius: 10, // Bordes redondeados
+    padding: 15, // Espaciado interno
+    borderWidth: 2, // Borde fino
+    borderColor: '#4CAF50', // Color verde del borde
+},
   tableTitle: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -233,18 +234,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   reminderContainer: {
-    backgroundColor: '#FFEDD5', // Fondo moderno (naranja claro)
+    backgroundColor: 'transparent', // Fondo moderno (naranja claro)
     borderRadius: 10, // Bordes redondeados
     padding: 15, // Espaciado interno
     marginVertical: 20, // Separación con otros elementos
     marginHorizontal: 10, // Separación lateral
-    borderWidth: 1, // Borde fino
-    borderColor: '#FF8C00', // Borde naranja oscuro
+    borderWidth: 2, // Borde fino
+    borderColor: '#4CAF50',
   },
   reminderText: {
     fontSize: 18, // Tamaño del texto
     fontWeight: 'bold', // Negrita
-    color: '#FF8C00', // Naranja oscuro para el texto
+    color: 'black', // Naranja oscuro para el texto
     textAlign: 'center', // Centrado
     lineHeight: 24, // Espaciado entre líneas
   },
