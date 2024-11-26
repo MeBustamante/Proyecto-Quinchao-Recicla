@@ -7,11 +7,11 @@ import LottieView from 'lottie-react-native';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { useNavigation } from '@react-navigation/native';
 import { Platform } from 'react-native';
-import { AppContext } from '../ConfigGlobal/AppContext';
+import { AppContext } from '../ConfigGlobal/AppContext'; // Importar el contexto global
 
 const DenunciaMicrobasural = () => {
   const navigation = useNavigation();
-  const { language } = useContext(AppContext);
+  const { language, addNotification } = useContext(AppContext); // Usar el contexto global para añadir notificaciones
 
   const texts = {
     es: {
@@ -28,6 +28,7 @@ const DenunciaMicrobasural = () => {
       takePhoto: 'Tomar Foto',
       selectImage: 'Subir Imagen',
       send: 'Enviar',
+      success: 'Denuncia enviada correctamente.',
       close: 'Cerrar',
     },
     en: {
@@ -44,6 +45,7 @@ const DenunciaMicrobasural = () => {
       takePhoto: 'Take Photo',
       selectImage: 'Select Image',
       send: 'Send',
+      success: 'Complaint sent successfully.',
       close: 'Close',
     },
   };
@@ -121,10 +123,24 @@ const DenunciaMicrobasural = () => {
       showCustomAlert(texts[language].enterAddress);
       return;
     }
-    if (!archivo) {
-      showCustomAlert(texts[language].uploadImage);
-      return;
-    }
+
+    // Obtener la fecha y hora actual
+    const now = new Date();
+    const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+
+    // Simulación de envío exitoso
+    setAlertVisible(false);
+    alert(texts[language].success);
+
+    // Añadir notificación al contexto global con fecha y hora
+    addNotification(`Nueva denuncia en: ${direccion}`);
+
+    // Limpiar campos después de enviar la denuncia
+    setNombre('');
+    setEmail('');
+    setTelefono('');
+    setDireccion('');
+    setArchivo(null);
   };
 
   return (
@@ -193,7 +209,6 @@ const DenunciaMicrobasural = () => {
         </KeyboardAvoidingView>
       </ScrollView>
       <MenuInferior navigation={navigation} />
-      {/* Modal de alerta con animación */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -206,7 +221,7 @@ const DenunciaMicrobasural = () => {
               source={require('../assets/Animaciones/fail.json')}
               autoPlay
               loop={true}
-              speed={0.5} // Velocidad ajustada
+              speed={0.5}
               style={styles.animation}
             />
             <Text style={styles.alertText}>{alertMessage}</Text>
@@ -224,162 +239,32 @@ const DenunciaMicrobasural = () => {
 };
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
-  banner: {
-    width: '100%',
-    height: 120,
-    resizeMode: 'cover',
-  },
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-  },
-  scrollContent: {
-    paddingBottom: 60,
-  },
-  description: {
-    fontSize: 16,
-    textAlign: 'justify',
-    color: 'black',
-    marginHorizontal: 10,
-    marginBottom: 5,
-  },
-  formContainer: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 20,
-    marginBottom: 20,
-    elevation: 4,
-  },
-  label: {
-    fontSize: 14,
-    marginBottom: 3,
-    color: '#333',
-    fontWeight: 'bold',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 5,
-    borderRadius: 5,
-    marginBottom: 10,
-    backgroundColor: '#fff',
-  },
-  uploadButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#faeeac',
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    borderRadius: 8,
-    marginBottom: 8,
-  },
-  uploadButtonText: {
-    color: 'black',
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginLeft: 5,
-  },
-  imagePreview: {
-    width: 200,
-    height: 200,
-    resizeMode: 'cover',
-    borderRadius: 8,
-    marginTop: 10,
-  },
-  modalTitle: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 10,
-    color: 'green', // Texto verde
-    fontWeight: 'bold', // Texto en negrita
-  },  
-  imageRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-  },
-  submitButton: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    elevation: 8,
-  },
-  submitButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: '800',
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContent: {
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 20,
-    alignItems: 'center',
-    width: '85%',
-  },
-  animation: {
-    width: 150,
-    height: 150,
-    marginBottom: 20,
-  },
-  modalText: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 10,
-    color: '#333',
-  },
-  closeButton: {
-    marginTop: 15,
-    backgroundColor: '#4CAF50',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-  },
-  closeButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  alertOverlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  alertContainer: {
-    width: '80%',
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 20,
-    alignItems: 'center',
-    elevation: 5,
-  },
-  alertText: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 20,
-    color: '#333',
-  },
-  alertButton: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-  },
-  alertButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
+  background: { flex: 1 },
+  banner: { width: '100%', height: 120, resizeMode: 'cover' },
+  container: { flex: 1, paddingHorizontal: 20 },
+  scrollContent: { paddingBottom: 60 },
+  description: { fontSize: 16, textAlign: 'justify', color: 'black', marginHorizontal: 10, marginBottom: 5 },
+  formContainer: { backgroundColor: '#fff', borderRadius: 10, padding: 20, marginBottom: 20, elevation: 4 },
+  label: { fontSize: 14, marginBottom: 3, color: '#333', fontWeight: 'bold' },
+  input: { borderWidth: 1, borderColor: '#ccc', padding: 5, borderRadius: 5, marginBottom: 10, backgroundColor: '#fff' },
+  uploadButton: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#faeeac', paddingVertical: 10, paddingHorizontal: 10, borderRadius: 8, marginBottom: 8 },
+  uploadButtonText: { color: 'black', fontSize: 16, fontWeight: 'bold', marginLeft: 5 },
+  imagePreview: { width: 200, height: 200, resizeMode: 'cover', borderRadius: 8, marginTop: 10 },
+  modalTitle: { fontSize: 16, textAlign: 'center', marginBottom: 10, color: 'green', fontWeight: 'bold' },
+  imageRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 },
+  submitButton: { backgroundColor: '#4CAF50', paddingVertical: 12, borderRadius: 8, alignItems: 'center', elevation: 8 },
+  submitButtonText: { color: 'white', fontSize: 16, fontWeight: '800' },
+  modalContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
+  modalContent: { backgroundColor: 'white', borderRadius: 20, padding: 20, alignItems: 'center', width: '85%' },
+  animation: { width: 150, height: 150, marginBottom: 20 },
+  modalText: { fontSize: 16, textAlign: 'center', marginBottom: 10, color: '#333' },
+  closeButton: { marginTop: 15, backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 10 },
+  closeButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
+  alertOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
+  alertContainer: { width: '80%', backgroundColor: 'white', borderRadius: 20, padding: 20, alignItems: 'center', elevation: 5 },
+  alertText: { fontSize: 16, textAlign: 'center', marginBottom: 20, color: '#333' },
+  alertButton: { backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 20 },
+  alertButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
 });
 
 export default DenunciaMicrobasural;
