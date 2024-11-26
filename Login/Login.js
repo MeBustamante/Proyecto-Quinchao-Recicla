@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import LottieView from 'lottie-react-native'; // Importa LottieView
+import { useIsFocused } from '@react-navigation/native'; // Importa el hook para detectar el foco
+import LottieView from 'lottie-react-native';
 
 const LoginScreen = ({ navigation }) => {
     const [loading, setLoading] = useState(false);
+    const [isNavigating, setIsNavigating] = useState(false);
+    const isFocused = useIsFocused(); // Detecta si la pantalla está activa
+
+    // Restablece el estado cada vez que la pantalla está enfocada
+    useEffect(() => {
+        if (isFocused) {
+            setLoading(false);
+            setIsNavigating(false);
+        }
+    }, [isFocused]);
 
     const handleLogin = () => {
         setLoading(true);
         setTimeout(() => {
-            setLoading(false);
+            setIsNavigating(true); // Evita renderizar el login durante la navegación
             navigation.navigate('Home'); // Navega a la pantalla principal
         }, 2000);
     };
+
+    if (isNavigating) {
+        return null; // Evita renderizar la pantalla login mientras navegas
+    }
 
     return (
         <View style={styles.container}>
@@ -23,8 +38,12 @@ const LoginScreen = ({ navigation }) => {
                 <LottieView
                     source={require('./login.json')} // Ruta de tu animación
                     autoPlay
-                    loop
+                    loop={false} // Desactiva el loop para que se reproduzca una vez
                     style={styles.animation}
+                    onAnimationFinish={() => { 
+                        setIsNavigating(true); 
+                        navigation.navigate('Home'); 
+                    }} // Navega al terminar la animación
                 />
             ) : (
                 <TouchableOpacity style={styles.button} onPress={handleLogin}>
