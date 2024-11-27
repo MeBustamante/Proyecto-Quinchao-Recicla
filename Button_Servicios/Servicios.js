@@ -32,7 +32,7 @@ const ServiciosScreen = () => {
 
   return (
     <LinearGradient
-      colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
+      colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']}
       style={styles.background}
     >
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -85,13 +85,14 @@ const styles = StyleSheet.create({
   bannerContainer: {
     position: 'relative',
     width: '100%',
-    height: screenHeight * 0.19, // 20% de la altura de la pantalla
-    marginBottom: 5, // Espacio entre el banner y el contenido principal
+    height: screenHeight * 0.11, // 20% de la altura de la pantalla
+    marginBottom: 3,
+    marginTop: 9, 
   },
   banner: {
     width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
+    height: 80,
+    resizeMode: 'contain',
   },
   scrollContainer: {
     paddingHorizontal: 20,
