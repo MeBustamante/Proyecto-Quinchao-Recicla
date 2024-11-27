@@ -14,8 +14,11 @@ const translations = {
     title: '¡Cuidemos la comuna! Completa los datos y déjalo en nuestras manos!',
     name: 'Nombre y Apellidos',
     phone: 'Teléfono',
+    phoneplaceholder: '+569 12345678',
     email: 'Correo Electrónico',
+    emailplaceholder: 'ejemplo@gmail.com',
     address: 'Dirección',
+    addressplaceholder: 'Dirección #01',
     wasteType: 'Tipo de Residuos',
     submit: 'Enviar',
     modalTitle: '¡Gracias por tu compromiso! Tu solicitud ha sido enviada correctamente.',
@@ -30,8 +33,11 @@ const translations = {
     title: 'Let’s care for our community! Complete the information and leave it to us!',
     name: 'Full Name',
     phone: 'Phone',
+    phoneplaceholder: '+569 12345678',
     email: 'Email Address',
+    emailplaceholder: 'example@gmail.com',
     address: 'Address',
+    addressplaceholder: 'Address #01',
     wasteType: 'Type of Waste',
     submit: 'Submit',
     modalTitle: 'Thank you for your commitment! Your request has been successfully sent.',
@@ -111,7 +117,7 @@ const SolicitudRetiroResiduos = () => {
             <Text style={styles.label}>{t.phone}</Text>
             <TextInput
               style={styles.input}
-              placeholder={t.phone}
+              placeholder={t.phoneplaceholder}
               value={telefono}
               onChangeText={setTelefono}
               keyboardType="phone-pad"
@@ -120,14 +126,14 @@ const SolicitudRetiroResiduos = () => {
             <Text style={styles.label}>{t.email}</Text>
             <TextInput
               style={styles.input}
-              placeholder={t.email}
+              placeholder={t.emailplaceholder}
               value={email}
               onChangeText={setEmail}
               keyboardType="email-address"
             />
 
             <Text style={styles.label}>{t.address}</Text>
-            <TextInput style={styles.input} placeholder={t.address} value={direccion} onChangeText={setDireccion} />
+            <TextInput style={styles.input} placeholder={t.addressplaceholder} value={direccion} onChangeText={setDireccion} />
 
             <Text style={styles.label}>{t.wasteType}</Text>
             <View style={styles.residuosContainer}>
