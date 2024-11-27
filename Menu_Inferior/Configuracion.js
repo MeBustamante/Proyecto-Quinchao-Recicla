@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import {View, Text, Switch, TouchableOpacity, StyleSheet, ScrollView, Modal, Alert } from 'react-native';
 import LottieView from 'lottie-react-native';
 import * as Notifications from 'expo-notifications';
-import { AppContext } from '../ConfigGlobal/AppContext'; // Ajusta la ruta según tu proyecto
+import { AppContext } from '../ConfigGlobal/AppContext'; 
 
 const Configuracion = () => {
   const {
@@ -249,7 +249,7 @@ const Configuracion = () => {
         {isUpdating && (
           <View style={styles.animationContainer}>
             <LottieView
-              source={require('../assets/Animaciones/actualizacion.json')} // Ajusta la ruta según tu proyecto
+              source={require('../assets/Animaciones/actualizacion.json')} 
               autoPlay
               loop
               style={styles.animation}
