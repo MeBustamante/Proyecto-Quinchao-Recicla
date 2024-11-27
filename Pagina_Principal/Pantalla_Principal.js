@@ -400,7 +400,7 @@ const styles = StyleSheet.create({
     },
     fixedCampana: {
         position: 'absolute',
-        top: 25, // Ajusta esta distancia desde el borde superior según tus necesidades
+        top: 25, 
         right: 10, // Ajusta esta distancia desde el borde derecho según tus necesidades
         zIndex: 100, // Asegúrate de que sea mayor a otros elementos en la pantalla
         shadowColor: 'black',
