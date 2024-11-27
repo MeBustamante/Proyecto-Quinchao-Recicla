@@ -109,27 +109,41 @@ const DenunciaMicrobasural = () => {
   };
 
   const handleSubmit = () => {
-    if (!nombre.trim() || !email.trim() || !telefono.trim() || !direccion.trim()) {
-      showCustomAlert(texts[language].enterFullName);
-      setShowErrorModal(true);
+    let missingFields = [];
+  
+    if (!nombre.trim()) missingFields.push(language === 'es' ? 'Nombre y Apellidos' : 'Full Name');
+    if (!email.trim()) missingFields.push(language === 'es' ? 'Correo Electrónico' : 'Email');
+    if (!telefono.trim()) missingFields.push(language === 'es' ? 'Teléfono' : 'Phone');
+    if (!direccion.trim()) missingFields.push(language === 'es' ? 'Dirección del Microbasural' : 'Address');
+    if (!archivo) missingFields.push(language === 'es' ? 'Imagen' : 'Image');
+  
+    if (missingFields.length > 0) {
+      const errorMessage =
+        language === 'es'
+          ? `Faltan completar los siguientes campos:\n${missingFields.join('\n')}`
+          : `The following fields are missing:\n${missingFields.join('\n')}`;
+      setAlertMessage(errorMessage); // Configura el mensaje dinámico
+      setShowErrorModal(true); // Muestra el modal de error
       return;
     }
-
+  
     const now = new Date();
     const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
-
+  
     setAlertVisible(false);
     setSendModalVisible(true);
-
-    // Cambiar notificación según el idioma
+  
     addNotification(language === 'es' ? `Nueva denuncia en: ${direccion}` : `New complaint at: ${direccion}`);
-
+  
+    // Reinicia los campos del formulario
     setNombre('');
     setEmail('');
     setTelefono('');
     setDireccion('');
     setArchivo(null);
   };
+  
+  
 
   return (
     <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.background}>
@@ -218,17 +232,28 @@ const DenunciaMicrobasural = () => {
       </Modal>
 
       {/* Modal de error para campos faltantes */}
-      <Modal animationType="fade" transparent={true} visible={showErrorModal} onRequestClose={() => setShowErrorModal(false)}>
-        <View style={styles.alertOverlay}>
-          <View style={styles.alertContainer}>
-            <LottieView source={require('../assets/Animaciones/fail.json')} autoPlay loop={true} style={styles.animation} speed={0.5} />
-            <Text style={styles.errorModalText}>{texts[language].enterFullName}</Text>
-            <TouchableOpacity style={styles.alertButton} onPress={() => setShowErrorModal(false)}>
-              <Text style={styles.alertButtonText}>{texts[language].close}</Text>
-            </TouchableOpacity>
+      <Modal
+          animationType="fade"
+          transparent={true}
+          visible={showErrorModal}
+          onRequestClose={() => setShowErrorModal(false)}
+        >
+          <View style={styles.alertOverlay}>
+            <View style={styles.alertContainer}>
+              <LottieView
+                source={require('../assets/Animaciones/fail.json')}
+                autoPlay
+                loop={true}
+                style={styles.animation}
+                speed={0.5}
+              />
+              <Text style={styles.errorModalText}>{alertMessage}</Text>
+              <TouchableOpacity style={styles.alertButton} onPress={() => setShowErrorModal(false)}>
+                <Text style={styles.alertButtonText}>{texts[language].close}</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
     </LinearGradient>
   );
 };
@@ -251,12 +276,12 @@ const styles = StyleSheet.create({
   submitButtonText: { color: 'white', fontSize: 16, fontWeight: '800' },
   modalContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
   modalContent: { backgroundColor: 'white', borderRadius: 20, padding: 20, alignItems: 'center', width: '85%' },
-  animation: { width: 150, height: 150, marginBottom: 20 },
+  animation: { width: 150, height: 150, marginBottom: 5 },
   modalText: { fontSize: 16, textAlign: 'center', marginBottom: 10, color: '#333' },
   closeButton: { marginTop: 15, backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 10 },
   closeButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
   alertOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
-  alertContainer: { width: '80%', backgroundColor: 'white', borderRadius: 20, padding: 20, alignItems: 'center', elevation: 5 },
+  alertContainer: { width: '70%', height: '50%' , backgroundColor: 'white', borderRadius: 20, padding: 5, alignItems: 'center', elevation: 5 },
   alertText: { fontSize: 16, textAlign: 'center', marginBottom: 20, color: '#333' },
   alertButton: { backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 20 },
   alertButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
@@ -264,7 +289,7 @@ const styles = StyleSheet.create({
   dataUsageText: { fontSize: 13, textAlign: 'justify', color: '#555',  fontStyle: 'italic', },
   modalSuccessTitle: { fontSize: 18, color: 'green', fontWeight: 'bold', textAlign: 'center', marginBottom: 10, },
   modalSuccessText: { fontSize: 16, color: '#333', textAlign: 'center', fontWeight: 'bold', marginBottom: 20, },
-  errorModalText: { fontSize: 16, color: '#333', textAlign: 'center', marginBottom: 20, },
+  errorModalText: { fontSize: 16, color: '#333', textAlign: 'justify', marginBottom: 20, fontWeight: 'bold' },
   requiredAsterisk: { color: 'red', fontSize: 16,  marginLeft: 4, }, 
 });
 
