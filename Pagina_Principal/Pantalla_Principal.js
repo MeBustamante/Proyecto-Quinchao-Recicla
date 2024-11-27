@@ -127,7 +127,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
             >
             <Image
         source={require('../assets/campana.png')} // Ruta de la imagen personalizada
-        style={{ width: 40, height: 40 }} // Ajusta el tamaño según tus necesidades
+        style={{ width: 40, height: 40 }} // Aqui se puede ajustar el tamaño
             />
             </TouchableOpacity>
 
