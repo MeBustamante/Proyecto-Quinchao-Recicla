@@ -45,7 +45,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
+      <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.gradientBackground}>
         <ScrollView contentContainerStyle={styles.scrollViewContainer}>
           <View style={styles.imageContainer}>
             <Image
@@ -102,22 +102,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'stretch', // Aseguramos que ocupe todo el ancho
   },
   gradientBackground: {
     flex: 1,
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    padding: 1,
+    width: '100%', // Garantiza que ocupe el ancho total de la pantalla
   },
   scrollViewContainer: {
     flexGrow: 1,
-    alignItems: 'center',
+    width: '100%', // Evita cualquier desbordamiento horizontal
     paddingBottom: 80,
   },
   imageContainer: {
-    width: '150%',
+    width: '100%', // Asegura que no exceda el ancho
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -134,11 +131,10 @@ const styles = StyleSheet.create({
     width: 300,
     height: 150,
     borderRadius: 15,
-    borderWidth: 0,
     marginBottom: 15,
   },
   infoContainer: {
-    width: '90%',
+    width: '90%', // Asegura un margen interno uniforme
     padding: 15,
     backgroundColor: '#fff',
     borderRadius: 15,
@@ -147,6 +143,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 10,
+    alignSelf: 'center', // Centra horizontalmente dentro del ScrollView
   },
   infoText: {
     fontSize: 18,
