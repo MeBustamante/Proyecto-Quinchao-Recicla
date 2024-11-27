@@ -82,24 +82,22 @@ const PantallaPrincipalScreen = ({ navigation }) => {
     <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
             <Text style={styles.modalTitle}>{currentLanguage.notifications}</Text>
-            <ScrollView contentContainerStyle={styles.modalContent}>
+            <ScrollView
+                contentContainerStyle={styles.modalContent}
+                style={{ maxHeight: 400 }} // Ajustamos el alto para que se muestren 3 notificaciones (aprox.)
+            >
                 {notifications.length > 0 ? (
                     notifications.map((notification, index) => (
-                        <View key={index} style={styles.notificationContainer}>
-                            <Ionicons
-                                name="notifications-outline"
-                                size={24}
-                                color="#4CAF50"
-                                style={styles.notificationIcon}
-                            />
-                            <View style={styles.notificationTextContainer}>
-                                <Text style={styles.notificationText}>
-                                    {notification.text}
-                                </Text>
-                                <Text style={styles.notificationDate}>
-                                    {notification.date}
-                                </Text>
+                        <View key={index} style={styles.card}>
+                            <View style={styles.cardHeader}>
+                                <Image
+                                    source={require('../assets/LOG_AMBIENTE.jpg')} // Icono o logo de la app
+                                    style={styles.cardIcon}
+                                />
+                                <Text style={styles.cardTitle}>Quinchao Recicla</Text>
+                                <Text style={styles.cardTime}>{notification.date}</Text>
                             </View>
+                            <Text style={styles.cardMessage}>{notification.text}</Text>
                         </View>
                     ))
                 ) : (
@@ -250,6 +248,41 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#E0E0E0',
+    },
+    card: {
+        backgroundColor: '#E6E6FA', // Color de fondo suave
+        borderRadius: 15,
+        padding: 15,
+        marginVertical: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        elevation: 4, // Para sombras en Android
+    },
+    cardHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    cardIcon: {
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        marginRight: 4,
+    },
+    cardTitle: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        flex: 1,
+    },
+    cardTime: {
+        fontSize: 12,
+        color: '#888',
+    },
+    cardMessage: {
+        fontSize: 16,
+        color: '#333',
     },
     notificationText: {
         fontSize: 16,
