@@ -11,7 +11,7 @@ const Animacion = () => {
         es: {
             slogan: 'PEQUEÑAS ACCIONES, GRANDES CAMBIOS.',
             question: '¿TE UNES?',
-            loading: 'CARGANDO EL MAPA, POR FAVOR ESPERA...',
+            loading: 'CARGANDO EL MAPA, POR FAVOR ESPERE...',
         },
         en: {
             slogan: 'SMALL ACTIONS, BIG CHANGES.',

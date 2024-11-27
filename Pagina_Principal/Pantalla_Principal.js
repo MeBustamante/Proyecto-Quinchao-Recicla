@@ -7,7 +7,6 @@ import { AppContext } from '../ConfigGlobal/AppContext';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
-
 const PantallaPrincipalScreen = ({ navigation }) => {
     const { nombre } = useUser();
     const { language, notifications } = useContext(AppContext); // Acceso al idioma y las notificaciones desde el contexto global
@@ -33,6 +32,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
             },
             notifications: 'Notificaciones',
             noNotifications: 'No tienes notificaciones nuevas.',
+            close: 'Cerrar', // Añadido aquí
         },
         en: {
             greeting: `HELLO ${nombreMayusculas}`,
@@ -51,6 +51,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
             },
             notifications: 'Notifications',
             noNotifications: 'No new notifications.',
+            close: 'Close', // Añadido aquí
         },
     };
 
@@ -100,14 +101,14 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                             )}
                         </ScrollView>
                         <TouchableOpacity style={styles.closeButton} onPress={handleCloseNotification}>
-                            <Text style={styles.closeButtonText}>Cerrar</Text>
+                            <Text style={styles.closeButtonText}>{currentLanguage.close}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
 
             <LinearGradient
-                colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
+                colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']}
                 style={styles.gradientBackground}
             >
                 <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -201,15 +202,11 @@ const PantallaPrincipalScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        paddingTop: 1, // Deja un espacio de 40 píxeles en la parte superior
+        backgroundColor: '#ffffff', 
     },
     gradientBackground: {
         flex: 1,
-    },
-    fixedCampana: {
-        position: 'absolute',
-        top: 110,
-        right: 10,
-        zIndex: 10,
     },
     modalOverlay: {
         flex: 1,
@@ -329,10 +326,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.15,
         shadowRadius: 3.84,
         elevation: 5, // Para Android
-      },
+    },
     fixedCampana: {
         position: 'absolute',
-        top: 30, // Ajusta esta distancia desde el borde superior según tus necesidades
+        top: 35, // Ajusta esta distancia desde el borde superior según tus necesidades
         right: 10, // Ajusta esta distancia desde el borde derecho según tus necesidades
         zIndex: 100, // Asegúrate de que sea mayor a otros elementos en la pantalla
         shadowColor: 'black',
@@ -342,7 +339,6 @@ const styles = StyleSheet.create({
         // Sombra en Android
         elevation: 8 // Altura de la sombra para Android
     },
-      
     buttonYellowBorder: {
         borderColor: '#FFEB3B',
     },

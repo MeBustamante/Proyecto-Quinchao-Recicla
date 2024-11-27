@@ -7,23 +7,37 @@ import { AppContext } from '../ConfigGlobal/AppContext';
 
 const { height: screenHeight } = Dimensions.get('window');
 
-// Función para formatear las fechas
-const formatDate = (dateString) => {
-  const months = [
-    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
-  ];
-  const [year, month, day] = dateString.split('-');
-  return `${day} de ${months[parseInt(month, 10) - 1]} del ${year}`;
+// Traducciones para meses y días
+const translations = {
+  es: {
+    months: [
+      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
+    ],
+    days: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+  },
+  en: {
+    months: [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December',
+    ],
+    days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  },
 };
 
-// Traducción de días de la semana
-const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+// Función para formatear las fechas dinámicamente
+const formatDate = (dateString, language) => {
+  const { months } = translations[language];
+  const [year, month, day] = dateString.split('-');
+  return `${day} ${months[parseInt(month, 10) - 1]} ${year}`;
+};
 
 const Gestion = () => {
   const { language, setCollectionSchedule } = useContext(AppContext); 
   const [modalVisible, setModalVisible] = useState(false); 
   const [modalData, setModalData] = useState({}); 
+
+  const { months, days } = translations[language];
 
   const schedule = {
     Quinchao: { dates: ['2024-11-01', '2024-11-06', '2024-11-11', '2024-11-16', '2024-11-21', '2024-11-26'], color: '#1E90FF' },
@@ -51,7 +65,7 @@ const Gestion = () => {
       if (schedule[key].dates.includes(dateString)) {
         setModalData({
           area: key,
-          date: formatDate(dateString),
+          date: formatDate(dateString, language),
         });
         setModalVisible(true);
         return;
@@ -72,6 +86,7 @@ const Gestion = () => {
   const texts = {
     es: {
       alertTitle: 'Recolección de residuos',
+      recuerda: 'Recuerda: El reciclaje comienza en casa. Clasifica tus residuos correctamente.',
       referenceText: 'Consulta el cronograma de recolección en tu zona según el calendario:',
       tableTitle: 'Cronograma de recolección',
       areaHeader: 'Localidad',
@@ -80,6 +95,7 @@ const Gestion = () => {
     },
     en: {
       alertTitle: 'Waste Collection',
+      recuerda: 'Remember: Recycling starts at home. Sort your waste correctly.',
       referenceText: 'Check the collection schedule in your area according to the calendar:',
       tableTitle: 'Collection Schedule',
       areaHeader: 'Area',
@@ -99,76 +115,66 @@ const Gestion = () => {
         </View>
 
         {/* Texto de recordatorio antes del calendario */}
-<View style={styles.reminderContainer}>
-  <Text style={styles.reminderText}>
-    Recuerda: El reciclaje comienza en casa. Clasifica tus residuos correctamente.
-  </Text>
-</View>
+        <View style={styles.reminderContainer}>
+          <Text style={styles.reminderText}>{currentTexts.recuerda}</Text>
+        </View>
 
-{/* Calendario */}
-<View style={styles.calendarContainer}>
-  <Calendar
-    markedDates={markedDates}
-    onDayPress={handleDayPress}
-    theme={{
-      textDayFontFamily: 'System',
-      textMonthFontFamily: 'System',
-      textDayHeaderFontFamily: 'System',
-      textMonthFontSize: 18,
-      textDayFontSize: 16,
-      monthTextColor: 'black',
-      todayTextColor: 'red',
-      arrowColor: 'black',
-      dayTextColor: '#000',
-      textDayHeaderFontSize: 12,
-    }}
-    renderHeader={(date) => {
-      const months = [
-        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre',
-      ];
-      return (
-        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#000' }}>
-          {months[date.getMonth()]} {date.getFullYear()}
-        </Text>
-      );
-    }}
-    renderDayHeader={(day, index) => (
-      <Text key={index} style={{ fontSize: 12, fontWeight: 'bold', color: '#000' }}>
-        {daysOfWeek[index]}
-      </Text>
-    )}
-    firstDay={1} // La semana empieza el lunes
-  />
-</View>
+        {/* Calendario */}
+        <View style={styles.calendarContainer}>
+          <Calendar
+            markedDates={markedDates}
+            onDayPress={handleDayPress}
+            theme={{
+              textDayFontFamily: 'System',
+              textMonthFontFamily: 'System',
+              textDayHeaderFontFamily: 'System',
+              textMonthFontSize: 18,
+              textDayFontSize: 16,
+              monthTextColor: 'black',
+              todayTextColor: 'red',
+              arrowColor: 'black',
+              dayTextColor: '#000',
+              textDayHeaderFontSize: 12,
+            }}
+            renderHeader={(date) => (
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#000' }}>
+                {months[date.getMonth()]} {date.getFullYear()}
+              </Text>
+            )}
+            renderDayHeader={(day, index) => (
+              <Text key={index} style={{ fontSize: 12, fontWeight: 'bold', color: '#000' }}>
+                {days[index]}
+              </Text>
+            )}
+            firstDay={1} // La semana empieza el lunes
+          />
+        </View>
 
-        
         {/* Tabla de Cronograma */}
-<View style={styles.tableContainer}>
-  <Text style={styles.tableTitle}>{currentTexts.tableTitle}</Text>
-  {Object.keys(schedule).map((area, index) => (
-    <View
-      key={index}
-      style={[
-        styles.tableRow,
-        {
-          borderLeftColor: schedule[area].color, // Color del borde izquierdo
-          backgroundColor: `${schedule[area].color}20`, // Color de fondo con opacidad
-        },
-      ]}
-    >
-      <Text style={styles.tableArea}>{area}</Text>
-      <View style={styles.tableDates}>
-        {schedule[area].dates.map((date, idx) => (
-          <Text key={idx} style={styles.tableDate}>
-            {formatDate(date)}
-          </Text>
-        ))}
-      </View>
-    </View>
-  ))}
-</View>
-
+        <View style={styles.tableContainer}>
+          <Text style={styles.tableTitle}>{currentTexts.tableTitle}</Text>
+          {Object.keys(schedule).map((area, index) => (
+            <View
+              key={index}
+              style={[
+                styles.tableRow,
+                {
+                  borderLeftColor: schedule[area].color,
+                  backgroundColor: `${schedule[area].color}20`,
+                },
+              ]}
+            >
+              <Text style={styles.tableArea}>{area}</Text>
+              <View style={styles.tableDates}>
+                {schedule[area].dates.map((date, idx) => (
+                  <Text key={idx} style={styles.tableDate}>
+                    {formatDate(date, language)}
+                  </Text>
+                ))}
+              </View>
+            </View>
+          ))}
+        </View>
       </ScrollView>
 
       {/* Menú Inferior */}
@@ -197,13 +203,14 @@ const Gestion = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   gradientBackground: { flex: 1, paddingVertical: 20 },
   scrollContainer: { flexGrow: 1, alignItems: 'center', paddingBottom: 80, width: '100%',}, 
   bannerContainer: { width: '100%', marginBottom: 5 },
   banner: { width: '100%', height: 115, resizeMode: 'cover' },
   referenceText: { fontSize: 16, marginLeft: 11, marginRight: 11, fontWeight: '500',  color: '#000000', textAlign: 'justify', marginBottom: 10 },
-  calendarContainer: { width: '90%', borderWidth: 2.5, borderColor: '#4CAF50',borderRadius: 15, backgroundColor: '#fff', alignItems: 'center', marginBottom: 15, marginTop: 2 },
+  calendarContainer: { width: '90%', borderWidth: 2, borderColor: '#4CAF50',borderRadius: 15, backgroundColor: '#fff', alignItems: 'center', marginBottom: 15, marginTop: 2 },
   recourseContainer: { width: '90%', padding: 15, backgroundColor: '#fff', borderRadius: 10 },
   recourseTitle: { fontSize: 18, fontWeight: 'bold', color: '#000', marginBottom: 10 },
   recourseText: { fontSize: 15, color: '#000', textAlign: 'left', marginBottom: 15 },
@@ -217,14 +224,15 @@ const styles = StyleSheet.create({
   modalMessage: { fontSize: 16, marginBottom: 10 },
   closeButton: { backgroundColor: '#4CAF50', paddingVertical: 10, borderRadius: 5, paddingHorizontal: 20 },
   closeButtonText: { color: 'white', fontSize: 16 },
-
   tableContainer: {
-    marginTop: 15,
-    width: '90%',
-    backgroundColor: '#FFF',
-    borderRadius: 10,
-    padding: 15,
-  },
+    marginTop: 15, // Separación superior
+    width: '90%', // Ancho relativo
+    backgroundColor: '#FFF', // Fondo blanco
+    borderRadius: 10, // Bordes redondeados
+    padding: 15, // Espaciado interno
+    borderWidth: 2, // Borde fino
+    borderColor: '#4CAF50', // Color verde del borde
+},
   tableTitle: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -233,18 +241,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   reminderContainer: {
-    backgroundColor: '#FFEDD5', // Fondo moderno (naranja claro)
+    backgroundColor: 'transparent', // Fondo moderno (naranja claro)
     borderRadius: 10, // Bordes redondeados
     padding: 15, // Espaciado interno
     marginVertical: 20, // Separación con otros elementos
     marginHorizontal: 10, // Separación lateral
-    borderWidth: 1, // Borde fino
-    borderColor: '#FF8C00', // Borde naranja oscuro
+    borderWidth: 2, // Borde fino
+    borderColor: '#4CAF50',
   },
   reminderText: {
     fontSize: 18, // Tamaño del texto
     fontWeight: 'bold', // Negrita
-    color: '#FF8C00', // Naranja oscuro para el texto
+    color: 'black', // Naranja oscuro para el texto
     textAlign: 'center', // Centrado
     lineHeight: 24, // Espaciado entre líneas
   },

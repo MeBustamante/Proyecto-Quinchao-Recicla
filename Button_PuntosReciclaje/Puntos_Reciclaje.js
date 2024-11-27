@@ -20,7 +20,7 @@ const PuntosReciclaje = ({ navigation }) => {
     // Traducciones de materiales y textos
     const translations = {
         es: {
-            allPoints: "Se muestran todos los Puntos Verdes",
+            allPoints: "Filtros",
             filters: "Filtros",
             modalTitle: "Acá puedes reciclar:",
             directionsButton: "COMO LLEGAR",
@@ -28,7 +28,7 @@ const PuntosReciclaje = ({ navigation }) => {
             materialsAllowed: ["Todos", "Botellas Plásticas", "Latas de Aluminio", "Vidrio", "Cartón", "Papel", "Orgánico"],
         },
         en: {
-            allPoints: "All Green Points are displayed",
+            allPoints: "Filters",
             filters: "Filters",
             modalTitle: "You can recycle here:",
             directionsButton: "GET DIRECTIONS",
