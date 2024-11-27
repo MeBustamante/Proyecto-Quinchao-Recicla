@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { useIsFocused } from '@react-navigation/native'; // Importa el hook para detectar el foco
+import { useIsFocused } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 
 const LoginScreen = ({ navigation }) => {
