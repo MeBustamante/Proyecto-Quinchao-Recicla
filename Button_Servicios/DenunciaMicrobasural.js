@@ -17,7 +17,7 @@ const DenunciaMicrobasural = () => {
     es: {
       description: 'Por favor, rellena los datos y adjunta imagen del microbasural que encontraste.',
       fullName: 'Nombre y Apellidos',
-      enterFullName: 'Ingrese su nombre y apellidos',
+      enterFullName: 'Por favor complete todos los campos',  
       email: 'Correo Electrónico',
       enterEmail: 'Ingrese su correo electrónico',
       phone: 'Teléfono',
@@ -34,7 +34,7 @@ const DenunciaMicrobasural = () => {
     en: {
       description: 'Please fill out the information and attach an image of the illegal dump you found.',
       fullName: 'Full Name',
-      enterFullName: 'Enter your full name',
+      enterFullName: 'Please complete all fields',  
       email: 'Email',
       enterEmail: 'Enter your email',
       phone: 'Phone',
@@ -57,8 +57,8 @@ const DenunciaMicrobasural = () => {
   const [archivo, setArchivo] = useState(null);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
-  const [sendModalVisible, setSendModalVisible] = useState(false); // Nuevo estado para el segundo modal
-  const [showErrorModal, setShowErrorModal] = useState(false); // Modal de error si algún campo falta
+  const [sendModalVisible, setSendModalVisible] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   const showCustomAlert = (message) => {
     setAlertMessage(message);
@@ -109,39 +109,21 @@ const DenunciaMicrobasural = () => {
   };
 
   const handleSubmit = () => {
-    if (!nombre.trim()) {
+    if (!nombre.trim() || !email.trim() || !telefono.trim() || !direccion.trim()) {
       showCustomAlert(texts[language].enterFullName);
       setShowErrorModal(true);
       return;
     }
-    if (!email.trim()) {
-      showCustomAlert(texts[language].enterEmail);
-      setShowErrorModal(true);
-      return;
-    }
-    if (!telefono.trim()) {
-      showCustomAlert(texts[language].enterPhone);
-      setShowErrorModal(true);
-      return;
-    }
-    if (!direccion.trim()) {
-      showCustomAlert(texts[language].enterAddress);
-      setShowErrorModal(true);
-      return;
-    }
 
-    // Obtener la fecha y hora actual
     const now = new Date();
     const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
 
-    // Simulación de envío exitoso
     setAlertVisible(false);
-    setSendModalVisible(true); // Mostrar el modal de envío exitoso
+    setSendModalVisible(true);
 
-    // Añadir notificación al contexto global
-    addNotification(`Nueva denuncia en: ${direccion}`);
+    // Cambiar notificación según el idioma
+    addNotification(language === 'es' ? `Nueva denuncia en: ${direccion}` : `New complaint at: ${direccion}`);
 
-    // Limpiar campos después de enviar la denuncia
     setNombre('');
     setEmail('');
     setTelefono('');
@@ -150,16 +132,10 @@ const DenunciaMicrobasural = () => {
   };
 
   return (
-    <LinearGradient
-      colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
-      style={styles.background}
-    >
+    <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.background}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <Image source={require('../assets/denuncia.png')} style={styles.banner} />
-        <KeyboardAvoidingView
-          style={styles.container}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        >
+        <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <Text style={styles.description}>{texts[language].description}</Text>
           <View style={styles.formContainer}>
             <Text style={styles.label}>{texts[language].fullName}</Text>
@@ -192,27 +168,22 @@ const DenunciaMicrobasural = () => {
             />
             <Text style={styles.label}>{texts[language].uploadImage}</Text>
             <View style={styles.imageRow}>
-              <TouchableOpacity
-                style={[styles.uploadButton, styles.leftButton]}
-                onPress={takePhoto}
-              >
+              <TouchableOpacity style={[styles.uploadButton, styles.leftButton]} onPress={takePhoto}>
                 <Ionicons name="camera-outline" size={20} color="black" />
                 <Text style={styles.uploadButtonText}>{texts[language].takePhoto}</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.uploadButton, styles.rightButton]}
-                onPress={pickImage}
-              >
+              <TouchableOpacity style={[styles.uploadButton, styles.rightButton]} onPress={pickImage}>
                 <Ionicons name="image-outline" size={20} color="black" />
                 <Text style={styles.uploadButtonText}>{texts[language].selectImage}</Text>
               </TouchableOpacity>
             </View>
             {archivo && <Image source={{ uri: archivo }} style={styles.imagePreview} />}
 
-            {/* Mensaje de uso de datos */}
             <View style={styles.dataUsageContainer}>
               <Text style={styles.dataUsageText}>
-                Al enviar este formulario, usted acepta que los datos proporcionados serán conocidos y utilizados exclusivamente por la Municipalidad de Quinchao para la gestión y resolución de su solicitud.
+                {language === 'es'
+                  ? 'Al enviar este formulario, usted acepta que los datos proporcionados serán conocidos y utilizados exclusivamente por la Municipalidad de Quinchao para la gestión y resolución de su solicitud.'
+                  : 'By submitting this form, you agree that the data provided will be known and used exclusively by the Municipality of Quinchao for the management and resolution of your request.'}
               </Text>
             </View>
 
@@ -223,7 +194,7 @@ const DenunciaMicrobasural = () => {
         </KeyboardAvoidingView>
       </ScrollView>
       <MenuInferior navigation={navigation} />
-      
+
       {/* Modal para alertas */}
       <Modal
         animationType="slide"
@@ -233,21 +204,12 @@ const DenunciaMicrobasural = () => {
       >
         <View style={styles.alertOverlay}>
           <View style={styles.alertContainer}>
-            <LottieView
-              source={require('../assets/Animaciones/enviar.json')}
-              autoPlay
-              loop={true}
-              style={styles.animation}
-            />
-            <Text style={styles.modalSuccessTitle}>¡Gracias por tu compromiso!</Text>
-            <Text style={styles.modalSuccessText}>Tu denuncia fue enviada correctamente.</Text>
-            <TouchableOpacity
-              style={styles.alertButton}
-              onPress={() => {
-                setSendModalVisible(false);
-                navigation.navigate('Home'); // Navegar a la pantalla de inicio
-              }}
-            >
+            <LottieView source={require('../assets/Animaciones/enviar.json')} autoPlay loop={true} style={styles.animation} />
+            <Text style={styles.modalSuccessTitle}>{texts[language].success}</Text>
+            <TouchableOpacity style={styles.alertButton} onPress={() => {
+              setSendModalVisible(false);
+              navigation.navigate('Home');
+            }}>
               <Text style={styles.alertButtonText}>{texts[language].close}</Text>
             </TouchableOpacity>
           </View>
@@ -255,25 +217,17 @@ const DenunciaMicrobasural = () => {
       </Modal>
 
       {/* Modal de error para campos faltantes */}
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={showErrorModal}
-        onRequestClose={() => setShowErrorModal(false)}
-      >
+      <Modal animationType="fade" transparent={true} visible={showErrorModal} onRequestClose={() => setShowErrorModal(false)}>
         <View style={styles.alertOverlay}>
           <View style={styles.alertContainer}>
+            <LottieView source={require('../assets/Animaciones/fail.json')} autoPlay loop={true} style={styles.animation} speed={0.5} />
             <Text style={styles.errorModalText}>{texts[language].enterFullName}</Text>
-            <TouchableOpacity
-              style={styles.alertButton}
-              onPress={() => setShowErrorModal(false)}
-            >
+            <TouchableOpacity style={styles.alertButton} onPress={() => setShowErrorModal(false)}>
               <Text style={styles.alertButtonText}>{texts[language].close}</Text>
             </TouchableOpacity>
           </View>
         </View>
       </Modal>
-
     </LinearGradient>
   );
 };
@@ -305,16 +259,14 @@ const styles = StyleSheet.create({
   alertText: { fontSize: 16, textAlign: 'center', marginBottom: 20, color: '#333' },
   alertButton: { backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 20 },
   alertButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
-
-  /* diseño de mensaje de uso de datos */
   dataUsageContainer: {
-    backgroundColor: '#F9F9F9', // Fondo gris claro
+    backgroundColor: '#F9F9F9', 
     paddingVertical: 10,
     paddingHorizontal: 15,
-    marginBottom: 20, // Espacio entre el mensaje y el botón de envío
+    marginBottom: 20, 
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#E0E0E0', // Borde sutil
+    borderColor: '#E0E0E0', 
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -324,7 +276,7 @@ const styles = StyleSheet.create({
   dataUsageText: {
     fontSize: 13,
     textAlign: 'justify',
-    color: '#555', // Texto gris oscuro
+    color: '#555', 
     fontStyle: 'italic',
   },
   modalSuccessTitle: {
@@ -339,6 +291,12 @@ const styles = StyleSheet.create({
     color: '#333',
     textAlign: 'center',
     fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  errorModalText: {
+    fontSize: 16,
+    color: '#333',
+    textAlign: 'center',
     marginBottom: 20,
   },
 });
