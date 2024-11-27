@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, KeyboardAvoidingView, ScrollView, Modal } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, ScrollView, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,6 +8,7 @@ import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { useNavigation } from '@react-navigation/native';
 import { Platform } from 'react-native';
 import { AppContext } from '../ConfigGlobal/AppContext';
+import * as FileSystem from 'expo-file-system';
 
 const DenunciaMicrobasural = () => {
   const navigation = useNavigation();
@@ -74,6 +75,34 @@ const DenunciaMicrobasural = () => {
     return true;
   };
 
+  // Función para guardar la imagen en una carpeta local persistente
+  const saveImageToFolder = async (uri) => {
+    if (!uri) {
+      console.error("No se proporcionó URI de la imagen");
+      return;
+    }
+
+    const destinationUri = FileSystem.documentDirectory + 'Image_denuncias/';
+    
+    // Asegurarse de que la carpeta exista
+    const folderInfo = await FileSystem.getInfoAsync(destinationUri);
+    if (!folderInfo.exists) {
+      await FileSystem.makeDirectoryAsync(destinationUri, { intermediates: true });
+    }
+    
+    // Obtener el nombre del archivo solo si la URI es válida
+    const fileName = uri.split('/').pop();
+    const newUri = destinationUri + fileName;
+
+    // Mover la imagen a la carpeta persistente
+    await FileSystem.moveAsync({
+      from: uri,
+      to: newUri
+    });
+
+    return newUri;  // Regresar la URI de la imagen movida a la carpeta persistente
+  };
+
   const pickImage = async () => {
     const permission = await requestPermission();
     if (!permission) return;
@@ -85,8 +114,13 @@ const DenunciaMicrobasural = () => {
       quality: 1,
     });
 
-    if (!result.canceled) {
-      setArchivo(result.uri);
+    console.log("Result from image picker:", result); // Verificar el resultado de la imagen seleccionada
+
+    if (!result.canceled && result.assets && result.assets[0] && result.assets[0].uri) {
+      const newUri = await saveImageToFolder(result.assets[0].uri); // Usar result.assets[0].uri
+      setArchivo(newUri); // Guardar la URI persistente para usarla más tarde
+    } else {
+      console.error("No image selected or error with picking image");
     }
   };
 
@@ -103,8 +137,14 @@ const DenunciaMicrobasural = () => {
       quality: 1,
     });
 
-    if (!result.cancelled) {
-      setArchivo(result.uri);
+    console.log("Result from camera:", result); // Verificar el resultado de la foto tomada
+
+    // Asegurarnos de que el resultado tenga la URI correctamente
+    if (!result.cancelled && result.assets && result.assets[0] && result.assets[0].uri) {
+      const newUri = await saveImageToFolder(result.assets[0].uri); // Usar result.assets[0].uri
+      setArchivo(newUri); // Guardar la URI persistente para usarla más tarde
+    } else {
+      console.error("No photo taken or error with camera");
     }
   };
 
@@ -126,7 +166,6 @@ const DenunciaMicrobasural = () => {
       return;
     }
     
-  
     const now = new Date();
     const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
   
@@ -142,14 +181,16 @@ const DenunciaMicrobasural = () => {
     setDireccion('');
     setArchivo(null);
   };
-  
-  
 
   return (
     <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.background}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+        style={styles.scrollView}
+      >
         <Image source={require('../assets/basural.png')} style={styles.banner} />
-        <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <View style={styles.container}>
           <Text style={styles.description}>{texts[language].description}</Text>
           <View style={styles.formContainer}>
             <Text style={styles.label}>{texts[language].fullName}<Text style={styles.requiredAsterisk}>*</Text></Text>
@@ -206,11 +247,10 @@ const DenunciaMicrobasural = () => {
               <Text style={styles.submitButtonText}>{texts[language].send}</Text>
             </TouchableOpacity>
           </View>
-        </KeyboardAvoidingView>
+        </View>
       </ScrollView>
-      <MenuInferior navigation={navigation} />
 
-      {/* Modal para alertas */}
+      {/* Modal de éxito */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -219,12 +259,20 @@ const DenunciaMicrobasural = () => {
       >
         <View style={styles.alertOverlay}>
           <View style={styles.alertContainer}>
-            <LottieView source={require('../assets/Animaciones/enviar.json')} autoPlay loop={true} style={styles.animation} />
+            <LottieView
+              source={require('../assets/Animaciones/enviar.json')}
+              autoPlay
+              loop={false}
+              style={styles.animation}
+            />
             <Text style={styles.modalSuccessTitle}>{texts[language].success}</Text>
-            <TouchableOpacity style={styles.alertButton} onPress={() => {
-              setSendModalVisible(false);
-              navigation.navigate('Home');
-            }}>
+            <TouchableOpacity
+              style={styles.alertButton}
+              onPress={() => {
+                setSendModalVisible(false);
+                navigation.navigate('Home');
+              }}
+            >
               <Text style={styles.alertButtonText}>{texts[language].close}</Text>
             </TouchableOpacity>
           </View>
@@ -233,31 +281,32 @@ const DenunciaMicrobasural = () => {
 
       {/* Modal de error para campos faltantes */}
       <Modal
-  animationType="fade"
-  transparent={true}
-  visible={showErrorModal}
-  onRequestClose={() => setShowErrorModal(false)}
->
-  <View style={styles.alertOverlay}>
-    <View style={styles.alertContainer}>
-      <LottieView
-        source={require('../assets/Animaciones/fail.json')}
-        autoPlay
-        loop={true}
-        style={styles.animation}
-        speed={0.5}
-      />
-      <Text style={styles.modalErrorTitle}>
-        {language === 'es' ? 'Faltan completar los siguientes campos:' : 'The following fields are missing:'}
-      </Text>
-      <Text style={styles.errorModalText}>{alertMessage}</Text>
-      <TouchableOpacity style={styles.alertButton} onPress={() => setShowErrorModal(false)}>
-        <Text style={styles.alertButtonText}>{texts[language].close}</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-</Modal>
+        animationType="fade"
+        transparent={true}
+        visible={showErrorModal}
+        onRequestClose={() => setShowErrorModal(false)}
+      >
+        <View style={styles.alertOverlay}>
+          <View style={styles.alertContainer}>
+            <LottieView
+              source={require('../assets/Animaciones/fail.json')}
+              autoPlay
+              loop={true}
+              style={styles.animation}
+              speed={0.5}
+            />
+            <Text style={styles.modalErrorTitle}>
+              {language === 'es' ? 'Faltan completar los siguientes campos:' : 'The following fields are missing:'}
+            </Text>
+            <Text style={styles.errorModalText}>{alertMessage}</Text>
+            <TouchableOpacity style={styles.alertButton} onPress={() => setShowErrorModal(false)}>
+              <Text style={styles.alertButtonText}>{texts[language].close}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
 
+      <MenuInferior navigation={navigation} />
     </LinearGradient>
   );
 };
@@ -265,6 +314,7 @@ const DenunciaMicrobasural = () => {
 const styles = StyleSheet.create({
   background: { flex: 1 },
   banner: { width: '100%', height: 110, resizeMode: 'cover', marginBottom: 5 },
+  scrollView: { flex: 1 },
   container: { flex: 1, paddingHorizontal: 20 },
   scrollContent: { paddingBottom: 100 },
   description: { fontSize: 16, textAlign: 'justify', color: 'black', marginHorizontal: 10, marginBottom: 5 },
@@ -274,29 +324,37 @@ const styles = StyleSheet.create({
   uploadButton: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#faeeac', paddingVertical: 10, paddingHorizontal: 10, borderRadius: 8, marginBottom: 8 },
   uploadButtonText: { color: 'black', fontSize: 16, fontWeight: 'bold', marginLeft: 5 },
   imagePreview: { width: 200, height: 200, resizeMode: 'cover', borderRadius: 8, marginTop: 10 },
-  modalTitle: { fontSize: 16, textAlign: 'center', marginBottom: 10, color: 'green', fontWeight: 'bold' },
   imageRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 },
   submitButton: { backgroundColor: '#4CAF50', paddingVertical: 12, borderRadius: 8, alignItems: 'center', elevation: 8 },
   submitButtonText: { color: 'white', fontSize: 16, fontWeight: '800' },
   modalContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
-  modalContent: { backgroundColor: 'white', borderRadius: 20, padding: 20, alignItems: 'center', width: '85%' },
-  animation: { width: 150, height: 150, marginBottom: 5 },
-  modalText: { fontSize: 16, textAlign: 'center', marginBottom: 10, color: '#333' },
-  closeButton: { marginTop: 15, backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 10 },
-  closeButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
-  alertOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
-  alertContainer: { width: '80%', height: '50%' , backgroundColor: 'white', borderRadius: 20, padding: 5, alignItems: 'center', elevation: 5 },
-  alertText: { fontSize: 16, textAlign: 'center', marginBottom: 20, color: '#333' },
-  alertButton: { backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 10 },
-  alertButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
-  dataUsageContainer: { backgroundColor: '#F9F9F9',  paddingVertical: 10, paddingHorizontal: 15, marginBottom: 20,  borderRadius: 10, borderWidth: 1,  borderColor: '#E0E0E0',  shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 5, elevation: 2, },
-  dataUsageText: { fontSize: 13, textAlign: 'justify', color: '#555',  fontStyle: 'italic', },
-  modalSuccessTitle: { fontSize: 18, color: 'green', fontWeight: 'bold', textAlign: 'center', marginBottom: 10, },
-  modalSuccessText: { fontSize: 16, color: '#333', textAlign: 'center', fontWeight: 'bold', marginBottom: 20, },
+  animation: { width: 100, height: 100, marginBottom: 10 }, // Ajuste tamaño animación
+  modalSuccessTitle: { fontSize: 18, color: 'green', fontWeight: 'bold', textAlign: 'center', marginBottom: 10 },
+  modalSuccessText: { fontSize: 16, color: '#333', textAlign: 'center', fontWeight: 'bold', marginBottom: 20 },
   errorModalText: { fontSize: 16, color: '#333', textAlign: 'left', marginBottom: 20, marginLeft: -75 },
-  requiredAsterisk: { color: 'red', fontSize: 16,  marginLeft: 4, }, 
-  modalErrorTitle: { fontSize: 16, color: 'black', fontWeight: 'bold', paddingHorizontal: 8, }
+  requiredAsterisk: { color: 'red', fontSize: 16, marginLeft: 4 },
+  modalErrorTitle: { fontSize: 16, color: 'black', fontWeight: 'bold', paddingHorizontal: 8 },
+  alertOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
+  alertContainer: {
+    width: '80%',
+    maxHeight: 300, // Aumentamos la altura máxima del modal de error
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 15,
+    alignItems: 'center',
+    elevation: 5,
+    justifyContent: 'center', // Asegura que todo el contenido esté centrado
+  },
+  alertText: { fontSize: 16, textAlign: 'center', marginBottom: 20, color: '#333' },
+  alertButton: {
+    backgroundColor: '#FF6347', // Color rojo más visible para errores
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  alertButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
+  dataUsageContainer: { backgroundColor: '#F9F9F9', paddingVertical: 10, paddingHorizontal: 15, marginBottom: 20, borderRadius: 10, borderWidth: 1, borderColor: '#E0E0E0', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 5, elevation: 2 },
+  dataUsageText: { fontSize: 13, textAlign: 'justify', color: '#555', fontStyle: 'italic' },
 });
 
 export default DenunciaMicrobasural;
-
