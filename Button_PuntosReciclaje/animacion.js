@@ -26,14 +26,14 @@ const Animacion = () => {
         <View style={styles.container}>
             <View style={styles.logoContainer}>
                 <Image
-                    source={require('../assets/LOGO NEUTRO HORIZONTAL.png')} // Ajusta la ruta
+                    source={require('../assets/LOGO NEUTRO HORIZONTAL.png')} 
                     style={styles.logo}
                 />
             </View>
             <Text style={styles.text}>{currentLanguage.slogan}</Text>
             <Text style={styles.text}>{currentLanguage.question}</Text>
             <LottieView
-                source={require('./animacion2.json')} // Ajusta la ruta si es necesario
+                source={require('./animacion2.json')}
                 autoPlay
                 loop
                 style={styles.animation}
