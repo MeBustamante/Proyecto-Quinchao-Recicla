@@ -216,7 +216,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 35, // Deja un espacio de 40 píxeles en la parte superior
+        paddingTop: 35, // Deja un espacio en el menu inferior
         backgroundColor: '#ffffff', 
     },
     gradientBackground: {
