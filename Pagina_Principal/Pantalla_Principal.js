@@ -32,7 +32,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
             },
             notifications: 'Notificaciones',
             noNotifications: 'No tienes notificaciones nuevas.',
-            close: 'Cerrar', // Añadido aquí
+            close: 'Cerrar', 
         },
         en: {
             greeting: `HELLO ${nombreMayusculas}`,
@@ -51,7 +51,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
             },
             notifications: 'Notifications',
             noNotifications: 'No new notifications.',
-            close: 'Close', // Añadido aquí
+            close: 'Close', 
         },
     };
 
