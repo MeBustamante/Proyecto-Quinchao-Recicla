@@ -19,6 +19,7 @@ export const AppProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]); // Lista de notificaciones
   const [notificationsEnabled, setNotificationsEnabled] = useState(false); // Estado para notificaciones habilitadas/deshabilitadas
   const [collectionSchedule, setCollectionSchedule] = useState([]); // Estado para el cronograma
+  const [timeFormat, setTimeFormat] = useState('24h'); // Estado para el formato de hora (12h o 24h)
 
   // Función para agregar una nueva notificación con fecha y hora
   const addNotification = async (message) => {
@@ -58,6 +59,8 @@ export const AppProvider = ({ children }) => {
         setNotificationsEnabled, // Proveer la función para actualizar el estado
         collectionSchedule,
         setCollectionSchedule,
+        timeFormat, // Proveer el estado de timeFormat
+        setTimeFormat, // Proveer la función para actualizar el estado de timeFormat
       }}
     >
       {children}

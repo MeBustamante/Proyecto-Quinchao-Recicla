@@ -74,39 +74,48 @@ const PantallaPrincipalScreen = ({ navigation }) => {
 
             {/* Modal de notificaciones */}
             <Modal
-                animationType="slide"
-                transparent={true}
-                visible={isNotificationVisible}
-                onRequestClose={handleCloseNotification}
-            >
-                <View style={styles.modalOverlay}>
-                    <View style={styles.modalContainer}>
-                        <Text style={styles.modalTitle}>{currentLanguage.notifications}</Text>
-                        <ScrollView contentContainerStyle={styles.modalContent}>
-                            {notifications.length > 0 ? (
-                                notifications.map((notification, index) => (
-                                    <View key={index} style={styles.notificationContainer}>
-                                        <Text style={styles.notificationText}>
-                                            {notification.text}
-                                        </Text>
-                                        <Text style={styles.notificationDate}>
-                                            {notification.date}
-                                        </Text>
-                                    </View>
-                                ))
-                            ) : (
-                                <Text style={styles.noNotificationsText}>
-                                    {currentLanguage.noNotifications}
+    animationType="slide"
+    transparent={true}
+    visible={isNotificationVisible}
+    onRequestClose={handleCloseNotification}
+>
+    <View style={styles.modalOverlay}>
+        <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>{currentLanguage.notifications}</Text>
+            <ScrollView contentContainerStyle={styles.modalContent}>
+                {notifications.length > 0 ? (
+                    notifications.map((notification, index) => (
+                        <View key={index} style={styles.notificationContainer}>
+                            <Ionicons
+                                name="notifications-outline"
+                                size={24}
+                                color="#4CAF50"
+                                style={styles.notificationIcon}
+                            />
+                            <View style={styles.notificationTextContainer}>
+                                <Text style={styles.notificationText}>
+                                    {notification.text}
                                 </Text>
-                            )}
-                        </ScrollView>
-                        <TouchableOpacity style={styles.closeButton} onPress={handleCloseNotification}>
-                            <Text style={styles.closeButtonText}>{currentLanguage.close}</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </Modal>
+                                <Text style={styles.notificationDate}>
+                                    {notification.date}
+                                </Text>
+                            </View>
+                        </View>
+                    ))
+                ) : (
+                    <Text style={styles.noNotificationsText}>
+                        {currentLanguage.noNotifications}
+                    </Text>
+                )}
+            </ScrollView>
+            <TouchableOpacity style={styles.closeButton} onPress={handleCloseNotification}>
+                <Text style={styles.closeButtonText}>{currentLanguage.close}</Text>
+            </TouchableOpacity>
+        </View>
+    </View>
+</Modal>
 
+                
             <LinearGradient
                 colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']}
                 style={styles.gradientBackground}
@@ -215,45 +224,67 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     modalContainer: {
-        width: '85%',
-        backgroundColor: 'white',
-        borderRadius: 10,
-        padding: 20,
+        width: '90%',
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 10, // Para sombras en Android
     },
     modalTitle: {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
-        marginBottom: 10,
+        color: '#4CAF50',
+        marginBottom: 15,
+        textAlign: 'center',
     },
     modalContent: {
         paddingVertical: 10,
     },
     notificationContainer: {
-        marginBottom: 10,
+        flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E0E0E0',
     },
     notificationText: {
         fontSize: 16,
+        color: '#333',
     },
     notificationDate: {
         fontSize: 12,
-        color: '#666',
+        color: '#888',
         textAlign: 'right',
+    },
+    notificationIcon: {
+        marginRight: 10,
     },
     noNotificationsText: {
         fontSize: 16,
-        color: '#888',
-        textAlign: 'center',
+    color: '#888',
+    textAlign: 'center',
+    marginTop: 20,
     },
+    notificationTextContainer: {
+    flex: 1,
+},notificationTextContainer: {
+    flex: 1,
+},
     closeButton: {
-        marginTop: 10,
+        marginTop: 20,
         backgroundColor: '#4CAF50',
-        padding: 10,
-        borderRadius: 5,
+        padding: 12,
+        borderRadius: 10,
         alignItems: 'center',
     },
     closeButtonText: {
-        color: 'white',
+        color: '#fff',
         fontSize: 16,
+        fontWeight: 'bold',
     },
     scrollContent: {
         flexGrow: 1,
