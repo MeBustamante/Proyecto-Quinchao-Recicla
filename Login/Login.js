@@ -43,7 +43,7 @@ const LoginScreen = ({ navigation }) => {
                     onAnimationFinish={() => { 
                         setIsNavigating(true); 
                         navigation.navigate('Home'); 
-                    }} // Navega al terminar la animación
+                    }} 
                 />
             ) : (
                 <TouchableOpacity style={styles.button} onPress={handleLogin}>
