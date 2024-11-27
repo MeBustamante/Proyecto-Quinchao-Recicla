@@ -32,7 +32,7 @@ export default function App() {
       secondMessage: 'Esta aplicación móvil nació como una iniciativa de la Ilustre Municipalidad de Quinchao, con el objetivo de incentivar el reciclaje y promover la gestión sostenible de residuos en la comunidad.\n\nEl desarrollo de la APP estuvo a cargo de un talentoso equipo de estudiantes de Ingeniería en Informática de la Universidad de Los Lagos, sede Chiloé, quienes con dedicación y creatividad hicieron realidad esta idea.\n\nProgramadores y Diseñadores: \nMatías Llaipén Uribe, Marcelo Bustamante Villaroel, Kathya Mansilla Fernández, Manuel Sanhueza Villanueva y Yeremi Aburto Miranda.\n\nEsta herramienta es un paso hacia un futuro más limpio y sustentable. ¡Gracias por ser parte del cambio!\n\nCastro, Chiloé, 2024',
     },
     en: {
-      team: 'The development team is composed of Kathya Mansilla, Marcelo Bustamante, Yeremi Aburto, Matías Llaipen, and Manuel Sanhueza.',
+      team: 'The development team is composed of Kathya Mansilla,    Marcelo Bustamante, Yeremi Aburto, Matías Llaipen, and Manuel Sanhueza.',
       thanks: 'Thank you for choosing our app and joining the care of the planet! Together we can make a difference. Enjoy and keep contributing to the change!',
       instagramText: '@Muniquinchao',
       facebookText: 'Municipality of Quinchao',
@@ -55,17 +55,19 @@ export default function App() {
           </View>
 
           <View style={styles.infoContainer}>
-          <Text style={styles.infoText}>
-  {language === 'es'
-    ? currentTexts.secondMessage.split('Programadores y Diseñadores: ')[0]
-    : currentTexts.secondMessage.split('Programmers and Designers: ')[0]}
-  <Text style={{ fontWeight: 'bold' }}>
-    {language === 'es' ? 'Programadores y Diseñadores:' : 'Programmers and Designers:'}
-  </Text>
-  {language === 'es'
-    ? currentTexts.secondMessage.split('Programadores y Diseñadores: ')[1]
-    : currentTexts.secondMessage.split('Programmers and Designers: ')[1]}
-</Text>
+            <Text style={styles.infoText}>
+              {language === 'es'
+                ? currentTexts.secondMessage.split('Programadores y Diseñadores: ')[0]
+                : currentTexts.secondMessage.split('Programmers and Designers: ')[0]
+              }
+              <Text style={{ fontWeight: 'bold' }}>
+                {language === 'es' ? 'Programadores y Diseñadores:' : 'Programmers and Designers:'}
+              </Text>
+              {language === 'es'
+                ? currentTexts.secondMessage.split('Programadores y Diseñadores: ')[1]
+                : currentTexts.secondMessage.split('Programmers and Designers: ')[1]
+              }
+            </Text>
 
             {/* Imagen centrada */}
             <View style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
@@ -148,8 +150,9 @@ const styles = StyleSheet.create({
   infoText: {
     fontSize: 18,
     color: '#333',
-    textAlign: 'justify',
+    textAlign: 'center',  // Centra el texto
     marginTop: -8,
+    lineHeight: 24,  // Ajusta el espacio entre líneas de texto
   },
   socialIconContainer: {
     flexDirection: 'row',
