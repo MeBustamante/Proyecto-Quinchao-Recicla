@@ -235,13 +235,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bannerContainer: {
+    position: 'relative',
     width: '100%',
-    height: screenHeight * 0.2,
-    marginBottom: 1,
+    height: screenHeight * 0.15, // 20% de la altura de la pantalla
+    marginBottom: 0.2,
+    marginTop: 5, 
   },
   banner: {
     width: '100%',
-    height: '100%',
+    height: 100,
     resizeMode: 'contain',
   },
   scrollContainer: {
@@ -281,8 +283,8 @@ const styles = StyleSheet.create({
   formContainer: {
     backgroundColor: 'white',
     borderRadius: 10,
-    padding: 20,
-    marginHorizontal: 10,
+    padding: 15,
+    marginHorizontal: 2,
     elevation: 5,
     shadowColor: 'black',
     shadowOffset: { width: 2, height: 4 },
