@@ -39,7 +39,7 @@ const Ayuda = () => {
 
   return (
     <LinearGradient
-      colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']}
+      colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']}
       style={styles.gradientBackground}
     >
       <ScrollView contentContainerStyle={styles.container}>

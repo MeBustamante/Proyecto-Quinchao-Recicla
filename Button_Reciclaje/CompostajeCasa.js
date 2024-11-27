@@ -8,7 +8,7 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 const CompostajeCasa = ({ navigation }) => {
     return (
         <View style={styles.fullScreen}>
-            <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
+            <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.gradientBackground}>
                 <View style={[styles.contentContainer, { marginTop: screenHeight * -0.10 }]}>
                     {/* Bajado ligeramente */}
                     <Text style={styles.infoTitleBlack}>Compostaje en Casa</Text>

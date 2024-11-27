@@ -68,7 +68,7 @@ const MenuReciclaje = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
+      <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.gradientBackground}>
         
         <Image source={require('../assets/reciclaje_encabezado.png')} style={styles.headerImage} />
 
