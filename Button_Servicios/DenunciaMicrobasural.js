@@ -134,7 +134,7 @@ const DenunciaMicrobasural = () => {
   return (
     <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.background}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Image source={require('../assets/denuncia.png')} style={styles.banner} />
+        <Image source={require('../assets/basural.png')} style={styles.banner} />
         <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <Text style={styles.description}>{texts[language].description}</Text>
           <View style={styles.formContainer}>
@@ -235,7 +235,7 @@ const DenunciaMicrobasural = () => {
 
 const styles = StyleSheet.create({
   background: { flex: 1 },
-  banner: { width: '100%', height: 110, resizeMode: 'cover' },
+  banner: { width: '100%', height: 110, resizeMode: 'cover', marginBottom: 5 },
   container: { flex: 1, paddingHorizontal: 20 },
   scrollContent: { paddingBottom: 100 },
   description: { fontSize: 16, textAlign: 'justify', color: 'black', marginHorizontal: 10, marginBottom: 5 },
