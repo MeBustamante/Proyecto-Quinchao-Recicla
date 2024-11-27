@@ -36,7 +36,7 @@ const LoginScreen = ({ navigation }) => {
             />
             {loading ? (
                 <LottieView
-                    source={require('./login.json')} // Ruta de tu animación
+                    source={require('./login.json')} 
                     autoPlay
                     loop={false} // Desactiva el loop para que se reproduzca una vez
                     style={styles.animation}
