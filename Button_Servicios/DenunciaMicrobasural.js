@@ -158,6 +158,7 @@ const DenunciaMicrobasural = () => {
               placeholder={texts[language].enterPhone}
               value={telefono}
               onChangeText={setTelefono}
+              keyboardType="phone-pad"
             />
             <Text style={styles.label}>{texts[language].address}<Text style={styles.requiredAsterisk}>*</Text></Text>
             <TextInput
