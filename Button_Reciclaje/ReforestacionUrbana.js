@@ -42,8 +42,12 @@ const ReforestacionUrbana = ({ navigation }) => {
   return (
     <View style={styles.fullScreen}>
       <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.gradientBackground}>
-        <ScrollView style={styles.scrollContainer}>
-          <View style={[styles.contentContainer, { marginTop: screenHeight * 0.04 }]}>
+        <ScrollView 
+          style={styles.scrollContainer} 
+          contentContainerStyle={{ flexGrow: 1 }} // Permite desplazamiento sin mostrar barra
+          showsVerticalScrollIndicator={false} // Oculta la barra de desplazamiento
+        >
+          <View style={[styles.contentContainer, { marginTop: screenHeight * 0.02 }]}>
             <Text style={styles.infoTitle}>{t.title}</Text>
 
             <Text style={styles.sectionTitle}>{t.activityTitle}</Text>
@@ -94,6 +98,7 @@ const styles = StyleSheet.create({
     borderColor: '#4CAF50',
     paddingVertical: screenHeight * 0.02, // Espaciado interno vertical proporcional al alto
     paddingHorizontal: screenWidth * 0.05, // Espaciado interno horizontal proporcional al ancho
+    marginTop: screenHeight * 0.02, // Ajustado para subir más el marco
     marginBottom: screenHeight * 0.05, // Margen inferior dinámico
   },
   infoTitle: {
