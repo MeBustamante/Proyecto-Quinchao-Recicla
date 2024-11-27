@@ -72,6 +72,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
 
+
             {/* Modal de notificaciones */}
             <Modal
     animationType="slide"
@@ -119,12 +120,18 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                 style={styles.gradientBackground}
             >
                 <ScrollView contentContainerStyle={styles.scrollContent}>
-                <TouchableOpacity
-                    style={[styles.fixedCampana, styles.shadowCampana]} // Sombra adicional opcional
-                    onPress={handleNotificationPress}
-                >
-                  <MaterialIcons name="notifications-active" size={40} color="white" />
-                </TouchableOpacity>
+                {/* Icono de campana con imagen personalizada */}
+<TouchableOpacity
+    style={[styles.fixedCampana, styles.shadowCampana]} // Mantén los estilos actuales
+    onPress={handleNotificationPress} // Abre el modal de notificaciones
+>
+    <Image
+        source={require('../assets/campana.png')} // Ruta de la imagen personalizada
+        style={{ width: 40, height: 40 }} // Ajusta el tamaño según tus necesidades
+    />
+</TouchableOpacity>
+
+
                     {/* Encabezado */}
                     <View style={styles.headerContainer}>
                         <Image
@@ -393,13 +400,13 @@ const styles = StyleSheet.create({
     },
     fixedCampana: {
         position: 'absolute',
-        top: 35, // Ajusta esta distancia desde el borde superior según tus necesidades
+        top: 95, // Ajusta esta distancia desde el borde superior según tus necesidades
         right: 10, // Ajusta esta distancia desde el borde derecho según tus necesidades
         zIndex: 100, // Asegúrate de que sea mayor a otros elementos en la pantalla
         shadowColor: 'black',
         shadowOffset: { width: 0, height: 4 }, // Desplazamiento de la sombra
-        shadowOpacity: 0.3, // Transparencia de la sombra
-        shadowRadius: 4, // Difusión de la sombra
+        shadowOpacity: 0.5, // Transparencia de la sombra
+        shadowRadius: 10, // Difusión de la sombra
         // Sombra en Android
         elevation: 8 // Altura de la sombra para Android
     },
