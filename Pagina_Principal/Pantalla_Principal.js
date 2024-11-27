@@ -122,7 +122,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
 
                 {/* Icono de campana con imagen personalizada */}
                 <TouchableOpacity
-                style={[styles.fixedCampana, styles.shadowCampana]} // Mantén los estilos actuales
+                style={[styles.fixedCampana, styles.shadowCampana]} // Se mantienen los estilos
                 onPress={handleNotificationPress} // Abre el modal de notificaciones
             >
             <Image
