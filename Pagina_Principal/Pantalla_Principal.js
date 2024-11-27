@@ -402,7 +402,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 25, 
         right: 10, 
-        zIndex: 100, // Asegúrate de que sea mayor a otros elementos en la pantalla
+        zIndex: 100, 
         shadowColor: 'black',
         shadowOffset: { width: 0, height: 4 }, // Desplazamiento de la sombra
         shadowOpacity: 0.5, // Transparencia de la sombra
