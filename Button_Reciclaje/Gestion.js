@@ -107,7 +107,7 @@ const Gestion = () => {
   const currentTexts = texts[language];
 
   return (
-    <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
+    <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.gradientBackground}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {/* Banner */}
         <View style={styles.bannerContainer}>
