@@ -118,6 +118,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                 style={styles.gradientBackground}
             >
                 <ScrollView contentContainerStyle={styles.scrollContent}>
+                    
                 {/* Icono de campana con imagen personalizada */}
 <TouchableOpacity
     style={[styles.fixedCampana, styles.shadowCampana]} // Mantén los estilos actuales
