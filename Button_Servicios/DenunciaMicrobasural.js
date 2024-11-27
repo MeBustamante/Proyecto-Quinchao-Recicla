@@ -44,7 +44,7 @@ const DenunciaMicrobasural = () => {
       uploadImage: 'Upload Image',
       takePhoto: 'Take Photo',
       selectImage: 'Select Image',
-      send: 'Send',
+      send: 'Submit',
       success: 'Complaint sent successfully.',
       close: 'Close',
     },
