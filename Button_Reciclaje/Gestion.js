@@ -86,7 +86,7 @@ const Gestion = () => {
   const texts = {
     es: {
       alertTitle: 'Recolección de residuos',
-      recuerda: 'Recuerda: El reciclaje comienza en casa. Clasifica tus residuos correctamente.',
+      recuerda: 'El reciclaje comienza en casa. Clasifica tus residuos correctamente.',
       referenceText: 'Consulta el cronograma de recolección en tu zona según el calendario:',
       tableTitle: 'Cronograma de recolección',
       areaHeader: 'Localidad',
@@ -116,8 +116,22 @@ const Gestion = () => {
 
         {/* Texto de recordatorio antes del calendario */}
         <View style={styles.reminderContainer}>
-          <Text style={styles.reminderText}>{currentTexts.recuerda}</Text>
-        </View>
+  <LinearGradient
+    colors={['#A8E6CF', '#DCEDC1']}
+    style={styles.gradientReminder}
+  >
+    <View style={styles.iconAndText}>
+      <Image
+        source={require('../assets/LOG_AMBIENTE.jpg')} // Usa un ícono temático
+        style={styles.reminderIcon}
+      />
+      <Text style={styles.reminderText}>
+        <Text style={styles.reminderHighlight}>El reciclaje comienza en casa.</Text>{'\n'}
+        Clasifica tus residuos correctamente.
+      </Text>
+    </View>
+  </LinearGradient>
+</View>
 
         {/* Calendario */}
         <View style={styles.calendarContainer}>
@@ -224,6 +238,7 @@ const styles = StyleSheet.create({
   modalMessage: { fontSize: 16, marginBottom: 10 },
   closeButton: { backgroundColor: '#4CAF50', paddingVertical: 10, borderRadius: 5, paddingHorizontal: 20 },
   closeButtonText: { color: 'white', fontSize: 16 },
+
   tableContainer: {
     marginTop: 15, // Separación superior
     width: '90%', // Ancho relativo
@@ -241,18 +256,30 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   reminderContainer: {
-    backgroundColor: 'transparent', // Fondo moderno (naranja claro)
-    borderRadius: 10, // Bordes redondeados
-    padding: 15, // Espaciado interno
-    marginVertical: 20, // Separación con otros elementos
-    marginHorizontal: 10, // Separación lateral
-    borderWidth: 2, // Borde fino
-    borderColor: '#4CAF50',
+    marginVertical: -5, // Espaciado superior e inferior
+  marginHorizontal: 10, // Espaciado lateral
+  borderRadius: 15, // Bordes redondeados
+  overflow: 'hidden', // Asegura que el gradiente no se salga
+  },
+  gradientReminder: {
+    padding: 20, // Espaciado interno
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 15,
+  },
+  iconAndText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  reminderIcon: {
+    width: 60, // Tamaño del ícono
+    height: 60,
+    marginRight: 8, // Espaciado con el texto
   },
   reminderText: {
     fontSize: 18, // Tamaño del texto
     fontWeight: 'bold', // Negrita
-    color: 'black', // Naranja oscuro para el texto
+    color: '#000', // Naranja oscuro para el texto
     textAlign: 'center', // Centrado
     lineHeight: 24, // Espaciado entre líneas
   },
