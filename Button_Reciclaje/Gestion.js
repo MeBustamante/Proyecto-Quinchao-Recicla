@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   reminderIcon: {
-    width: 60, // Tamaño del ícono
+    width: 60, // Tamaño del íconoo
     height: 60,
     marginRight: 8, // Espaciado con el texto
   },
