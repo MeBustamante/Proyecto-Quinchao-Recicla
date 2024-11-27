@@ -27,10 +27,7 @@ const DenunciaMicrobasural = () => {
       uploadImage: 'Subir Imagen',
       takePhoto: 'Tomar Foto',
       selectImage: 'Subir Imagen',
-      terminos: 'Al enviar este formulario, usted acepta que los datos proporcionados serán conocidos y utilizados exclusivamente por la Municipalidad de Quinchao para la gestión y resolución de su solicitud.',
       send: 'Enviar',
-      enviado1: '¡Gracias por tu compromiso!',
-      enviado2: 'Tu denuncia fue enviada correctamente.',
       success: 'Denuncia enviada correctamente.',
       close: 'Cerrar',
     },
@@ -47,10 +44,7 @@ const DenunciaMicrobasural = () => {
       uploadImage: 'Upload Image',
       takePhoto: 'Take Photo',
       selectImage: 'Select Image',
-      terminos: 'By submitting this form, you agree that the data provided will be known and used exclusively by the Municipality of Quinchao for the management and resolution of your application.',
       send: 'Send',
-      enviado1: 'Thank you for your commitment!',
-      enviado2: 'Your report was successfully submitted.',
       success: 'Complaint sent successfully.',
       close: 'Close',
     },
@@ -64,6 +58,7 @@ const DenunciaMicrobasural = () => {
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [sendModalVisible, setSendModalVisible] = useState(false); // Nuevo estado para el segundo modal
+  const [showErrorModal, setShowErrorModal] = useState(false); // Modal de error si algún campo falta
 
   const showCustomAlert = (message) => {
     setAlertMessage(message);
@@ -116,18 +111,22 @@ const DenunciaMicrobasural = () => {
   const handleSubmit = () => {
     if (!nombre.trim()) {
       showCustomAlert(texts[language].enterFullName);
+      setShowErrorModal(true);
       return;
     }
     if (!email.trim()) {
       showCustomAlert(texts[language].enterEmail);
+      setShowErrorModal(true);
       return;
     }
     if (!telefono.trim()) {
       showCustomAlert(texts[language].enterPhone);
+      setShowErrorModal(true);
       return;
     }
     if (!direccion.trim()) {
       showCustomAlert(texts[language].enterAddress);
+      setShowErrorModal(true);
       return;
     }
 
@@ -135,16 +134,12 @@ const DenunciaMicrobasural = () => {
     const now = new Date();
     const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
 
-     // Simulación de envío exitoso
+    // Simulación de envío exitoso
     setAlertVisible(false);
     setSendModalVisible(true); // Mostrar el modal de envío exitoso
 
-    // Modificar la notificación para que respete el idioma actual
-    const notificationMessage = language === 'es' 
-      ? `Nueva denuncia en: ${direccion}`
-      : `New complaint in: ${direccion}`;
-    
-    addNotification(notificationMessage);
+    // Añadir notificación al contexto global
+    addNotification(`Nueva denuncia en: ${direccion}`);
 
     // Limpiar campos después de enviar la denuncia
     setNombre('');
@@ -198,7 +193,7 @@ const DenunciaMicrobasural = () => {
             <Text style={styles.label}>{texts[language].uploadImage}</Text>
             <View style={styles.imageRow}>
               <TouchableOpacity
-                style={styles.uploadButton}
+                style={[styles.uploadButton, styles.leftButton]}
                 onPress={takePhoto}
               >
                 <Ionicons name="camera-outline" size={20} color="black" />
@@ -216,7 +211,9 @@ const DenunciaMicrobasural = () => {
 
             {/* Mensaje de uso de datos */}
             <View style={styles.dataUsageContainer}>
-              <Text style={styles.dataUsageText}>{texts[language].terminos}</Text>
+              <Text style={styles.dataUsageText}>
+                Al enviar este formulario, usted acepta que los datos proporcionados serán conocidos y utilizados exclusivamente por la Municipalidad de Quinchao para la gestión y resolución de su solicitud.
+              </Text>
             </View>
 
             <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
@@ -226,7 +223,7 @@ const DenunciaMicrobasural = () => {
         </KeyboardAvoidingView>
       </ScrollView>
       <MenuInferior navigation={navigation} />
-
+      
       {/* Modal para alertas */}
       <Modal
         animationType="slide"
@@ -242,8 +239,8 @@ const DenunciaMicrobasural = () => {
               loop={true}
               style={styles.animation}
             />
-            <Text style={styles.modalSuccessTitle}>{texts[language].enviado1}</Text>
-            <Text style={styles.modalSuccessText}>{texts[language].enviado2}</Text>
+            <Text style={styles.modalSuccessTitle}>¡Gracias por tu compromiso!</Text>
+            <Text style={styles.modalSuccessText}>Tu denuncia fue enviada correctamente.</Text>
             <TouchableOpacity
               style={styles.alertButton}
               onPress={() => {
@@ -256,6 +253,27 @@ const DenunciaMicrobasural = () => {
           </View>
         </View>
       </Modal>
+
+      {/* Modal de error para campos faltantes */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={showErrorModal}
+        onRequestClose={() => setShowErrorModal(false)}
+      >
+        <View style={styles.alertOverlay}>
+          <View style={styles.alertContainer}>
+            <Text style={styles.errorModalText}>{texts[language].enterFullName}</Text>
+            <TouchableOpacity
+              style={styles.alertButton}
+              onPress={() => setShowErrorModal(false)}
+            >
+              <Text style={styles.alertButtonText}>{texts[language].close}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
     </LinearGradient>
   );
 };
@@ -303,9 +321,26 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 2,
   },
-  dataUsageText: { fontSize: 13, textAlign: 'justify', color: '#555', fontStyle: 'italic' },
-  modalSuccessTitle: { fontSize: 18, color: 'green', fontWeight: 'bold', textAlign: 'center', marginBottom: 10 },
-  modalSuccessText: { fontSize: 16, color: '#333', textAlign: 'center', fontWeight: 'bold', marginBottom: 20 },
+  dataUsageText: {
+    fontSize: 13,
+    textAlign: 'justify',
+    color: '#555', // Texto gris oscuro
+    fontStyle: 'italic',
+  },
+  modalSuccessTitle: {
+    fontSize: 18,
+    color: 'green',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  modalSuccessText: {
+    fontSize: 16,
+    color: '#333',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
 });
 
 export default DenunciaMicrobasural;
