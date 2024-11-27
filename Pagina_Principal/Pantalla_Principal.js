@@ -71,12 +71,13 @@ const PantallaPrincipalScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+
             {/* Modal de notificaciones */}
             <Modal
-    animationType="slide"
-    transparent={true}
-    visible={isNotificationVisible}
-    onRequestClose={handleCloseNotification}
+            animationType="slide"
+            transparent={true}
+            visible={isNotificationVisible}
+            onRequestClose={handleCloseNotification}
 >
     <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
