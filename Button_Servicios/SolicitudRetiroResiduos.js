@@ -95,7 +95,7 @@ const SolicitudRetiroResiduos = () => {
   };
 
   return (
-    <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.background}>
+    <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.background}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.bannerContainer}>
           <Image source={require('../assets/retiro1.png')} style={styles.banner} />
