@@ -41,7 +41,7 @@ const CompostajeComunidad = ({ navigation }) => {
 
   return (
     <View style={styles.fullScreen}>
-      <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
+      <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.gradientBackground}>
         <ScrollView style={styles.scrollContainer}>
           <View style={[styles.contentContainer, { marginTop: screenHeight * 0.04 }]}>
             <Text style={styles.infoTitleBlack}>{t.title}</Text>
