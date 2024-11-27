@@ -72,7 +72,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
 
-            {/* Modal de notificaciones    */}
+            {/* Modal de notificaciones */}
             <Modal
             animationType="slide"
             transparent={true}
