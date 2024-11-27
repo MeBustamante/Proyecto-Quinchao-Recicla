@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MenuInferior from '../Menu_Inferior/MenuInferior';
 import { AppContext } from '../ConfigGlobal/AppContext'; // Importa el contexto global
+
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 const translations = {
   es: {
@@ -41,7 +43,7 @@ const CompostajeComunidad = ({ navigation }) => {
     <View style={styles.fullScreen}>
       <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#FFD54F']} style={styles.gradientBackground}>
         <ScrollView style={styles.scrollContainer}>
-          <View style={styles.contentContainer}>
+          <View style={[styles.contentContainer, { marginTop: screenHeight * 0.04 }]}>
             <Text style={styles.infoTitleBlack}>{t.title}</Text>
 
             <Text style={styles.sectionTitle}>{t.activityTitle}</Text>
@@ -84,16 +86,15 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   contentContainer: {
-    width: '85%',
+    width: screenWidth * 0.9, // 90% del ancho de la pantalla
     alignSelf: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     borderRadius: 20,
     borderWidth: 2,
     borderColor: '#4CAF50',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    marginTop: 50, // Ajustado para que el cuadro blanco esté más abajo
-    marginBottom: 30,
+    paddingVertical: screenHeight * 0.02, // Espaciado interno vertical proporcional al alto
+    paddingHorizontal: screenWidth * 0.05, // Espaciado interno horizontal proporcional al ancho
+    marginBottom: screenHeight * 0.05, // Margen inferior dinámico
   },
   infoTitleBlack: {
     fontSize: 18,
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 150,
+    height: screenHeight * 0.2, // Ajuste dinámico según el tamaño del dispositivo
     borderRadius: 10,
     marginBottom: 20,
   },
@@ -127,6 +128,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
+    alignSelf: 'center',
   },
   backButtonText: {
     color: '#fff',
