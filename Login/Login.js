@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#F0F8FF', // Fondo beige claro
+        backgroundColor: '#F0F8FF', 
     },
     logo: {
         width: 250,
