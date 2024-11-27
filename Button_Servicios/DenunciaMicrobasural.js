@@ -85,7 +85,7 @@ const DenunciaMicrobasural = () => {
       quality: 1,
     });
 
-    if (!result.cancelled) {
+    if (!result.canceled) {
       setArchivo(result.uri);
     }
   };
@@ -118,14 +118,14 @@ const DenunciaMicrobasural = () => {
     if (!archivo) missingFields.push(language === 'es' ? 'Imagen' : 'Image');
   
     if (missingFields.length > 0) {
-      const errorMessage =
-        language === 'es'
-          ? `Faltan completar los siguientes campos:\n${missingFields.join('\n')}`
-          : `The following fields are missing:\n${missingFields.join('\n')}`;
-      setAlertMessage(errorMessage); // Configura el mensaje dinámico
+      const errorMessage = missingFields
+        .map((field) => `- ${field}`) // Agrega un guion antes de cada campo
+        .join('\n'); // Une los elementos con saltos de línea
+      setAlertMessage(errorMessage); // Configura el mensaje en el modal
       setShowErrorModal(true); // Muestra el modal de error
       return;
     }
+    
   
     const now = new Date();
     const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
@@ -233,27 +233,31 @@ const DenunciaMicrobasural = () => {
 
       {/* Modal de error para campos faltantes */}
       <Modal
-          animationType="fade"
-          transparent={true}
-          visible={showErrorModal}
-          onRequestClose={() => setShowErrorModal(false)}
-        >
-          <View style={styles.alertOverlay}>
-            <View style={styles.alertContainer}>
-              <LottieView
-                source={require('../assets/Animaciones/fail.json')}
-                autoPlay
-                loop={true}
-                style={styles.animation}
-                speed={0.5}
-              />
-              <Text style={styles.errorModalText}>{alertMessage}</Text>
-              <TouchableOpacity style={styles.alertButton} onPress={() => setShowErrorModal(false)}>
-                <Text style={styles.alertButtonText}>{texts[language].close}</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
+  animationType="fade"
+  transparent={true}
+  visible={showErrorModal}
+  onRequestClose={() => setShowErrorModal(false)}
+>
+  <View style={styles.alertOverlay}>
+    <View style={styles.alertContainer}>
+      <LottieView
+        source={require('../assets/Animaciones/fail.json')}
+        autoPlay
+        loop={true}
+        style={styles.animation}
+        speed={0.5}
+      />
+      <Text style={styles.modalErrorTitle}>
+        {language === 'es' ? 'Faltan completar los siguientes campos:' : 'The following fields are missing:'}
+      </Text>
+      <Text style={styles.errorModalText}>{alertMessage}</Text>
+      <TouchableOpacity style={styles.alertButton} onPress={() => setShowErrorModal(false)}>
+        <Text style={styles.alertButtonText}>{texts[language].close}</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</Modal>
+
     </LinearGradient>
   );
 };
@@ -281,16 +285,17 @@ const styles = StyleSheet.create({
   closeButton: { marginTop: 15, backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 10 },
   closeButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
   alertOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
-  alertContainer: { width: '70%', height: '50%' , backgroundColor: 'white', borderRadius: 20, padding: 5, alignItems: 'center', elevation: 5 },
+  alertContainer: { width: '80%', height: '50%' , backgroundColor: 'white', borderRadius: 20, padding: 5, alignItems: 'center', elevation: 5 },
   alertText: { fontSize: 16, textAlign: 'center', marginBottom: 20, color: '#333' },
-  alertButton: { backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 20 },
+  alertButton: { backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 10 },
   alertButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
   dataUsageContainer: { backgroundColor: '#F9F9F9',  paddingVertical: 10, paddingHorizontal: 15, marginBottom: 20,  borderRadius: 10, borderWidth: 1,  borderColor: '#E0E0E0',  shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 5, elevation: 2, },
   dataUsageText: { fontSize: 13, textAlign: 'justify', color: '#555',  fontStyle: 'italic', },
   modalSuccessTitle: { fontSize: 18, color: 'green', fontWeight: 'bold', textAlign: 'center', marginBottom: 10, },
   modalSuccessText: { fontSize: 16, color: '#333', textAlign: 'center', fontWeight: 'bold', marginBottom: 20, },
-  errorModalText: { fontSize: 16, color: '#333', textAlign: 'justify', marginBottom: 20, fontWeight: 'bold' },
+  errorModalText: { fontSize: 16, color: '#333', textAlign: 'left', marginBottom: 20, marginLeft: -75 },
   requiredAsterisk: { color: 'red', fontSize: 16,  marginLeft: 4, }, 
+  modalErrorTitle: { fontSize: 16, color: 'black', fontWeight: 'bold', paddingHorizontal: 8, }
 });
 
 export default DenunciaMicrobasural;
