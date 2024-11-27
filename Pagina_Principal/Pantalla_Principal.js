@@ -121,9 +121,9 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                 <ScrollView contentContainerStyle={styles.scrollContent}>
 
                 {/* Icono de campana con imagen personalizada */}
-<TouchableOpacity
-    style={[styles.fixedCampana, styles.shadowCampana]} // Mantén los estilos actuales
-    onPress={handleNotificationPress} // Abre el modal de notificaciones
+                <TouchableOpacity
+                style={[styles.fixedCampana, styles.shadowCampana]} // Mantén los estilos actuales
+                onPress={handleNotificationPress} // Abre el modal de notificaciones
 >
     <Image
         source={require('../assets/campana.png')} // Ruta de la imagen personalizada
