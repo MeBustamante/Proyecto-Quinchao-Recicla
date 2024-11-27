@@ -83,7 +83,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
             <Text style={styles.modalTitle}>{currentLanguage.notifications}</Text>
             <ScrollView
                 contentContainerStyle={styles.modalContent}
-                style={{ maxHeight: 400 }} // Ajustamos el alto para que se muestren 3 notificaciones (aprox.)
+                style={{ maxHeight: 400 }} // Ajustamos el alto para que se muestren 4 notificaciones
             >
                 {notifications.length > 0 ? (
                     notifications.map((notification, index) => (
@@ -118,7 +118,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                 style={styles.gradientBackground}
             >
                 <ScrollView contentContainerStyle={styles.scrollContent}>
-                    
+
                 {/* Icono de campana con imagen personalizada */}
 <TouchableOpacity
     style={[styles.fixedCampana, styles.shadowCampana]} // Mantén los estilos actuales
