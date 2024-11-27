@@ -111,10 +111,10 @@ const SolicitudRetiroResiduos = () => {
           <Text style={styles.description}>{t.title}</Text>
 
           <View style={styles.formContainer}>
-            <Text style={styles.label}>{t.name}</Text>
+            <Text style={styles.label}>{t.name}<Text style={styles.requiredAsterisk}>*</Text></Text>
             <TextInput style={styles.input} placeholder={t.name} value={nombre} onChangeText={setNombre} />
 
-            <Text style={styles.label}>{t.phone}</Text>
+            <Text style={styles.label}>{t.phone}<Text style={styles.requiredAsterisk}>*</Text></Text>
             <TextInput
               style={styles.input}
               placeholder={t.phoneplaceholder}
@@ -123,7 +123,8 @@ const SolicitudRetiroResiduos = () => {
               keyboardType="phone-pad"
             />
 
-            <Text style={styles.label}>{t.email}</Text>
+            <Text style={styles.label}>{t.email}<Text style={styles.requiredAsterisk}>*</Text>
+            </Text>
             <TextInput
               style={styles.input}
               placeholder={t.emailplaceholder}
@@ -132,10 +133,12 @@ const SolicitudRetiroResiduos = () => {
               keyboardType="email-address"
             />
 
-            <Text style={styles.label}>{t.address}</Text>
+            <Text style={styles.label}>{t.address}<Text style={styles.requiredAsterisk}>*</Text>
+            </Text>
             <TextInput style={styles.input} placeholder={t.addressplaceholder} value={direccion} onChangeText={setDireccion} />
 
-            <Text style={styles.label}>{t.wasteType}</Text>
+            <Text style={styles.label}>{t.wasteType}<Text style={styles.requiredAsterisk}>*</Text>
+            </Text>
             <View style={styles.residuosContainer}>
               {t.wasteOptions.map((residuo, index) => (
                 <View key={index} style={styles.checkboxContainer}>
@@ -394,6 +397,11 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 16,
   },
+  requiredAsterisk: {
+    color: 'red',
+    fontSize: 16, // Ajusta según tu preferencia
+    marginLeft: 4,
+  },  
 });
 
 export default SolicitudRetiroResiduos;

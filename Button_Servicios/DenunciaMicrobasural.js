@@ -17,13 +17,13 @@ const DenunciaMicrobasural = () => {
     es: {
       description: 'Por favor, rellena los datos y adjunta imagen del microbasural que encontraste.',
       fullName: 'Nombre y Apellidos',
-      enterFullName: 'Por favor complete todos los campos',  
+      enterFullName: 'Nombre y Apellidos',  
       email: 'Correo Electrónico',
-      enterEmail: 'Ingrese su correo electrónico',
+      enterEmail: 'ejemplo@gmail.com',
       phone: 'Teléfono',
-      enterPhone: 'Ingrese su teléfono',
+      enterPhone: '+569 12345678',
       address: 'Dirección del Microbasural',
-      enterAddress: 'Ingrese la dirección del microbasural',
+      enterAddress: 'Dirección #01',
       uploadImage: 'Subir Imagen',
       takePhoto: 'Tomar Foto',
       selectImage: 'Subir Imagen',
@@ -34,13 +34,13 @@ const DenunciaMicrobasural = () => {
     en: {
       description: 'Please fill out the information and attach an image of the illegal dump you found.',
       fullName: 'Full Name',
-      enterFullName: 'Please complete all fields',  
+      enterFullName: 'Full Name',  
       email: 'Email',
-      enterEmail: 'Enter your email',
+      enterEmail: 'example@gmail.com',
       phone: 'Phone',
-      enterPhone: 'Enter your phone number',
+      enterPhone: '+569 12345678',
       address: 'Direction of Microtrash',
-      enterAddress: 'Enter the address of the illegal dump',
+      enterAddress: 'Direction #01',
       uploadImage: 'Upload Image',
       takePhoto: 'Take Photo',
       selectImage: 'Select Image',
@@ -138,35 +138,35 @@ const DenunciaMicrobasural = () => {
         <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <Text style={styles.description}>{texts[language].description}</Text>
           <View style={styles.formContainer}>
-            <Text style={styles.label}>{texts[language].fullName}</Text>
+            <Text style={styles.label}>{texts[language].fullName}<Text style={styles.requiredAsterisk}>*</Text></Text>
             <TextInput
               style={styles.input}
               placeholder={texts[language].enterFullName}
               value={nombre}
               onChangeText={setNombre}
             />
-            <Text style={styles.label}>{texts[language].email}</Text>
+            <Text style={styles.label}>{texts[language].email}<Text style={styles.requiredAsterisk}>*</Text></Text>
             <TextInput
               style={styles.input}
               placeholder={texts[language].enterEmail}
               value={email}
               onChangeText={setEmail}
             />
-            <Text style={styles.label}>{texts[language].phone}</Text>
+            <Text style={styles.label}>{texts[language].phone}<Text style={styles.requiredAsterisk}>*</Text></Text>
             <TextInput
               style={styles.input}
               placeholder={texts[language].enterPhone}
               value={telefono}
               onChangeText={setTelefono}
             />
-            <Text style={styles.label}>{texts[language].address}</Text>
+            <Text style={styles.label}>{texts[language].address}<Text style={styles.requiredAsterisk}>*</Text></Text>
             <TextInput
               style={styles.input}
               placeholder={texts[language].enterAddress}
               value={direccion}
               onChangeText={setDireccion}
             />
-            <Text style={styles.label}>{texts[language].uploadImage}</Text>
+            <Text style={styles.label}>{texts[language].uploadImage}<Text style={styles.requiredAsterisk}>*</Text></Text>
             <View style={styles.imageRow}>
               <TouchableOpacity style={[styles.uploadButton, styles.leftButton]} onPress={takePhoto}>
                 <Ionicons name="camera-outline" size={20} color="black" />
@@ -259,46 +259,12 @@ const styles = StyleSheet.create({
   alertText: { fontSize: 16, textAlign: 'center', marginBottom: 20, color: '#333' },
   alertButton: { backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 20 },
   alertButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
-  dataUsageContainer: {
-    backgroundColor: '#F9F9F9', 
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    marginBottom: 20, 
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#E0E0E0', 
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 2,
-  },
-  dataUsageText: {
-    fontSize: 13,
-    textAlign: 'justify',
-    color: '#555', 
-    fontStyle: 'italic',
-  },
-  modalSuccessTitle: {
-    fontSize: 18,
-    color: 'green',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-  modalSuccessText: {
-    fontSize: 16,
-    color: '#333',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  errorModalText: {
-    fontSize: 16,
-    color: '#333',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
+  dataUsageContainer: { backgroundColor: '#F9F9F9',  paddingVertical: 10, paddingHorizontal: 15, marginBottom: 20,  borderRadius: 10, borderWidth: 1,  borderColor: '#E0E0E0',  shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 5, elevation: 2, },
+  dataUsageText: { fontSize: 13, textAlign: 'justify', color: '#555',  fontStyle: 'italic', },
+  modalSuccessTitle: { fontSize: 18, color: 'green', fontWeight: 'bold', textAlign: 'center', marginBottom: 10, },
+  modalSuccessText: { fontSize: 16, color: '#333', textAlign: 'center', fontWeight: 'bold', marginBottom: 20, },
+  errorModalText: { fontSize: 16, color: '#333', textAlign: 'center', marginBottom: 20, },
+  requiredAsterisk: { color: 'red', fontSize: 16,  marginLeft: 4, }, 
 });
 
 export default DenunciaMicrobasural;
