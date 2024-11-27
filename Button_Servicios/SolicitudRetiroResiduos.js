@@ -26,7 +26,7 @@ const translations = {
     close: 'Cerrar',
     wasteOptions: ['Latas', 'Plásticos', 'Vidrios', 'Metales', 'Papel', 'Orgánicos'],
     terminos: 'Al enviar este formulario, usted acepta que los datos proporcionados serán conocidos y utilizados exclusivamente por la Municipalidad de Quinchao para la gestión y resolución de su solicitud.',
-    errorModalText: 'Por favor complete todos los campos.',
+    errorModalText: 'Faltan completar los siguientes campos:',
     close: 'Cerrar',
   },
   en: {
@@ -71,34 +71,49 @@ const SolicitudRetiroResiduos = () => {
 
   const t = translations[language];
 
-  const handleSubmit = () => {
-    if (!nombre || !telefono || !email || !direccion || selectedResiduos.length === 0) {
-      setShowErrorModal(true);
-      return;
-    }
+  const [missingFields, setMissingFields] = useState([]);
 
-    const currentDate = new Date();
-    const formattedDate = currentDate.toLocaleDateString(language === 'es' ? 'es-CL' : 'en-US');
-    const formattedTime = currentDate.toLocaleTimeString(language === 'es' ? 'es-CL' : 'en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
+const handleSubmit = () => {
+  const errors = [];
 
-    const notificationMessage = language === 'es'
-      ? `Se solicitó el retiro de residuos de ${selectedResiduos}. En ${direccion}`
-      : `Requested waste removal of ${selectedResiduos} at ${direccion}`;
+  if (!nombre) errors.push(t.name);
+  if (!telefono) errors.push(t.phone);
+  if (!email) errors.push(t.email);
+  if (!direccion) errors.push(t.address);
+  if (selectedResiduos.length === 0) errors.push(t.wasteType);
 
-    addNotification(notificationMessage);
+  if (errors.length > 0) {
+    setMissingFields(errors); // Actualiza los campos faltantes
+    setShowErrorModal(true);  // Muestra el modal de error
+    return;
+  }
 
-    setTempSelectedResiduos(selectedResiduos); // Guarda los residuos seleccionados temporalmente
-    setShowModal(true);
+  // Si todo está correcto, procede con el envío
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleDateString(language === 'es' ? 'es-CL' : 'en-US');
+  const formattedTime = currentDate.toLocaleTimeString(language === 'es' ? 'es-CL' : 'en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
-    setNombre('');
-    setTelefono('');
-    setEmail('');
-    setDireccion('');
-    setSelectedResiduos([]); // Limpia los residuos seleccionados
-  };
+  const notificationMessage = language === 'es'
+    ? `Se solicitó el retiro de residuos de ${selectedResiduos}. En ${direccion}`
+    : `Requested waste removal of ${selectedResiduos} at ${direccion}`;
+
+  addNotification(notificationMessage);
+
+  setTempSelectedResiduos(selectedResiduos); // Guarda los residuos seleccionados temporalmente
+  setShowModal(true);
+
+  // Limpia los estados
+  setNombre('');
+  setTelefono('');
+  setEmail('');
+  setDireccion('');
+  setSelectedResiduos([]);
+  setMissingFields([]); // Limpia los campos faltantes
+};
+
 
   return (
     <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.background}>
@@ -202,63 +217,51 @@ const SolicitudRetiroResiduos = () => {
 
       {/* Modal de error */}
       <Modal
-        animationType="fade"
-        transparent={true}
-        visible={showErrorModal}
-        onRequestClose={() => setShowErrorModal(false)}
-      >
-        <View style={styles.modalBackground}>
-          <View style={styles.errorModalContainer}>
-            <LottieView
-              source={require('../assets/Animaciones/fail.json')}
-              autoPlay
-              loop={true}
-              style={styles.animation}
-              speed={0.5}
-            />
-            <Text style={styles.errorModalText}>{t.errorModalText}</Text>
-            <TouchableOpacity
-              style={styles.errorModalButton}
-              onPress={() => setShowErrorModal(false)}
-            >
-              <Text style={styles.errorModalButtonText}>{t.close}</Text>
-            </TouchableOpacity>
-          </View>
+  animationType="fade"
+  transparent={true}
+  visible={showErrorModal}
+  onRequestClose={() => setShowErrorModal(false)}
+>
+  <View style={styles.modalBackground}>
+    <View style={styles.errorModalContainer}>
+      <LottieView
+        source={require('../assets/Animaciones/fail.json')}
+        autoPlay
+        loop={true}
+        style={styles.animation}
+        speed={0.5}
+      />
+      <Text style={styles.errorModalText}>{t.errorModalText}</Text>
+      {missingFields.length > 0 && (
+        <View style={styles.missingFieldsContainer}>
+          {missingFields.map((field, index) => (
+            <Text key={index} style={styles.missingFieldItem}>
+              - {field}
+            </Text>
+          ))}
         </View>
-      </Modal>
+      )}
+      <TouchableOpacity
+        style={styles.errorModalButton}
+        onPress={() => setShowErrorModal(false)}
+      >
+        <Text style={styles.errorModalButtonText}>{t.close}</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</Modal>
+
     </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
-  bannerContainer: {
-    position: 'relative',
-    width: '100%',
-    height: screenHeight * 0.15, // 20% de la altura de la pantalla
-    marginBottom: 0.2,
-    marginTop: 5, 
-  },
-  banner: {
-    width: '100%',
-    height: 100,
-    resizeMode: 'contain',
-  },
-  scrollContainer: {
-    paddingBottom: 80,
-  },
-  container: {
-    paddingHorizontal: 20,
-  },
-  description: {
-    fontSize: 18,
-    textAlign: 'center',
-    color: 'black',
-    paddingHorizontal: 12,
-    marginBottom: 8,
-  },
+  background: { flex: 1 },
+  bannerContainer: { position: 'relative', width: '100%', height: screenHeight * 0.15,  marginBottom: 0.2, marginTop: 5,  },
+  banner: { width: '100%', height: 100, resizeMode: 'contain', },
+  scrollContainer: { paddingBottom: 80 },
+  container: { paddingHorizontal: 20 },
+  description: { fontSize: 18, textAlign: 'center', color: 'black', paddingHorizontal: 12, marginBottom: 8 },
   dataUsageContainer: {
     backgroundColor: '#F9F9F9', // Fondo gris claro
     paddingVertical: 10,
@@ -274,135 +277,48 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 2,
   },
-  dataUsageText: {
-    fontSize: 13,
-    textAlign: 'justify',
-    color: '#555', // Texto gris oscuro
-    fontStyle: 'italic',
-  },
-  formContainer: {
-    backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 15,
-    marginHorizontal: 2,
-    elevation: 5,
-    shadowColor: 'black',
-    shadowOffset: { width: 2, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-  },
-  label: {
-    fontSize: 14,
-    color: '#333333',
-    marginBottom: 2,
-    fontWeight: 'bold',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
-    backgroundColor: '#ffffff',
-  },
-  residuosContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  checkboxContainer: {
-    width: '48%',
-    marginBottom: 5,
-  },
-  checkboxText: {
-    fontSize: 14,
-    color: '#333',
-  },
-  submitButton: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    elevation: 8,
-  },
-  submitButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  modalBackground: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContainer: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 20,
-    alignItems: 'center',
-    width: '85%',
-  },
-  animation: {
-    width: 250,
-    height: 200,
-    marginBottom: 0,
-  },
-  modalTitle: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 10,
-    color: 'green',
-    fontWeight: 'bold',
-  },
-  modalText: {
-    fontSize: 16,
-    color: '#333',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  modalButton: {
-    backgroundColor: '#388E3C',
-    paddingVertical: 10,
-    paddingHorizontal: 25,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  modalButtonText: {
-    color: '#ffffff',
-    fontSize: 16,
-  },
+  dataUsageText: { fontSize: 13, textAlign: 'justify', color: '#555' },
+  formContainer: { backgroundColor: 'white', borderRadius: 10, padding: 15, marginHorizontal: 2, elevation: 5, shadowColor: 'black', shadowOffset: { width: 2, height: 4 }, shadowOpacity: 0.3, shadowRadius: 5 },
+  label: { fontSize: 14, color: '#333333', marginBottom: 2, fontWeight: 'bold' },
+  input: { borderWidth: 1, borderColor: '#ccc', padding: 10, borderRadius: 5, marginBottom: 10, backgroundColor: '#ffffff' },
+  residuosContainer: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', },
+  checkboxContainer: { width: '48%', marginBottom: 5 },
+  checkboxText: { fontSize: 14, color: '#333' },
+  submitButton: { backgroundColor: '#4CAF50', paddingVertical: 12, borderRadius: 8, alignItems: 'center', elevation: 8 },
+  submitButtonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
+  modalBackground: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
+  modalContainer: { backgroundColor: 'white', padding: 20, borderRadius: 20, alignItems: 'center', width: '85%', },
+  animation: { width: 230, height: 180, marginBottom: 0 },
+  modalTitle: { fontSize: 16, textAlign: 'center', marginBottom: 10, color: 'green', fontWeight: 'bold' },
+  modalText: { fontSize: 16, color: '#333', textAlign: 'center', marginBottom: 20 },
+  modalButton: { backgroundColor: '#388E3C', paddingVertical: 10, paddingHorizontal: 25, borderRadius: 8, alignItems: 'center' },
+  modalButtonText: { color: '#ffffff', fontSize: 16 },
   errorModalContainer: {
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
     alignItems: 'center',
-    width: '80%',
+    width: '73%',
+    height: '61%',
     shadowColor: 'black',
     shadowOffset: { width: 2, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
   },
-  errorModalText: {
-    fontSize: 16,
-    color: 'black',
-    textAlign: 'center',
-    marginBottom: 20,
+  errorModalText: { fontSize: 16, fontWeight: 'bold', color: 'black', textAlign: 'left', marginBottom: 10, },
+  errorModalButton: { backgroundColor: '#4CAF50', marginTop: 15, paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 },
+  errorModalButtonText: { color: '#ffffff', fontSize: 16},
+  requiredAsterisk: { color: 'red', fontSize: 16,  marginLeft: 4 },
+  missingFieldsContainer: {
+    alignSelf: 'flex-start', 
+    marginTop: 1,  
+    paddingHorizontal: 10, 
   },
-  errorModalButton: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-  },
-  errorModalButtonText: {
-    color: '#ffffff',
-    fontSize: 16,
-  },
-  requiredAsterisk: {
-    color: 'red',
-    fontSize: 16, // Ajusta según tu preferencia
-    marginLeft: 4,
+  missingFieldItem: {
+    fontSize: 14,
+    textAlign: 'left',
+    color: 'black',        
+    marginVertical: 2,
   },  
 });
 
