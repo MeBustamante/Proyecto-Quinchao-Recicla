@@ -124,12 +124,12 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                 <TouchableOpacity
                 style={[styles.fixedCampana, styles.shadowCampana]} // Mantén los estilos actuales
                 onPress={handleNotificationPress} // Abre el modal de notificaciones
->
-    <Image
+            >
+            <Image
         source={require('../assets/campana.png')} // Ruta de la imagen personalizada
         style={{ width: 40, height: 40 }} // Ajusta el tamaño según tus necesidades
-    />
-</TouchableOpacity>
+            />
+            </TouchableOpacity>
 
 
                     {/* Encabezado */}
