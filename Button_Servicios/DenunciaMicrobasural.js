@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
   background: { flex: 1 },
   banner: { width: '100%', height: 110, resizeMode: 'cover' },
   container: { flex: 1, paddingHorizontal: 20 },
-  scrollContent: { paddingBottom: 80 },
+  scrollContent: { paddingBottom: 100 },
   description: { fontSize: 16, textAlign: 'justify', color: 'black', marginHorizontal: 10, marginBottom: 5 },
   formContainer: { backgroundColor: '#fff', borderRadius: 10, padding: 15, marginBottom: 20, elevation: 8 },
   label: { fontSize: 14, marginBottom: 3, color: '#333', fontWeight: 'bold' },
