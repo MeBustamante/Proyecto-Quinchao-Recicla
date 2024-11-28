@@ -205,7 +205,7 @@ const DenunciaMicrobasural = () => {
               placeholder={texts[language].enterFullName}
               value={nombre}
               onChangeText={(text) => {
-                // Solo permitir letras y espacios, y limitar a 40 caracteres
+                // Solo permitir letras y espacios
                 const sanitized = text.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '').substring(0, 40);
                 setNombre(sanitized);
               }}
