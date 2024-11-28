@@ -27,7 +27,7 @@ const translations = {
     wasteOptions: ['Latas', 'Plásticos', 'Vidrios', 'Metales', 'Papel', 'Orgánicos'],
     terminos: 'Al enviar este formulario, usted acepta que los datos proporcionados serán conocidos y utilizados exclusivamente por la Municipalidad de Quinchao para la gestión y resolución de su solicitud.',
     errorModalText: 'Faltan completar los siguientes campos:',
-    close: 'Cerrar',
+    closeError: 'Cerrar', // Cambié el nombre para evitar la colisión
   },
   en: {
     title: 'Let’s care for our community! Complete the information and leave it to us!',
@@ -46,7 +46,7 @@ const translations = {
     wasteOptions: ['Cans', 'Plastics', 'Glass', 'Metals', 'Paper', 'Organics'],
     terminos: 'By submitting this form, you agree that the data provided will be known and used exclusively by the Municipality of Quinchao for the management and resolution of your application.',
     errorModalText: 'Please complete all fields.',
-    close: 'Close',
+    closeError: 'Close', // Cambié el nombre para evitar la colisión
   },
 };
 
@@ -73,47 +73,46 @@ const SolicitudRetiroResiduos = () => {
 
   const [missingFields, setMissingFields] = useState([]);
 
-const handleSubmit = () => {
-  const errors = [];
+  const handleSubmit = () => {
+    const errors = [];
 
-  if (!nombre) errors.push(t.name);
-  if (!telefono) errors.push(t.phone);
-  if (!email) errors.push(t.email);
-  if (!direccion) errors.push(t.address);
-  if (selectedResiduos.length === 0) errors.push(t.wasteType);
+    if (!nombre) errors.push(t.name);
+    if (!telefono) errors.push(t.phone);
+    if (!email) errors.push(t.email);
+    if (!direccion) errors.push(t.address);
+    if (selectedResiduos.length === 0) errors.push(t.wasteType);
 
-  if (errors.length > 0) {
-    setMissingFields(errors); // Actualiza los campos faltantes
-    setShowErrorModal(true);  // Muestra el modal de error
-    return;
-  }
+    if (errors.length > 0) {
+      setMissingFields(errors); // Actualiza los campos faltantes
+      setShowErrorModal(true);  // Muestra el modal de error
+      return;
+    }
 
-  // Si todo está correcto, procede con el envío
-  const currentDate = new Date();
-  const formattedDate = currentDate.toLocaleDateString(language === 'es' ? 'es-CL' : 'en-US');
-  const formattedTime = currentDate.toLocaleTimeString(language === 'es' ? 'es-CL' : 'en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+    // Si todo está correcto, procede con el envío
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString(language === 'es' ? 'es-CL' : 'en-US');
+    const formattedTime = currentDate.toLocaleTimeString(language === 'es' ? 'es-CL' : 'en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
 
-  const notificationMessage = language === 'es'
-    ? `Se solicitó el retiro de residuos de ${selectedResiduos}. En ${direccion}`
-    : `Requested waste removal of ${selectedResiduos} at ${direccion}`;
+    const notificationMessage = language === 'es'
+      ? `Se solicitó el retiro de residuos de ${selectedResiduos}. En ${direccion}`
+      : `Requested waste removal of ${selectedResiduos} at ${direccion}`;
 
-  addNotification(notificationMessage);
+    addNotification(notificationMessage);
 
-  setTempSelectedResiduos(selectedResiduos); // Guarda los residuos seleccionados temporalmente
-  setShowModal(true);
+    setTempSelectedResiduos(selectedResiduos); // Guarda los residuos seleccionados temporalmente
+    setShowModal(true);
 
-  // Limpia los estados
-  setNombre('');
-  setTelefono('');
-  setEmail('');
-  setDireccion('');
-  setSelectedResiduos([]);
-  setMissingFields([]); // Limpia los campos faltantes
-};
-
+    // Limpia los estados
+    setNombre('');
+    setTelefono('');
+    setEmail('');
+    setDireccion('');
+    setSelectedResiduos([]);
+    setMissingFields([]); // Limpia los campos faltantes
+  };
 
   return (
     <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.background}>
@@ -203,7 +202,7 @@ const handleSubmit = () => {
               {t.modalText} {tempSelectedResiduos.length > 0 ? tempSelectedResiduos.join(', ') : 'Ninguno'}
             </Text>
             <TouchableOpacity
-              style={styles.modalButton}
+              style={[styles.modalButton, styles.closeButton]} // Agregar clase de botón de cierre
               onPress={() => {
                 setShowModal(false);
                 navigation.navigate('Home');
@@ -217,40 +216,39 @@ const handleSubmit = () => {
 
       {/* Modal de error */}
       <Modal
-  animationType="fade"
-  transparent={true}
-  visible={showErrorModal}
-  onRequestClose={() => setShowErrorModal(false)}
->
-  <View style={styles.modalBackground}>
-    <View style={styles.errorModalContainer}>
-      <LottieView
-        source={require('../assets/Animaciones/fail.json')}
-        autoPlay
-        loop={true}
-        style={styles.animation}
-        speed={0.5}
-      />
-      <Text style={styles.errorModalText}>{t.errorModalText}</Text>
-      {missingFields.length > 0 && (
-        <View style={styles.missingFieldsContainer}>
-          {missingFields.map((field, index) => (
-            <Text key={index} style={styles.missingFieldItem}>
-              - {field}
-            </Text>
-          ))}
-        </View>
-      )}
-      <TouchableOpacity
-        style={styles.errorModalButton}
-        onPress={() => setShowErrorModal(false)}
+        animationType="fade"
+        transparent={true}
+        visible={showErrorModal}
+        onRequestClose={() => setShowErrorModal(false)}
       >
-        <Text style={styles.errorModalButtonText}>{t.close}</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-</Modal>
-
+        <View style={styles.modalBackground}>
+          <View style={styles.errorModalContainer}>
+            <LottieView
+              source={require('../assets/Animaciones/fail.json')}
+              autoPlay
+              loop={true}
+              style={styles.animation}
+              speed={0.5}
+            />
+            <Text style={styles.errorModalText}>{t.errorModalText}</Text>
+            {missingFields.length > 0 && (
+              <View style={styles.missingFieldsContainer}>
+                {missingFields.map((field, index) => (
+                  <Text key={index} style={styles.missingFieldItem}>
+                    - {field}
+                  </Text>
+                ))}
+              </View>
+            )}
+            <TouchableOpacity
+              style={[styles.errorModalButton, styles.closeButton]} // Agregar clase de botón de cierre
+              onPress={() => setShowErrorModal(false)}
+            >
+              <Text style={styles.errorModalButtonText}>{t.closeError}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </LinearGradient>
   );
 };
@@ -308,6 +306,13 @@ const styles = StyleSheet.create({
   errorModalText: { fontSize: 16, fontWeight: 'bold', color: 'black', textAlign: 'left', marginBottom: 10, },
   errorModalButton: { backgroundColor: '#4CAF50', marginTop: 15, paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 },
   errorModalButtonText: { color: '#ffffff', fontSize: 16},
+  closeButton: {
+    backgroundColor: 'red', // Fondo rojo
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
   requiredAsterisk: { color: 'red', fontSize: 16,  marginLeft: 4 },
   missingFieldsContainer: {
     alignSelf: 'flex-start', 
