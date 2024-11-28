@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Card } from 'react-native-paper';
+import { Card, IconButton } from 'react-native-paper';
 import { AppContext } from '../ConfigGlobal/AppContext'; // Importa el contexto global
 import MenuInferior from '../Menu_Inferior/MenuInferior'; // Importa el componente MenuInferior
 
@@ -37,6 +37,12 @@ const Ayuda = () => {
 
   const currentLanguage = translations[language];
 
+  const [expanded, setExpanded] = useState(null); // Estado para manejar la expansión de las secciones
+
+  const handlePress = (index) => {
+    setExpanded(expanded === index ? null : index); // Alterna la expansión de las secciones
+  };
+
   return (
     <LinearGradient
       colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']}
@@ -46,40 +52,89 @@ const Ayuda = () => {
 
         <Card style={styles.card}>
           <Card.Content>
-            <Text style={styles.sectionTitle}>{currentLanguage.appUsage}</Text>
-            <Text style={styles.text}>{currentLanguage.appUsageDescription}</Text>
+            <View style={styles.row}>
+              <Text style={styles.sectionTitle} onPress={() => handlePress(0)}>
+                {currentLanguage.appUsage}
+              </Text>
+              <IconButton
+                icon={expanded === 0 ? "chevron-down" : "chevron-right"}
+                size={20}
+                onPress={() => handlePress(0)}
+                style={styles.iconButton}
+              />
+            </View>
+            {expanded === 0 && <Text style={styles.text}>{currentLanguage.appUsageDescription}</Text>}
           </Card.Content>
         </Card>
 
         <Card style={styles.card}>
           <Card.Content>
-            <Text style={styles.sectionTitle}>{currentLanguage.reportWaste}</Text>
-            <Text style={styles.text}>{currentLanguage.reportWasteDescription}</Text>
+            <View style={styles.row}>
+              <Text style={styles.sectionTitle} onPress={() => handlePress(1)}>
+                {currentLanguage.reportWaste}
+              </Text>
+              <IconButton
+                icon={expanded === 1 ? "chevron-down" : "chevron-right"}
+                size={20}
+                onPress={() => handlePress(1)}
+                style={styles.iconButton}
+              />
+            </View>
+            {expanded === 1 && <Text style={styles.text}>{currentLanguage.reportWasteDescription}</Text>}
           </Card.Content>
         </Card>
 
         <Card style={styles.card}>
           <Card.Content>
-            <Text style={styles.sectionTitle}>{currentLanguage.notifications}</Text>
-            <Text style={styles.text}>{currentLanguage.notificationsDescription}</Text>
+            <View style={styles.row}>
+              <Text style={styles.sectionTitle} onPress={() => handlePress(2)}>
+                {currentLanguage.notifications}
+              </Text>
+              <IconButton
+                icon={expanded === 2 ? "chevron-down" : "chevron-right"}
+                size={20}
+                onPress={() => handlePress(2)}
+                style={styles.iconButton}
+              />
+            </View>
+            {expanded === 2 && <Text style={styles.text}>{currentLanguage.notificationsDescription}</Text>}
           </Card.Content>
         </Card>
 
         <Card style={styles.card}>
           <Card.Content>
-            <Text style={styles.sectionTitle}>{currentLanguage.recyclingPoints}</Text>
-            <Text style={styles.text}>{currentLanguage.recyclingPointsDescription}</Text>
+            <View style={styles.row}>
+              <Text style={styles.sectionTitle} onPress={() => handlePress(3)}>
+                {currentLanguage.recyclingPoints}
+              </Text>
+              <IconButton
+                icon={expanded === 3 ? "chevron-down" : "chevron-right"}
+                size={20}
+                onPress={() => handlePress(3)}
+                style={styles.iconButton}
+              />
+            </View>
+            {expanded === 3 && <Text style={styles.text}>{currentLanguage.recyclingPointsDescription}</Text>}
           </Card.Content>
         </Card>
 
         <Card style={styles.card}>
           <Card.Content>
-            <Text style={styles.sectionTitle}>{currentLanguage.contact}</Text>
-            <Text style={styles.text}>{currentLanguage.contactDescription}</Text>
+            <View style={styles.row}>
+              <Text style={styles.sectionTitle} onPress={() => handlePress(4)}>
+                {currentLanguage.contact}
+              </Text>
+              <IconButton
+                icon={expanded === 4 ? "chevron-down" : "chevron-right"}
+                size={20}
+                onPress={() => handlePress(4)}
+                style={styles.iconButton}
+              />
+            </View>
+            {expanded === 4 && <Text style={styles.text}>{currentLanguage.contactDescription}</Text>}
           </Card.Content>
         </Card>
 
-        {/* Añadimos un paddingBottom para asegurarnos de que el contenido no quede debajo del menú */}
       </ScrollView>
 
       {/* Aquí agregamos el menú inferior */}
@@ -97,6 +152,11 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingBottom: 80, // Asegura que el contenido no quede oculto debajo del menú inferior
   },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -113,6 +173,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 10,
     elevation: 4,
+  },
+  iconButton: {
+    marginLeft: 10,
   },
 });
 
