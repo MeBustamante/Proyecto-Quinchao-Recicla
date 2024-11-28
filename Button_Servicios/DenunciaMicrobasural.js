@@ -182,6 +182,11 @@ const DenunciaMicrobasural = () => {
     setArchivo(null);
   };
 
+  // Función para eliminar la imagen
+  const removeImage = () => {
+    setArchivo(null); // Elimina la imagen
+  };
+
   return (
     <LinearGradient colors={['#A8E6CF', '#DCEDC1', '#FFF9C4', '#f7db81']} style={styles.background}>
       <ScrollView
@@ -233,7 +238,14 @@ const DenunciaMicrobasural = () => {
                 <Text style={styles.uploadButtonText}>{texts[language].selectImage}</Text>
               </TouchableOpacity>
             </View>
-            {archivo && <Image source={{ uri: archivo }} style={styles.imagePreview} />}
+            {archivo && (
+              <View style={styles.imageContainer}>
+                <Image source={{ uri: archivo }} style={styles.imagePreview} />
+                <TouchableOpacity style={styles.closeButton} onPress={removeImage}>
+                  <Ionicons name="close-circle" size={30} color="red" />
+                </TouchableOpacity>
+              </View>
+            )}
 
             <View style={styles.dataUsageContainer}>
               <Text style={styles.dataUsageText}>
@@ -323,12 +335,14 @@ const styles = StyleSheet.create({
   input: { borderWidth: 1, borderColor: '#ccc', padding: 5, borderRadius: 5, marginBottom: 10, backgroundColor: '#fff' },
   uploadButton: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#faeeac', paddingVertical: 10, paddingHorizontal: 10, borderRadius: 8, marginBottom: 8 },
   uploadButtonText: { color: 'black', fontSize: 16, fontWeight: 'bold', marginLeft: 5 },
-  imagePreview: { width: 200, height: 200, resizeMode: 'cover', borderRadius: 8, marginTop: 10 },
+  imagePreview: { width: 200, height: 200, resizeMode: 'cover', borderRadius: 8, marginTop: 10, alignSelf: 'center' },
+  imageContainer: { position: 'relative', alignSelf: 'center' },
+  closeButton: { position: 'absolute', top: 5, right: -5, backgroundColor: 'white', borderRadius: 15, padding: 5 },  // Ajusté el valor de "right" a 10
   imageRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 },
   submitButton: { backgroundColor: '#4CAF50', paddingVertical: 12, borderRadius: 8, alignItems: 'center', elevation: 8 },
   submitButtonText: { color: 'white', fontSize: 16, fontWeight: '800' },
   modalContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
-  animation: { width: 100, height: 100, marginBottom: 10 }, // Ajuste tamaño animación
+  animation: { width: 100, height: 100, marginBottom: 10 },
   modalSuccessTitle: { fontSize: 18, color: 'green', fontWeight: 'bold', textAlign: 'center', marginBottom: 10 },
   modalSuccessText: { fontSize: 16, color: '#333', textAlign: 'center', fontWeight: 'bold', marginBottom: 20 },
   errorModalText: { fontSize: 16, color: '#333', textAlign: 'left', marginBottom: 20, marginLeft: -75 },
