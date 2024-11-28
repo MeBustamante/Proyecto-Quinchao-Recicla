@@ -126,14 +126,27 @@ const SolicitudRetiroResiduos = () => {
 
           <View style={styles.formContainer}>
             <Text style={styles.label}>{t.name}<Text style={styles.requiredAsterisk}>*</Text></Text>
-            <TextInput style={styles.input} placeholder={t.name} value={nombre} onChangeText={setNombre} />
+            <TextInput
+  style={styles.input}
+  placeholder={t.name}
+  value={nombre}
+  onChangeText={(text) => {
+    // Limitar a 40 caracteres
+    const sanitizedText = text.substring(0, 40);
+    setNombre(sanitizedText);
+  }}
+/>
 
             <Text style={styles.label}>{t.phone}<Text style={styles.requiredAsterisk}>*</Text></Text>
             <TextInput
               style={styles.input}
               placeholder={t.phoneplaceholder}
               value={telefono}
-              onChangeText={setTelefono}
+              onChangeText={(text) => {
+                // Limitar el número a 12 caracteres y asegurarse del formato
+                const sanitizedText = text.replace(/[^0-9+]/g, '').substring(0, 12); // Permitir solo números y "+"
+                setTelefono(sanitizedText);
+              }}
               keyboardType="phone-pad"
             />
 
