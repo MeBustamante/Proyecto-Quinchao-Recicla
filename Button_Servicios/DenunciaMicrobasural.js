@@ -168,6 +168,7 @@ const DenunciaMicrobasural = () => {
     
     const now = new Date();
     const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+    const [telefonoError, setTelefonoError] = useState(''); // Estado para manejar el error
   
     setAlertVisible(false);
     setSendModalVisible(true);
@@ -203,7 +204,11 @@ const DenunciaMicrobasural = () => {
               style={styles.input}
               placeholder={texts[language].enterFullName}
               value={nombre}
-              onChangeText={setNombre}
+              onChangeText={(text) => {
+                // Solo permitir letras y espacios, y limitar a 40 caracteres
+                const sanitized = text.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '').substring(0, 40);
+                setNombre(sanitized);
+              }}
             />
             <Text style={styles.label}>{texts[language].email}<Text style={styles.requiredAsterisk}>*</Text></Text>
             <TextInput
@@ -212,14 +217,29 @@ const DenunciaMicrobasural = () => {
               value={email}
               onChangeText={setEmail}
             />
-            <Text style={styles.label}>{texts[language].phone}<Text style={styles.requiredAsterisk}>*</Text></Text>
-            <TextInput
-              style={styles.input}
-              placeholder={texts[language].enterPhone}
-              value={telefono}
-              onChangeText={setTelefono}
-              keyboardType="phone-pad"
-            />
+           <Text style={styles.label}>{texts[language].phone}<Text style={styles.requiredAsterisk}>*</Text></Text>
+<TextInput
+  style={styles.input}
+  placeholder={texts[language].enterPhone}
+  value={telefono}
+  onChangeText={(text) => {
+    // Permitir solo números y el prefijo '+', máximo 12 caracteres
+    const sanitized = text.replace(/[^0-9+]/g, '').substring(0, 12);
+    setTelefono(sanitized);
+  }}
+  onBlur={() => {
+    // Validar que el formato sea '+569XXXXXXXX' al perder el foco
+    if (telefono && (!telefono.startsWith('+56') || telefono.length !== 12)) {
+      showCustomAlert(
+        language === 'es'
+          ? 'El número debe ser un número chileno válido (+56 seguido de 9 dígitos).'
+          : 'The number must be a valid Chilean number (+56 followed by 9 digits).'
+      );
+      setTelefono(''); // Borra el valor si es inválido
+    }
+  }}
+  keyboardType="phone-pad"
+/>
             <Text style={styles.label}>{texts[language].address}<Text style={styles.requiredAsterisk}>*</Text></Text>
             <TextInput
               style={styles.input}
