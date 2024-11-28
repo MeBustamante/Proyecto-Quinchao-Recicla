@@ -86,7 +86,7 @@ const Gestion = () => {
   const texts = {
     es: {
       alertTitle: 'Recolección de residuos',
-      recuerda: 'El reciclaje comienza en casa. Clasifica tus residuos correctamente.',
+      recuerda: 'Clasifica tus residuos correctamente. El reciclaje comienza en casa.',
       referenceText: 'Consulta el cronograma de recolección en tu zona según el calendario:',
       tableTitle: 'Cronograma de recolección',
       areaHeader: 'Localidad',
@@ -126,8 +126,9 @@ const Gestion = () => {
         style={styles.reminderIcon}
       />
       <Text style={styles.reminderText}>
-        <Text style={styles.reminderHighlight}>El reciclaje comienza en casa.</Text>{'\n'}
-        Clasifica tus residuos correctamente.
+        <Text style={styles.reminderHighlight}>Clasifica tus residuos correctamente.</Text>{'\n'}
+        El reciclaje comienza en casa.
+        
       </Text>
     </View>
   </LinearGradient>
@@ -272,7 +273,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   reminderIcon: {
-    width: 60, // Tamaño del ícono
+    width: 60, // Tamaño del íconoo
     height: 60,
     marginRight: 8, // Espaciado con el texto
   },
@@ -280,7 +281,7 @@ const styles = StyleSheet.create({
     fontSize: 18, // Tamaño del texto
     fontWeight: 'bold', // Negrita
     color: '#000', // Naranja oscuro para el texto
-    textAlign: 'center', // Centrado
+    textAlign: 'left', // Centrado
     lineHeight: 24, // Espaciado entre líneas
   },
   tableRow: {
