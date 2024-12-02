@@ -10,7 +10,7 @@ const translations = {
   es: {
     title: 'Compostaje Comunitario en Quinchao',
     activityTitle: 'Actividad',
-    activityText: 'Organización de una jornada de recogida y clasificación de residuos orgánicos.',
+    activityText: 'Organización de una sola jornada de recogida y clasificación de residuos orgánicos.',
     tipsTitle: 'Tips',
     tips: [
       'Asegúrate de que todos los participantes conozcan qué materiales son compostables.',
@@ -51,7 +51,7 @@ const CompostajeComunidad = ({ navigation }) => {
             <Text style={styles.infoTitleBlack}>{t.title}</Text>
 
             <Text style={styles.sectionTitle}>{t.activityTitle}</Text>
-            <Text style={[styles.infoText, { textAlign: 'center' }]}>{t.activityText}</Text>
+            <Text style={[styles.infoText, { textAlign: 'justify' }]}>{t.activityText}</Text>
 
             <Text style={styles.sectionTitle}>{t.tipsTitle}</Text>
             {t.tips.map((tip, index) => (
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   infoText: {
     fontSize: 14,
     color: 'black',
-    textAlign: 'left',
+    textAlign: 'justify',
     lineHeight: 22,
     marginBottom: 10,
   },

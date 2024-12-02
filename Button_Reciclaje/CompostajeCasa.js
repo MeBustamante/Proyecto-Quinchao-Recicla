@@ -13,7 +13,7 @@ const CompostajeCasa = ({ navigation }) => {
                     {/* Bajado ligeramente */}
                     <Text style={styles.infoTitleBlack}>Compostaje en Casa</Text>
                     <Text style={styles.sectionTitle}>Actividad</Text>
-                    <Text style={[styles.infoText, { textAlign: 'center' }]}>
+                    <Text style={[styles.infoText, { textAlign: 'justify' }]}>
                         Preparación y mantenimiento de un compostador doméstico.
                     </Text>
                     <Text style={styles.sectionTitle}>Tips</Text>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     infoText: {
         fontSize: 14,
         color: 'black',
-        textAlign: 'left',
+        textAlign: 'justify',
         lineHeight: 22,
         marginBottom: 10,
     },

@@ -51,7 +51,7 @@ const ReforestacionUrbana = ({ navigation }) => {
             <Text style={styles.infoTitle}>{t.title}</Text>
 
             <Text style={styles.sectionTitle}>{t.activityTitle}</Text>
-            <Text style={[styles.infoText, { textAlign: 'center' }]}>{t.activityText}</Text>
+            <Text style={[styles.infoText, { textAlign: 'justify' }]}>{t.activityText}</Text>
 
             <Text style={styles.sectionTitle}>{t.tipsTitle}</Text>
             {t.tips.map((tip, index) => (
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   infoText: {
     fontSize: 14,
     color: 'black',
-    textAlign: 'left',
+    textAlign: 'justify',
     lineHeight: 22,
     marginBottom: 10,
   },
