@@ -301,13 +301,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#388E3C',
+    color: '#4CAF50',
   },
   option: {
     marginBottom: 20,
   },
   optionLabel: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#333',
     marginBottom: 5,
   },
