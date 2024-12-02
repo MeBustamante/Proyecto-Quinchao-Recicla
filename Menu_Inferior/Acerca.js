@@ -142,7 +142,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginBottom: 30,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    elevation: 4,
+    shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 10,
     alignSelf: 'center', // Centra horizontalmente dentro del ScrollView
