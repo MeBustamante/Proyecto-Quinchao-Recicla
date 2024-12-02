@@ -78,15 +78,15 @@ export default function App() {
             </View>
 
             {/* Instagram y Facebook debajo de la imagen */}
-            <View style={{ alignItems: 'center', marginTop: 20 }}>
+            <View style={{ alignItems: 'left', marginTop: 20 }}>
               <TouchableOpacity onPress={openInstagram} style={styles.socialIconContainer}>
                 <Ionicons name="logo-instagram" size={29} color="#833AB4" style={styles.icon} />
                 <Text style={styles.footerText}>{currentTexts.instagramText}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={openFacebook} style={styles.socialIconContainer}>
-                <FontAwesome name="facebook" size={29} color="#3b5998" style={styles.icon} />
-                <Text style={styles.footerText}>{currentTexts.facebookText}</Text>
+                <FontAwesome name="facebook" size={29} color="#3b5998" style={styles.iconfacebook} />
+                <Text style={styles.footerText}>   {currentTexts.facebookText}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -148,9 +148,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center', // Centra horizontalmente dentro del ScrollView
   },
   infoText: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#333',
-    textAlign: 'center',  // Centra el texto
+    textAlign: 'justify',  // Centra el texto
     marginTop: -8,
     lineHeight: 24,  // Ajusta el espacio entre líneas de texto
   },
@@ -160,7 +160,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   icon: {
-    marginRight: 9,
+    marginRight: 3,
+  },
+  iconfacebook: {
+    marginLeft: 6,
   },
   footerText: {
     fontSize: 18,
