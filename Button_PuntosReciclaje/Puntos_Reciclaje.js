@@ -1,10 +1,26 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, StyleSheet, Modal, TouchableOpacity, Image, FlatList, Linking } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
-import * as Location from 'expo-location';
-import * as FileSystem from 'expo-file-system';
-import MenuInferior from '../Menu_Inferior/MenuInferior';
+import { View, Text, StyleSheet, Modal, TouchableOpacity, FlatList, Linking } from 'react-native';
 import { AppContext } from '../ConfigGlobal/AppContext'; // Importa el contexto global
+import { getDocs, collection } from "firebase/firestore";
+import { db } from '../ConfigGlobal/config';  // Importa tu configuración de Firebase
+import MapView, { Marker } from 'react-native-maps';
+import * as Location from 'expo-location';  // Importa expo-location
+import MenuInferior from '../Menu_Inferior/MenuInferior';  // Importación correcta de MenuInferior
+
+// Función para obtener el archivo .geojson desde Firestore
+async function obtenerArchivoGeoJSON() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "archivos_geojson"));
+    const docData = querySnapshot.docs[0].data();  // Obtén el primer documento
+    const geojsonContent = docData.geojsonContent;  // Contenido del archivo .geojson
+
+    // Convertir el contenido en un objeto JSON
+    const geojsonData = JSON.parse(geojsonContent);
+    return geojsonData;  // Devuelve los datos del archivo
+  } catch (error) {
+    console.error("Error al obtener el archivo .geojson desde Firestore:", error);
+  }
+}
 
 const PuntosReciclaje = ({ navigation }) => {
     const { language } = useContext(AppContext); // Obtén el idioma seleccionado del contexto
@@ -57,14 +73,9 @@ const PuntosReciclaje = ({ navigation }) => {
                     longitudeDelta: 0.05,
                 });
 
-                const geojsonUri = `${FileSystem.documentDirectory}Puntos_Verdes.geojson`;
-                await FileSystem.downloadAsync(
-                    'https://drive.google.com/uc?export=download&id=1hBLoji4cVxiqbK-JZBSaUXmwRyIZDzgA',
-                    geojsonUri
-                );
-
-                const geojsonContent = await FileSystem.readAsStringAsync(geojsonUri);
-                const geojsonData = JSON.parse(geojsonContent);
+                // Obtener el archivo .geojson desde Firestore
+                const geojsonData = await obtenerArchivoGeoJSON();
+                console.log("Datos cargados desde Firestore:", geojsonData); // Verifica los datos
 
                 const points = geojsonData.features.map(feature => {
                     const descripcionCompleta = feature.properties.description || (language === 'es' ? "Sin descripción" : "No description");
@@ -88,6 +99,9 @@ const PuntosReciclaje = ({ navigation }) => {
                         description: descripcionFiltrada.length > 0 ? descripcionFiltrada : [t.noMaterials],
                     };
                 });
+
+                console.log("Puntos de reciclaje obtenidos:", points); // Verifica los puntos
+
                 setRecyclingPoints(points);
                 setFilteredPoints(points);
             } catch (error) {
@@ -99,6 +113,7 @@ const PuntosReciclaje = ({ navigation }) => {
         })();
     }, [language]);
 
+    // Toggle para los filtros
     const toggleFilter = (filter) => {
         setActiveFilters((prevFilters) => {
             if (filter === t.materialsAllowed[0]) {
@@ -142,7 +157,7 @@ const PuntosReciclaje = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {/* Botón desplegable */}
+            {/* Botón desplegable para filtros */}
             <View style={[styles.dropdownContainer, dropdownVisible ? { zIndex: 10 } : { zIndex: 1 }]}>
                 <TouchableOpacity
                     style={styles.dropdownButton}
@@ -207,10 +222,6 @@ const PuntosReciclaje = ({ navigation }) => {
                         <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
                             <Text style={styles.closeButtonText}>×</Text>
                         </TouchableOpacity>
-                        <Image
-                            source={require('../assets/LOG_AMBIENTE.jpg')}
-                            style={styles.logo}
-                        />
                         <Text style={styles.modalTitle}>{selectedPoint?.name}</Text>
                         <Text style={styles.subtitle}>{t.modalTitle}</Text>
                         <View style={styles.listContainer}>
@@ -226,7 +237,7 @@ const PuntosReciclaje = ({ navigation }) => {
             </Modal>
 
             {/* Menú inferior */}
-            <MenuInferior navigation={navigation} />
+            <MenuInferior />
         </View>
     );
 };
@@ -244,7 +255,6 @@ const styles = StyleSheet.create({
     activeDropdownItemText: { color: '#00796B', fontWeight: 'bold' },
     modalContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
     modalContent: { width: '80%', padding: 20, backgroundColor: 'white', borderRadius: 10, alignItems: 'center' },
-    logo: { width: 90, height: 90, marginBottom: 20 },
     closeButton: { position: 'absolute', top: 10, right: 10, backgroundColor: '#000', borderRadius: 15, width: 30, height: 30, justifyContent: 'center', alignItems: 'center' },
     closeButtonText: { fontSize: 18, fontWeight: 'bold', color: '#FFF' },
     modalTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 10, textAlign: 'center' },
