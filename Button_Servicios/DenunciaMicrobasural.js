@@ -148,40 +148,48 @@ const DenunciaMicrobasural = () => {
     }
   };
 
-  const handleSubmit = () => {
-    let missingFields = [];
-  
-    if (!nombre.trim()) missingFields.push(language === 'es' ? 'Nombre y Apellidos' : 'Full Name');
-    if (!email.trim()) missingFields.push(language === 'es' ? 'Correo Electrónico' : 'Email');
-    if (!telefono.trim()) missingFields.push(language === 'es' ? 'Teléfono' : 'Phone');
-    if (!direccion.trim()) missingFields.push(language === 'es' ? 'Dirección del Microbasural' : 'Address');
-    if (!archivo) missingFields.push(language === 'es' ? 'Imagen' : 'Image');
-  
-    if (missingFields.length > 0) {
-      const errorMessage = missingFields
-        .map((field) => `- ${field}`) // Agrega un guion antes de cada campo
-        .join('\n'); // Une los elementos con saltos de línea
-      setAlertMessage(errorMessage); // Configura el mensaje en el modal
-      setShowErrorModal(true); // Muestra el modal de error
-      return;
-    }
-    
-    const now = new Date();
-    const timestamp = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
-    const [telefonoError, setTelefonoError] = useState(''); // Estado para manejar el error
-  
-    setAlertVisible(false);
-    setSendModalVisible(true);
-  
-    addNotification(language === 'es' ? `Nueva denuncia en: ${direccion}` : `New complaint at: ${direccion}`);
-  
-    // Reinicia los campos del formulario
-    setNombre('');
-    setEmail('');
-    setTelefono('');
-    setDireccion('');
-    setArchivo(null);
-  };
+  const [telefonoError, setTelefonoError] = useState('');
+
+const handleSubmit = () => {
+  let missingFields = [];
+
+  if (!nombre.trim()) missingFields.push(language === 'es' ? 'Nombre y Apellidos' : 'Full Name');
+  if (!email.trim()) missingFields.push(language === 'es' ? 'Correo Electrónico' : 'Email');
+  if (!telefono.trim()) {
+    missingFields.push(language === 'es' ? 'Teléfono' : 'Phone');
+  } else if (!telefono.startsWith('+56') || telefono.length !== 12) {
+    setTelefonoError(
+      language === 'es'
+        ? 'El número debe ser un número chileno válido (+56 seguido de 9 dígitos).'
+        : 'The number must be a valid Chilean number (+56 followed by 9 digits).'
+    );
+    return;
+  }
+
+  if (!direccion.trim()) missingFields.push(language === 'es' ? 'Dirección del Microbasural' : 'Address');
+  if (!archivo) missingFields.push(language === 'es' ? 'Imagen' : 'Image');
+
+  if (missingFields.length > 0) {
+    const errorMessage = missingFields.map((field) => `- ${field}`).join('\n');
+    setAlertMessage(errorMessage);
+    setShowErrorModal(true);
+    return;
+  }
+
+  setTelefonoError(''); // Limpiar error de teléfono si todo está bien
+  setAlertVisible(false);
+  setSendModalVisible(true);
+
+  addNotification(language === 'es' ? `Nueva denuncia en: ${direccion}` : `New complaint at: ${direccion}`);
+
+  // Reinicia los campos del formulario
+  setNombre('');
+  setEmail('');
+  setTelefono('');
+  setDireccion('');
+  setArchivo(null);
+};
+
 
   // Función para eliminar la imagen
   const removeImage = () => {
@@ -240,6 +248,8 @@ const DenunciaMicrobasural = () => {
   }}
   keyboardType="phone-pad"
 />
+{telefonoError ? <Text style={{ color: 'red', marginBottom: 10 }}>{telefonoError}</Text> : null}
+
             <Text style={styles.label}>{texts[language].address}<Text style={styles.requiredAsterisk}>*</Text></Text>
             <TextInput
               style={styles.input}
@@ -294,7 +304,7 @@ const DenunciaMicrobasural = () => {
             <LottieView
               source={require('../assets/Animaciones/enviar.json')}
               autoPlay
-              loop={false}
+              loop={true}
               style={styles.animation}
             />
             <Text style={styles.modalSuccessTitle}>{texts[language].success}</Text>
@@ -371,7 +381,7 @@ const styles = StyleSheet.create({
   alertOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
   alertContainer: {
     width: '80%',
-    maxHeight: 300, // Aumentamos la altura máxima del modal de error
+    maxHeight: 330, // Aumentamos la altura máxima del modal de error
     backgroundColor: 'white',
     borderRadius: 20,
     padding: 15,
@@ -381,7 +391,7 @@ const styles = StyleSheet.create({
   },
   alertText: { fontSize: 16, textAlign: 'center', marginBottom: 20, color: '#333' },
   alertButton: {
-    backgroundColor: '#FF6347', // Color rojo más visible para errores
+    backgroundColor: '#4CAF50', // Color rojo más visible para errores
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
