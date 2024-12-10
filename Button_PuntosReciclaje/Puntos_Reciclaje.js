@@ -2,17 +2,17 @@ import React, { useEffect, useState, useContext } from 'react';
 import { View, Text, StyleSheet, Modal, TouchableOpacity, Image, FlatList, Linking } from 'react-native';
 import { AppContext } from '../ConfigGlobal/AppContext'; // Importa el contexto global
 import { getDocs, collection } from "firebase/firestore";
-import { db } from '../ConfigGlobal/config';  // Importa tu configuración de Firebase
+import { db } from '../ConfigGlobal/config';  
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';  // Importa expo-location
-import MenuInferior from '../Menu_Inferior/MenuInferior';  // Importación correcta de MenuInferior
+import MenuInferior from '../Menu_Inferior/MenuInferior';  // Importación de MenuInferior
 
 // Función para obtener el archivo .geojson desde Firestore
 async function obtenerArchivoGeoJSON() {
   try {
     const querySnapshot = await getDocs(collection(db, "archivos_geojson"));
-    const docData = querySnapshot.docs[0].data();  // Obtén el primer documento
-    const geojsonContent = docData.geojsonContent;  // Contenido del archivo .geojson
+    const docData = querySnapshot.docs[0].data();  
+    const geojsonContent = docData.geojsonContent; 
 
     // Convertir el contenido en un objeto JSON
     const geojsonData = JSON.parse(geojsonContent);
