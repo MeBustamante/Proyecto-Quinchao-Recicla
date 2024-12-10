@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
   errorModalButton: { backgroundColor: '#4CAF50', marginTop: 15, paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 },
   errorModalButtonText: { color: '#ffffff', fontSize: 16},
   closeButton: {
-    backgroundColor: 'red', // Fondo rojo
+    backgroundColor: '#4CAF50', // Fondo rojo
     paddingVertical: 10,
     paddingHorizontal: 25,
     borderRadius: 8,

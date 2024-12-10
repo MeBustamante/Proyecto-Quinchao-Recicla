@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
   },
   alertText: { fontSize: 16, textAlign: 'center', marginBottom: 20, color: '#333' },
   alertButton: {
-    backgroundColor: '#4CAF50', // Color rojo más visible para errores
+    backgroundColor: '#4CAF50',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
