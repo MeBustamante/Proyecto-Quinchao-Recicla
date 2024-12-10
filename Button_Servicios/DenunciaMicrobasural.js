@@ -387,7 +387,7 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     elevation: 5,
-    justifyContent: 'center', // Asegura que todo el contenido esté centrado
+    justifyContent: 'center',
   },
   alertText: { fontSize: 16, textAlign: 'center', marginBottom: 20, color: '#333' },
   alertButton: {
