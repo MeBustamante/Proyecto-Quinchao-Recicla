@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, StyleSheet, Modal, TouchableOpacity, FlatList, Linking } from 'react-native';
+import { View, Text, StyleSheet, Modal, TouchableOpacity, Image, FlatList, Linking } from 'react-native';
 import { AppContext } from '../ConfigGlobal/AppContext'; // Importa el contexto global
 import { getDocs, collection } from "firebase/firestore";
-import { db } from '../ConfigGlobal/config';  // Importa tu configuración de Firebase
+import { db } from '../ConfigGlobal/config';  
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';  // Importa expo-location
-import MenuInferior from '../Menu_Inferior/MenuInferior';  // Importación correcta de MenuInferior
+import MenuInferior from '../Menu_Inferior/MenuInferior';  // Importación de MenuInferior
 
 // Función para obtener el archivo .geojson desde Firestore
 async function obtenerArchivoGeoJSON() {
   try {
     const querySnapshot = await getDocs(collection(db, "archivos_geojson"));
-    const docData = querySnapshot.docs[0].data();  // Obtén el primer documento
-    const geojsonContent = docData.geojsonContent;  // Contenido del archivo .geojson
+    const docData = querySnapshot.docs[0].data();  
+    const geojsonContent = docData.geojsonContent; 
 
     // Convertir el contenido en un objeto JSON
     const geojsonData = JSON.parse(geojsonContent);
@@ -222,6 +222,10 @@ const PuntosReciclaje = ({ navigation }) => {
                         <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
                             <Text style={styles.closeButtonText}>×</Text>
                         </TouchableOpacity>
+                        <Image
+                            source={require('../assets/LOG_AMBIENTE.jpg')}
+                            style={styles.logo}
+                        />
                         <Text style={styles.modalTitle}>{selectedPoint?.name}</Text>
                         <Text style={styles.subtitle}>{t.modalTitle}</Text>
                         <View style={styles.listContainer}>
@@ -255,6 +259,7 @@ const styles = StyleSheet.create({
     activeDropdownItemText: { color: '#00796B', fontWeight: 'bold' },
     modalContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' },
     modalContent: { width: '80%', padding: 20, backgroundColor: 'white', borderRadius: 10, alignItems: 'center' },
+    logo: { width: 90, height: 90, marginBottom: 20 },
     closeButton: { position: 'absolute', top: 10, right: 10, backgroundColor: '#000', borderRadius: 15, width: 30, height: 30, justifyContent: 'center', alignItems: 'center' },
     closeButtonText: { fontSize: 18, fontWeight: 'bold', color: '#FFF' },
     modalTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 10, textAlign: 'center' },
