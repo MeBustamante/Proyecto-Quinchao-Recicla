@@ -49,7 +49,7 @@ export default function App() {
         <ScrollView contentContainerStyle={styles.scrollViewContainer}>
           <View style={styles.imageContainer}>
             <Image
-              source={require('../assets/LOG_AMBIENTE.jpg')}
+              source={require('../assets/log_ambiente.jpg')}
               style={styles.rightImage}
             />
           </View>
@@ -72,7 +72,7 @@ export default function App() {
             {/* Imagen centrada */}
             <View style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
               <Image
-                source={require('../assets/XD.jpg')}
+                source={require('../assets/xd.jpg')}
                 style={styles.newImage}
               />
             </View>

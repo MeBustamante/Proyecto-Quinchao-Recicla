@@ -122,7 +122,7 @@ const Gestion = () => {
   >
     <View style={styles.iconAndText}>
       <Image
-        source={require('../assets/LOG_AMBIENTE.jpg')} // Usa un ícono temático
+        source={require('../assets/log_ambiente.jpg')} // Usa un ícono temático
         style={styles.reminderIcon}
       />
       <Text style={styles.reminderText}>

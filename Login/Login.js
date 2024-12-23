@@ -31,7 +31,7 @@ const LoginScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Image 
-                source={require('../assets/LOGO ORIGINAL TRANSPARENCIA.png')} 
+                source={require('../assets/logo_original.png')} 
                 style={styles.logo} 
             />
             {loading ? (

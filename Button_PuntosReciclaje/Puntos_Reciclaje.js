@@ -223,7 +223,7 @@ const PuntosReciclaje = ({ navigation }) => {
                             <Text style={styles.closeButtonText}>×</Text>
                         </TouchableOpacity>
                         <Image
-                            source={require('../assets/LOG_AMBIENTE.jpg')}
+                            source={require('../assets/log_ambiente.jpg')}
                             style={styles.logo}
                         />
                         <Text style={styles.modalTitle}>{selectedPoint?.name}</Text>

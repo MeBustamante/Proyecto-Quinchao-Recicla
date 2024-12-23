@@ -47,7 +47,7 @@ const CompostajeCasa = ({ navigation }) => {
                     <Text style={styles.infoText}>{t.tip2}</Text>
                     <Text style={styles.sectionTitle}>{t.recommendation}</Text>
                     <Text style={styles.infoText}>{t.recommendationDescription}</Text>
-                    <Image source={require('../assets/Compostaje.png')} style={styles.image} />
+                    <Image source={require('../assets/compostaje.png')} style={styles.image} />
                     <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                         <Text style={styles.backButtonText}>{t.backButton}</Text>
                     </TouchableOpacity>

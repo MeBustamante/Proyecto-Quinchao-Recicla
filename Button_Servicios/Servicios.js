@@ -64,7 +64,7 @@ const ServiciosScreen = () => {
           <Text style={styles.buttonText}>{t.denunciaMicrobasural}</Text>
           <Text style={styles.subtitulo}>{t.subtituloMicrobasural}</Text>
           <Image 
-            source={require('../assets/MICROBASURAL.png')} 
+            source={require('../assets/microbasural.png')} 
             style={styles.botonimagen} 
           />
         </Pressable>

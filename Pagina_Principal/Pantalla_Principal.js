@@ -91,7 +91,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                         <View key={index} style={styles.card}>
                             <View style={styles.cardHeader}>
                                 <Image
-                                    source={require('../assets/LOG_AMBIENTE.jpg')} // Icono o logo de la app
+                                    source={require('../assets/log_ambiente.jpg')} // Icono o logo de la app
                                     style={styles.cardIcon}
                                 />
                                 <Text style={styles.cardTitle}>Quinchao Recicla</Text>
@@ -142,7 +142,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                             <Text style={styles.greetingText}>{currentLanguage.greeting}</Text>
                             <Text style={styles.welcomeText}>{currentLanguage.welcome}</Text>
                             <Image
-                                source={require('../assets/LOG_AMBIENTE.jpg')}
+                                source={require('../assets/log_ambiente.jpg')}
                                 style={styles.logo}
                                 resizeMode="contain"
                             />
@@ -162,7 +162,7 @@ const PantallaPrincipalScreen = ({ navigation }) => {
                                 {currentLanguage.reciclaje.subtitle}
                             </Text>
                             <Image
-                                source={require('../assets/RG.jpg')}
+                                source={require('../assets/rg.jpg')}
                                 style={styles.buttonImage}
                                 resizeMode="contain"
                             />
